@@ -4,9 +4,8 @@ import { ThemeProvider } from "@/app/providers/MaterialProvider.jsx";
 import NavigationBar from "@/app/components/NavBar.jsx";
 
 const nunito = Nunito_Sans({
-  // Define las opciones de la fuente Jaldi
   subsets: ["latin"],
-  weight: ["400", "700"], // Por ejemplo, pesos de fuente 400 y 700
+  weight: ["400", "600", "800", "1000"],
   variable: "--font-nunito",
   display: "swap",
 });

@@ -1,6 +1,7 @@
 import "./globals.css";
 import { Nunito_Sans, Ms_Madi } from "next/font/google";
 import { ThemeProvider } from "@/app/providers/MaterialProvider.jsx";
+import NavigationBar from "@/app/components/NavBar.jsx";
 
 const nunito = Nunito_Sans({
   // Define las opciones de la fuente Jaldi
@@ -26,7 +27,10 @@ export default function RootLayout({ children }) {
   return (
     <html lang="es">
       <body className={`${nunito.variable} ${madi.variable}`}>
-        <ThemeProvider>{children}</ThemeProvider>
+        <ThemeProvider>
+          <NavigationBar />
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );

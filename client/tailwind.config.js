@@ -29,6 +29,11 @@ module.exports = withMT({
       grey: "#808180",
       "grey-dark": "#EED6D9",
       pink: "#EED6D9",
+      "pink-peach": "#E27A8C",
+    },
+    fontFamily: {
+      nunito: ["var(--font-nunito)"],
+      madi: ["var(--font-madi)"],
     },
   },
   plugins: [],

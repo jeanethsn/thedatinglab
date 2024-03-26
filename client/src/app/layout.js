@@ -27,6 +27,7 @@ export default function RootLayout({ children }) {
       <body className={`${nunito.variable} ${madi.variable}`}>
         <h1> prueba</h1>
         {children}
+      
       </body>
     </html>
   );

@@ -26,9 +26,9 @@ module.exports = withMT({
       "pink-cream": "#FBF6F3",
       "grey-light": "#E5E6E5",
       "grey-midligth": "#B2B3B2",
-      grey: "#808180",
-      "grey-dark": "#EED6D9",
-      pink: "#EED6D9",
+      "grey":"#808180",
+      "grey-dark": "#51494e",
+      "pink":"#EED6D9"
     },
   },
   plugins: [],

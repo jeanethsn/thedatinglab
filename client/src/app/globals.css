@@ -17,5 +17,5 @@
 }
 body{
   font-size: 10px;
- 
+  font-family:var(--font-nunito);
 }

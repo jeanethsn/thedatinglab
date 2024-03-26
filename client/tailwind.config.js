@@ -1,9 +1,12 @@
 /** @type {import('tailwindcss').Config} */
-module.exports = {
+const withMT = require("@material-tailwind/react/utils/withMT");
+module.exports = withMT({
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./node_modules/@material-tailwind/react/components/**/*.{js,ts,jsx,tsx}",
+    "./node_modules/@material-tailwind/react/theme/components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
     extend: {
@@ -16,17 +19,17 @@ module.exports = {
     colors: {
       "primary-color": "#E94445",
       "pink-ligth": "#F4C9DD",
-      "yellow": "#F8ED9B",
+      yellow: "#F8ED9B",
       "pink-strong": "#E8598E",
       "red-orange": "#DF6761",
       "pink-grey": "#F1DDDA",
       "pink-cream": "#FBF6F3",
       "grey-light": "#E5E6E5",
       "grey-midligth": "#B2B3B2",
-      "grey": "#808180",
-      "grey-dark": "#EED6D9",
-      "pink": "#EED6D9",
+      "grey":"#808180",
+      "grey-dark": "#51494e",
+      "pink":"#EED6D9"
     },
   },
   plugins: [],
-};
+});

@@ -3,7 +3,7 @@ import Image from "next/image";
 export default function StepsInfo() {
   return (
     <div className="lg:flex ol:w-full ol:max-w-[1440px]">
-      <div className="flex flex-col justify-center items-center max-w-[20rem] sm:max-w-[30rem] lg:basis-[55%] lg:pt-[2rem] ol:max-w-[45rem]">
+      <div className="flex flex-col justify-center items-center max-w-[20rem] sm:max-w-[30rem] lg:basis-[55%] lg:pt-[2rem] ol:max-w-[45rem] xl:pb-[4rem]">
         <h1 className="font-bold text-white text-[2.2rem] mb-[2rem] ol:text-[2.5rem]">
           ¿Como Funciona?
         </h1>

@@ -17,10 +17,10 @@ function Footer() {
         <div className="flex justify-center items-center mb-8 lg:mb-0 lg:flex lg:order-3">
           <ul className="flex space-x-6 lg:flex">
             <li>
-              <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">
+              <a href="" target="_blank" rel="noopener noreferrer">
                 <Image
-                  src="/assets/image/icon-wa.svg"
-                  alt="Icono whastsapp"
+                  src="/assets/image/icon-tik.svg"
+                  alt="Icono TIKTOK"
                   width={20}
                   height={20}
                 />
@@ -39,8 +39,8 @@ function Footer() {
             <li>
               <a href="" target="_blank" rel="noopener noreferrer">
                 <Image
-                  src="/assets/image/icon-tik.svg"
-                  alt="Icono TIKTOK"
+                  src="/assets/image/icon-wa.svg"
+                  alt="Icono whastsapp"
                   width={20}
                   height={20}
                 />

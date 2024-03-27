@@ -79,8 +79,8 @@ export default function NavigationBar() {
         </Typography>
       </ul>
       <div className="flex items-center">
-        <Button className="hidden lg:inline-block lg:font-semibold text-[1rem]  font-nunito lg:text-primary-color lg:border-[0.15rem] lg:border-primary-color lg:py-[0.5rem] lg:px-[1.2rem]">
-          Login / Register
+        <Button className="hidden lg:inline-block lg:font-semibold text-[1rem]  font-nunito lg:text-primary-color lg:border-[0.15rem] lg:border-primary-color lg:py-[0.5rem] lg:px-[1.6rem]">
+          Accede
         </Button>
       </div>
     </>

@@ -10,7 +10,7 @@ import {
 
 export default function ProfileMenu() {
   return (
-    <Menu placement="bottom-end">
+    <Menu placement="bottom-end hidden">
       <MenuHandler>
         <Avatar
           variant="circular"

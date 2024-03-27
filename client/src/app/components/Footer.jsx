@@ -4,7 +4,7 @@ import Link from "next/link";
 
 function Footer() {
   return (
-    <footer className="bg-grey-dark lg:flex lg:justify-between lg:p-9">
+    <footer className="bg-grey-dark lg:flex lg:justify-between p-6 lg:p-9">
       <div className="flex justify-center items-center mb-8 lg:mb-0  lg:order-1 ">
         <Image
           
@@ -58,8 +58,8 @@ function Footer() {
             </li>
           </ul>
         </div>
-        <div className="text-center justify-center items-center  lg:order-2">
-          <ul className="lg:flex lg:gap-4">
+        <div className="text-center justify-center items-center lg:order-2">
+          <ul className="lg:flex lg:gap-8">
             <li className="mb-4 lg:mb-0">
               <Link className="text-white-text text-[1rem]" href="/contacto">
                 Contacto

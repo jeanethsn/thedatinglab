@@ -27,12 +27,11 @@ export default function RootLayout({ children }) {
   return (
     <html lang="es">
       <body className={`${nunito.variable} ${madi.variable}`}>
-        <ThemeProvider>{children}</ThemeProvider>
-        <Footer />
         <ThemeProvider>
           <NavigationBar />
           {children}
         </ThemeProvider>
+        <Footer />
       </body>
     </html>
   );

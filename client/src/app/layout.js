@@ -1,6 +1,7 @@
 import "./globals.css";
 import { Nunito_Sans, Ms_Madi } from "next/font/google";
 import { ThemeProvider } from "@/app/providers/MaterialProvider.jsx";
+import Footer from "./components/Footer";
 import NavigationBar from "@/app/components/NavBar.jsx";
 
 const nunito = Nunito_Sans({
@@ -26,6 +27,8 @@ export default function RootLayout({ children }) {
   return (
     <html lang="es">
       <body className={`${nunito.variable} ${madi.variable}`}>
+        <ThemeProvider>{children}</ThemeProvider>
+        <Footer />
         <ThemeProvider>
           <NavigationBar />
           {children}

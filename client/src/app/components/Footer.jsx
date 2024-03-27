@@ -3,7 +3,7 @@ import React from 'react';
 
 function Footer() {
   return (
-    <footer className="footer">
+    <footer className="bg-gray-51494E">
  <Image
           src="/assets/image/Logo_Blanco.svg"
           alt="Icono home"

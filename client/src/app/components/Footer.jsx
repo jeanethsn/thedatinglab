@@ -1,10 +1,82 @@
+import Image from "next/image";
 import React from 'react';
+import Link from "next/link"; 
 
 function Footer() {
   return (
-    <footer className="footer">
-
-         
+    <footer className="bg-grey-dark lg:flex lg:justify-between lg:p-9">
+      <div className="flex justify-center items-center mb-8 lg:mb-0  lg:order-1 ">
+        <Image
+          
+          src="/assets/image/LogoB.svg"
+          alt="Icono home"
+          width={100}
+          height={100}
+        />
+      </div>
+        <div className="flex justify-center items-center mb-8 lg:mb-0 lg:flex lg:order-3">
+          <ul className="flex space-x-6 lg:flex">
+            <li>
+              <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">
+                <Image
+                  src="/assets/image/icon-wa.svg"
+                  alt="Icono whastsapp"
+                  width={20}
+                  height={20}
+                />
+              </a>
+            </li>
+            <li>
+              <a href="https://www.instagram.com/the.dating.lab/" target="_blank" rel="noopener noreferrer">
+                <Image
+                  src="/assets/image/icon-ig.svg"
+                  alt="Icono insta"
+                  width={20}
+                  height={20}
+                />
+              </a>
+            </li>
+            <li>
+              <a href="" target="_blank" rel="noopener noreferrer">
+                <Image
+                  src="/assets/image/icon-tik.svg"
+                  alt="Icono TIKTOK"
+                  width={20}
+                  height={20}
+                />
+              </a>
+            </li>
+            <li>
+              <a href="https://www.linkedin.com/company/datinglab/about/" target="_blank" rel="noopener noreferrer">
+                <Image
+                  src="/assets/image/icon-linkedin.svg"
+                  alt="Icono TIKTOK"
+                  width={20}
+                  height={20}
+                />
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div className="text-center justify-center items-center  lg:order-2">
+          <ul className="lg:flex lg:gap-4">
+            <li className="mb-4 lg:mb-0">
+              <Link className="text-white-text text-[1rem]" href="/contacto">
+                Contacto
+              </Link> 
+            </li>
+            <li className="mb-4 lg:mb-0">
+              <Link className="text-white-text text-[1rem]" href="/faqs">
+                F.A.Q.s
+              </Link> 
+            </li>
+            <li className="mb-8 lg:mb-0">
+              <Link className="text-white-text text-[1rem]" href="/terminos-de-servicio">
+                Términos del servicio
+              </Link> 
+            </li>
+          </ul>
+        </div>
     </footer>
   );
 }

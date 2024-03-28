@@ -41,7 +41,7 @@ export default function DrawerWithNavigation({ closeDrawer, open }) {
             <Image
               width={15}
               height={15}
-              src={"/assets/image/icon-close.svg"}
+              src={"/assets/icon/icon-close.svg"}
               alt="icono de cerrar"
             />
           </IconButton>
@@ -52,7 +52,7 @@ export default function DrawerWithNavigation({ closeDrawer, open }) {
               <Image
                 width={28}
                 height={28}
-                src={"/assets/image/icon-home.svg"}
+                src={"/assets/icon/icon-home.svg"}
                 alt="icono de home"
               />
             </ListItemPrefix>
@@ -63,7 +63,7 @@ export default function DrawerWithNavigation({ closeDrawer, open }) {
               <Image
                 width={25}
                 height={25}
-                src={"/assets/image/icon-info.svg"}
+                src={"/assets/icon/icon-info.svg"}
                 alt="icono de info"
               />
             </ListItemPrefix>
@@ -74,7 +74,7 @@ export default function DrawerWithNavigation({ closeDrawer, open }) {
               <Image
                 width={25}
                 height={25}
-                src={"/assets/image/icon-event.svg"}
+                src={"/assets/icon/icon-event.svg"}
                 alt="icono de evento"
               />
             </ListItemPrefix>
@@ -85,7 +85,7 @@ export default function DrawerWithNavigation({ closeDrawer, open }) {
               <Image
                 width={25}
                 height={25}
-                src={"/assets/image/icon-contacto.svg"}
+                src={"/assets/icon/icon-contacto.svg"}
                 alt="icono de contacto"
               />
             </ListItemPrefix>

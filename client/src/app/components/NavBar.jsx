@@ -103,7 +103,7 @@ export default function NavigationBar() {
               <Image
                 width={40}
                 height={40}
-                src={"/assets/image/icon-hamburger.svg"}
+                src={"/assets/icon/icon-hamburger.svg"}
                 alt="icono de menu mobile"
                 className="w-full"
               />
@@ -128,7 +128,7 @@ export default function NavigationBar() {
             <Image
               width={25}
               height={25}
-              src={"/assets/image/icon-user.svg"}
+              src={"/assets/icon/icon-user.svg"}
               alt="icono de usuario"
               className="lg:hidden"
             />

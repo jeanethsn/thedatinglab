@@ -29,6 +29,7 @@ export default function RootLayout({ children }) {
       <body className={`${nunito.variable} ${madi.variable}`}>
         <ThemeProvider>{children}</ThemeProvider>
         <Footer/>
+        <h1>hola mundo</h1>
       </body>
     </html>
   );

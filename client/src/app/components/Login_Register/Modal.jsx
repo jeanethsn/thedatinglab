@@ -1,23 +1,8 @@
-// import React from 'react';
+import React from 'react';
 
-// const Modal = ({ isOpen, onClose, children }) => {
-//   if (!isOpen) return null;
+const Modal = ({ isOpen, onClose, children }) => {
+  if (!isOpen) return null;
 
-//   return (
-//     <div className="modal">
-//       <div className="modal-content">
-//         <span className="close" onClick={onClose}>&times;</span>
-//         {children}
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default Modal;
-// Modal.js
-import React from "react";
-
-const Modal = ({ onClose, children }) => {
   return (
     <div className="modal">
       <div className="modal-content">
@@ -29,3 +14,5 @@ const Modal = ({ onClose, children }) => {
 };
 
 export default Modal;
+
+

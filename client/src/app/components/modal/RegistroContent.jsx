@@ -1,6 +1,6 @@
 "use client"
 import React, { useState } from 'react';
-import api from './api';
+// import api from './api';
 
 const RegistroContent = () => {
   const [email, setEmail] = useState('');
@@ -31,7 +31,7 @@ const RegistroContent = () => {
   };
 
   return (
-    <div className="registro-content">
+    <div className="text-white text-lg font-bold">
       <form onSubmit={handleSubmit}>
         <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
         <input type="password" placeholder="Contraseña" value={password} onChange={(e) => setPassword(e.target.value)} />

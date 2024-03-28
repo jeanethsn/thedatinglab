@@ -1,6 +1,6 @@
 "use client"
 import React, { useState } from 'react';
-import api from './api';
+// import api from './api';
 
 const LoginContent = () => {
   const [email, setEmail] = useState('');

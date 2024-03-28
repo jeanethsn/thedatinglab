@@ -29,7 +29,7 @@ export default function HeroEvents() {
           }}
         />
       </div>
-      <div className="mb-[4rem] lg:flex lg:px-[2rem] lg:mb-0 lg:gap-[1rem] xl:px-[8rem] xl:gap-[2rem] xxl:px-[12rem]">
+      <div className="pb-[4rem] lg:flex lg:px-[2rem] lg:pb-0 lg:mb-0 lg:gap-[1rem] xl:px-[8rem] xl:gap-[2rem] xxl:px-[12rem]">
         <div className="hidden  lg:block lg:basis-[60%] xl:basis-[70%] xxl:basis-[80%] ">
           <Image
             width={800}

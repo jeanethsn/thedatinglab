@@ -35,6 +35,11 @@ module.exports = withMT({
       nunito: ["var(--font-nunito)"],
       madi: ["var(--font-madi)"],
     },
+    screens: {
+      lg: "930px",
+      ol: "1400px",
+      xxl: "1600px",
+    },
   },
   plugins: [],
 });

@@ -1,23 +1,23 @@
+"use client";
 import PropTypes from "prop-types";
 import Link from "next/link";
 const COLOR = {
-  primary: "red-orange",
-  secondary: "pink-strong",
-  terciary: "primary-color",
-  cuaternary: "pink-peach",
+  primary: "bg-red-orange ",
+  secondary: "bg-pink-strong",
+  terciary: "bg-primary-color",
+  cuaternary: "bg-pink-peach",
 };
 
 export default function Button({
   as,
-  color,
+  color = "",
   className = "",
   children,
   ...rest
 }) {
   const Component = as === "Link" ? Link : "button";
-  const colorButton = color ? COLOR[color] : COLOR["primary"];
 
-  const styles = `rounded-md bg-${colorButton} ${className}`;
+  const styles = `w-full py-[0.2rem] mt-[1rem]  rounded-bl-2xl rounded-tr-2xl hover:rounded-full ${COLOR[color]} ${className}`;
   return (
     <Component className={styles} {...rest}>
       {children}

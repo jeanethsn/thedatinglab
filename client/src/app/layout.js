@@ -1,5 +1,5 @@
 import "./globals.css";
-import { Nunito_Sans,Ms_Madi} from "next/font/google";
+import { Nunito_Sans, Ms_Madi } from "next/font/google";
 
 const nunito = Nunito_Sans({
   // Define las opciones de la fuente Jaldi
@@ -11,7 +11,7 @@ const nunito = Nunito_Sans({
 
 const madi = Ms_Madi({
   subsets: ["latin"],
-  weight: ["400"], 
+  weight: ["400"],
   variable: "--font-madi",
   display: "swap",
 });
@@ -24,11 +24,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="es">
-      <body className={`${nunito.variable} ${madi.variable}`}>
-        <h1> prueba</h1>
-        {children}
-      
-      </body>
+      <body className={`${nunito.variable} ${madi.variable}`}>{children}</body>
     </html>
   );
 }

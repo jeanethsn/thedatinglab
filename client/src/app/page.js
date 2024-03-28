@@ -28,7 +28,7 @@ export default function Home() {
       </section>
       <section
         id="sectionStepsInfo"
-        className="bg-[#E94444] px-[2rem] py-[4rem] flex flex-col justify-center items-center lg:pb-0 lg:pt-[2rem] ol:px-[4rem] xl:pt-[4rem]"
+        className="bg-[#E94444] px-[2rem] py-[4rem] flex flex-col justify-center items-center lg:pb-0 lg:pt-[2rem] ol:px-[4rem] xl:pt-[4rem] xxl:pt-[6rem]"
       >
         <StepsInfo />
       </section>

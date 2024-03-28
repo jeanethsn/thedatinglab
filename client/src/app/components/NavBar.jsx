@@ -109,7 +109,6 @@ export default function NavigationBar() {
               />
             )}
           </IconButton>
-
           <Button
             as="Link"
             href="/"

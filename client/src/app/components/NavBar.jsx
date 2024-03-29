@@ -31,6 +31,9 @@ export default function NavigationBar() {
     );
   }, []);
 
+  const scrollInTo = (id) => {
+    document.getElementById(id).scrollIntoView({ behavior: "smooth" });
+  };
   const navList = (
     <>
       <ul className="flex lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-[3rem] text-black ">
@@ -60,7 +63,7 @@ export default function NavigationBar() {
           } font-semibold text-[1rem]`}
         >
           <Button
-            href="#"
+            onClick={() => scrollInTo("sectionStepsInfo")}
             className={`${
               isFaqsPage ? "text-primary-color" : ""
             } flex items-center  font-nunito`}
@@ -77,7 +80,7 @@ export default function NavigationBar() {
           } font-semibold text-[1rem]`}
         >
           <Button
-            href="#"
+            onClick={() => scrollInTo("sectionEvents")}
             className={`${
               isEventsPage ? "text-primary-color" : ""
             } flex items-center  font-nunito`}
@@ -130,7 +133,6 @@ export default function NavigationBar() {
               />
             )}
           </IconButton>
-
           <Button
             as="Link"
             href="/"

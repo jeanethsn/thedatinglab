@@ -35,7 +35,7 @@ const LoginContent = () => {
 
         <br />
         <br />
-        
+
         <button type="submit">Iniciar sesión</button>
        
       </form>
@@ -43,4 +43,3 @@ const LoginContent = () => {
   );
 };
 
-export default LoginContent;

@@ -28,9 +28,16 @@ const LoginContent = () => {
     <div className="login-content">
       <form onSubmit={handleSubmit}>
         <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
+        <br />
+        <br />
         <input type="password" placeholder="Contraseña" value={password} onChange={(e) => setPassword(e.target.value)} />
         {error && <p className="error-message">{error}</p>}
+
+        <br />
+        <br />
+        
         <button type="submit">Iniciar sesión</button>
+       
       </form>
     </div>
   );

@@ -1,35 +1,31 @@
 "use client"
-import React from 'react';
+// import React from 'react';
+// import style from './style.module.css';
 
-//const Modal = ({children }) => {
-  // if (!isOpen) return null;
-
+// const Modal = ({ children }) => {
 //   return (
-//     <div className="fixed inset-0 flex items-center justify-center z-50">
-//       <div className="bg-white rounded-lg p-8 max-w-md w-full">
-//         <span className="absolute top-0 right-0 m-4 text-gray-500 hover:text-gray-700 focus:outline-none">&times;</span>
+//     <article className="modal is-open">
+//       <div className="modal-container">
+//         <button className="modal-close"> X </button>
 //         {children}
 //       </div>
-//     </div>
+//     </article>
 //   );
 // };
 
 // export default Modal;
 
+import React from 'react';
+import styles from './style.module.css'; // Import your CSS module
 
-const Modal = ({ children, onClose }) => {
+const Modal = ({ children }) => {
   return (
-    <div className="fixed top-0 inset-0 flex  justify-center  bg-black bg-opacity-50 border-8">
-      <div className="bg-white rounded-lg p-8 max-w-md w-full relative border-8">
-        <button
-          className="absolute top-0 right-0 m-4 text-gray-500 hover:text-gray-700 focus:outline-none border-8"
-          onClick={onClose}
-        >
-          X
-        </button>
+    <article className={`${styles.modal} ${styles.is-open}`}>  // Combine classes
+      <div className={styles.modalContainer}>
+        <button className={styles.modalClose}> X </button>
         {children}
       </div>
-    </div>
+    </article>
   );
 };
 

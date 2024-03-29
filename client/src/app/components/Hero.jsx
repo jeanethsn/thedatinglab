@@ -4,7 +4,7 @@ import Button from "@/app/components/Button.jsx";
 export default function Hero() {
   return (
     <div className="flex flex-wrap justify-center z-[1] relative lg:w-full lg:justify-none">
-      <div className="h-[20rem] sm:h-[30rem] lg:basis-[50%] lg:h-[30rem] xl:h-[40rem] xl:pt-[2rem]">
+      <div className="h-[20rem] sm:h-[30rem] lg:basis-[50%] lg:h-[30rem] xl:h-[40rem] xl:pt-[2rem] xxl:h-[45rem]">
         <div
           className="bg-top w-[20rem] mt-[2rem] h-full sm:bg-top sm:w-[28rem] lg:mt-0  lg:w-full xl:w-[35rem] "
           style={{

@@ -79,7 +79,7 @@ export default function StepsInfo() {
       </div>
       <div className="hidden lg:flex  lg:items-end ">
         <Image
-          width={600}
+          width={650}
           height={200}
           src={"/assets/image/imagen-steps.png"}
           alt="imagen de una pareja"

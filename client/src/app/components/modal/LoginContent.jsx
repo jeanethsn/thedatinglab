@@ -28,7 +28,7 @@ const validationSchema = Yup.object().shape({
     .max(40, "La contraseña no debe exceder los 40 caracteres"),
 });
 
-export default function LoginContent({ handleCloseLogin }) {
+export default function LoginContent({ children }) {
   const {
     register,
     handleSubmit,
@@ -36,7 +36,20 @@ export default function LoginContent({ handleCloseLogin }) {
   } = useForm({ mode: "onBlur", resolver: yupResolver(validationSchema) });
 
   const [errorLogin, setErrorLogin] = useState({});
+  const [showLogin, setShowLogin] = useState(false);
   const { handleUserLogin } = useUser();
+
+  const handleOpenLogin = () => {
+    setShowLogin(true);
+  };
+
+  const handleCloseLogin = () => {
+    setShowLogin(false);
+  };
+
+  const onHandler = () => {
+    setShowLogin(!showLogin);
+  };
 
   const onSubmit = async (data) => {
     setErrorLogin({});
@@ -52,58 +65,50 @@ export default function LoginContent({ handleCloseLogin }) {
   };
 
   return (
-    <Modal>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <CardBody className="flex flex-col gap-4">
-          <Typography
-            variant="h4"
-            className="text-primary-color text-center font-nunito font-bold text-[1.6rem]"
-          >
-            Bienvenido
-          </Typography>
-          <Typography
-            className="mb-[0.8rem] text-[#333333] font-nunito font-bold text-[1.4rem]"
-            variant="paragraph"
-          >
-            Iniciar sesion
-          </Typography>
+    <>
+      {children(handleOpenLogin)}
 
-          <InputText
-            register={register}
-            name="email"
-            error={errors?.email}
-            labelText="Email"
-            errorText={errors?.email?.message}
-          />
+      <Modal open={showLogin} handler={onHandler}>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <CardBody className="flex flex-col gap-4" onkey>
+            <button className="text-right" onClick={handleCloseLogin}>
+              X
+            </button>
+            <Typography
+              variant="h4"
+              className="text-primary-color text-center font-nunito font-bold text-[1.6rem]"
+            >
+              Bienvenido
+            </Typography>
+            <Typography
+              className="mb-[0.8rem] text-[#333333] font-nunito font-bold text-[1.4rem]"
+              variant="paragraph"
+            >
+              Iniciar sesion
+            </Typography>
 
-          <InputPassword
-            register={register}
-            name="password"
-            error={errors?.password}
-            labelText="Contraseña"
-            errorText={errors?.password?.message}
-          />
+            <InputText
+              register={register}
+              name="email"
+              error={errors?.email}
+              labelText="Email"
+              errorText={errors?.email?.message}
+            />
 
-          {/* Error cuando las credenciales no existen o coinciden con la bd */}
-          {errorLogin?.response?.data?.msg && (
-            <span className="text-red-600">
-              {errorLogin?.response?.data?.msg}
-            </span>
-          )}
-          <Typography
-            as="a"
-            href="#signup"
-            variant="small"
-            color="blue-gray"
-            className="ml-1 font-bold"
-          >
-            ¿Has olvidado la contraseña?
-          </Typography>
-        </CardBody>
-        <CardFooter className="pt-0">
-          <Button type="submit">Iniciar sesion</Button>
-          <Typography variant="small" className="mt-4 flex justify-center">
-            Aún no tienes cuenta?
+            <InputPassword
+              register={register}
+              name="password"
+              error={errors?.password}
+              labelText="Contraseña"
+              errorText={errors?.password?.message}
+            />
+
+            {/* Error cuando las credenciales no existen o coinciden con la bd */}
+            {errorLogin?.response?.data?.msg && (
+              <span className="text-red-600">
+                {errorLogin?.response?.data?.msg}
+              </span>
+            )}
             <Typography
               as="a"
               href="#signup"
@@ -111,11 +116,26 @@ export default function LoginContent({ handleCloseLogin }) {
               color="blue-gray"
               className="ml-1 font-bold"
             >
-              Regístrate ahora
+              ¿Has olvidado la contraseña?
             </Typography>
-          </Typography>
-        </CardFooter>
-      </form>
-    </Modal>
+          </CardBody>
+          <CardFooter className="pt-0">
+            <Button type="submit">Iniciar sesion</Button>
+            <Typography variant="small" className="mt-4 flex justify-center">
+              Aún no tienes cuenta?
+              <Typography
+                as="a"
+                href="#signup"
+                variant="small"
+                color="blue-gray"
+                className="ml-1 font-bold"
+              >
+                Regístrate ahora
+              </Typography>
+            </Typography>
+          </CardFooter>
+        </form>
+      </Modal>
+    </>
   );
 }

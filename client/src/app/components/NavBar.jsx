@@ -14,18 +14,10 @@ export default function NavigationBar() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const closeDrawer = () => setOpen(false);
-  const [showLogin, setShowLogin] = useState(false);
 
   const isHomePage = pathname === "/";
   const isFaqsPage = pathname === "/faqs"; // cambiar ruta
   const isEventsPage = pathname === "/events"; // cambiar ruta
-  const handleOpenLogin = () => {
-    setShowLogin(true);
-  };
-
-  const handleCloseLogin = () => {
-    setShowLogin(false);
-  };
 
   useEffect(() => {
     window.addEventListener(
@@ -95,12 +87,18 @@ export default function NavigationBar() {
       <div className="flex items-center">
         {user?.email && <ProfileMenu />}
         {!user?.email && (
-          <Button
-            className="hidden lg:inline-block lg:font-semibold text-[1rem]  font-nunito lg:text-primary-color lg:border-[0.15rem] lg:border-primary-color lg:py-[0.5rem] lg:px-[1.6rem]"
-            onClick={handleOpenLogin}
-          >
-            Accede
-          </Button>
+          <>
+            <Login>
+              {(handleOpenLogin) => (
+                <Button
+                  className="hidden lg:inline-block lg:font-semibold text-[1rem]  font-nunito lg:text-primary-color lg:border-[0.15rem] lg:border-primary-color lg:py-[0.5rem] lg:px-[1.6rem]"
+                  onClick={handleOpenLogin}
+                >
+                  Accede
+                </Button>
+              )}
+            </Login>
+          </>
         )}
       </div>
     </>
@@ -153,7 +151,14 @@ export default function NavigationBar() {
         </div>
       </Navbar>
       <DrawerWithNavigation closeDrawer={closeDrawer} open={open} />
-      {showLogin && <Login handleCloseLogin={handleCloseLogin} />}
+      {/* {
+        <Login
+          handleCloseLogin={handleCloseLogin}
+          showLogin={showLogin}
+          handleOpenLogin={() => setShowLogin(!showLogin)}
+        />
+      } */}
+      {/* {showRegisterForm && } */}
     </>
   );
 }

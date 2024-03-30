@@ -7,8 +7,10 @@ import {
   Avatar,
   Typography,
 } from "@material-tailwind/react";
+import { useUser } from "@/app/providers/UserProvider.jsx";
 
 export default function ProfileMenu() {
+  const { handleUserLogout } = useUser();
   return (
     <Menu placement="bottom-end hidden">
       <MenuHandler>
@@ -49,7 +51,10 @@ export default function ProfileMenu() {
           </Typography>
         </MenuItem>
         <hr className="my-2 border-blue-gray-50" />
-        <MenuItem className="flex items-center gap-[0.8rem] hover:bg-inherit">
+        <MenuItem
+          className="flex items-center gap-[0.8rem] hover:bg-inherit"
+          onClick={handleUserLogout}
+        >
           <Image
             width={18}
             height={18}

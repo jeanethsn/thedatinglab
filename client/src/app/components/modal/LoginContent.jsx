@@ -32,7 +32,7 @@ export default function LoginContent({ handleCloseLogin }) {
     formState: { errors },
   } = useForm({ mode: "onChange", resolver: yupResolver(validationSchema) });
 
-  const { setUser } = useUser();
+  const { handleUserLogin } = useUser();
 
   const [errorLogin, setErrorLogin] = useState({});
 
@@ -41,7 +41,8 @@ export default function LoginContent({ handleCloseLogin }) {
     try {
       const response = await getLogin(data);
       localStorage.setItem("user", JSON.stringify(response.data));
-      setUser(response?.data?.user);
+      handleUserLogin(response?.data?.user);
+
       handleCloseLogin();
     } catch (error) {
       setErrorLogin(error);

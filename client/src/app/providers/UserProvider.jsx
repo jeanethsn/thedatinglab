@@ -11,6 +11,15 @@ export default function UserProvider({ children }) {
   const [user, setUser] = useState({});
   const [isLoading, setIsLoading] = useState(true);
 
+  const handleUserLogout = () => {
+    localStorage.removeItem("user");
+    setUser({});
+  };
+
+  const handleUserLogin = (data) => {
+    setUser(data);
+  };
+
   useEffect(() => {
     const loggedUser = JSON.parse(localStorage.getItem("user"));
     if (loggedUser?.user?.email) {
@@ -20,7 +29,9 @@ export default function UserProvider({ children }) {
   }, []);
 
   return (
-    <UserContext.Provider value={{ user, setUser, isLoading }}>
+    <UserContext.Provider
+      value={{ user, isLoading, handleUserLogout, handleUserLogin }}
+    >
       {children}
     </UserContext.Provider>
   );

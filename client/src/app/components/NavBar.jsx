@@ -6,23 +6,24 @@ import DrawerWithNavigation from "@/app/components/Drawer.jsx";
 import Button from "@/app/components/Button.jsx";
 import { usePathname } from "next/navigation";
 import { Navbar, Typography, IconButton } from "@material-tailwind/react";
-import Modal from "./modal/Modal";
-import LoginContent from "@/app/components/modal/LoginContent";
-import RegistroContent from "@/app/components/modal/RegistroContent";
+import Login from "@/app/components/modal/LoginContent.jsx";
 
 export default function NavigationBar() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const closeDrawer = () => setOpen(false);
-  const [ShowModal, setShowModal] = useState(false);
+  const [showLogin, setShowLogin] = useState(false);
 
   const isHomePage = pathname === "/";
   const isFaqsPage = pathname === "/faqs"; // cambiar ruta
   const isEventsPage = pathname === "/events"; // cambiar ruta
-  const handleModal = () => {
-    setShowModal(true);
-    console.log("hola")
-  }
+  const handleOpenLogin = () => {
+    setShowLogin(true);
+  };
+
+  const handleCloseLogin = () => {
+    setShowLogin(false);
+  };
 
   useEffect(() => {
     window.addEventListener(
@@ -90,26 +91,13 @@ export default function NavigationBar() {
         </Typography>
       </ul>
       <div className="flex items-center">
-        <Button className="hidden lg:inline-block lg:font-semibold text-[1rem]  font-nunito lg:text-primary-color lg:border-[0.15rem] lg:border-primary-color lg:py-[0.5rem] lg:px-[1.6rem]" onClick={handleModal}>
+        <Button
+          className="hidden lg:inline-block lg:font-semibold text-[1rem]  font-nunito lg:text-primary-color lg:border-[0.15rem] lg:border-primary-color lg:py-[0.5rem] lg:px-[1.6rem]"
+          onClick={handleOpenLogin}
+        >
           Accede
         </Button>
       </div>
-
-      {
-  ShowModal && 
-  (
-    <div
-      className=""
-      style={{ backgroundColor: "#000000cc" }}
-    >
-      <Modal>
-        <LoginContent />
-      </Modal>  
-    </div>
-  )
-      }
-        
-
     </>
   );
 
@@ -160,6 +148,7 @@ export default function NavigationBar() {
         </div>
       </Navbar>
       <DrawerWithNavigation closeDrawer={closeDrawer} open={open} />
+      {showLogin && <Login handleCloseLogin={handleCloseLogin} />}
     </>
   );
 }

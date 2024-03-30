@@ -4,6 +4,7 @@ import Button from "@/app/components/Button.jsx";
 import { useForm } from "react-hook-form";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useUser } from "@/app/providers/UserProvider";
 import {
   CardBody,
   CardFooter,
@@ -31,6 +32,8 @@ export default function LoginContent({ handleCloseLogin }) {
     formState: { errors },
   } = useForm({ mode: "onChange", resolver: yupResolver(validationSchema) });
 
+  const { setUser } = useUser();
+
   const [errorLogin, setErrorLogin] = useState({});
 
   const onSubmit = async (data) => {
@@ -38,7 +41,8 @@ export default function LoginContent({ handleCloseLogin }) {
     try {
       const response = await getLogin(data);
       localStorage.setItem("user", JSON.stringify(response.data));
-      // handleCloseLogin();
+      setUser(response?.data?.user);
+      handleCloseLogin();
     } catch (error) {
       setErrorLogin(error);
     }

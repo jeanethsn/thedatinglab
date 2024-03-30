@@ -7,8 +7,10 @@ import Button from "@/app/components/Button.jsx";
 import { usePathname } from "next/navigation";
 import { Navbar, Typography, IconButton } from "@material-tailwind/react";
 import Login from "@/app/components/modal/LoginContent.jsx";
-
+import ProfileMenu from "@/app/components/ProfileMenu.jsx";
+import { useUser } from "@/app/providers/UserProvider";
 export default function NavigationBar() {
+  const { user, isLoading } = useUser();
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const closeDrawer = () => setOpen(false);
@@ -91,12 +93,15 @@ export default function NavigationBar() {
         </Typography>
       </ul>
       <div className="flex items-center">
-        <Button
-          className="hidden lg:inline-block lg:font-semibold text-[1rem]  font-nunito lg:text-primary-color lg:border-[0.15rem] lg:border-primary-color lg:py-[0.5rem] lg:px-[1.6rem]"
-          onClick={handleOpenLogin}
-        >
-          Accede
-        </Button>
+        {user?.email && <ProfileMenu />}
+        {!user?.email && (
+          <Button
+            className="hidden lg:inline-block lg:font-semibold text-[1rem]  font-nunito lg:text-primary-color lg:border-[0.15rem] lg:border-primary-color lg:py-[0.5rem] lg:px-[1.6rem]"
+            onClick={handleOpenLogin}
+          >
+            Accede
+          </Button>
+        )}
       </div>
     </>
   );

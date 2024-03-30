@@ -11,6 +11,7 @@ import {
   Input,
 } from "@material-tailwind/react";
 import { getLogin } from "@/app/services/user";
+import { useState } from "react";
 const REGEX_EMAIL = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
 
 const validationSchema = Yup.object().shape({
@@ -30,12 +31,16 @@ export default function LoginContent({ handleCloseLogin }) {
     formState: { errors },
   } = useForm({ mode: "onChange", resolver: yupResolver(validationSchema) });
 
-  const onSubmit = (data) => {
+  const [errorLogin, setErrorLogin] = useState({});
+
+  const onSubmit = async (data) => {
+    setErrorLogin({});
     try {
-      const response = getLogin(data);
-      // localstorage para guardar la data!
+      const response = await getLogin(data);
+      localStorage.setItem("user", JSON.stringify(response.data));
+      // handleCloseLogin();
     } catch (error) {
-      console.log(error);
+      setErrorLogin(error);
     }
   };
 
@@ -75,6 +80,13 @@ export default function LoginContent({ handleCloseLogin }) {
           <Input id="password" size="lg" {...register("password")} />
           {errors?.password && (
             <p className="text-red-600"> {errors.password.message} </p>
+          )}
+
+          {/* Error cuando las credenciales no existen o coinciden con la bd */}
+          {errorLogin?.response?.data?.msg && (
+            <span className="text-red-600">
+              {errorLogin?.response?.data?.msg}
+            </span>
           )}
           <Typography
             as="a"

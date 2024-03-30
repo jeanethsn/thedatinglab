@@ -2,6 +2,8 @@
 import Modal from "@/app/components/modal/Modal.jsx";
 import Button from "@/app/components/Button.jsx";
 import { useForm } from "react-hook-form";
+import * as Yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
 import {
   CardBody,
   CardFooter,
@@ -9,13 +11,24 @@ import {
   Input,
 } from "@material-tailwind/react";
 import { getLogin } from "@/app/services/user";
+const REGEX_EMAIL = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
+
+const validationSchema = Yup.object().shape({
+  email: Yup.string()
+    .required("El campo email es requerido")
+    .matches(REGEX_EMAIL, "El email es invalido"),
+  password: Yup.string()
+    .required("La contraseña es requerida")
+    .min(6, "La contraseña debe contener al menos 6 caracteres")
+    .max(40, "La contraseña no debe exceder los 40 caracteres"),
+});
 
 export default function LoginContent({ handleCloseLogin }) {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm({ mode: "onChange", resolver: yupResolver(validationSchema) });
 
   const onSubmit = (data) => {
     try {
@@ -30,43 +43,53 @@ export default function LoginContent({ handleCloseLogin }) {
     <Modal>
       <form onSubmit={handleSubmit(onSubmit)}>
         <CardBody className="flex flex-col gap-4">
-          <Typography variant="h4" color="blue-gray">
-            Sign In
+          <Typography
+            variant="h4"
+            className="text-primary-color text-center font-nunito font-bold text-[1.6rem]"
+          >
+            Bienvenido
           </Typography>
           <Typography
-            className="mb-3 font-normal"
+            className="mb-[0.8rem] text-[#333333] font-nunito font-bold text-[1.4rem]"
             variant="paragraph"
-            color="gray"
           >
-            Enter your email and password to Sign In.
+            Iniciar sesion
           </Typography>
-          <Typography className="-mb-2" variant="h6">
-            Your Email
-          </Typography>
-          <Input
-            label="email"
-            size="lg"
-            {...register("email", { required: true })}
-          />
-          {errors.email?.type === "required" && (
-            <p className="text-red-600">* email is required</p>
+          <label
+            className="text-[#545454] font-nunito font-bold text-[1rem] leading-[0rem]"
+            htmlFor="email"
+          >
+            Email
+          </label>
+          <Input id="email" size="lg" {...register("email")} />
+          {errors?.email && (
+            <p className="text-red-600"> {errors.email.message} </p>
           )}
-          <Typography className="-mb-2" variant="h6">
-            Your Password
-          </Typography>
-          <Input
-            label="Password"
-            size="lg"
-            {...register("password", { required: true })}
-          />
-          {errors.password?.type === "required" && (
-            <p className="text-red-600">* email is required</p>
+
+          <label
+            className="text-[#545454] font-nunito font-bold text-[1rem] leading-[0rem]"
+            htmlFor="password"
+          >
+            Contraseña
+          </label>
+          <Input id="password" size="lg" {...register("password")} />
+          {errors?.password && (
+            <p className="text-red-600"> {errors.password.message} </p>
           )}
+          <Typography
+            as="a"
+            href="#signup"
+            variant="small"
+            color="blue-gray"
+            className="ml-1 font-bold"
+          >
+            ¿Has olvidado la contraseña?
+          </Typography>
         </CardBody>
         <CardFooter className="pt-0">
-          <Button type="submit">Sign In</Button>
+          <Button type="submit">Iniciar sesion</Button>
           <Typography variant="small" className="mt-4 flex justify-center">
-            Don&apos;t have an account?
+            Aún no tienes cuenta?
             <Typography
               as="a"
               href="#signup"
@@ -74,7 +97,7 @@ export default function LoginContent({ handleCloseLogin }) {
               color="blue-gray"
               className="ml-1 font-bold"
             >
-              Sign up
+              Regístrate ahora
             </Typography>
           </Typography>
         </CardFooter>

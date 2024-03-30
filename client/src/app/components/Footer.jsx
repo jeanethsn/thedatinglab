@@ -72,11 +72,18 @@ function Footer() {
               Contacto
             </Link>
           </li>
-          <li className="mb-4 lg:mb-0">
-            <Link className="text-white-text text-[1.2rem]" href="/faqs">
+          {/* <li className="mb-4 lg:mb-0">
+            <Link className="text-white-text text-[1.2rem]" href="../pages/faq/page.jsx">
               F.A.Q.s
             </Link>
-          </li>
+          </li> */}
+          <li className="mb-4 lg:mb-0">
+          <Link className="text-white-text text-[1.2rem]" href="/faq/page">
+            F.A.Q.s
+          </Link>
+        </li>
+
+
           <li className="mb-8 lg:mb-0">
             <Link
               className="text-white-text text-[1.2rem]"

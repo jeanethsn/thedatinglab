@@ -1,4 +1,4 @@
-"use clien";
+"use client";
 import Hero from "@/app/components/Hero.jsx";
 import StepsInfo from "@/app/components/StepsInfo.jsx";
 import HeroEvents from "@/app/components/HeroEvents.jsx";

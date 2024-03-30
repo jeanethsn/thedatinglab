@@ -8,7 +8,6 @@ export const authHeader = () => {
   const user = JSON.parse(localStorage.getItem("user"));
 
   if (!user && !user.token) return { Authorization: "" };
-  º;
   return {
     Authorization: "Bearer " + user.token,
   };

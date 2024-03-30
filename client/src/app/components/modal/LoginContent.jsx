@@ -10,9 +10,12 @@ import {
   CardFooter,
   Typography,
   Input,
+  IconButton,
 } from "@material-tailwind/react";
 import { getLogin } from "@/app/services/user";
 import { useState } from "react";
+import InputPassword from "@/app/components/InputPassword.jsx";
+import InputText from "@/app/components/InputText.jsx";
 const REGEX_EMAIL = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
 
 const validationSchema = Yup.object().shape({
@@ -30,11 +33,10 @@ export default function LoginContent({ handleCloseLogin }) {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({ mode: "onChange", resolver: yupResolver(validationSchema) });
-
-  const { handleUserLogin } = useUser();
+  } = useForm({ mode: "onBlur", resolver: yupResolver(validationSchema) });
 
   const [errorLogin, setErrorLogin] = useState({});
+  const { handleUserLogin } = useUser();
 
   const onSubmit = async (data) => {
     setErrorLogin({});
@@ -65,27 +67,22 @@ export default function LoginContent({ handleCloseLogin }) {
           >
             Iniciar sesion
           </Typography>
-          <label
-            className="text-[#545454] font-nunito font-bold text-[1rem] leading-[0rem]"
-            htmlFor="email"
-          >
-            Email
-          </label>
-          <Input id="email" size="lg" {...register("email")} />
-          {errors?.email && (
-            <p className="text-red-600"> {errors.email.message} </p>
-          )}
 
-          <label
-            className="text-[#545454] font-nunito font-bold text-[1rem] leading-[0rem]"
-            htmlFor="password"
-          >
-            Contraseña
-          </label>
-          <Input id="password" size="lg" {...register("password")} />
-          {errors?.password && (
-            <p className="text-red-600"> {errors.password.message} </p>
-          )}
+          <InputText
+            register={register}
+            name="email"
+            error={errors?.email}
+            labelText="Email"
+            errorText={errors?.email?.message}
+          />
+
+          <InputPassword
+            register={register}
+            name="password"
+            error={errors?.password}
+            labelText="Contraseña"
+            errorText={errors?.password?.message}
+          />
 
           {/* Error cuando las credenciales no existen o coinciden con la bd */}
           {errorLogin?.response?.data?.msg && (

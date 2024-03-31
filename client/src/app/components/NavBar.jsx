@@ -6,7 +6,7 @@ import DrawerWithNavigation from "@/app/components/Drawer.jsx";
 import Button from "@/app/components/Button.jsx";
 import { usePathname } from "next/navigation";
 import { Navbar, Typography, IconButton } from "@material-tailwind/react";
-import Login from "@/app/components/modal/LoginContent.jsx";
+import Modal from "@/app/components/modal/Modal.jsx";
 import ProfileMenu from "@/app/components/ProfileMenu.jsx";
 import { useUser } from "@/app/providers/UserProvider";
 export default function NavigationBar() {
@@ -87,11 +87,11 @@ export default function NavigationBar() {
       <div className="flex items-center">
         {user?.email && <ProfileMenu />}
         {!user?.email && (
-          <Login
-            renderButton={(handleOpenLogin) => (
+          <Modal
+            renderButtonModal={(handleOpenModalAuth) => (
               <Button
                 className="hidden lg:inline-block lg:font-semibold text-[1rem]  font-nunito lg:text-primary-color lg:border-[0.15rem] lg:border-primary-color lg:py-[0.5rem] lg:px-[1.6rem]"
-                onClick={handleOpenLogin}
+                onClick={handleOpenModalAuth}
               >
                 Accede
               </Button>
@@ -149,14 +149,6 @@ export default function NavigationBar() {
         </div>
       </Navbar>
       <DrawerWithNavigation closeDrawer={closeDrawer} open={open} />
-      {/* {
-        <Login
-          handleCloseLogin={handleCloseLogin}
-          showLogin={showLogin}
-          handleOpenLogin={() => setShowLogin(!showLogin)}
-        />
-      } */}
-      {/* {showRegisterForm && } */}
     </>
   );
 }

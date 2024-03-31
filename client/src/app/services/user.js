@@ -19,3 +19,9 @@ export const getLogin = async (formData) => {
     password: formData.password,
   });
 };
+
+export const registerUser = async (formData) => {
+  return await axios.post(`${API_URL}/register`, {
+    ...formData,
+  });
+};

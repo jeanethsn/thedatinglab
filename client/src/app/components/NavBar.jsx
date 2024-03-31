@@ -87,18 +87,16 @@ export default function NavigationBar() {
       <div className="flex items-center">
         {user?.email && <ProfileMenu />}
         {!user?.email && (
-          <>
-            <Login>
-              {(handleOpenLogin) => (
-                <Button
-                  className="hidden lg:inline-block lg:font-semibold text-[1rem]  font-nunito lg:text-primary-color lg:border-[0.15rem] lg:border-primary-color lg:py-[0.5rem] lg:px-[1.6rem]"
-                  onClick={handleOpenLogin}
-                >
-                  Accede
-                </Button>
-              )}
-            </Login>
-          </>
+          <Login
+            renderButton={(handleOpenLogin) => (
+              <Button
+                className="hidden lg:inline-block lg:font-semibold text-[1rem]  font-nunito lg:text-primary-color lg:border-[0.15rem] lg:border-primary-color lg:py-[0.5rem] lg:px-[1.6rem]"
+                onClick={handleOpenLogin}
+              >
+                Accede
+              </Button>
+            )}
+          />
         )}
       </div>
     </>

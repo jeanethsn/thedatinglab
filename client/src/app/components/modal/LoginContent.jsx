@@ -28,7 +28,7 @@ const validationSchema = Yup.object().shape({
     .max(40, "La contraseña no debe exceder los 40 caracteres"),
 });
 
-export default function LoginContent({ children }) {
+export default function LoginContent({ renderButton }) {
   const {
     register,
     handleSubmit,
@@ -66,7 +66,7 @@ export default function LoginContent({ children }) {
 
   return (
     <>
-      {children(handleOpenLogin)}
+      {renderButton(handleOpenLogin)}
 
       <Modal open={showLogin} handler={onHandler}>
         <form onSubmit={handleSubmit(onSubmit)}>

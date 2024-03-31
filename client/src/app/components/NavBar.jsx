@@ -6,7 +6,7 @@ import DrawerWithNavigation from "@/app/components/Drawer.jsx";
 import Button from "@/app/components/Button.jsx";
 import { usePathname } from "next/navigation";
 import { Navbar, Typography, IconButton } from "@material-tailwind/react";
-import Modal from "@/app/components/modal/Modal.jsx";
+import ModalAuth from "@/app/components/modal/ModalAuth.jsx";
 import ProfileMenu from "@/app/components/ProfileMenu.jsx";
 import { useUser } from "@/app/providers/UserProvider";
 export default function NavigationBar() {
@@ -87,7 +87,7 @@ export default function NavigationBar() {
       <div className="flex items-center">
         {user?.email && <ProfileMenu />}
         {!user?.email && (
-          <Modal
+          <ModalAuth
             renderButtonModal={(handleOpenModalAuth) => (
               <Button
                 className="hidden lg:inline-block lg:font-semibold text-[1rem]  font-nunito lg:text-primary-color lg:border-[0.15rem] lg:border-primary-color lg:py-[0.5rem] lg:px-[1.6rem]"

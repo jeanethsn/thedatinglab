@@ -4,7 +4,7 @@ import LoginContent from "@/app/components/modal/LoginContent.jsx";
 import RegistroContent from "@/app/components/modal/RegistroContent.jsx";
 import { useState } from "react";
 
-export default function Modal({ renderButtonModal }) {
+export default function ModalAuth({ renderButtonModal }) {
   const [openModalAuth, setOpenModalAuth] = useState(false);
   const [shouldRenderRegister, setShouldRenderRegister] = useState(false);
 

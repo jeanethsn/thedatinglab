@@ -121,7 +121,6 @@ export default function RegistroContent({ handleCloseRegister }) {
           <button onClick={handleCloseRegister}>Iniciar sesión</button>
         </span>
       </form>
-      ;
     </>
   );
 }

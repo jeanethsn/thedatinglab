@@ -51,7 +51,7 @@ export default function CardList() {
       {isLoading && <Loading />}
 
       {!isLoading && (
-        <section className=" grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4  gap-4">
+        <section className="max-w-[1200px] grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4  gap-4">
           {events.length &&
             events.map((eventDate) => (
               <Card key={eventDate.id} eventDate={eventDate} />

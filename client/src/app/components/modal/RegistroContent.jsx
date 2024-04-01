@@ -9,10 +9,19 @@ import { useState } from "react";
 import InputPassword from "@/app/components/InputPassword.jsx";
 import InputText from "@/app/components/InputText.jsx";
 import { Checkbox } from "@material-tailwind/react";
+
+const getErrors = (errorsObject) => {
+  const arrayOfErrors = Object.keys(errorsObject);
+
+  return arrayOfErrors.map((key) => {
+    return errorsObject[key];
+  });
+};
+
 const REGEX_EMAIL = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
 
 const validationSchema = Yup.object().shape({
-  name: Yup.string().required("El campo nombre es requerido").trim("ss"),
+  name: Yup.string().required("El campo nombre es requerido").trim(),
   lastname: Yup.string().required("El campo apellido es requerido").trim(),
   email: Yup.string()
     .required("El campo email es requerido")
@@ -47,7 +56,7 @@ export default function RegistroContent({ handleCloseRegister }) {
       const response = await registerUser(data);
       handleUserLogin(response?.data?.user);
     } catch (error) {
-      setErrorRegister(error);
+      setErrorRegister(error?.response?.data?.validation_errors);
     }
   };
 
@@ -110,9 +119,10 @@ export default function RegistroContent({ handleCloseRegister }) {
         )}
 
         {/* Error del backend */}
-        {errorRegister?.response?.data?.msg && (
-          <p>Algo ha salido mal vuelve a intentarlo!</p>
-        )}
+        {errorRegister &&
+          getErrors(errorRegister).map((error) => (
+            <p className="text-red-500"> {error}</p>
+          ))}
 
         <Button type="submit">Confirmar</Button>
 

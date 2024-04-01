@@ -10,7 +10,7 @@ import ModalAuth from "@/app/components/modal/ModalAuth.jsx";
 import ProfileMenu from "@/app/components/ProfileMenu.jsx";
 import { useUser } from "@/app/providers/UserProvider";
 export default function NavigationBar() {
-  const { user, isLoading } = useUser();
+  const { user } = useUser();
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const closeDrawer = () => setOpen(false);

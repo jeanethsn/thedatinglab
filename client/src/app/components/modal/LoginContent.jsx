@@ -15,10 +15,7 @@ const validationSchema = Yup.object().shape({
   email: Yup.string()
     .required("El campo email es requerido")
     .matches(REGEX_EMAIL, "El email es invalido"),
-  password: Yup.string()
-    .required("La contraseña es requerida")
-    .min(6, "La contraseña debe contener al menos 6 caracteres")
-    .max(40, "La contraseña no debe exceder los 40 caracteres"),
+  password: Yup.string().required("La contraseña es requerida"),
 });
 
 export default function LoginContent({

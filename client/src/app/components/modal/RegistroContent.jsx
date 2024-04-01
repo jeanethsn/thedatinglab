@@ -30,7 +30,7 @@ const validationSchema = Yup.object().shape({
     .required("La contraseña es requerida")
     .min(6, "La contraseña debe contener al menos 6 caracteres")
     .max(40, "La contraseña no debe exceder los 40 caracteres"),
-  passwordConfirmation: Yup.string().oneOf(
+  password_confirmation: Yup.string().oneOf(
     [Yup.ref("password"), null],
     "Las contraseñas no coinciden"
   ),
@@ -52,6 +52,7 @@ export default function RegistroContent({ handleCloseRegister }) {
   const [errorRegister, setErrorRegister] = useState({});
   const { handleUserLogin } = useUser();
   const onSubmit = async (data) => {
+    console.log({ data });
     try {
       const response = await registerUser(data);
       handleUserLogin(response?.data?.user);
@@ -92,10 +93,10 @@ export default function RegistroContent({ handleCloseRegister }) {
         />
         <InputPassword
           register={register}
-          name="passwordConfirmation"
-          error={errors?.passwordConfirmation}
+          name="password_confirmation"
+          error={errors?.password_confirmation}
           labelText="Confirma contraseña"
-          errorText={errors?.passwordConfirmation?.message}
+          errorText={errors?.password_confirmation?.message}
         />
 
         <Checkbox

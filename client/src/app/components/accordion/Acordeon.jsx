@@ -1,10 +1,13 @@
-import React, { useState, useReducer } from "react";
+import React, { useState } from "react";
 
 const Accordion = () => {
-  const [activeQuestion, setActiveQuestion] = useState(null);
+  const [activeSections, setActiveSections] = useState({});
 
-  const handleQuestionClick = (questionIndex) => {
-    setActiveQuestion(questionIndex === activeQuestion ? null : questionIndex);
+  const handleQuestionClick = (sectionIndex, questionIndex) => {
+    setActiveSections((prevActiveSections) => ({
+      ...prevActiveSections,
+      [sectionIndex]: prevActiveSections[sectionIndex] === questionIndex ? null : questionIndex,
+    }));
   };
 
   const sections = [
@@ -34,10 +37,12 @@ const Accordion = () => {
         },
         {
           question: "¿Cómo puedo asistir a una experiencia?",
-          answer: "Para asistir a una experiencia, debes abonar el costo correspondiente y elegir la experiencia que más te guste. Luego, recibirás información detallada sobre el evento.",        },
+          answer: "Para asistir a una experiencia, debes abonar el costo correspondiente y elegir la experiencia que más te guste. Luego, recibirás información detallada sobre el evento.",
+        },
         {
           question: "¿Dónde se realizan las experiencias?",
-          answer: "La ubicación de las experiencias puede variar dentro de Barcelona, así que asegúrate de revisar la información proporcionada en la página principal o la invitación al evento.",        },
+          answer: "La ubicación de las experiencias puede variar dentro de Barcelona, así que asegúrate de revisar la información proporcionada en la página principal o la invitación al evento.",
+        },
       ],
     },
     {
@@ -70,14 +75,14 @@ const Accordion = () => {
 
   return (
     <div>
-      {sections.map((section) => (
+      {sections.map((section, sectionIndex) => (
         <div key={section.title}>
           <h2>{section.title}</h2>
           <ul>
             {section.content.map((item, questionIndex) => (
-              <li key={item.question} onClick={() => handleQuestionClick(questionIndex)}>
+              <li key={item.question} onClick={() => handleQuestionClick(sectionIndex, questionIndex)}>
                 <h3>{item.question}</h3>
-                {activeQuestion === questionIndex && <p>{item.answer}</p>}
+                {activeSections[sectionIndex] === questionIndex && <p>{item.answer}</p>}
               </li>
             ))}
           </ul>
@@ -88,3 +93,19 @@ const Accordion = () => {
 };
 
 export default Accordion;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

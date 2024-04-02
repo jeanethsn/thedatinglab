@@ -1,4 +1,43 @@
-// "use client"
+"use client"
+
+import React, { useState } from "react";
+import { Modal, Button } from "tailwindcss-react-ui";
+
+const App = () => {
+  const [showModal, setShowModal] = useState(false);
+
+  const handleOpenModal = () => setShowModal(true);
+  const handleCloseModal = () => setShowModal(false);
+
+  return (
+    <div>
+      <Button onClick={handleOpenModal}>Acceder</Button>
+
+      <Modal
+        isOpen={showModal}
+        onClose={handleCloseModal}
+        title="Iniciar sesión"
+      >
+        <form>
+          <label htmlFor="email">Correo electrónico</label>
+          <input type="email" id="email" name="email" />
+
+          <label htmlFor="password">Contraseña</label>
+          <input type="password" id="password" name="password" />
+
+          <Button type="submit">Iniciar sesión</Button>
+        </form>
+      </Modal>
+    </div>
+  );
+};
+
+export default App;
+
+
+
+
+
 // import React, { useState } from 'react';
 // // import api from './api';
 

@@ -30,23 +30,7 @@ function page() {
 
   return (
       <>
-          {isLoading ? (
-              <p>Cargando...</p>
-          ) : (
-              <div>
-                  {event ? (
-                      <>
-                          <h1>{event.title}</h1>
-                          <p>{event.description}</p>
-                          <h1>hola</h1>
-                      </>
-                  ) : (
-                      <p>No se encontró el evento</p>
-                  )}
-              </div>
-          )}
-      </>
-  );
+         
 }
 
 export default page;

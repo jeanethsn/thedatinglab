@@ -1,26 +1,25 @@
 import React from 'react';
-import Footer from '@/app/components/Footer';
-import NavigationBar from '@/app/components/NavBar';
-
 
 const TermsService = () => {
     return (
-        <div>
-            <NavigationBar />
-            <div className="terms-content">
-                <h1>Términos del Servicio</h1>
-                <hr className="border-t-2 border-red-500 my-4" /> 
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eget dapibus mauris, eu sagittis velit. Donec feugiat lacinia lorem, et ultricies nulla. Ut sollicitudin ultrices libero, vel luctus sapien vestibulum at.</p>
-                <p>Fusce aliquet magna felis, eget cursus lacus dignissim a. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nullam id pulvinar eros. Nulla vitae ligula eget urna congue venenatis.</p>
-                <hr className="border-t-2 border-red-500 my-4" /> 
-                <p>Mauris in risus sagittis, hendrerit lorem sed, ultrices nisi. Maecenas volutpat dolor ut libero consequat, vel ullamcorper risus vestibulum. In hac habitasse platea dictumst. Proin pharetra ex justo, non lacinia leo vehicula nec.</p>
-                <p>Integer sit amet ligula nec nunc placerat lacinia. Nulla id congue purus. Vestibulum fringilla vestibulum lacus, ut efficitur ex mattis ac. Sed eu sagittis ipsum. Aliquam erat volutpat.</p>
-                <hr className="border-t-2 border-red-500 my-4" /> 
+        <div className="flex flex-col justify-center items-center">
+            <div className="mx-4 mb-8">
+                <h1 className="text-3xl font-bold mb-4">Términos del Servicio</h1>
+                <hr className="border-t-2 border-red-500 my-4" />
+                <br />
+                {[1, 2, 3, 4].map((index) => (
+                    <div key={index} className="my-8">
+                        <div className='flex items-center mb-2'>
+                            <h3 className="text-xl font-bold">Lorem ipsum</h3>
+                            <span className="w-full h-[0.1rem] bg-red-600" />
+                        </div>
+                        <p>Mauris in risus sagittis, hendrerit lorem sed, ultrices nisi. Maecenas volutpat dolor ut libero consequat, vel ullamcorper risus vestibulum. In hac habitasse platea dictumst. Proin pharetra ex justo, non lacinia leo vehicula nec.</p>
+                    </div>
+                ))}
+                <hr className="border-t-2 border-red-500 my-4" />
             </div>
-            <Footer />
         </div>
     );
 }
 
 export default TermsService;
-

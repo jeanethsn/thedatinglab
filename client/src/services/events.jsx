@@ -1,16 +1,48 @@
-import axios from "axios";
+import axios from 'axios';
+import './axiosConfig'
 
-axios.defaults.headers.post["Content-Type"] = "application/json";
-axios.defaults.headers.post["Accept"] = "application/json";
+const urlEvents = '/api/event';
+const urlEventsAdmin = '/api/admin/event';
 
-const API_URL = "http://localhost:3000/api";
+export const EventService = {
+  getAllEvents: () => {
+    return axios.get(urlEvents);
+  },
 
-export const getEventsById = async (id) => {
-  try {
-    const response = await axios.get(`${API_URL}/event/${id}`);
-    return response.data;
-  } catch (error) {
-    console.error("Error al obtener el evento:", error);
-    throw error;
-  }
+  getEvent: (eventId) => {
+    return axios.get(`${urlEvents}/${eventId}`);
+  },
+
+  createEvent: (formData) => {
+    return axios.post(urlEventsAdmin, formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
+  },
+
+  updateEvent: (eventId, eventData) => {
+    return axios.post(`${urlEventsAdmin}/${eventId}`, eventData, {
+      headers: {
+      'Content-Type': 'multipart/form-data',
+      },
+    });
+  },
+
+  destroyEvent: (eventId) => {
+    return axios.delete(`${urlEventsAdmin}/${eventId}`);
+  },
+
+  confirmAttendance: (eventId) => {
+    return axios.post(`${urlEvents}/attendance/${eventId}`);
+  },
+
+  getEventAttendees: (eventId) => {
+    return axios.get(`${urlEvents}/attendance/${eventId}`);
+  },
+
+  getEventForUser: (id) => {
+    return axios.get(`${urlEvents}/user/${id}`);
+  },
+
 };

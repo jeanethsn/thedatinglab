@@ -20,9 +20,11 @@ export default function HeroEvents() {
           eiusmod tempor incididunt ut labore et dolore{" "}
         </p>
         <Button
+          as="Link"
+          href="/eventos"
           children="Ver más eventos"
           color="primary"
-          className="mb-[3rem] text-[1rem] font-semibold bg-transparent border-2 border-red-orange text-red-orange md:text-[1.1rem] md:py-[0.5rem] lg:w-[50%] lg:mb-[4rem] xl:w-[30%] xl:rounded-bl-3xl xl:rounded-tr-3xl"
+          className="text-center mb-[3rem] text-[1rem] font-semibold bg-transparent border-2 border-red-orange text-red-orange md:text-[1.1rem] md:py-[0.5rem] lg:w-[50%] lg:mb-[4rem] xl:w-[30%] xl:rounded-bl-3xl xl:rounded-tr-3xl"
           style={{
             transition:
               "background 0.3s, border 0.3s, border-radius .3s, box-shadow .3s, transform .3s, .4s",

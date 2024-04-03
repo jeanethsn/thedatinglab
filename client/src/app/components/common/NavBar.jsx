@@ -116,10 +116,10 @@ export default function NavigationBar() {
 
   return (
     <>
-      <Navbar className="sticky top-0 z-10 h-max max-w-full rounded-none px-[1.5rem] pt-[1.5rem] pb-[1rem] lg:px-[4rem] lg:py-4">
+      <Navbar className="sticky top-0 z-10 h-max max-w-full rounded-none px-[1.5rem] pt-[1.5rem] pb-[1rem] md:px-[2.5rem] lg:px-[4rem] lg:py-4">
         <div className="flex items-center justify-between text-blue-gray-900">
           <Button
-            className="!py-0 !mt-0 !rounded-none basis-[10%] !w-[1rem] max-w-[2.1rem] text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
+            className="!py-0 !mt-0 !rounded-none  !w-[1.5rem] !max-w-[2.1rem] h-auto sm:!w-[2rem] text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
             onClick={() => setOpen(true)}
           >
             {!open && (
@@ -152,7 +152,7 @@ export default function NavigationBar() {
             {!user?.email && (
               <ModalAuth
                 renderButtonModal={(handleOpenModalAuth) => (
-                  <Button className="!py-0 !rounded-none !mt-0  lg:hidden  w-full h-auto flex justify-center basis-[10%]">
+                  <Button className="!py-0 !rounded-none !mt-0  lg:hidden h-auto flex justify-center !w-[1.5rem] max-w-[2.1rem] sm:!w-[2rem]">
                     <Image
                       width={30}
                       height={30}

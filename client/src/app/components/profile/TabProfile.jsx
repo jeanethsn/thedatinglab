@@ -6,7 +6,7 @@ export default function TabProfile({ handleButtonClick }) {
   const [activeButton, setActiveButton] = useState('Perfil');
 
   return (
-    <div className="flex flex-col items-center lg:flex-row lg:justify-between gap-1 lg:border-b-red-orange  lg:pb-8 lg:border-b-2 ">
+    <div className="flex flex-col items-center lg:flex-row lg:justify-between gap-2 lg:border-b-red-orange  lg:pb-8 lg:border-b-2 ">
       <TabButton 
         label="Perfil" 
         onClick={() => {
@@ -26,10 +26,10 @@ export default function TabProfile({ handleButtonClick }) {
           />
         } 
         onClick={() => {
-          handleButtonClick('CAMBIAR NOMBRE');
-          setActiveButton('CAMBIAR NOMBRE');
+          handleButtonClick('Matches');
+          setActiveButton('Matches');
         }} 
-        isActive={activeButton === 'CAMBIAR NOMBRE'} 
+        isActive={activeButton === 'Matches'} 
       />
       <TabButton 
         label="Tus Experiencias" 
@@ -42,10 +42,10 @@ export default function TabProfile({ handleButtonClick }) {
       <TabButton 
         label="Test de Compatibilidad" 
         onClick={() => {
-          handleButtonClick('CAMBIAR NOMBRE');
-          setActiveButton('CAMBIAR NOMBRE');
+          handleButtonClick('Test');
+          setActiveButton('Test');
         }} 
-        isActive={activeButton === 'CAMBIAR NOMBRE'} 
+        isActive={activeButton === 'Test'} 
       />
     </div>
   );

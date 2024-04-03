@@ -10,10 +10,10 @@ const TermsService = () => {
                         <div key={index} className="my-8">
                             <div className='flex items-center mb-2'>
                                 <h3 className="text-xl font-bold text-red-600">Lorem ipsum</h3>
-                                <div className="ml-10 w-4/5 border-t border-red-600" />
+                                <div className="ml-2 w-4/5 border-t border-red-600" />
                             </div>
                             <p className="font-nunito text-base font-normal line-clamp-2 mt-2">
-                                Mauris in risus sagittis, hendrerit lorem sed, ultrices nisi. Maecenas volutpat dolor ut libero consequat, vel ullamcorper risus vestibulum. In hac habitasse platea dictumst. Proin pharetra ex justo, non lacinia leo vehicula nec.
+                                Mauris in risus sagittis, hendrerit lorem sed, ultrices nisi. Maecenas volutpat dolor ut libero consequat, vel ullamcorper risus vestibulum. In hac habitasse platea dictumst. Proin pharetra ex justo, non lacinia leo vehicula nec. 
                                 Vestibulum venenatis dolor ut justo suscipit, ac dignissim nulla lobortis. Nulla facilisi. Morbi et vehicula libero. Nulla facilisi. Morbi ultricies felis sed turpis rutrum placerat. Nullam sodales sem id dolor congue, a vestibulum sapien tincidunt.
                             </p>
                         </div>

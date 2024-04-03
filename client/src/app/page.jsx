@@ -5,6 +5,7 @@ import HeroEvents from "@/app/components/HeroEvents.jsx";
 import Button from "@/app/components/Button.jsx";
 import { useEffect } from "react";
 import Image from "next/image";
+
 export default function Home() {
   useEffect(() => {
     window.scrollTo({
@@ -12,6 +13,7 @@ export default function Home() {
       behavior: "smooth",
     });
   }, []);
+
   return (
     <main className="relative">
       <section className="relative pb-[3rem] lg:pb-0">

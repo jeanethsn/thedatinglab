@@ -2,9 +2,11 @@
 import { useState } from 'react';
 import TabProfile from '../components/TabProfile';
 import UserTitleProfile from "../components/UserTitleProfile";
+import ProfileContent from '../components/ProfileContent';
+import EventsProfileContent from '../components/EventsProfileContent';
 
 export default function ProfilePage(){
-  const [currentElement, setCurrentElement] = useState('A');
+  const [currentElement, setCurrentElement] = useState('Perfil');
 
   const handleButtonClick = (element) => {
     setCurrentElement(element);
@@ -15,9 +17,11 @@ export default function ProfilePage(){
         <UserTitleProfile />
         <TabProfile handleButtonClick={handleButtonClick} />
 
-      {/* {currentElement === 'A' && }
-      {currentElement === 'B' && <ElementB />}
-      {currentElement === 'C' && <ElementC />} */}
+      {currentElement === 'Perfil' && <ProfileContent/>}
+      {/* {currentElement === 'Matches' && <Matches/>} */}
+      {currentElement === 'Eventos' && <EventsProfileContent/>}
+      {/* {currentElement === 'Compability-test' && <Test/>} */}
+      
     </main>
   );
 };

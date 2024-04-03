@@ -145,7 +145,6 @@ export default function RegistroContent({ handleCloseRegister }) {
             name="privacyPolicies"
             className="w-[1rem] h-[1rem] p-0"
             label=" Acepto la política de privacidad"
-            ripple={false}
             containerProps={{
               className: "p-0 ",
             }}

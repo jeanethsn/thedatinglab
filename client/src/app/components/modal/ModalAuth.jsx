@@ -33,7 +33,7 @@ export default function ModalAuth({ renderButtonModal }) {
         handler={handler}
         className={` bg-transparent shadow-none sm:!max-w-[50%] sm:!w-[50%] sm:!min-w-[50%] lg:!max-w-[70%] lg:!w-[70%] lg:!min-w-[70%] lg:flex  ol:!max-w-[50%] ol:!w-[50%] ol:!min-w-[50%] xxl:!max-w-[45%] xxl:!w-[45%] xxl:!min-w-[45%]`}
       >
-        <Card className="lg:basis-[50%] lg:rounded-l-xl  lg:rounded-r-none">
+        <Card className="lg:basis-[50%] lg:rounded-l-xl  lg:rounded-r-none overflow-hidden">
           <CardBody
             className={`${styles.containerScroll} ${
               shouldRenderRegister ? "h-[35rem]" : ""

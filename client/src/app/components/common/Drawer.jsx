@@ -30,7 +30,7 @@ export default function DrawerWithNavigation({ closeDrawer, open }) {
         onClose={closeDrawer}
         className="w-full"
       >
-        <div className="mb-2 flex items-center justify-between pt-[3rem] px-[1rem]">
+        <div className="mb-2 flex items-center justify-between pt-[3rem] px-[1.5rem]">
           <Image
             width={180}
             height={60}
@@ -46,7 +46,7 @@ export default function DrawerWithNavigation({ closeDrawer, open }) {
             />
           </IconButton>
         </div>
-        <List>
+        <List className="px-[1rem]">
           <Button as="Link" href="/" className="!py-0 !mt-[1rem]">
             <ListItem className="text-black font-nunito text-[1.1rem] font-semibold items-baseline ">
               <ListItemPrefix>

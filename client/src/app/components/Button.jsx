@@ -20,7 +20,7 @@ export default function Button({
   const styles = `w-full py-[0.2rem] mt-[1rem]  rounded-bl-2xl rounded-tr-2xl hover:rounded-full ${COLOR[color]} ${className}`;
   return (
     <Component className={styles} {...rest}>
-      {children}
+      {children ? children : null}
     </Component>
   );
 }
@@ -29,5 +29,5 @@ Button.propTypes = {
   as: PropTypes.string,
   design: PropTypes.string,
   className: PropTypes.string,
-  children: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
+  children: PropTypes.node,
 };

@@ -28,7 +28,7 @@ export default function NavigationBar() {
 
   const navList = (
     <>
-      <ul className="flex lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-[3rem] text-black ">
+      <ul className="flex lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-[3rem] text-black">
         <Typography
           as="li"
           variant="small"
@@ -89,13 +89,15 @@ export default function NavigationBar() {
           color="blue-gray"
           className={`font-semibold text-[1rem]`}
         >
-          <Button className={` flex items-center  font-nunito`}>
-            Contacto
-          </Button>
+          <Button className={`flex items-center font-nunito`}>Contacto</Button>
         </Typography>
       </ul>
-      <div className="lg:flex items-center hidden">
-        {user?.email && <ProfileMenu />}
+      <div className="lg:flex items-center hidden ">
+        {user?.email && (
+          <div className="lg:flex items-center lg:w-[3.5rem] lg:h-[3.5rem]">
+            <ProfileMenu />
+          </div>
+        )}
         {!user?.email && (
           <ModalAuth
             renderButtonModal={(handleOpenModalAuth) => (
@@ -114,28 +116,26 @@ export default function NavigationBar() {
 
   return (
     <>
-      <Navbar className="sticky top-0 z-10 h-max max-w-full rounded-none px-[1rem] pt-[1.5rem] pb-[1rem] lg:px-[4rem] lg:py-4">
+      <Navbar className="sticky top-0 z-10 h-max max-w-full rounded-none px-[1.5rem] pt-[1.5rem] pb-[1rem] lg:px-[4rem] lg:py-4">
         <div className="flex items-center justify-between text-blue-gray-900">
-          <IconButton
-            variant="text"
-            className="basis-[15%] w-[2.5rem] max-w-none text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
-            ripple={false}
+          <Button
+            className="!py-0 !mt-0 !rounded-none basis-[10%] !w-[1rem] max-w-[2.1rem] text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
             onClick={() => setOpen(true)}
           >
             {!open && (
               <Image
-                width={40}
-                height={40}
+                width={30}
+                height={30}
                 src={"/assets/icon/icon-hamburger.svg"}
                 alt="icono de menu mobile"
-                className="w-full"
+                className="w-full h-auto"
               />
             )}
-          </IconButton>
+          </Button>
           <Button
             as="Link"
             href="/"
-            className="mt-0 basis-[70%] cursor-pointer py-1.5 flex justify-center lg:basis-[20%] lg:justify-start"
+            className="!mt-0 basis-[80%] cursor-pointer py-1.5 flex justify-center lg:basis-[20%] lg:justify-start"
           >
             <Image
               width={180}
@@ -145,17 +145,17 @@ export default function NavigationBar() {
             />
           </Button>
           <div className="flex items-center lg:basis-[80%] lg:justify-end">
-            <div className=" hidden lg:flex lg:gap-[3rem]">{navList}</div>
+            <div className=" hidden lg:flex lg:gap-[3rem] ">{navList}</div>
           </div>
           <div className="flex items-center lg:hidden">
             {user?.email && <ProfileMenu />}
             {!user?.email && (
               <ModalAuth
                 renderButtonModal={(handleOpenModalAuth) => (
-                  <Button className="lg:hidden  w-[2rem] flex justify-center mt-0 py-0">
+                  <Button className="!py-0 !rounded-none !mt-0  lg:hidden  w-full h-auto flex justify-center basis-[10%]">
                     <Image
-                      width={25}
-                      height={25}
+                      width={30}
+                      height={30}
                       src={"/assets/icon/icon-user.svg"}
                       alt="icono de usuario"
                       className="lg:hidden"

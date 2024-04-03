@@ -36,7 +36,7 @@ export default function HeroEvents() {
             height={500}
             src={"/assets/image/imagen-events.png"}
             alt="icono flecha"
-            className="w-[45rem] xxl:w-[60rem]"
+            className="w-[45rem] h-auto xxl:w-[60rem]"
           />
         </div>
         <CardCurrentEvent />

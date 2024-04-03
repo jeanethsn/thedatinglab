@@ -1,12 +1,15 @@
 import axios from 'axios';
 import './axiosConfig'
 
-const urlEvents = '/api/event';
+const urlEvents = '/event';
 const urlEventsAdmin = '/api/admin/event';
+const baseURL = 'http://localhost:3000/api';
+axios.defaults.headers.post['Content-Type'] = 'application/json';
+axios.defaults.headers.post['Accept'] = 'application/json';
 
 export const EventService = {
   getAllEvents: () => {
-    return axios.get(urlEvents);
+    return axios.get(`${baseURL}${urlEvents}`);
   },
 
   getEvent: (eventId) => {

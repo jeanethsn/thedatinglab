@@ -17,7 +17,7 @@ export default function NavigationBar() {
 
   const isHomePage = pathname === "/";
   const isFaqsPage = pathname === "/faqs"; // cambiar ruta
-  const isEventsPage = pathname === "/events"; // cambiar ruta
+  const isEventsPage = pathname === "/eventos"; // cambiar ruta
 
   useEffect(() => {
     window.addEventListener(
@@ -26,9 +26,6 @@ export default function NavigationBar() {
     );
   }, []);
 
-  const scrollInTo = (id) => {
-    document.getElementById(id).scrollIntoView({ behavior: "smooth" });
-  };
   const navList = (
     <>
       <ul className="flex lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-[3rem] text-black ">
@@ -41,7 +38,8 @@ export default function NavigationBar() {
           } font-semibold text-[1rem]`}
         >
           <Button
-            href="#"
+            as="Link"
+            href="/"
             className={`${
               isHomePage ? "text-primary-color" : ""
             } flex items-center  font-nunito `}
@@ -54,16 +52,17 @@ export default function NavigationBar() {
           variant="small"
           color="blue-gray"
           className={`${
-            isFaqsPage ? "border-b-2 border-primary-color rounded-none" : ""
+            isEventsPage ? "border-b-2 border-primary-color rounded-none" : ""
           } font-semibold text-[1rem]`}
         >
           <Button
-            onClick={() => scrollInTo("sectionStepsInfo")}
+            as="Link"
+            href="/eventos"
             className={`${
-              isFaqsPage ? "text-primary-color" : ""
+              isEventsPage ? "text-primary-color" : ""
             } flex items-center  font-nunito`}
           >
-            ¿Como Funciona?
+            Eventos
           </Button>
         </Typography>
         <Typography
@@ -71,16 +70,27 @@ export default function NavigationBar() {
           variant="small"
           color="blue-gray"
           className={`${
-            isEventsPage ? "border-b-2 border-primary-color rounded-none" : ""
+            isFaqsPage ? "border-b-2 border-primary-color rounded-none" : ""
           } font-semibold text-[1rem]`}
         >
           <Button
-            onClick={() => scrollInTo("sectionEvents")}
+            as="Link"
+            href="/faqs"
             className={`${
-              isEventsPage ? "text-primary-color" : ""
+              isFaqsPage ? "text-primary-color" : ""
             } flex items-center  font-nunito`}
           >
-            Eventos
+            FAQs
+          </Button>
+        </Typography>
+        <Typography
+          as="li"
+          variant="small"
+          color="blue-gray"
+          className={`font-semibold text-[1rem]`}
+        >
+          <Button className={` flex items-center  font-nunito`}>
+            Contacto
           </Button>
         </Typography>
       </ul>

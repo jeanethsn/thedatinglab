@@ -12,13 +12,13 @@ export default function UserTitleProfile(){
                     Usuario
                 </h2>
             </section>
-            <div className="m-auto w-[200px] h-[200px] rounded-full overflow-hidden ">
+            <div className="m-auto w-[200px] h-[200px] rounded-full overflow-hidden lg:w-[365px] lg:h-[365px]">
                 <Image
                     src="/assets/image/imagen-hero.png"
                     width={200}
                     height={200}
                     alt="User photo"
-                    className="object-cover"
+                    className="object-fill lg:w-[3.65rem] lg:h-[365rem]"
                 />
             </div>
         </div>

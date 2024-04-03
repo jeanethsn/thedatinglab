@@ -42,10 +42,10 @@ function page() {
               </div> */}
 
 <Image
-  src={`http://localhost:8000/${event.image_path}`}
+  src={`http://localhost:8000/{event.image_path}`} // Corrige la sintaxis aquí
   alt="Descripción de la imagen"
-  width={100}
-  height={100}
+  width={500}
+  height={300}
 />
 
 

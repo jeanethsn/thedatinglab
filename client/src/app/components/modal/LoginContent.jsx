@@ -5,7 +5,7 @@ import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useUser } from "@/app/providers/UserProvider";
 import { CardFooter, Typography } from "@material-tailwind/react";
-import { getLogin } from "@/app/services/user";
+import { UserService } from "@/app/services/user";
 import { useState } from "react";
 import InputPassword from "@/app/components/InputPassword.jsx";
 import InputText from "@/app/components/InputText.jsx";
@@ -34,7 +34,7 @@ export default function LoginContent({
   const onSubmit = async (data) => {
     setErrorLogin({});
     try {
-      const response = await getLogin(data);
+      const response = await UserService.getLogin(data);
       localStorage.setItem("user", JSON.stringify(response.data));
       handleUserLogin(response?.data?.user);
 

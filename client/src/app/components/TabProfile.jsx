@@ -3,17 +3,17 @@ import TabButton from "./TabButton";
 import { useState } from "react";
 
 export default function TabProfile({ handleButtonClick }) {
-  const [activeButton, setActiveButton] = useState('A'); // Perfil está activo por defecto
+  const [activeButton, setActiveButton] = useState('Perfil');
 
   return (
-    <div className="flex flex-col lg:flex-row lg:justify-between gap-1 lg:border-b-red-orange  lg:pb-8 lg:border-2 ">
+    <div className="flex flex-col lg:flex-row lg:justify-between gap-1 lg:border-b-red-orange  lg:pb-8 lg:border-b-2 ">
       <TabButton 
         label="Perfil" 
         onClick={() => {
-          handleButtonClick('A');
-          setActiveButton('A');
+          handleButtonClick('Perfil');
+          setActiveButton('Perfil');
         }} 
-        isActive={activeButton === 'A'} 
+        isActive={activeButton === 'Perfil'} 
       />
       <TabButton 
         label="Tus Matches" 
@@ -34,10 +34,10 @@ export default function TabProfile({ handleButtonClick }) {
       <TabButton 
         label="Tus Experiencias" 
         onClick={() => {
-          handleButtonClick('C');
-          setActiveButton('C');
+          handleButtonClick('Eventos');
+          setActiveButton('Eventos');
         }} 
-        isActive={activeButton === 'C'} 
+        isActive={activeButton === 'Eventos'} 
       />
       <TabButton 
         label="Test de Compatibilidad" 

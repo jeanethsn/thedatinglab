@@ -26,10 +26,10 @@ export default function TabProfile({ handleButtonClick }) {
           />
         } 
         onClick={() => {
-          handleButtonClick('B');
-          setActiveButton('B');
+          handleButtonClick('CAMBIAR NOMBRE');
+          setActiveButton('CAMBIAR NOMBRE');
         }} 
-        isActive={activeButton === 'B'} 
+        isActive={activeButton === 'CAMBIAR NOMBRE'} 
       />
       <TabButton 
         label="Tus Experiencias" 
@@ -42,10 +42,10 @@ export default function TabProfile({ handleButtonClick }) {
       <TabButton 
         label="Test de Compatibilidad" 
         onClick={() => {
-          handleButtonClick('D');
-          setActiveButton('D');
+          handleButtonClick('CAMBIAR NOMBRE');
+          setActiveButton('CAMBIAR NOMBRE');
         }} 
-        isActive={activeButton === 'D'} 
+        isActive={activeButton === 'CAMBIAR NOMBRE'} 
       />
     </div>
   );

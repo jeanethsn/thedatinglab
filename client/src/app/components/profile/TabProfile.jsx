@@ -26,10 +26,10 @@ export default function TabProfile({ handleButtonClick }) {
           />
         } 
         onClick={() => {
-          handleButtonClick('CAMBIAR NOMBRE');
-          setActiveButton('CAMBIAR NOMBRE');
+          handleButtonClick('Matches');
+          setActiveButton('Matches');
         }} 
-        isActive={activeButton === 'CAMBIAR NOMBRE'} 
+        isActive={activeButton === 'Matches'} 
       />
       <TabButton 
         label="Tus Experiencias" 

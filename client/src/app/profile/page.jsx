@@ -3,6 +3,7 @@ import { useState } from 'react';
 import TabProfile from '../components/profile/TabProfile';
 import UserTitleProfile from "../components/profile/UserTitleProfile";
 import ProfileContent from '../components/profile/ProfileContent';
+import MatchProfileContent from '../components/profile/MatchProfileContent';
 
 export default function ProfilePage(){
   const [currentElement, setCurrentElement] = useState('Perfil');
@@ -17,9 +18,9 @@ export default function ProfilePage(){
         <TabProfile handleButtonClick={handleButtonClick} />
 
       {currentElement === 'Perfil' && <ProfileContent/>}
-      {/* {currentElement === 'Matches' && <MatchesProfileContent/>} */}
+      {currentElement === 'Matches' && <MatchProfileContent/>} 
       {/* {currentElement === 'Eventos' && <EventsProfileContent/>} */}
-      {/* {currentElement === 'Test' && <Test/>} */}
+      {/* {currentElement === 'Compability-test' && <Test/>} */}
       
     </main>
   );

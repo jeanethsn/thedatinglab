@@ -205,12 +205,12 @@ export default function RegistroContent({ handleCloseRegister }) {
 
         <span className="mt-4 flex text-[0.85rem] gap-[0.5rem] lg:justify-start lg:text-[1rem]">
           ¿Ya tienes cuenta?{" "}
-          <button
+          <Button
             onClick={handleCloseRegister}
-            className=" font-bold cursor-pointer text-[0.85rem] text-primary-color lg:text-[1rem]"
+            className="!py-0 !w-auto !rounded-none !mt-0 font-bold cursor-pointer text-[0.85rem] text-primary-color lg:text-[1rem]"
           >
             Iniciar sesión
-          </button>
+          </Button>
         </span>
       </form>
     </>

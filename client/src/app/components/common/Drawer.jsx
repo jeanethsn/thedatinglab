@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import Button from "@/app/components/button.jsx";
+import Button from "@/app/components/Button.jsx";
 import {
   Drawer,
   IconButton,

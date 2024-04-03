@@ -5,6 +5,7 @@ import RegistroContent from "@/app/components/modal/RegistroContent.jsx";
 import { useState } from "react";
 import styles from "./styles.module.css";
 import Image from "next/image";
+import Button from "@/app/components/Button.jsx";
 
 export default function ModalAuth({ renderButtonModal }) {
   const [openModalAuth, setOpenModalAuth] = useState(false);
@@ -38,8 +39,8 @@ export default function ModalAuth({ renderButtonModal }) {
               shouldRenderRegister ? "h-[35rem]" : ""
             } flex flex-col gap-4 overflow-y-auto scrollbar-thumb:!rounded relative md:px-[2rem] lg:px-[2.5rem]`}
           >
-            <button
-              className="absolute right-[1.5rem] top-[1.2rem] lg:hidden filter invert"
+            <Button
+              className="!py-0 !w-auto absolute right-[1.5rem] top-[1.2rem] lg:hidden filter invert"
               onClick={handleCloseModalAuth}
             >
               <Image
@@ -49,7 +50,7 @@ export default function ModalAuth({ renderButtonModal }) {
                 alt="icono cerrar"
                 style={{ filter: "invert(1) !important" }}
               />
-            </button>
+            </Button>
             {!shouldRenderRegister && (
               <LoginContent
                 handleCloseModalAuth={handleCloseModalAuth}
@@ -71,8 +72,8 @@ export default function ModalAuth({ renderButtonModal }) {
             backgroundRepeat: "no repeat",
           }}
         >
-          <button
-            className="hidden absolute right-[1.5rem] top-[1.2rem] lg:block"
+          <Button
+            className="!py-0 !w-auto hidden absolute right-[1.5rem] top-[1.2rem] lg:block"
             onClick={handleCloseModalAuth}
           >
             <Image
@@ -81,7 +82,7 @@ export default function ModalAuth({ renderButtonModal }) {
               height={20}
               alt="icono cerrar"
             />
-          </button>
+          </Button>
           <Image
             src={"/assets/image/Logo_Blanco.svg"}
             width={250}

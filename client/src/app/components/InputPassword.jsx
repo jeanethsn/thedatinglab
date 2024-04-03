@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Input } from "@material-tailwind/react";
 import Image from "next/image";
+import Button from "@/app/components/Button.jsx";
 export default function InputPassword({
   errorText,
   register,
@@ -25,7 +26,11 @@ export default function InputPassword({
         {...register(name)}
         {...props}
         icon={
-          <button type="button" onClick={() => setShowPassword(!showPassword)}>
+          <Button
+            className="!py-0 !rounded-none !w-auto !mt-0"
+            type="button"
+            onClick={() => setShowPassword(!showPassword)}
+          >
             {showPassword ? (
               <Image
                 src={"/assets/icon/icon-invisible.svg"}
@@ -41,7 +46,7 @@ export default function InputPassword({
                 alt="icono para  ver password"
               />
             )}
-          </button>
+          </Button>
         }
       />
       {errorText && (

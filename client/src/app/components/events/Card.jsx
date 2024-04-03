@@ -33,7 +33,12 @@ export default function CardEvent({ eventDate }) {
         <p></p>
       </CardBody>
       <CardFooter className="pt-0">
-        <Button color="primary" className="text-white">
+        <Button
+          color="primary"
+          as="Link"
+          className="text-white"
+          href={`/event/${eventDate.id}`}
+        >
           Ver más
         </Button>
       </CardFooter>

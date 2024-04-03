@@ -31,6 +31,7 @@ module.exports = withMT({
       pink: "#EED6D9",
       "pink-peach": "#E27A8C",
       "white-text": "#FFFFFF",
+      "pink-grey-bg": "#EDE8EC"
     },
     fontFamily: {
       nunito: ["var(--font-nunito)"],

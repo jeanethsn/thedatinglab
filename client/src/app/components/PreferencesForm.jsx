@@ -3,7 +3,7 @@
 
 import { createPreferences } from "../services/preferencesService";
 import Button from "@/app/components/Button.jsx";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Input } from "@material-tailwind/react";
 import { Select, Option } from "@material-tailwind/react";
 
@@ -32,28 +32,19 @@ const PreferencesForm = () => {
     console.log(e);
   };
 
+  const formatDate = (dateString) => {
+    const parts = dateString.split("-");
+    const formattedDate = `${parts[2]}-${parts[1]}-${parts[0]}`;
+    return formattedDate;
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const response = await createPreferences(formData);
+      const formattedDate = formatDate(formData.birthdate);
       console.log(response);
-      setFormData({
-        birthdate: response.birthdate,
-        gender: response.gender,
-        looksFor: response.looksFor,
-        ageRange: response.ageRange,
-        sexoAffective: response.sexoAffective,
-        heartState: response.heartState,
-        hasChildren: response.hasChildren,
-        datesParents: response.datesParents,
-        values1: response.values1,
-        values2: response.values2,
-        values3: response.values3,
-        prefers1: response.prefers1,
-        prefers2: response.prefers2,
-        catsDogs: response.prefers2,
-        rrss: response.rrss,
-      });
+      setFormData({ ...response });
 
       console.log("Preferencia creada correctamente:", response.message);
     } catch (error) {
@@ -81,69 +72,168 @@ const PreferencesForm = () => {
           <label className="text-[#545454] font-nunito font-bold text-[1rem] leading-[0rem]">
             ¿Con qué género te identificas?
           </label>
-          <Select name="gender" label={formData.gender} value={formData.gender} onChange={handleChange} required>
-            <Option value="mujer">Mujer</Option>
-            <Option value="hombre">Hombre</Option>
-            <Option value="no binario">No binario</Option>
-          </Select>
+          <div className="flex flex-wrap -mx-2 mb-2">
+            <div className="w-1/3 px-2 mb-2">
+              <label>
+                <input type="radio" name="gender" value="mujer" onChange={handleChange} required />
+                <span className="ml-2">Mujer</span>
+              </label>
+            </div>
+            <div className="w-1/3 px-2 mb-2">
+              <label>
+                <input type="radio" name="gender" value="hombre" onChange={handleChange} required />
+                <span className="ml-2">Hombre</span>
+              </label>
+            </div>
+            <div className="w-1/3 px-2 mb-2">
+              <label>
+                <input type="radio" name="gender" value="no binario" onChange={handleChange} required />
+                <span className="ml-2">No binario</span>
+              </label>
+            </div>
+          </div>
         </div>
 
         <div className="mb-[1rem]">
           <label className="text-[#545454] font-nunito font-bold text-[1rem] leading-[0rem]">
             Estoy interesada/o en conocer a...
           </label>
-          <Select name="looksFor" label={formData.looksFor} value={formData.looksFor} onChange={handleChange}>
-            <Option value="mujer">Mujer</Option>
-            <Option value="hombre">Hombre</Option>
-            <Option value="no binario">Personas no binarias</Option>
-            <Option value="todo">Todo</Option>
-          </Select>
+          <div className="flex flex-wrap -mx-2 mb-2">
+            <div className="w-1/3 px-2 mb-2">
+              <label>
+                <input type="radio" name="looksFor" value="mujer" onChange={handleChange} required />
+                <span className="ml-2">Mujer</span>
+              </label>
+            </div>
+            <div className="w-1/3 px-2 mb-2">
+              <label>
+                <input type="radio" name="looksFor" value="hombre" onChange={handleChange} required />
+                <span className="ml-2">Hombre</span>
+              </label>
+            </div>
+            <div className="w-1/3 px-2 mb-2">
+              <label>
+                <input type="radio" name="looksFor" value="no binario" onChange={handleChange} required />
+                <span className="ml-2">No binario</span>
+              </label>
+            </div>
+            <div className="w-1/3 px-2 mb-2">
+              <label>
+                <input type="radio" name="looksFor" value="todo" onChange={handleChange} required />
+                <span className="ml-2">Todo</span>
+              </label>
+            </div>
+          </div>
         </div>
 
         <div className="mb-[1rem]">
           <label className="text-[#545454] font-nunito font-bold text-[1rem] leading-[0rem]">
             Rango de edad deseado:
           </label>
-          <Select name="ageRange" label={formData.ageRange} value={formData.ageRange} onChange={handleChange}>
-            <Option value="20-30">De 20 a 30 años</Option>
-            <Option value="25-35">De 25 a 35 años</Option>
-            <Option value="35-45">De 35 a 45 años</Option>
-            <Option value="no importa">La edad no es un criterio para mí</Option>
-          </Select>
+          <div className="w-1/3 px-2 mb-2">
+            <label>
+              <input type="radio" name="ageRange" value="20-30" onChange={handleChange} required />
+              <span className="ml-2">De 20 a 30 años</span>
+            </label>
+          </div>
+          <div className="w-1/3 px-2 mb-2">
+            <label>
+              <input type="radio" name="ageRange" value="25-35" onChange={handleChange} required />
+              <span className="ml-2">De 25 a 35 años</span>
+            </label>
+          </div>
+          <div className="w-1/3 px-2 mb-2">
+            <label>
+              <input type="radio" name="ageRange" value="35-45" onChange={handleChange} required />
+              <span className="ml-2">De 35 a 45 años</span>
+            </label>
+          </div>
+          <div className="w-1/3 px-2 mb-2">
+            <label>
+              <input type="radio" name="ageRange" value="35-45" onChange={handleChange} required />
+              <span className="ml-2">La edad no es un criterio para mí</span>
+            </label>
+          </div>
         </div>
 
         <div className="mb-[1rem]">
           <label className="text-[#545454] font-nunito font-bold text-[1rem] leading-[0rem]">
             ¿Qué tipo de relación sexo afectiva te gustaría tener?
           </label>
-          <Select
-            name="sexoAffective"
-            label={formData.sexoAffective}
-            value={formData.sexoAffective}
-            onChange={handleChange}
-          >
-            <Option value="monogama">Una relación monógama</Option>
-            <Option value="explorar">Una relación monógama en la que explorar</Option>
-            <Option value="abierta">Una relación abierta, poliamorosa, etc...</Option>
-            <Option value="beneficios">Amig@s con beneficios</Option>
-            <Option value="fluir">Lo que fluya, estoy abiert@ a cualquier formato</Option>
-            <Option value="casual">Algo totalmente casual</Option>
-          </Select>
+          <div className="w-1/3 px-2 mb-2">
+            <label>
+              <input type="radio" name="sexoAffective" value="monogama" onChange={handleChange} required />
+              <span className="ml-2">Una relación monógama</span>
+            </label>
+          </div>
+          <div className="w-1/3 px-2 mb-2">
+            <label>
+              <input type="radio" name="sexoAffective" value="explorar" onChange={handleChange} required />
+              <span className="ml-2">Una relación monógama en la que explorar</span>
+            </label>
+          </div>
+          <div className="w-1/3 px-2 mb-2">
+            <label>
+              <input type="radio" name="sexoAffective" value="abierta" onChange={handleChange} required />
+              <span className="ml-2">Una relación abierta, poliamorosa, etc...</span>
+            </label>
+          </div>
+          <div className="w-1/3 px-2 mb-2">
+            <label>
+              <input type="radio" name="sexoAffective" value="beneficios" onChange={handleChange} required />
+              <span className="ml-2">Amig@s con beneficios</span>
+            </label>
+          </div>
+          <div className="w-1/3 px-2 mb-2">
+            <label>
+              <input type="radio" name="sexoAffective" value="fluir" onChange={handleChange} required />
+              <span className="ml-2">Lo que fluya, estoy abiert@ a cualquier formato</span>
+            </label>
+          </div>
+          <div className="w-1/3 px-2 mb-2">
+            <label>
+              <input type="radio" name="sexoAffective" value="casual" onChange={handleChange} required />
+              <span className="ml-2">Algo totalmente casual</span>
+            </label>
+          </div>
         </div>
 
         <div className="mb-[1rem]">
           <label className="text-[#545454] font-nunito font-bold text-[1rem] leading-[0rem]">
             ¿En qué estado se encuentra tu corazón?
           </label>
-          <Select name="heartState" label={formData.heartState} value={formData.heartState} onChange={handleChange}>
-            <Option value="maduro">
-              Maduro y sereno y dispuesto a compartirlo. Con alegrías y traumas procesados e integrados
-            </Option>
-            <Option value="solo">Un poco solito</Option>
-            <Option value="feliz">Feliz y palpitante con ganas de conocer a personas</Option>
-            <Option value="recuperarse">Acabo de salir de una relación y busco recuperarme y distraerme</Option>
-            <Option value="despechado">Más despechado que Shakira y Piqué</Option>
-          </Select>
+          <div className="w-1/3 px-2 mb-2">
+            <label>
+              <input type="radio" name="heartState" value="maduro" onChange={handleChange} required />
+              <span className="ml-2">
+                Maduro y sereno y dispuesto a compartirlo. Con alegrías y traumas procesados e integrados
+              </span>
+            </label>
+          </div>
+          <div className="w-1/3 px-2 mb-2">
+            <label>
+              <input type="radio" name="heartState" value="solo" onChange={handleChange} required />
+              <span className="ml-2">Un poco solito</span>
+            </label>
+          </div>
+          <div className="w-1/3 px-2 mb-2">
+            <label>
+              <input type="radio" name="heartState" value="feliz" onChange={handleChange} required />
+              <span className="ml-2">Feliz y palpitante con ganas de conocer a personas</span>
+            </label>
+          </div>
+          <div className="w-1/3 px-2 mb-2">
+            <label>
+              <input type="radio" name="heartState" value="recuperarse" onChange={handleChange} required />
+              <span className="ml-2">Acabo de salir de una relación y busco recuperarme y distraerme</span>
+            </label>
+          </div>
+          <div className="w-1/3 px-2 mb-2">
+            <label>
+              <input type="radio" name="heartState" value="despechado" onChange={handleChange} required />
+              <span className="ml-2">Más despechado que Shakira y Piqué</span>
+            </label>
+          </div>
         </div>
 
         <div className="mb-[1rem]">
@@ -192,20 +282,285 @@ const PreferencesForm = () => {
 
         <div className="mb-[1rem]">
           <label className="text-[#545454] font-nunito font-bold text-[1rem] leading-[0rem]">
-            Indica un valor importante para ti entre estos:
+            Indica un valor importante para ti:
           </label>
-          <Select name="values1" label={formData.values1} value={formData.values1} onChange={handleChange}>
-            <Option value="amabilidad">Amabilidad</Option>
-            <Option value="amistad">Amistad</Option>
-            <Option value="autenticidad">Autenticidad</Option>
-            <Option value="aventura">Aventura</Option>
-            <Option value="comunicacion">Comunicacion</Option>
-            <Option value="conciencia">Conciencia</Option>
-            <Option value="confianza">Confianza</Option>
-            <Option value="creatividad">Creatividad</Option>
-            <Option value="cuidado">Cuidado</Option>
-            <Option value="desarrollo">Desarrollo</Option>
-          </Select>
+          <div className="w-1/2 px-2 mb-2">
+            <label>
+              <input type="radio" name="values1" value="amabilidad" onChange={handleChange} required />
+              <span className="ml-2">Amabilidad</span>
+            </label>
+          </div>
+          <div className="w-1/2 px-2 mb-2">
+            <label>
+              <input type="radio" name="values1" value="amistad" onChange={handleChange} required />
+              <span className="ml-2">Amistad</span>
+            </label>
+          </div>
+          <div className="w-1/2 px-2 mb-2">
+            <label>
+              <input type="radio" name="values1" value="autenticidad" onChange={handleChange} required />
+              <span className="ml-2">Autenticidad</span>
+            </label>
+          </div>
+          <div className="w-1/2 px-2 mb-2">
+            <label>
+              <input type="radio" name="values1" value="aventura" onChange={handleChange} required />
+              <span className="ml-2">Aventura</span>
+            </label>
+          </div>
+          <div className="w-1/2 px-2 mb-2">
+            <label>
+              <input type="radio" name="values1" value="comunicacion" onChange={handleChange} required />
+              <span className="ml-2">Comunicacion</span>
+            </label>
+          </div>
+          <div className="w-1/2 px-2 mb-2">
+            <label>
+              <input type="radio" name="values1" value="conciencia" onChange={handleChange} required />
+              <span className="ml-2">Conciencia</span>
+            </label>
+          </div>
+          <div className="w-1/2 px-2 mb-2">
+            <label>
+              <input type="radio" name="values1" value="creatividad" onChange={handleChange} required />
+              <span className="ml-2">Creatividad</span>
+            </label>
+          </div>
+          <div className="w-1/2 px-2 mb-2">
+            <label>
+              <input type="radio" name="values1" value="cuidado" onChange={handleChange} required />
+              <span className="ml-2">Cuidado</span>
+            </label>
+          </div>
+          <div className="w-1/2 px-2 mb-2">
+            <label>
+              <input type="radio" name="values1" value="desarrollo" onChange={handleChange} required />
+              <span className="ml-2">Desarrollo</span>
+            </label>
+          </div>
+        </div>
+
+        <div className="mb-[1rem]">
+          <label className="text-[#545454] font-nunito font-bold text-[1rem] leading-[0rem]">
+            Indica un valor importante para ti:
+          </label>
+          <div className="w-1/2 px-2 mb-2">
+            <label>
+              <input type="radio" name="values2" value="diversion" onChange={handleChange} required />
+              <span className="ml-2">Diversion</span>
+            </label>
+          </div>
+          <div className="w-1/2 px-2 mb-2">
+            <label>
+              <input type="radio" name="values2" value="empatia" onChange={handleChange} required />
+              <span className="ml-2">Empatia</span>
+            </label>
+          </div>
+          <div className="w-1/2 px-2 mb-2">
+            <label>
+              <input type="radio" name="values2" value="familia" onChange={handleChange} required />
+              <span className="ml-2">Familia</span>
+            </label>
+          </div>
+          <div className="w-1/2 px-2 mb-2">
+            <label>
+              <input type="radio" name="values2" value="fidelidad" onChange={handleChange} required />
+              <span className="ml-2">Fidelidad</span>
+            </label>
+          </div>
+          <div className="w-1/2 px-2 mb-2">
+            <label>
+              <input type="radio" name="values2" value="generosidad" onChange={handleChange} required />
+              <span className="ml-2">Generosidad</span>
+            </label>
+          </div>
+          <div className="w-1/2 px-2 mb-2">
+            <label>
+              <input type="radio" name="values2" value="gratitud" onChange={handleChange} required />
+              <span className="ml-2">Gratitud</span>
+            </label>
+          </div>
+          <div className="w-1/2 px-2 mb-2">
+            <label>
+              <input type="radio" name="values2" value="humildad" onChange={handleChange} required />
+              <span className="ml-2">Humildad</span>
+            </label>
+          </div>
+          <div className="w-1/2 px-2 mb-2">
+            <label>
+              <input type="radio" name="values2" value="integridad" onChange={handleChange} required />
+              <span className="ml-2">Integridad</span>
+            </label>
+          </div>
+          <div className="w-1/2 px-2 mb-2">
+            <label>
+              <input type="radio" name="values2" value="inteligencia" onChange={handleChange} required />
+              <span className="ml-2">Inteligencia</span>
+            </label>
+          </div>
+        </div>
+
+        <div className="mb-[1rem]">
+          <label className="text-[#545454] font-nunito font-bold text-[1rem] leading-[0rem]">
+            Indica un valor importante para ti:
+          </label>
+          <div className="w-1/2 px-2 mb-2">
+            <label>
+              <input type="radio" name="values3" value="lealtad" onChange={handleChange} required />
+              <span className="ml-2">lealtad</span>
+            </label>
+          </div>
+          <div className="w-1/2 px-2 mb-2">
+            <label>
+              <input type="radio" name="values3" value="libertad" onChange={handleChange} required />
+              <span className="ml-2">libertad</span>
+            </label>
+          </div>
+          <div className="w-1/2 px-2 mb-2">
+            <label>
+              <input type="radio" name="values3" value="optimismo" onChange={handleChange} required />
+              <span className="ml-2">optimismo</span>
+            </label>
+          </div>
+          <div className="w-1/2 px-2 mb-2">
+            <label>
+              <input type="radio" name="values3" value="resiliencia" onChange={handleChange} required />
+              <span className="ml-2">resiliencia</span>
+            </label>
+          </div>
+          <div className="w-1/2 px-2 mb-2">
+            <label>
+              <input type="radio" name="values3" value="respeto" onChange={handleChange} required />
+              <span className="ml-2">respeto</span>
+            </label>
+          </div>
+          <div className="w-1/2 px-2 mb-2">
+            <label>
+              <input type="radio" name="values3" value="responsabilidad" onChange={handleChange} required />
+              <span className="ml-2">responsabilidad</span>
+            </label>
+          </div>
+          <div className="w-1/2 px-2 mb-2">
+            <label>
+              <input type="radio" name="values3" value="afectiva" onChange={handleChange} required />
+              <span className="ml-2">afectiva</span>
+            </label>
+          </div>
+          <div className="w-1/2 px-2 mb-2">
+            <label>
+              <input type="radio" name="values3" value="sencillez" onChange={handleChange} required />
+              <span className="ml-2">sencillez</span>
+            </label>
+          </div>
+          <div className="w-1/2 px-2 mb-2">
+            <label>
+              <input type="radio" name="values3" value="solidaridad" onChange={handleChange} required />
+              <span className="ml-2">solidaridad</span>
+            </label>
+          </div>
+          <div className="w-1/2 px-2 mb-2">
+            <label>
+              <input type="radio" name="values3" value="humor" onChange={handleChange} required />
+              <span className="ml-2">humor</span>
+            </label>
+          </div>
+          <div className="w-1/2 px-2 mb-2">
+            <label>
+              <input type="radio" name="values3" value="valentia" onChange={handleChange} required />
+              <span className="ml-2">valentia</span>
+            </label>
+          </div>
+        </div>
+
+        <div className="mb-[1rem]">
+          <label className="text-[#545454] font-nunito font-bold text-[1rem] leading-[0rem]">Eres más de...</label>
+          <div className="w-1/2 px-2 mb-2">
+            <label>
+              <input type="radio" name="prefers1" value="netflix" onChange={handleChange} required />
+              <span className="ml-2">netflix</span>
+            </label>
+          </div>
+          <div className="w-1/2 px-2 mb-2">
+            <label>
+              <input type="radio" name="prefers1" value="eventos" onChange={handleChange} required />
+              <span className="ml-2">eventos</span>
+            </label>
+          </div>
+          <div className="w-1/2 px-2 mb-2">
+            <label>
+              <input type="radio" name="prefers1" value="gym" onChange={handleChange} required />
+              <span className="ml-2">gym</span>
+            </label>
+          </div>
+          <div className="w-1/2 px-2 mb-2">
+            <label>
+              <input type="radio" name="prefers1" value="todas" onChange={handleChange} required />
+              <span className="ml-2">todas</span>
+            </label>
+          </div>
+        </div>
+
+        <div className="mb-[1rem]">
+          <label className="text-[#545454] font-nunito font-bold text-[1rem] leading-[0rem]">Eres más de...</label>
+          <div className="w-1/2 px-2 mb-2">
+            <label>
+              <input type="radio" name="prefers2" value="vino" onChange={handleChange} required />
+              <span className="ml-2">vino</span>
+            </label>
+          </div>
+          <div className="w-1/2 px-2 mb-2">
+            <label>
+              <input type="radio" name="prefers2" value="cafe" onChange={handleChange} required />
+              <span className="ml-2">cafe</span>
+            </label>
+          </div>
+          <div className="w-1/2 px-2 mb-2">
+            <label>
+              <input type="radio" name="prefers2" value="agua" onChange={handleChange} required />
+              <span className="ml-2">agua</span>
+            </label>
+          </div>
+          <div className="w-1/2 px-2 mb-2">
+            <label>
+              <input type="radio" name="prefers2" value="segun" onChange={handleChange} required />
+              <span className="ml-2">Según el momento o casi todas las anteriores</span>
+            </label>
+          </div>
+          <div className="w-1/2 px-2 mb-2">
+            <label>
+              <input type="radio" name="prefers2" value="ninguna" onChange={handleChange} required />
+              <span className="ml-2">ninguna</span>
+            </label>
+          </div>
+        </div>
+
+        <div className="mb-[1rem]">
+          <label className="text-[#545454] font-nunito font-bold text-[1rem] leading-[0rem]">Eres más de...</label>
+          <div className="w-1/2 px-2 mb-2">
+            <label>
+              <input type="radio" name="catsDogs" value="gato" onChange={handleChange} required />
+              <span className="ml-2">gato</span>
+            </label>
+          </div>
+          <div className="w-1/2 px-2 mb-2">
+            <label>
+              <input type="radio" name="catsDogs" value="perro" onChange={handleChange} required />
+              <span className="ml-2">perro</span>
+            </label>
+          </div>
+          <div className="w-1/2 px-2 mb-2">
+            <label>
+              <input type="radio" name="catsDogs" value="de amigos" onChange={handleChange} required />
+              <span className="ml-2">Me gustan los de mis amig@s - chequear: falta "todos" en el controller</span>
+            </label>
+          </div>
+        </div>
+
+        <div className="mb-[1rem]">
+          <label className="text-[#545454] font-nunito font-bold text-[1rem] leading-[0rem]">
+            ¿Podrías indicar tu perfil de instagram?
+          </label>
+          <Input name="rrss" type="text" value={formData.rrss} onChange={handleChange} />
         </div>
 
         <Button

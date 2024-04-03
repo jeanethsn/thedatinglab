@@ -13,7 +13,7 @@ export default function ProfilePage(){
   };
 
   return (
-    <main className="bg-pink-grey-bg px-[15%] py-[2%]">
+    <main className="bg-pink-grey-bg px-[10%] py-[4%]">
         <UserTitleProfile />
         <TabProfile handleButtonClick={handleButtonClick} />
 

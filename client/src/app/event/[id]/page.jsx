@@ -4,6 +4,8 @@ import { useEffect, useState } from 'react';
 import Button from "@/app/components/Button";
 import {getEventById} from "@/app/services/event.js";
 import Statement from "@/app/components/Statement.jsx";
+import Image from "next/image";
+
 
 function page() {
     const params = useParams();
@@ -31,12 +33,22 @@ function page() {
 <Statement/>
     
    <div>
-   <Image className=""
-    src={event.image}
-    alt="Icono home"
-    width={200}
-    height={200}
-  />
+   {/* <div
+              className="relative w-full h-[50vh] bg-no-repeat bg-center bg-[length:200%] rounded-b-3xl flex justify-center items-end lg:static lg:bg-cover lg:basis-[85%] lg:h-[28rem] lg:rounded-3xl"
+              style={{
+                backgroundImage: `url(http://localhost:8000/${event.image_path})`,
+              }}
+            >
+              </div> */}
+
+<Image
+  src={`http://localhost:8000/${event.image_path}`}
+  alt="Descripción de la imagen"
+  width={100}
+  height={100}
+/>
+
+
   <div className="m-[1rem]">
       <h1 className="leading-tight font-bold text-[2rem] text-left"> {event.title} </h1>
       <p className="text-[1.10rem] font-bold text-justify">{event.description}</p>

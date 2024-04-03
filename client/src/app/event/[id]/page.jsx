@@ -1,7 +1,7 @@
 "use client"
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from 'react';
-import { EventService } from '@/services/events';
+import { getEventById } from '@/services/events';
 import Image from "next/image";
 import Button from "@/app/components/Button";
 

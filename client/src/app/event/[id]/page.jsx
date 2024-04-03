@@ -1,17 +1,15 @@
 "use client"
 import { useParams } from "next/navigation";
 import { useEffect, useState } from 'react';
-import Image from "next/image";
 import Button from "@/app/components/Button";
 import {getEventById} from "@/app/services/event.js";
 import Statement from "@/app/components/Statement.jsx";
 
 function page() {
     const params = useParams();
-    console.log (params);
+    
     const [event, setEvent] = useState([]);
-  //   const [isLoading, setIsLoading] = useState(true);
-  
+
     useEffect(() => {
       const fetchEvent = async () => {
           try {
@@ -34,7 +32,7 @@ function page() {
     
    <div>
    <Image className=""
-    src="/assets/image/Rectangle_exm.png"
+    src={event.image}
     alt="Icono home"
     width={200}
     height={200}

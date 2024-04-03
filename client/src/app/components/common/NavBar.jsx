@@ -1,14 +1,14 @@
 "use client";
 import Image from "next/image";
 import { useState, useEffect } from "react";
-// import Menu from "@/app/components/MenuDivider.jsx";
-import DrawerWithNavigation from "@/app/components/Drawer.jsx";
+import DrawerWithNavigation from "@/app/components/common/Drawer.jsx";
 import Button from "@/app/components/Button.jsx";
 import { usePathname } from "next/navigation";
 import { Navbar, Typography, IconButton } from "@material-tailwind/react";
 import ModalAuth from "@/app/components/modal/ModalAuth.jsx";
 import ProfileMenu from "@/app/components/ProfileMenu.jsx";
 import { useUser } from "@/app/providers/UserProvider";
+
 export default function NavigationBar() {
   const { user } = useUser();
   const pathname = usePathname();
@@ -137,15 +137,23 @@ export default function NavigationBar() {
           <div className="flex items-center lg:basis-[80%] lg:justify-end">
             <div className=" hidden lg:flex lg:gap-[3rem]">{navList}</div>
           </div>
-          <Button className="lg:hidden basis-[15%] w-[2rem] flex justify-center">
-            <Image
-              width={25}
-              height={25}
-              src={"/assets/icon/icon-user.svg"}
-              alt="icono de usuario"
-              className="lg:hidden"
+          {user?.email && <ProfileMenu />}
+          {!user?.email && (
+            <ModalAuth
+              renderButtonModal={(handleOpenModalAuth) => (
+                <Button className="lg:hidden basis-[15%] w-[2rem] flex justify-center">
+                  <Image
+                    width={25}
+                    height={25}
+                    src={"/assets/icon/icon-user.svg"}
+                    alt="icono de usuario"
+                    className="lg:hidden"
+                    onClick={handleOpenModalAuth}
+                  />
+                </Button>
+              )}
             />
-          </Button>
+          )}
         </div>
       </Navbar>
       <DrawerWithNavigation closeDrawer={closeDrawer} open={open} />

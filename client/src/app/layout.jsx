@@ -2,8 +2,8 @@
 import "./globals.css";
 import { Nunito_Sans, Ms_Madi } from "next/font/google";
 import { ThemeProvider } from "@/app/providers/MaterialProvider.jsx";
-import Footer from "./components/Footer";
-import NavigationBar from "@/app/components/NavBar.jsx";
+import Footer from "@/app/components/common/Footer.jsx";
+import NavigationBar from "@/app/components/common/NavBar.jsx";
 import UserProvider from "@/app/providers/UserProvider.jsx";
 
 const nunito = Nunito_Sans({

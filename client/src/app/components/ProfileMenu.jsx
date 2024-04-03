@@ -12,7 +12,7 @@ import { useUser } from "@/app/providers/UserProvider.jsx";
 export default function ProfileMenu() {
   const { handleUserLogout } = useUser();
   return (
-    <Menu placement="bottom-end hidden">
+    <Menu placement="bottom-end" className="hidden">
       <MenuHandler>
         <Avatar
           variant="circular"
@@ -26,7 +26,7 @@ export default function ProfileMenu() {
           <Image
             width={18}
             height={18}
-            src={"/assets/image/icon-user-black.svg"}
+            src={"/assets/icon/icon-user-black.svg"}
             alt="icono de usuario"
           />
           <Typography
@@ -40,7 +40,7 @@ export default function ProfileMenu() {
           <Image
             width={18}
             height={18}
-            src={"/assets/image/icon-edit.svg"}
+            src={"/assets/icon/icon-edit.svg"}
             alt="icono de usuario"
           />
           <Typography
@@ -58,7 +58,7 @@ export default function ProfileMenu() {
           <Image
             width={18}
             height={18}
-            src={"/assets/image/icon-logout.svg"}
+            src={"/assets/icon/icon-logout.svg"}
             alt="icono de usuario"
           />
           <Typography

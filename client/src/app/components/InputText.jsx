@@ -16,7 +16,12 @@ export default function InputText({
         {labelText}
       </label>
       <Input type="text" id={name} name={name} {...register(name)} {...props} />
-      {errorText && <p className="text-red-600"> {errorText} </p>}
+      {errorText && (
+        <p className="text-red-600 text-[0.8rem] md:text-[0.9rem]">
+          {" "}
+          {errorText}{" "}
+        </p>
+      )}
     </>
   );
 }

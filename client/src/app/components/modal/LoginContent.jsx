@@ -26,7 +26,7 @@ export default function LoginContent({
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({ mode: "onBlur", resolver: yupResolver(validationSchema) });
+  } = useForm({ resolver: yupResolver(validationSchema) });
 
   const [errorLogin, setErrorLogin] = useState({});
   const { handleUserLogin } = useUser();
@@ -49,32 +49,44 @@ export default function LoginContent({
       <form onSubmit={handleSubmit(onSubmit)}>
         <Typography
           variant="h4"
-          className="text-primary-color text-center font-nunito font-bold text-[1.6rem]"
+          className="text-primary-color text-center font-nunito font-bold text-[1.6rem] mt-[0.4rem] lg:text-[1.8rem] lg:mt-[1rem]"
         >
           Bienvenido
         </Typography>
         <Typography
-          className="mb-[0.8rem] text-[#333333] font-nunito font-bold text-[1.4rem]"
+          className="mt-[0.5rem] mb-[0.8rem] text-[#333333] font-nunito font-semibold text-[1.3rem]"
           variant="paragraph"
         >
           Iniciar sesion
         </Typography>
-
-        <InputText
-          register={register}
-          name="email"
-          error={errors?.email}
-          labelText="Email"
-          errorText={errors?.email?.message}
-        />
-
-        <InputPassword
-          register={register}
-          name="password"
-          error={errors?.password}
-          labelText="Contraseña"
-          errorText={errors?.password?.message}
-        />
+        <div className="mb-[1rem] lg:mb-[1.5rem]">
+          <InputText
+            register={register}
+            name="email"
+            error={!!errors?.email}
+            labelText="Email"
+            errorText={errors?.email?.message}
+            className={`${
+              !errors?.email
+                ? "focus:!border-t-[#212121]"
+                : "focus:!border-t-deep-orange-800"
+            } focus:border-[3px]`}
+          />
+        </div>
+        <div className="mb-[1.1rem]">
+          <InputPassword
+            register={register}
+            name="password"
+            error={!!errors?.password}
+            labelText="Contraseña"
+            errorText={errors?.password?.message}
+            className={`${
+              !errors?.password
+                ? "focus:!border-t-[#212121]"
+                : "focus:!border-t-deep-orange-800"
+            } focus:border-[3px]`}
+          />
+        </div>
 
         {/* Error cuando las credenciales no existen o coinciden con la bd */}
         {errorLogin?.response?.data?.msg && (
@@ -86,21 +98,32 @@ export default function LoginContent({
           as="a"
           href="#signup"
           variant="small"
-          color="blue-gray"
-          className="ml-1 font-bold"
+          className="mt-[1.2rem] mb-[0.5rem] font-bold text-[0.8rem] text-[#545454] lg:text-[0.9rem]"
         >
           ¿Has olvidado la contraseña?
         </Typography>
-        <Button type="submit">Iniciar sesion</Button>
+        <Button
+          color="secondary"
+          type="submit"
+          children=" Iniciar sesion"
+          className=" text-white text-[0.9rem] py-[0.3rem] font-semibold lg:mt-[1.4rem] lg:py-[0.5rem] lg:rounded-bl-3xl lg:rounded-tr-3xl xl:text-[1rem]"
+          style={{
+            transition:
+              "background 0.3s, border 0.3s, border-radius .3s, box-shadow .3s, transform .3s, .4s",
+          }}
+        />
 
-        <CardFooter>
-          <Typography variant="small" className="mt-4 flex justify-center">
-            Aún no tienes cuenta?
+        <CardFooter className="p-0 pt-[0.5rem] pb-[1rem]">
+          <Typography
+            variant="small"
+            className="mt-4 flex justify-center text-[0.85rem] gap-[0.5rem] lg:justify-start lg:text-[1rem]"
+          >
+            ¿No tienes cuenta?
             <Typography
               as="a"
               variant="small"
               color="blue-gray"
-              className="ml-1 font-bold cursor-pointer"
+              className=" font-bold cursor-pointer text-[0.85rem] text-primary-color lg:text-[1rem]"
               onClick={handleOpenRegister}
             >
               Regístrate ahora

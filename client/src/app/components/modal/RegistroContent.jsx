@@ -52,7 +52,6 @@ export default function RegistroContent({ handleCloseRegister }) {
   const [errorRegister, setErrorRegister] = useState({});
   const { handleUserLogin } = useUser();
   const onSubmit = async (data) => {
-    console.log({ data });
     try {
       const response = await registerUser(data);
       handleUserLogin(response?.data?.user);
@@ -63,60 +62,126 @@ export default function RegistroContent({ handleCloseRegister }) {
 
   return (
     <>
-      <h2>Bienvenido</h2>
-      <h3>Únete a Dating Lab</h3>
+      <h2 className="text-primary-color text-center leading-[1.8rem] font-nunito font-bold text-[1.6rem] mt-[0.8rem] lg:text-[1.8rem] lg:mt-[1rem]">
+        Bienvenido
+      </h2>
+      <h3 className="leading-[1rem] mb-[0.8rem] text-[#333333] font-nunito font-semibold text-[1.2rem]">
+        Únete a Dating Lab
+      </h3>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <InputText
-          name="name"
-          labelText="Nombre"
-          register={register}
-          errorText={errors?.name?.message}
-        />
-        <InputText
-          name="lastname"
-          labelText="Apellido"
-          register={register}
-          errorText={errors?.lastname?.message}
-        />
-        <InputText
-          name="email"
-          labelText="Email"
-          register={register}
-          errorText={errors?.email?.message}
-        />
-        <InputPassword
-          register={register}
-          name="password"
-          error={errors?.password}
-          labelText="Contraseña"
-          errorText={errors?.password?.message}
-        />
-        <InputPassword
-          register={register}
-          name="password_confirmation"
-          error={errors?.password_confirmation}
-          labelText="Confirma contraseña"
-          errorText={errors?.password_confirmation?.message}
-        />
+        <div className="mb-[1rem]">
+          <InputText
+            name="name"
+            labelText="Nombre"
+            register={register}
+            error={!!errors?.name}
+            errorText={errors?.name?.message}
+            className={`${
+              !errors?.name
+                ? "focus:!border-t-[#212121]"
+                : "focus:!border-t-deep-orange-800"
+            } focus:border-[3px]`}
+          />
+        </div>
+        <div className="mb-[1rem]">
+          <InputText
+            name="lastname"
+            labelText="Apellido"
+            register={register}
+            error={!!errors?.lastname}
+            errorText={errors?.lastname?.message}
+            className={`${
+              !errors?.lastname
+                ? "focus:!border-t-[#212121]"
+                : "focus:!border-t-deep-orange-800"
+            } focus:border-[3px]`}
+          />
+        </div>
+        <div className="mb-[1rem]">
+          <InputText
+            name="email"
+            labelText="Email"
+            register={register}
+            error={!!errors?.email}
+            errorText={errors?.email?.message}
+            className={`${
+              !errors?.email
+                ? "focus:!border-t-[#212121]"
+                : "focus:!border-t-deep-orange-800"
+            } focus:border-[3px]`}
+          />
+        </div>
+        <div className="mb-[1rem]">
+          <InputPassword
+            register={register}
+            name="password"
+            error={!!errors?.password}
+            labelText="Contraseña"
+            errorText={errors?.password?.message}
+            className={`${
+              !errors?.password
+                ? "focus:!border-t-[#212121]"
+                : "focus:!border-t-deep-orange-800"
+            } focus:border-[3px]`}
+          />
+        </div>
+        <div className="mb-[1rem]">
+          <InputPassword
+            register={register}
+            name="password_confirmation"
+            error={!!errors?.password_confirmation}
+            labelText="Confirma contraseña"
+            errorText={errors?.password_confirmation?.message}
+            className={`${
+              !errors?.password_confirmation
+                ? "focus:!border-t-[#212121]"
+                : "focus:!border-t-deep-orange-800"
+            } focus:border-[3px]`}
+          />
+        </div>
+        <div className="text-[0.9rem] leading-[1.1rem] mb-[0.2rem]">
+          <Checkbox
+            id="privacyPolicies"
+            name="privacyPolicies"
+            className="w-[1rem] h-[1rem] p-0"
+            label=" Acepto la política de privacidad"
+            ripple={false}
+            containerProps={{
+              className: "p-0 ",
+            }}
+            {...register("privacyPolicies")}
+            labelProps={{
+              className: "text-[0.9rem] leading-[1.2rem] ml-[0.5rem]",
+            }}
+          />
+        </div>
 
-        <Checkbox
-          name="privacyPolicies"
-          label="Acepto la política de privacidad"
-          onError
-          {...register("privacyPolicies")}
-        />
         {errors?.privacyPolicies && (
-          <p className="text-red-600"> {errors.privacyPolicies.message} </p>
+          <p className="text-red-600 text-[0.8rem]">
+            {" "}
+            {errors.privacyPolicies.message}{" "}
+          </p>
         )}
-
-        <Checkbox
-          name="over18"
-          label="Confirmo que soy mayor de 18 años"
-          {...register("over18")}
-        />
+        <div className="">
+          <Checkbox
+            name="over18"
+            className="w-[1rem] h-[1rem] p-0"
+            label="Confirmo que soy mayor de 18 años"
+            labelProps={{
+              className: "text-[0.9rem] leading-[1.2rem] ml-[0.5rem]",
+            }}
+            containerProps={{
+              className: "p-0 ",
+            }}
+            {...register("over18")}
+          />
+        </div>
 
         {errors?.over18 && (
-          <p className="text-red-600"> {errors.over18.message} </p>
+          <p className="text-red-600 text-[0.8rem]">
+            {" "}
+            {errors.over18.message}{" "}
+          </p>
         )}
 
         {/* Error del backend */}
@@ -125,11 +190,27 @@ export default function RegistroContent({ handleCloseRegister }) {
             <p className="text-red-500"> {error}</p>
           ))}
 
-        <Button type="submit">Confirmar</Button>
+        <Button
+          color="secondary"
+          type="submit"
+          children="Crear cuenta"
+          className=" text-white text-[0.9rem] py-[0.3rem] font-semibold lg:mt-[1.4rem] lg:py-[0.5rem] lg:rounded-bl-3xl lg:rounded-tr-3xl xl:text-[1rem]"
+          style={{
+            transition:
+              "background 0.3s, border 0.3s, border-radius .3s, box-shadow .3s, transform .3s, .4s",
+          }}
+        >
+          Confirmar
+        </Button>
 
-        <span>
+        <span className="mt-4 flex text-[0.85rem] gap-[0.5rem] lg:justify-start lg:text-[1rem]">
           ¿Ya tienes cuenta?{" "}
-          <button onClick={handleCloseRegister}>Iniciar sesión</button>
+          <button
+            onClick={handleCloseRegister}
+            className=" font-bold cursor-pointer text-[0.85rem] text-primary-color lg:text-[1rem]"
+          >
+            Iniciar sesión
+          </button>
         </span>
       </form>
     </>

@@ -18,7 +18,7 @@ function Footer() {
           <li>
             <a href="" target="_blank" rel="noopener noreferrer">
               <Image
-                src="/assets/image/icon-tik.svg"
+                src="/assets/icon/icon-tik.svg"
                 alt="Icono TIKTOK"
                 width={30}
                 height={30}
@@ -32,7 +32,7 @@ function Footer() {
               rel="noopener noreferrer"
             >
               <Image
-                src="/assets/image/icon-ig.svg"
+                src="/assets/icon/icon-ig.svg"
                 alt="Icono insta"
                 width={30}
                 height={30}
@@ -42,7 +42,7 @@ function Footer() {
           <li>
             <a href="" target="_blank" rel="noopener noreferrer">
               <Image
-                src="/assets/image/icon-wa.svg"
+                src="/assets/icon/icon-wa.svg"
                 alt="Icono whastsapp"
                 width={30}
                 height={30}
@@ -56,7 +56,7 @@ function Footer() {
               rel="noopener noreferrer"
             >
               <Image
-                src="/assets/image/icon-linkedin.svg"
+                src="/assets/icon/icon-linkedin.svg"
                 alt="Icono TIKTOK"
                 width={30}
                 height={30}

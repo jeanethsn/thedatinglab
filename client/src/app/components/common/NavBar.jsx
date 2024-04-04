@@ -98,7 +98,7 @@ export default function NavigationBar() {
             <ProfileMenu />
           </div>
         )}
-        {!user?.email && (
+        {
           <ModalAuth
             renderButtonModal={(handleOpenModalAuth) => (
               <Button
@@ -109,7 +109,7 @@ export default function NavigationBar() {
               </Button>
             )}
           />
-        )}
+        }
       </div>
     </>
   );

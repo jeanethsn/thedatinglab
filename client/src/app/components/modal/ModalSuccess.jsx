@@ -15,10 +15,12 @@ export default function ModalSucess({
         height={100}
         alt="imagen de registrado corectamente"
       />
-      <h3 className="font-nunito font-bold mt-[1rem] text-[1rem] text-[#181818]">
+      <h3 className="font-nunito font-bold mt-[1rem] text-[1rem] text-[#181818] md:text-[1.2rem] lg:text-[1.3rem]">
         {title}
       </h3>
-      <p className="font-nunito font-medium text-[0.9rem]">{text}</p>
+      <p className="font-nunito font-medium text-[0.9rem]  md:text-[1rem] xl:text-[1.1rem]">
+        {text}
+      </p>
       <Button
         color="secondary"
         onClick={handleCloseModalAuth}

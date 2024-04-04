@@ -15,7 +15,7 @@ export default function ProfilePage(){
 
   return (
     <main className="bg-pink-grey-bg px-[10%] py-[4%]">
-        <UserTitleProfile />
+        <UserTitleProfile/> {/*userId={userId}*/}
         <TabProfile handleButtonClick={handleButtonClick} />
 
       {currentElement === 'Perfil' && <ProfileContent/>}

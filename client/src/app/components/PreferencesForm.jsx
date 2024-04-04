@@ -84,8 +84,10 @@ const PreferencesForm = () => {
     if (question.number === "birthdate") {
       // Renderizar input de fecha
       return (
-        <div className="mb-[1rem]">
-          <label className="text-[#545454] font-nunito font-bold text-[1rem] leading-[0rem]">{question.text}</label>
+        <div className="mb-[1rem] w-[20rem] ">
+          <label className="mb-6 text-[#545454] font-nunito font-bold text-[1rem] leading-[0rem]">
+            {question.text}
+          </label>
           <Input
             type="date"
             name={question.number}
@@ -98,8 +100,10 @@ const PreferencesForm = () => {
     } else if (question.number === "rrss") {
       // Renderizar input de texto
       return (
-        <div className="mb-[1rem]">
-          <label className="text-[#545454] font-nunito font-bold text-[1rem] leading-[0rem]">{question.text}</label>
+        <div className="mb-[1rem] w-[20rem]">
+          <label className="mb-6 text-[#545454] font-nunito font-bold text-[1rem] leading-[0rem]">
+            {question.text}
+          </label>
           <Input
             type="text"
             name={question.number}
@@ -113,9 +117,53 @@ const PreferencesForm = () => {
       // Renderizar otras preguntas con opciones
       return (
         <div className="mb-[1rem]">
-          <label className="text-[#545454] font-nunito font-bold text-[1rem] leading-[0rem]">{question.text}</label>
+          <label className="pb-6 text-[#545454] font-nunito font-bold text-[1rem] leading-[0rem]">
+            {question.text}
+          </label>
           {question.options.map((option, index) => (
-            <div className="w-1/3 px-2 mb-2" key={index}>
+            <div className="pt-4 px-2 mb-2" key={index}>
+              <div
+                role="button"
+                class="flex items-center w-full p-0 leading-tight transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900"
+                onClick={() => document.getElementById(`vertical-list-react-${index}`).click()}
+              >
+                <label htmlFor="vertical-list-react" class="flex items-center w-full px-3 py-2 cursor-pointer">
+                  <div className="grid mr-3 place-items-center">
+                    <div className="inline-flex items-center">
+                      <label
+                        className="relative flex items-center p-0 rounded-full cursor-pointer"
+                        htmlFor="vertical-list-react"
+                      >
+                        <input
+                          name={question.number}
+                          value={option.value}
+                          id={`vertical-list-react-${index}`}
+                          type="radio"
+                          onChange={handleChange}
+                          checked={formData[question.number] === option.value}
+                          required
+                          className="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-full border border-blue-gray-200 text-gray-900 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-gray-900 checked:before:bg-gray-900 hover:before:opacity-0"
+                        />
+                        <span className="absolute text-gray-900 transition-opacity opacity-0 pointer-events-none top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 peer-checked:opacity-100">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="h-3.5 w-3.5"
+                            viewBox="0 0 16 16"
+                            fill="currentColor"
+                          >
+                            <circle data-name="ellipse" cx="8" cy="8" r="8"></circle>
+                          </svg>
+                        </span>
+                      </label>
+                      <span className="ml-2 font-sans text-base antialiased font-medium leading-relaxed">
+                        {option.label}
+                      </span>
+                    </div>
+                  </div>
+                </label>
+              </div>
+
+              {/* 
               <label>
                 <input
                   type="radio"
@@ -127,6 +175,7 @@ const PreferencesForm = () => {
                 />
                 <span className="ml-2">{option.label}</span>
               </label>
+              */}
             </div>
           ))}
         </div>
@@ -173,7 +222,7 @@ const PreferencesForm = () => {
         { value: "explorar", label: "Una relación monógama en la que explorar" },
         { value: "abierta", label: "Una relación abierta, poliamorosa, etc..." },
         { value: "beneficios", label: "Amig@s con beneficios" },
-        { value: "abierta", label: "Una relación abierta, poliamorosa, etc..." },
+        { value: "fluir", label: "Lo que fluya, estoy abiert@ a cualquier formato" },
         { value: "casual", label: "Algo totalmente casual" },
       ],
     },
@@ -186,7 +235,7 @@ const PreferencesForm = () => {
           label: "Maduro y sereno y dispuesto a compartirlo. Con alegrías y traumas procesados e integrados",
         },
         { value: "solo", label: "Feliz y palpitante con ganas de conocer a personas" },
-        { value: "feliz", label: "Feliz y palpitante con ganas de conocer a personas" },
+        { value: "feliz", label: "Un poco solito" },
         { value: "recuperarse", label: "Acabo de salir de una relación y busco recuperarme y distraerme" },
         { value: "despechado", label: "Más despechado que Shakira y Piqué" },
       ],
@@ -289,22 +338,32 @@ const PreferencesForm = () => {
   ];
 
   return (
-    <div className="max-w-lg">
-      <h2 className="text-primary-color text-center leading-[1.8rem] font-nunito font-bold text-[1.6rem] mt-[0.8rem] lg:text-[1.8rem] lg:mt-[1rem]">
+    <div className="mx-auto max-w-[40rem] lg:rounded-xl bg-white py-12 px-8">
+      <h2 className="pb-4 text-center text-primary-color text-center leading-[1.8rem] font-nunito font-bold text-[1.6rem] mt-[0.8rem] lg:text-[1.8rem] lg:mt-[1rem]">
         ¿Quieres conocer a tu pareja ideal?
       </h2>
-      <h3 className="leading-[1rem] mb-[0.8rem] text-[#333333] font-nunito font-semibold text-[1.2rem]">
+      <h3 className="pb-12 text-center leading-snug mb-[0.8rem] text-[#333333] font-nunito font-semibold text-[1.2rem]">
         ¡Completa este formulario para conocer a tus matches!
       </h3>
       <form onSubmit={handleSubmit}>
         {renderCurrentQuestion()}
         {/* Buttons para moverse entre las preguntas */}
-        <div className="flex justify-between">
-          <Button color="primary" onClick={handlePrevious} disabled={currentQuestion === 0}>
+        <div className="flex justify-end gap-8 mt-8">
+          <Button
+            color="primary"
+            onClick={handlePrevious}
+            disabled={currentQuestion === 0}
+            className={`disabled:opacity-80 disabled:bg-gray-300 disabled:text-gray-700 disabled:cursor-not-allowed rounded-bl-2xl rounded-tr-2xl hover:rounded-full bg-pink-strong  false  text-white text-[0.9rem] py-[0.3rem] font-semibold lg:mt-[1.4rem] lg:py-[0.5rem] lg:rounded-bl-3xl lg:rounded-tr-3xl xl:text-[1rem]`}
+          >
             Pregunta Anterior
           </Button>
 
-          <Button color="primary" onClick={handleNext} disabled={currentQuestion === totalQuestions - 1}>
+          <Button
+            color="primary"
+            onClick={handleNext}
+            disabled={currentQuestion === totalQuestions - 1}
+            className={`disabled:opacity-80 disabled:bg-gray-300 disabled:text-gray-700 disabled:cursor-not-allowed rounded-bl-2xl rounded-tr-2xl hover:rounded-full bg-pink-strong  false  text-white text-[0.9rem] py-[0.3rem] font-semibold lg:mt-[1.4rem] lg:py-[0.5rem] lg:rounded-bl-3xl lg:rounded-tr-3xl xl:text-[1rem]`}
+          >
             Siguiente Pregunta
           </Button>
         </div>
@@ -314,7 +373,7 @@ const PreferencesForm = () => {
             color="secondary"
             type="submit"
             children="Enviar"
-            className=" text-white text-[0.9rem] py-[0.3rem] font-semibold lg:mt-[1.4rem] lg:py-[0.5rem] lg:rounded-bl-3xl lg:rounded-tr-3xl xl:text-[1rem] mb-[1rem]"
+            className="text-white text-[0.9rem] py-[0.3rem] font-semibold lg:mt-[1.4rem] lg:py-[0.5rem] lg:rounded-bl-3xl lg:rounded-tr-3xl xl:text-[1rem] mb-[1rem]"
             style={{
               transition: "background 0.3s, border 0.3s, border-radius .3s, box-shadow .3s, transform .3s, .4s",
             }}

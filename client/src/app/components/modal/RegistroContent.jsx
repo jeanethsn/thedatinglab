@@ -9,6 +9,7 @@ import { useState } from "react";
 import InputPassword from "@/app/components/InputPassword.jsx";
 import InputText from "@/app/components/InputText.jsx";
 import { Checkbox } from "@material-tailwind/react";
+import ModalSucess from "@/app/components/modal/ModalSuccess";
 
 const getErrors = (errorsObject) => {
   const arrayOfErrors = Object.keys(errorsObject);
@@ -75,9 +76,7 @@ export default function RegistroContent({
   return (
     <>
       {formRegisterSuccess && (
-        <p>
-          lo lograste <button onClick={handleCloseModalAuth}>cerrar</button>
-        </p>
+        <ModalSucess handleCloseModalAuth={handleCloseModalAuth} />
       )}
 
       {!formRegisterSuccess && (

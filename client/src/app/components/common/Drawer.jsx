@@ -1,9 +1,9 @@
 "use client";
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import Button from "@/app/components/Button.jsx";
 import {
   Drawer,
-  Typography,
   IconButton,
   List,
   ListItem,
@@ -30,7 +30,7 @@ export default function DrawerWithNavigation({ closeDrawer, open }) {
         onClose={closeDrawer}
         className="w-full"
       >
-        <div className="mb-2 flex items-center justify-between pt-[3rem] px-[1rem]">
+        <div className="mb-2 flex items-center justify-between pt-[3rem] px-[1.5rem]">
           <Image
             width={180}
             height={60}
@@ -46,51 +46,59 @@ export default function DrawerWithNavigation({ closeDrawer, open }) {
             />
           </IconButton>
         </div>
-        <List>
-          <ListItem className="text-black font-nunito text-[1.1rem] font-semibold items-baseline ">
-            <ListItemPrefix>
-              <Image
-                width={28}
-                height={28}
-                src={"/assets/icon/icon-home.svg"}
-                alt="icono de home"
-              />
-            </ListItemPrefix>
-            Home
-          </ListItem>
-          <ListItem className="text-black font-nunito text-[1.1rem] font-semibold">
-            <ListItemPrefix>
-              <Image
-                width={25}
-                height={25}
-                src={"/assets/icon/icon-info.svg"}
-                alt="icono de info"
-              />
-            </ListItemPrefix>
-            ¿Como funciona?
-          </ListItem>
-          <ListItem className="text-black font-nunito text-[1.1rem] font-semibold">
-            <ListItemPrefix>
-              <Image
-                width={25}
-                height={25}
-                src={"/assets/icon/icon-event.svg"}
-                alt="icono de evento"
-              />
-            </ListItemPrefix>
-            Eventos
-          </ListItem>
-          <ListItem className="text-black font-nunito text-[1.1rem] font-semibold">
-            <ListItemPrefix>
-              <Image
-                width={25}
-                height={25}
-                src={"/assets/icon/icon-contacto.svg"}
-                alt="icono de contacto"
-              />
-            </ListItemPrefix>
-            Contacto
-          </ListItem>
+        <List className="px-[1rem]">
+          <Button as="Link" href="/" className="!py-0 !mt-[1rem]">
+            <ListItem className="text-black font-nunito text-[1.1rem] font-semibold items-baseline ">
+              <ListItemPrefix>
+                <Image
+                  width={28}
+                  height={28}
+                  src={"/assets/icon/icon-home.svg"}
+                  alt="icono de home"
+                />
+              </ListItemPrefix>
+              Home
+            </ListItem>
+          </Button>
+          <Button as="Link" href="/eventos" className="!py-0 !mt-[0.5rem]">
+            <ListItem className="text-black font-nunito text-[1.1rem] font-semibold">
+              <ListItemPrefix>
+                <Image
+                  width={25}
+                  height={25}
+                  src={"/assets/icon/icon-event.svg"}
+                  alt="icono de evento "
+                />
+              </ListItemPrefix>
+              Eventos
+            </ListItem>
+          </Button>
+          <Button as="Link" href="/faqs" className="!py-0 !mt-[0.5rem]">
+            <ListItem className="text-black font-nunito text-[1.1rem] font-semibold">
+              <ListItemPrefix>
+                <Image
+                  width={25}
+                  height={25}
+                  src={"/assets/icon/icon-info.svg"}
+                  alt="icono de info"
+                />
+              </ListItemPrefix>
+              FAQs
+            </ListItem>
+          </Button>
+          <Button as="" className="!py-0 !mt-[0.5rem]">
+            <ListItem className="text-black font-nunito text-[1.1rem] font-semibold">
+              <ListItemPrefix>
+                <Image
+                  width={25}
+                  height={25}
+                  src={"/assets/icon/icon-contacto.svg"}
+                  alt="icono de contacto"
+                />
+              </ListItemPrefix>
+              Contacto
+            </ListItem>
+          </Button>
         </List>
       </Drawer>
     </>

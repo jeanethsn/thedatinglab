@@ -1,11 +1,8 @@
 "use client";
-import "./globals.css";
 import { Nunito_Sans, Ms_Madi } from "next/font/google";
 import { ThemeProvider } from "@/app/providers/MaterialProvider.jsx";
-import Footer from "@/app/components/common/Footer.jsx";
-import NavigationBar from "@/app/components/common/NavBar.jsx";
 import UserProvider from "@/app/providers/UserProvider.jsx";
-
+import "./globals.css";
 const nunito = Nunito_Sans({
   subsets: ["latin"],
   weight: ["400", "600", "800", "1000"],
@@ -29,13 +26,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="es">
       <body className={`${nunito.variable} ${madi.variable}`}>
-        <ThemeProvider>
-          <UserProvider>
-            <NavigationBar />
-            {children}
-            <Footer />
-          </UserProvider>
-        </ThemeProvider>
+        <UserProvider>
+          <ThemeProvider>{children}</ThemeProvider>
+        </UserProvider>
       </body>
     </html>
   );

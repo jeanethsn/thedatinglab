@@ -1,21 +1,24 @@
 import Image from "next/image";
 import Button from "@/app/components/Button.jsx";
 
-export default function ModalSucess({ handleCloseModalAuth }) {
+export default function ModalSucess({
+  handleCloseModalAuth,
+  title,
+  text,
+  src,
+}) {
   return (
     <div className="flex flex-col justify-center items-center">
       <Image
-        src={"/assets/icon/modal-icon-successfull.svg"}
+        src={src}
         width={50}
         height={100}
         alt="imagen de registrado corectamente"
       />
       <h3 className="font-nunito font-bold mt-[1rem] text-[1rem] text-[#181818]">
-        ¡Cuenta creada correctamente!
+        {title}
       </h3>
-      <p className="font-nunito font-medium text-[0.9rem]">
-        Empieza a disfrutar en Dating lab
-      </p>
+      <p className="font-nunito font-medium text-[0.9rem]">{text}</p>
       <Button
         color="secondary"
         onClick={handleCloseModalAuth}

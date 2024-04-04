@@ -76,7 +76,12 @@ export default function RegistroContent({
   return (
     <>
       {formRegisterSuccess && (
-        <ModalSucess handleCloseModalAuth={handleCloseModalAuth} />
+        <ModalSucess
+          src="/assets/icon/modal-icon-successfull.svg"
+          title="¡Cuenta creada correctamente!"
+          text=" Empieza a disfrutar en Dating lab"
+          handleCloseModalAuth={handleCloseModalAuth}
+        />
       )}
 
       {!formRegisterSuccess && (

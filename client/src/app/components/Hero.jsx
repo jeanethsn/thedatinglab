@@ -55,7 +55,7 @@ export default function Hero() {
               className="sm:w-[5.5rem] h-auto md:w-[6.5rem] lg:w-[7.5rem]"
             />
             <h1 className="leading-[2.1rem] text-primary-color  text-[1.2rem] sm:text-[1.6rem] sm:leading-[2.5rem] lg:leading-[3rem] xl:text-[2.1rem] xl:leading-[3.5rem]">
-              ¡Nos alegra verte de nuevo!{" "}
+              ¡Nos alegra verte de nuevo! <br></br>
               <span className="font-madi text-primary-color  text-[2.6rem] sm:text-[3.5rem] lg:text-[4rem] xl:text-[4.5rem]">
                 {user.name}
               </span>

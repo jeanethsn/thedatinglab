@@ -12,7 +12,7 @@ export default function InfoUser() {
             </div>
             <div>
                 <h3 className="lg:text-nowrap text-xl text-left font-bold text-red-orange mb-4">
-                    Mis intereses
+                    Momento vital
                 </h3>
                 <p className="text-left font-nunito text-base">
                     En mi tiempo libre, disfruto de actividades al aire libre como caminatas en la naturaleza o días en la playa, pero también aprecio las noches acogedoras en casa viendo películas o leyendo un buen libro. Soy una persona creativa y me encanta explorar diferentes formas de expresión artística, ya sea a través de la pintura, la escritura o la música.

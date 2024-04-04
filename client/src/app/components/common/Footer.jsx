@@ -11,6 +11,7 @@ function Footer() {
           alt="Icono home"
           width={150}
           height={150}
+          className="lg:w-[8rem] lg:h-auto ol:w-[10rem] ol:h-auto"
         />
       </div>
       <div className="flex justify-center items-center mb-8 lg:mb-0 lg:flex lg:order-3">
@@ -22,6 +23,7 @@ function Footer() {
                 alt="Icono TIKTOK"
                 width={30}
                 height={30}
+                className="lg:w-[1.4rem] lg:h-[1.4rem] ol:w-[1.8rem] ol:h-[1.8rem]"
               />
             </a>
           </li>
@@ -36,6 +38,7 @@ function Footer() {
                 alt="Icono insta"
                 width={30}
                 height={30}
+                className="lg:w-[1.4rem] lg:h-[1.4rem] ol:w-[1.8rem] ol:h-[1.8rem]"
               />
             </a>
           </li>
@@ -46,6 +49,7 @@ function Footer() {
                 alt="Icono whastsapp"
                 width={30}
                 height={30}
+                className="lg:w-[1.4rem] lg:h-[1.4rem] ol:w-[1.8rem] ol:h-[1.8rem]"
               />
             </a>
           </li>
@@ -60,6 +64,7 @@ function Footer() {
                 alt="Icono TIKTOK"
                 width={30}
                 height={30}
+                className="lg:w-[1.4rem] lg:h-[1.4rem] ol:w-[1.8rem] ol:h-[1.8rem]"
               />
             </a>
           </li>
@@ -68,18 +73,24 @@ function Footer() {
       <div className="text-center justify-center items-center lg:order-2">
         <ul className="lg:flex lg:gap-8">
           <li className="mb-4 lg:mb-0">
-            <Link className="text-white-text text-[1.2rem]" href="/contacto">
+            <Link
+              className="text-white-text text-[1.2rem] lg:text-[1rem] ol:text-[1.1rem]"
+              href="/contacto"
+            >
               Contacto
             </Link>
           </li>
           <li className="mb-4 lg:mb-0">
-            <Link className="text-white-text text-[1.2rem]" href="/faqs">
+            <Link
+              className="text-white-text text-[1.2rem] lg:text-[1rem] ol:text-[1.1rem]"
+              href="/faqs"
+            >
               F.A.Q.s
             </Link>
           </li>
           <li className="mb-8 lg:mb-0">
             <Link
-              className="text-white-text text-[1.2rem]"
+              className="text-white-text text-[1.2rem] lg:text-[1rem] ol:text-[1.1rem]"
               href="/terminos-de-servicio"
             >
               Términos del servicio

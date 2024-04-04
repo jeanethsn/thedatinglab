@@ -8,6 +8,7 @@ import NavigationBar from "@/app/components/common/NavBar.jsx";
 import Image from "next/image";
 import { useEffect } from "react";
 
+
 export default function Home() {
   useEffect(() => {
     window.scrollTo({
@@ -15,6 +16,7 @@ export default function Home() {
       behavior: "smooth",
     });
   }, []);
+
   return (
     <>
       <NavigationBar />

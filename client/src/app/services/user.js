@@ -13,15 +13,24 @@ export const authHeader = () => {
   };
 };
 
-export const getLogin = async (formData) => {
-  return await axios.post(`${API_URL}/login`, {
-    email: formData.email,
-    password: formData.password,
-  });
+export const UserService = {
+  getLogin: async (formData) => {
+    return await axios.post(`${API_URL}/login`, {
+      email: formData.email,
+      password: formData.password,
+    });
+  },
+
+  registerUser: async (formData) => {
+    return await axios.post(`${API_URL}/register`, {
+      ...formData,
+    });
+  },
 };
 
-export const registerUser = async (formData) => {
-  return await axios.post(`${API_URL}/register`, {
-    ...formData,
-  });
+export const EventsService = {
+  getAllEvents: async () => {
+    console.log(`${API_URL}/event`);
+    return await axios.get(`${API_URL}/event`);
+  },
 };

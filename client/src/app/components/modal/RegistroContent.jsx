@@ -4,7 +4,7 @@ import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useUser } from "@/app/providers/UserProvider";
 import Button from "@/app/components/Button.jsx";
-import { registerUser } from "@/app/services/user";
+import { UserService } from "@/app/services/user";
 import { useState } from "react";
 import InputPassword from "@/app/components/InputPassword.jsx";
 import InputText from "@/app/components/InputText.jsx";
@@ -63,7 +63,7 @@ export default function RegistroContent({
   const onSubmit = async (data) => {
     setIsSubmiting(true);
     try {
-      const response = await registerUser(data);
+      const response = await UserService.registerUser(data);
       handleUserLogin(response?.data?.user);
       setFormRegisterSuccess(true);
       setIsSubmiting(false);

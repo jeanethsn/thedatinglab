@@ -1,12 +1,7 @@
 import Image from "next/image";
 import Button from "@/app/components/Button.jsx";
 
-export default function ModalSucess({
-  handleCloseModalAuth,
-  title,
-  text,
-  src,
-}) {
+export default function ModalSucess({ handleCloseSuccess, title, text, src }) {
   return (
     <div className="flex flex-col justify-center items-center">
       <Image
@@ -23,7 +18,7 @@ export default function ModalSucess({
       </p>
       <Button
         color="secondary"
-        onClick={handleCloseModalAuth}
+        onClick={handleCloseSuccess}
         children="Continuar"
         className="flex justify-center gap-[0.8rem] text-white text-[0.9rem] py-[0.3rem] font-semibold lg:mt-[1.4rem] lg:py-[0.5rem] lg:rounded-bl-3xl lg:rounded-tr-3xl xl:text-[1rem]"
         style={{

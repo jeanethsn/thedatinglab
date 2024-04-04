@@ -3,12 +3,14 @@ import { Dialog, Card, CardBody } from "@material-tailwind/react";
 import { useState } from "react";
 import Button from "@/app/components/Button.jsx";
 import Image from "next/image";
+
 const WHATSAPP = {
   MESSAGE:
     "Hola, ¡bienvenido a Dating Lab! Estamos emocionados de que estés interesado en nuestros eventos de citas a ciegas. ¿En qué puedo ayudarte hoy? ¿Necesitas información sobre nuestros próximos eventos o ayuda para comprar tus entradas? Estoy aquí para ayudarte en todo lo que necesites. ¡No dudes en preguntar!",
   URL: "https://wa.me",
   MOBILE_NUMBER: "+34613324535",
 };
+
 export default function ModalContact({ renderContactModal }) {
   const [openModalContact, setOpenModalContact] = useState(false);
   const handler = () => setOpenModalContact(!openModalContact);
@@ -26,7 +28,7 @@ export default function ModalContact({ renderContactModal }) {
         size="xs"
         open={openModalContact}
         handler={handler}
-        className={` bg-transparent shadow-none sm:!max-w-[60%] sm:!w-[60%] sm:!min-w-[60%] md:!max-w-[45%] md:!w-[45%] md:!min-w-[45%] lg:flex lg:!max-w-[60%] lg:!w-[60%] lg:!min-w-[60%] ol:!max-w-[50%] ol:!w-[50%] ol:!min-w-[50%] xxl:!max-w-[40%] xxl:!w-[40%] xxl:!min-w-[40%]`}
+        className={` bg-transparent shadow-none sm:!max-w-[60%] sm:!w-[60%] sm:!min-w-[60%] md:!max-w-[45%] md:!w-[45%] md:!min-w-[45%] lg:flex lg:!max-w-[60%] lg:!w-[60%] lg:!min-w-[60%] ol:!max-w-[45%] ol:!w-[45%] ol:!min-w-[45%] xxl:!max-w-[40%] xxl:!w-[40%] xxl:!min-w-[40%]`}
       >
         <Card
           className={` lg:basis-[55%] lg:rounded-l-xl lg:rounded-r-none  overflow-hidden`}

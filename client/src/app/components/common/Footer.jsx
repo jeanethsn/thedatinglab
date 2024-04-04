@@ -1,7 +1,8 @@
 import Image from "next/image";
 import React from "react";
 import Link from "next/link";
-
+import ModalContact from "@/app/components/modal/ModalContact.jsx";
+import Button from "@/app/components/Button.jsx";
 function Footer() {
   return (
     <footer className="bg-grey-dark pt-[4rem] lg:flex lg:justify-between p-6 lg:p-9 lg:px-[6rem] lg:items-center">
@@ -73,13 +74,20 @@ function Footer() {
       <div className="text-center justify-center items-center lg:order-2">
         <ul className="lg:flex lg:gap-8">
           <li className="mb-4 lg:mb-0">
-            <Link
-              className="text-white-text text-[1.2rem] lg:text-[1rem] ol:text-[1.1rem]"
-              href="/contacto"
-            >
-              Contacto
-            </Link>
+            <ModalContact
+              renderContactModal={(handleOpenModalMobile) => (
+                <Button
+                  className="!py-0 !mt-[0rem] text-white-text text-[1.2rem] lg:text-[1rem] ol:text-[1.1rem]"
+                  onClick={() => {
+                    handleOpenModalMobile();
+                  }}
+                >
+                  Contacto
+                </Button>
+              )}
+            />
           </li>
+
           <li className="mb-4 lg:mb-0">
             <Link
               className="text-white-text text-[1.2rem] lg:text-[1rem] ol:text-[1.1rem]"

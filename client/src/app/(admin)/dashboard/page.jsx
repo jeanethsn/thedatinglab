@@ -1,3 +1,11 @@
-export default function Page() {
-  return <p>soy una pagina dentro de un dachoborar</p>;
+"use client"
+import AdminLogin from "@/app/components/AdminLogin";
+
+export default function DashboardLogin() {
+  return(
+   
+    <>
+      <AdminLogin />
+    </>
+  );
 }

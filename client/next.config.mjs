@@ -4,7 +4,14 @@ const nextConfig = {
     API_URL: "http://localhost:8000/api",
   },
   images: {
-    domains: ["localhost"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "localhost",
+        port: "",
+        pathname: "/**",
+      },
+    ],
   },
 };
 

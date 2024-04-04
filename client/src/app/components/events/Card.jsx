@@ -15,11 +15,7 @@ export default function CardEvent({ eventDate }) {
     <Card>
       <CardHeader shadow={false} floated={false} className="h-52">
         {/* Como integrar la imagen ? */}
-        <img
-          src="https://images.unsplash.com/photo-1629367494173-c78a56567877?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=927&q=80"
-          alt="card-image"
-          className="h-full w-full object-cover"
-        />
+        <img src={``} alt="card-image" className="h-full w-full object-cover" />
       </CardHeader>
       <CardBody>
         <div className="mb-2 flex items-center justify-between">
@@ -29,8 +25,7 @@ export default function CardEvent({ eventDate }) {
         </div>
         <h2> {eventDate.title}</h2>
         <p> {eventDate.description}</p>
-        {/* Ubicación falta añadir en la data */}
-        <p></p>
+        <p>{eventDate.location}</p>
       </CardBody>
       <CardFooter className="pt-0">
         <Button

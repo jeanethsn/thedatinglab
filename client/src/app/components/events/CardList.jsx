@@ -1,7 +1,7 @@
 "use client";
 import Card from "@/app/components/events/Card.jsx";
 import { useState, useEffect } from "react";
-import { EventsService } from "@/app/services/user";
+import { getAllEvents } from "@/app/services/event";
 
 const Loading = () => (
   <div className="h-screen flex justify-center items-center">
@@ -33,7 +33,7 @@ export default function CardList() {
 
   useEffect(() => {
     const getEvents = async () => {
-      const response = await EventsService.getAllEvents();
+      const response = await getAllEvents();
       setEvents(response.data);
       setIsLoading(false);
     };

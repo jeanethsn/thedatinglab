@@ -6,26 +6,31 @@ import { useState } from "react";
 import styles from "./styles.module.css";
 import Image from "next/image";
 import Button from "@/app/components/Button.jsx";
+import { useUser } from "@/app/providers/UserProvider";
 
 export default function ModalAuth({ renderButtonModal }) {
+  const { user } = useUser();
   const [openModalAuth, setOpenModalAuth] = useState(false);
   const [shouldRenderRegister, setShouldRenderRegister] = useState(false);
+  const [formRegisterSuccess, setFormRegisterSuccess] = useState(false);
 
   const handleOpenModalAuth = () => setOpenModalAuth(true);
-
   const handleCloseModalAuth = () => {
     setShouldRenderRegister(false);
     setOpenModalAuth(false);
   };
 
-  const handleOpenRegister = () => setShouldRenderRegister(true);
+  const handleOpenRegister = () => {
+    setShouldRenderRegister(true);
+    setFormRegisterSuccess(false);
+  };
 
   const handleCloseRegister = () => setShouldRenderRegister(false);
 
   const handler = () => setOpenModalAuth(!openModalAuth);
   return (
     <>
-      {renderButtonModal(handleOpenModalAuth)}
+      {!user.email && renderButtonModal(handleOpenModalAuth)}
 
       <Dialog
         size="xs"
@@ -36,7 +41,7 @@ export default function ModalAuth({ renderButtonModal }) {
         <Card className="lg:basis-[50%] lg:rounded-l-xl  lg:rounded-r-none overflow-hidden">
           <CardBody
             className={`${styles.containerScroll} ${
-              shouldRenderRegister ? "h-[35rem]" : ""
+              shouldRenderRegister ? "max-h-[35rem]" : ""
             } flex flex-col gap-4 overflow-y-auto scrollbar-thumb:!rounded relative md:px-[2rem] lg:px-[2.5rem]`}
           >
             <Button
@@ -53,46 +58,55 @@ export default function ModalAuth({ renderButtonModal }) {
             </Button>
             {!shouldRenderRegister && (
               <LoginContent
+                key="loginForm"
                 handleCloseModalAuth={handleCloseModalAuth}
                 handleOpenRegister={handleOpenRegister}
               />
             )}
 
             {shouldRenderRegister && (
-              <RegistroContent handleCloseRegister={handleCloseRegister} />
+              <RegistroContent
+                key="registerForm"
+                handleCloseModalAuth={handleCloseModalAuth}
+                handleCloseRegister={handleCloseRegister}
+                formRegisterSuccess={formRegisterSuccess}
+                setFormRegisterSuccess={setFormRegisterSuccess}
+              />
             )}
           </CardBody>
         </Card>
-        <div
-          className="hidden lg:flex bg-primary-color lg:basis-[50%] lg:rounded-r-xl flex-col lg:items-center lg:justify-center"
-          style={{
-            backgroundImage: `url('/assets/image/bg-login.png')`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            backgroundRepeat: "no repeat",
-          }}
-        >
-          <Button
-            className="!py-0 !w-auto hidden absolute right-[1.5rem] top-[1.2rem] lg:block"
-            onClick={handleCloseModalAuth}
+        {!formRegisterSuccess && (
+          <div
+            className="hidden lg:flex bg-primary-color lg:basis-[50%] lg:rounded-r-xl flex-col lg:items-center lg:justify-center"
+            style={{
+              backgroundImage: `url('/assets/image/bg-login.png')`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              backgroundRepeat: "no repeat",
+            }}
           >
+            <Button
+              className="!py-0 !w-auto hidden absolute right-[1.5rem] top-[1.2rem] lg:block"
+              onClick={handleCloseModalAuth}
+            >
+              <Image
+                src={"/assets/icon/icon-closeB.svg"}
+                width={20}
+                height={20}
+                alt="icono cerrar"
+              />
+            </Button>
             <Image
-              src={"/assets/icon/icon-closeB.svg"}
-              width={20}
-              height={20}
+              src={"/assets/image/Logo_Blanco.svg"}
+              width={250}
+              height={200}
               alt="icono cerrar"
             />
-          </Button>
-          <Image
-            src={"/assets/image/Logo_Blanco.svg"}
-            width={250}
-            height={200}
-            alt="icono cerrar"
-          />
-          <p className="text-white font-nunito text-[1.2rem] leading-[1.4rem]">
-            La app de citas donde<br></br> no existe el swipe
-          </p>
-        </div>
+            <p className="text-white font-nunito text-[1.2rem] leading-[1.4rem]">
+              La app de citas donde<br></br> no existe el swipe
+            </p>
+          </div>
+        )}
       </Dialog>
     </>
   );

@@ -1,6 +1,7 @@
 "use client";
 import PropTypes from "prop-types";
 import Link from "next/link";
+import { Spinner } from "@material-tailwind/react";
 const COLOR = {
   primary: "bg-red-orange ",
   secondary: "bg-pink-strong",
@@ -13,14 +14,22 @@ export default function Button({
   color = "",
   className = "",
   children,
+  isLoading = false,
   ...rest
 }) {
   const Component = as === "Link" ? Link : "button";
-
-  const styles = `w-full py-[0.2rem] mt-[1rem]  rounded-bl-2xl rounded-tr-2xl hover:rounded-full ${COLOR[color]} ${className}`;
+  const styleDisabled =
+    isLoading &&
+    "disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none ";
+  const styles = `w-full py-[0.2rem] mt-[1rem]  rounded-bl-2xl rounded-tr-2xl hover:rounded-full ${COLOR[color]}  ${styleDisabled} ${className}`;
   return (
-    <Component className={styles} {...rest}>
-      {children ? children : null}
+    <Component disabled={isLoading} className={styles} {...rest}>
+      {isLoading && (
+        <>
+          <Spinner /> <span>Loading...</span>
+        </>
+      )}
+      {children && !isLoading ? children : null}
     </Component>
   );
 }

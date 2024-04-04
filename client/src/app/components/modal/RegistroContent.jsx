@@ -42,7 +42,12 @@ const validationSchema = Yup.object().shape({
     .oneOf([true], "Debe confirmar si es mayor de edad"),
 });
 
-export default function RegistroContent({ handleCloseRegister }) {
+export default function RegistroContent({
+  handleCloseRegister,
+  handleCloseModalAuth,
+  setFormRegisterSuccess,
+  formRegisterSuccess,
+}) {
   const {
     register,
     handleSubmit,
@@ -50,168 +55,189 @@ export default function RegistroContent({ handleCloseRegister }) {
   } = useForm({ mode: "onBlur", resolver: yupResolver(validationSchema) });
 
   const [errorRegister, setErrorRegister] = useState({});
+  const [isSubmiting, setIsSubmiting] = useState(false);
+
   const { handleUserLogin } = useUser();
+
   const onSubmit = async (data) => {
+    setIsSubmiting(true);
     try {
       const response = await registerUser(data);
       handleUserLogin(response?.data?.user);
+      setFormRegisterSuccess(true);
+      setIsSubmiting(false);
     } catch (error) {
       setErrorRegister(error?.response?.data?.validation_errors);
+      setIsSubmiting(false);
     }
   };
 
   return (
     <>
-      <h2 className="text-primary-color text-center leading-[1.8rem] font-nunito font-bold text-[1.6rem] mt-[0.8rem] lg:text-[1.8rem] lg:mt-[1rem]">
-        Bienvenido
-      </h2>
-      <h3 className="leading-[1rem] mb-[0.8rem] text-[#333333] font-nunito font-semibold text-[1.2rem]">
-        Únete a Dating Lab
-      </h3>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="mb-[1rem]">
-          <InputText
-            name="name"
-            labelText="Nombre"
-            register={register}
-            error={!!errors?.name}
-            errorText={errors?.name?.message}
-            className={`${
-              !errors?.name
-                ? "focus:!border-t-[#212121]"
-                : "focus:!border-t-deep-orange-800"
-            } focus:border-[3px]`}
-          />
-        </div>
-        <div className="mb-[1rem]">
-          <InputText
-            name="lastname"
-            labelText="Apellido"
-            register={register}
-            error={!!errors?.lastname}
-            errorText={errors?.lastname?.message}
-            className={`${
-              !errors?.lastname
-                ? "focus:!border-t-[#212121]"
-                : "focus:!border-t-deep-orange-800"
-            } focus:border-[3px]`}
-          />
-        </div>
-        <div className="mb-[1rem]">
-          <InputText
-            name="email"
-            labelText="Email"
-            register={register}
-            error={!!errors?.email}
-            errorText={errors?.email?.message}
-            className={`${
-              !errors?.email
-                ? "focus:!border-t-[#212121]"
-                : "focus:!border-t-deep-orange-800"
-            } focus:border-[3px]`}
-          />
-        </div>
-        <div className="mb-[1rem]">
-          <InputPassword
-            register={register}
-            name="password"
-            error={!!errors?.password}
-            labelText="Contraseña"
-            errorText={errors?.password?.message}
-            className={`${
-              !errors?.password
-                ? "focus:!border-t-[#212121]"
-                : "focus:!border-t-deep-orange-800"
-            } focus:border-[3px]`}
-          />
-        </div>
-        <div className="mb-[1rem]">
-          <InputPassword
-            register={register}
-            name="password_confirmation"
-            error={!!errors?.password_confirmation}
-            labelText="Confirma contraseña"
-            errorText={errors?.password_confirmation?.message}
-            className={`${
-              !errors?.password_confirmation
-                ? "focus:!border-t-[#212121]"
-                : "focus:!border-t-deep-orange-800"
-            } focus:border-[3px]`}
-          />
-        </div>
-        <div className="text-[0.9rem] leading-[1.1rem] mb-[0.2rem]">
-          <Checkbox
-            id="privacyPolicies"
-            name="privacyPolicies"
-            className="w-[1rem] h-[1rem] p-0"
-            label=" Acepto la política de privacidad"
-            containerProps={{
-              className: "p-0 ",
-            }}
-            {...register("privacyPolicies")}
-            labelProps={{
-              className: "text-[0.9rem] leading-[1.2rem] ml-[0.5rem]",
-            }}
-          />
-        </div>
+      {formRegisterSuccess && (
+        <p>
+          lo lograste <button onClick={handleCloseModalAuth}>cerrar</button>
+        </p>
+      )}
 
-        {errors?.privacyPolicies && (
-          <p className="text-red-600 text-[0.8rem]">
-            {" "}
-            {errors.privacyPolicies.message}{" "}
-          </p>
-        )}
-        <div className="">
-          <Checkbox
-            name="over18"
-            className="w-[1rem] h-[1rem] p-0"
-            label="Confirmo que soy mayor de 18 años"
-            labelProps={{
-              className: "text-[0.9rem] leading-[1.2rem] ml-[0.5rem]",
-            }}
-            containerProps={{
-              className: "p-0 ",
-            }}
-            {...register("over18")}
-          />
-        </div>
+      {!formRegisterSuccess && (
+        <>
+          <h2 className="text-primary-color text-center leading-[1.8rem] font-nunito font-bold text-[1.6rem] mt-[0.8rem] lg:text-[1.8rem] lg:mt-[1rem]">
+            Bienvenido
+          </h2>
+          <h3 className="leading-[1rem] mb-[0.8rem] text-[#333333] font-nunito font-semibold text-[1.2rem]">
+            Únete a Dating Lab
+          </h3>
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <div className="mb-[1rem]">
+              <InputText
+                name="name"
+                labelText="Nombre"
+                register={register}
+                error={!!errors?.name}
+                errorText={errors?.name?.message}
+                className={`${
+                  !errors?.name
+                    ? "focus:!border-t-[#212121]"
+                    : "focus:!border-t-deep-orange-800"
+                } focus:border-[3px]`}
+              />
+            </div>
+            <div className="mb-[1rem]">
+              <InputText
+                name="lastname"
+                labelText="Apellido"
+                register={register}
+                error={!!errors?.lastname}
+                errorText={errors?.lastname?.message}
+                className={`${
+                  !errors?.lastname
+                    ? "focus:!border-t-[#212121]"
+                    : "focus:!border-t-deep-orange-800"
+                } focus:border-[3px]`}
+              />
+            </div>
+            <div className="mb-[1rem]">
+              <InputText
+                name="email"
+                labelText="Email"
+                register={register}
+                error={!!errors?.email}
+                errorText={errors?.email?.message}
+                className={`${
+                  !errors?.email
+                    ? "focus:!border-t-[#212121]"
+                    : "focus:!border-t-deep-orange-800"
+                } focus:border-[3px]`}
+              />
+            </div>
+            <div className="mb-[1rem]">
+              <InputPassword
+                register={register}
+                name="password"
+                error={!!errors?.password}
+                labelText="Contraseña"
+                errorText={errors?.password?.message}
+                className={`${
+                  !errors?.password
+                    ? "focus:!border-t-[#212121]"
+                    : "focus:!border-t-deep-orange-800"
+                } focus:border-[3px]`}
+              />
+            </div>
+            <div className="mb-[1rem]">
+              <InputPassword
+                register={register}
+                name="password_confirmation"
+                error={!!errors?.password_confirmation}
+                labelText="Confirma contraseña"
+                errorText={errors?.password_confirmation?.message}
+                className={`${
+                  !errors?.password_confirmation
+                    ? "focus:!border-t-[#212121]"
+                    : "focus:!border-t-deep-orange-800"
+                } focus:border-[3px]`}
+              />
+            </div>
+            <div className="text-[0.9rem] leading-[1.1rem] mb-[0.8rem]">
+              <Checkbox
+                id="privacyPolicies"
+                name="privacyPolicies"
+                className="w-[1rem] h-[1rem] p-0"
+                label=" Acepto la política de privacidad"
+                containerProps={{
+                  className: "p-0 ",
+                }}
+                {...register("privacyPolicies")}
+                labelProps={{
+                  className: "text-[0.9rem] leading-[1.2rem] ml-[0.5rem]",
+                }}
+              />
+            </div>
 
-        {errors?.over18 && (
-          <p className="text-red-600 text-[0.8rem]">
-            {" "}
-            {errors.over18.message}{" "}
-          </p>
-        )}
+            {errors?.privacyPolicies && (
+              <p className="text-red-600 text-[0.8rem]">
+                {" "}
+                {errors.privacyPolicies.message}{" "}
+              </p>
+            )}
+            <div className="">
+              <Checkbox
+                name="over18"
+                className="w-[1rem] h-[1rem] p-0 "
+                label="Confirmo que soy mayor de 18 años"
+                labelProps={{
+                  className: "text-[0.9rem] leading-[1.2rem] ml-[0.5rem]",
+                }}
+                containerProps={{
+                  className: " p-0 ",
+                }}
+                {...register("over18")}
+              />
+            </div>
 
-        {/* Error del backend */}
-        {errorRegister &&
-          getErrors(errorRegister).map((error) => (
-            <p className="text-red-500"> {error}</p>
-          ))}
+            {errors?.over18 && (
+              <p className="text-red-600 text-[0.8rem]">
+                {" "}
+                {errors.over18.message}{" "}
+              </p>
+            )}
 
-        <Button
-          color="secondary"
-          type="submit"
-          children="Crear cuenta"
-          className=" text-white text-[0.9rem] py-[0.3rem] font-semibold lg:mt-[1.4rem] lg:py-[0.5rem] lg:rounded-bl-3xl lg:rounded-tr-3xl xl:text-[1rem]"
-          style={{
-            transition:
-              "background 0.3s, border 0.3s, border-radius .3s, box-shadow .3s, transform .3s, .4s",
-          }}
-        >
-          Confirmar
-        </Button>
+            {/* Error del backend */}
+            {errorRegister &&
+              getErrors(errorRegister).map((error) => (
+                <p key={error} className="text-red-500">
+                  {" "}
+                  {error}
+                </p>
+              ))}
 
-        <span className="mt-4 flex text-[0.85rem] gap-[0.5rem] lg:justify-start lg:text-[1rem]">
-          ¿Ya tienes cuenta?{" "}
-          <Button
-            onClick={handleCloseRegister}
-            className="!py-0 !w-auto !rounded-none !mt-0 font-bold cursor-pointer text-[0.85rem] text-primary-color lg:text-[1rem]"
-          >
-            Iniciar sesión
-          </Button>
-        </span>
-      </form>
+            <Button
+              isLoading={isSubmiting}
+              color="secondary"
+              type="submit"
+              children="Crear cuenta"
+              className="flex justify-center gap-[0.8rem] text-white text-[0.9rem] py-[0.3rem] font-semibold lg:mt-[1.4rem] lg:py-[0.5rem] lg:rounded-bl-3xl lg:rounded-tr-3xl xl:text-[1rem]"
+              style={{
+                transition:
+                  "background 0.3s, border 0.3s, border-radius .3s, box-shadow .3s, transform .3s, .4s",
+              }}
+            >
+              Confirmar
+            </Button>
+
+            <span className="mt-4 flex text-[0.85rem] gap-[0.5rem] lg:justify-start lg:text-[1rem]">
+              ¿Ya tienes cuenta?{" "}
+              <Button
+                onClick={handleCloseRegister}
+                className="!py-0 !w-auto !rounded-none !mt-0 font-bold cursor-pointer text-[0.85rem] text-primary-color lg:text-[1rem]"
+              >
+                Iniciar sesión
+              </Button>
+            </span>
+          </form>
+        </>
+      )}
     </>
   );
 }

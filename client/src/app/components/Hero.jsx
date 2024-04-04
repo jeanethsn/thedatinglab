@@ -2,6 +2,7 @@
 import { useUser } from "@/app/providers/UserProvider";
 import Button from "@/app/components/Button.jsx";
 import Image from "next/image";
+import ModalAuth from "@/app/components/modal/ModalAuth.jsx";
 export default function Hero() {
   const { user } = useUser();
 
@@ -29,14 +30,19 @@ export default function Hero() {
               Creemos en la compatibilidad emocional como la base de relaciones
               solidas
             </p>
-            <Button
-              color="primary"
-              children="¿Te apuntas?"
-              className="sm:text-[1.1rem] text-white text-[1rem] font-semibold lg:mt-[1.4rem] lg:py-[0.5rem] lg:rounded-bl-3xl lg:rounded-tr-3xl xl:text-[1.2rem]"
-              style={{
-                transition:
-                  "background 0.3s, border 0.3s, border-radius .3s, box-shadow .3s, transform .3s, .4s",
-              }}
+            <ModalAuth
+              renderButtonModal={(handleOpenModalAuth) => (
+                <Button
+                  color="primary"
+                  onClick={handleOpenModalAuth}
+                  children="¿Te apuntas?"
+                  className="sm:text-[1.1rem] text-white text-[1rem] font-semibold lg:mt-[1.4rem] lg:py-[0.5rem] lg:rounded-bl-3xl lg:rounded-tr-3xl xl:text-[1.2rem]"
+                  style={{
+                    transition:
+                      "background 0.3s, border 0.3s, border-radius .3s, box-shadow .3s, transform .3s, .4s",
+                  }}
+                />
+              )}
             />
           </>
         ) : (

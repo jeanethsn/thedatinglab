@@ -149,22 +149,21 @@ export default function NavigationBar() {
           </div>
           <div className="flex items-center lg:hidden">
             {user?.email && <ProfileMenu />}
-            {!user?.email && (
-              <ModalAuth
-                renderButtonModal={(handleOpenModalAuth) => (
-                  <Button className="!py-0 !rounded-none !mt-0  lg:hidden h-auto flex justify-center !w-[1.5rem] max-w-[2.1rem] sm:!w-[2rem]">
-                    <Image
-                      width={30}
-                      height={30}
-                      src={"/assets/icon/icon-user.svg"}
-                      alt="icono de usuario"
-                      className="lg:hidden"
-                      onClick={handleOpenModalAuth}
-                    />
-                  </Button>
-                )}
-              />
-            )}
+
+            <ModalAuth
+              renderButtonModal={(handleOpenModalAuth) => (
+                <Button className="!py-0 !rounded-none !mt-0  lg:hidden h-auto flex justify-center !w-[1.5rem] max-w-[2.1rem] sm:!w-[2rem]">
+                  <Image
+                    width={30}
+                    height={30}
+                    src={"/assets/icon/icon-user.svg"}
+                    alt="icono de usuario"
+                    className="lg:hidden"
+                    onClick={handleOpenModalAuth}
+                  />
+                </Button>
+              )}
+            />
           </div>
         </div>
       </Navbar>

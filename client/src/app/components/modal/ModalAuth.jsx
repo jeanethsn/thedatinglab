@@ -11,7 +11,6 @@ import { useUser } from "@/app/providers/UserProvider";
 export default function ModalAuth({ renderButtonModal }) {
   const { user } = useUser();
   const [openModalAuth, setOpenModalAuth] = useState(false);
-  const [isSubmiting, setIsSubmiting] = useState(false);
   const [shouldRenderRegister, setShouldRenderRegister] = useState(false);
   const [formRegisterSuccess, setFormRegisterSuccess] = useState(false);
 
@@ -32,6 +31,7 @@ export default function ModalAuth({ renderButtonModal }) {
   const handleCloseRegister = () => setShouldRenderRegister(false);
 
   const handler = () => setOpenModalAuth(!openModalAuth);
+  console.log({ formRegisterSuccess });
   return (
     <>
       {!user.email && renderButtonModal(handleOpenModalAuth)}
@@ -40,7 +40,9 @@ export default function ModalAuth({ renderButtonModal }) {
         size="xs"
         open={openModalAuth}
         handler={handler}
-        className={`lg:flex bg-transparent shadow-none sm:!max-w-[50%] sm:!w-[50%] sm:!min-w-[50%] lg:!max-w-[70%] lg:!w-[70%] lg:!min-w-[70%]  ol:!max-w-[50%] ol:!w-[50%] ol:!min-w-[50%] xxl:!max-w-[45%] xxl:!w-[45%] xxl:!min-w-[45%]`}
+        className={`modalAuth ${
+          formRegisterSuccess ? "lg:!block" : "lg:flex"
+        } bg-transparent shadow-none sm:!max-w-[50%] sm:!w-[50%] sm:!min-w-[50%] lg:!max-w-[70%] lg:!w-[70%] lg:!min-w-[70%]  ol:!max-w-[50%] ol:!w-[50%] ol:!min-w-[50%] xxl:!max-w-[45%] xxl:!w-[45%] xxl:!min-w-[45%]`}
       >
         <Card className="lg:basis-[50%] lg:rounded-l-xl  lg:rounded-r-none overflow-hidden">
           <CardBody

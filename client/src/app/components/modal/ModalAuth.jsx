@@ -41,10 +41,16 @@ export default function ModalAuth({ renderButtonModal }) {
         open={openModalAuth}
         handler={handler}
         className={`modalAuth ${
-          formRegisterSuccess ? "lg:!block" : "lg:flex"
-        } bg-transparent shadow-none sm:!max-w-[50%] sm:!w-[50%] sm:!min-w-[50%] lg:!max-w-[70%] lg:!w-[70%] lg:!min-w-[70%]  ol:!max-w-[50%] ol:!w-[50%] ol:!min-w-[50%] xxl:!max-w-[45%] xxl:!w-[45%] xxl:!min-w-[45%]`}
+          formRegisterSuccess
+            ? "lg:!block !max-w-[70%] !w-[70%] !min-w-[70%] sm:!max-w-[50%] sm:!w-[50%] sm:!min-w-[50%]   md:!max-w-[40%] md:!w-[40%] md:!min-w-[30%] lg:!max-w-[35%] lg:!w-[30%] lg:!min-w-[30%]   ol:!max-w-[25%] ol:!w-[25%] ol:!min-w-[25%] xxl:!max-w-[20%] xxl:!w-[20%] xxl:!min-w-[20%]"
+            : "lg:flex lg:!max-w-[70%] lg:!w-[70%] lg:!min-w-[70%]  ol:!max-w-[50%] ol:!w-[50%] ol:!min-w-[50%] xxl:!max-w-[45%] xxl:!w-[45%] xxl:!min-w-[45%]"
+        } bg-transparent shadow-none sm:!max-w-[50%] sm:!w-[50%] sm:!min-w-[50%] `}
       >
-        <Card className="lg:basis-[50%] lg:rounded-l-xl  lg:rounded-r-none overflow-hidden">
+        <Card
+          className={` ${
+            formRegisterSuccess ? "lg:!rounded-xl" : "lg:rounded-r-none"
+          } lg:basis-[50%] lg:rounded-l-xl   overflow-hidden`}
+        >
           <CardBody
             className={`${styles.containerScroll} ${
               shouldRenderRegister ? "max-h-[35rem]" : ""

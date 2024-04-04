@@ -36,7 +36,8 @@ export default function Hero() {
                   color="primary"
                   onClick={handleOpenModalAuth}
                   children="¿Te apuntas?"
-                  className="sm:text-[1.1rem] text-white text-[1rem] font-semibold lg:mt-[1.4rem] lg:py-[0.5rem] lg:rounded-bl-3xl lg:rounded-tr-3xl xl:text-[1.2rem]"
+                  className="w-full"
+                  // className="sm:text-[1.1rem] text-white text-[1rem] font-semibold lg:mt-[1.4rem] lg:py-[0.5rem] lg:rounded-bl-3xl lg:rounded-tr-3xl xl:text-[1.2rem]"
                   style={{
                     transition:
                       "background 0.3s, border 0.3s, border-radius .3s, box-shadow .3s, transform .3s, .4s",

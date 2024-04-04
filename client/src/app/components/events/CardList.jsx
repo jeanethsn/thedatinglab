@@ -8,7 +8,7 @@ const Loading = () => (
     <div role="status">
       <svg
         aria-hidden="true"
-        class="inline w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-red-600"
+        className="inline w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-red-600"
         viewBox="0 0 100 101"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
@@ -51,7 +51,7 @@ export default function CardList() {
       {isLoading && <Loading />}
 
       {!isLoading && (
-        <section className="max-w-[1200px] grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4  gap-4">
+        <section className="w-full max-w-[1200px] xxl:max-w-[1500px] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xxl:grid-cols-4  gap-[1.5rem] mb-[4rem]">
           {events.length &&
             events.map((eventDate) => (
               <Card key={eventDate.id} eventDate={eventDate} />

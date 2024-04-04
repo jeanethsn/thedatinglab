@@ -60,7 +60,7 @@ export default function CardEvent({ eventDate }) {
               transition:
                 "background 0.3s, border 0.3s, border-radius .3s, box-shadow .3s, transform .3s, .4s",
             }}
-            href={`/event/${eventDate.id}`}
+            href={`/evento/${eventDate.id}`}
           />
         </div>
       </div>

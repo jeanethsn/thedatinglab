@@ -4,9 +4,10 @@ import { useState, useEffect } from "react";
 import DrawerWithNavigation from "@/app/components/common/Drawer.jsx";
 import Button from "@/app/components/Button.jsx";
 import { usePathname } from "next/navigation";
-import { Navbar, Typography, IconButton } from "@material-tailwind/react";
+import { Navbar, Typography } from "@material-tailwind/react";
 import ModalAuth from "@/app/components/modal/ModalAuth.jsx";
 import ProfileMenu from "@/app/components/ProfileMenu.jsx";
+import ModalContact from "@/app/components/modal/ModalContact.jsx";
 import { useUser } from "@/app/providers/UserProvider";
 
 export default function NavigationBar() {
@@ -16,8 +17,8 @@ export default function NavigationBar() {
   const closeDrawer = () => setOpen(false);
 
   const isHomePage = pathname === "/";
-  const isFaqsPage = pathname === "/faqs"; // cambiar ruta
-  const isEventsPage = pathname === "/events"; // cambiar ruta
+  const isFaqsPage = pathname === "/preguntas-frecuentes"; // cambiar ruta
+  const isEventsPage = pathname === "/eventos"; // cambiar ruta
 
   useEffect(() => {
     window.addEventListener(
@@ -26,12 +27,9 @@ export default function NavigationBar() {
     );
   }, []);
 
-  const scrollInTo = (id) => {
-    document.getElementById(id).scrollIntoView({ behavior: "smooth" });
-  };
   const navList = (
     <>
-      <ul className="flex lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-[3rem] text-black ">
+      <ul className="flex lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-[3rem] text-black">
         <Typography
           as="li"
           variant="small"
@@ -41,7 +39,8 @@ export default function NavigationBar() {
           } font-semibold text-[1rem]`}
         >
           <Button
-            href="#"
+            as="Link"
+            href="/"
             className={`${
               isHomePage ? "text-primary-color" : ""
             } flex items-center  font-nunito `}
@@ -54,28 +53,12 @@ export default function NavigationBar() {
           variant="small"
           color="blue-gray"
           className={`${
-            isFaqsPage ? "border-b-2 border-primary-color rounded-none" : ""
-          } font-semibold text-[1rem]`}
-        >
-          <Button
-            onClick={() => scrollInTo("sectionStepsInfo")}
-            className={`${
-              isFaqsPage ? "text-primary-color" : ""
-            } flex items-center  font-nunito`}
-          >
-            ¿Como Funciona?
-          </Button>
-        </Typography>
-        <Typography
-          as="li"
-          variant="small"
-          color="blue-gray"
-          className={`${
             isEventsPage ? "border-b-2 border-primary-color rounded-none" : ""
           } font-semibold text-[1rem]`}
         >
           <Button
-            onClick={() => scrollInTo("sectionEvents")}
+            as="Link"
+            href="/eventos"
             className={`${
               isEventsPage ? "text-primary-color" : ""
             } flex items-center  font-nunito`}
@@ -83,10 +66,49 @@ export default function NavigationBar() {
             Eventos
           </Button>
         </Typography>
+        <Typography
+          as="li"
+          variant="small"
+          color="blue-gray"
+          className={`${
+            isFaqsPage ? "border-b-2 border-primary-color rounded-none" : ""
+          } font-semibold text-[1rem]`}
+        >
+          <Button
+            as="Link"
+            href="/preguntas-frecuentes"
+            className={`${
+              isFaqsPage ? "text-primary-color" : ""
+            } flex items-center  font-nunito`}
+          >
+            FAQs
+          </Button>
+        </Typography>
+        <ModalContact
+          renderContactModal={(handleOpenModalContact) => (
+            <Typography
+              as="li"
+              variant="small"
+              color="blue-gray"
+              className={`font-semibold text-[1rem]`}
+            >
+              <Button
+                className={`flex items-center font-nunito`}
+                onClick={handleOpenModalContact}
+              >
+                Contacto
+              </Button>
+            </Typography>
+          )}
+        />
       </ul>
-      <div className="lg:flex items-center hidden">
-        {user?.email && <ProfileMenu />}
-        {!user?.email && (
+      <div className="lg:flex items-center hidden ">
+        {user?.email && (
+          <div className="lg:flex items-center lg:w-[3.5rem] lg:h-[3.5rem]">
+            <ProfileMenu />
+          </div>
+        )}
+        {
           <ModalAuth
             renderButtonModal={(handleOpenModalAuth) => (
               <Button
@@ -97,35 +119,33 @@ export default function NavigationBar() {
               </Button>
             )}
           />
-        )}
+        }
       </div>
     </>
   );
 
   return (
     <>
-      <Navbar className="sticky top-0 z-10 h-max max-w-full rounded-none px-[1rem] pt-[1.5rem] pb-[1rem] lg:px-[4rem] lg:py-4">
+      <Navbar className="sticky top-0 z-10 h-max max-w-full rounded-none px-[1.5rem] pt-[1.5rem] pb-[1rem] md:px-[2.5rem] lg:px-[4rem] lg:py-4">
         <div className="flex items-center justify-between text-blue-gray-900">
-          <IconButton
-            variant="text"
-            className="basis-[15%] w-[2.5rem] max-w-none text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
-            ripple={false}
+          <Button
+            className="!py-0 !mt-0 !rounded-none  !w-[1.5rem] !max-w-[2.1rem] h-auto sm:!w-[2rem] text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
             onClick={() => setOpen(true)}
           >
             {!open && (
               <Image
-                width={40}
-                height={40}
+                width={30}
+                height={30}
                 src={"/assets/icon/icon-hamburger.svg"}
                 alt="icono de menu mobile"
-                className="w-full"
+                className="w-full h-auto"
               />
             )}
-          </IconButton>
+          </Button>
           <Button
             as="Link"
             href="/"
-            className="mt-0 basis-[70%] cursor-pointer py-1.5 flex justify-center lg:basis-[20%] lg:justify-start"
+            className="!mt-0 basis-[80%] cursor-pointer py-1.5 flex justify-center lg:basis-[20%] lg:justify-start"
           >
             <Image
               width={180}
@@ -135,26 +155,25 @@ export default function NavigationBar() {
             />
           </Button>
           <div className="flex items-center lg:basis-[80%] lg:justify-end">
-            <div className=" hidden lg:flex lg:gap-[3rem]">{navList}</div>
+            <div className=" hidden lg:flex lg:gap-[3rem] ">{navList}</div>
           </div>
           <div className="flex items-center lg:hidden">
             {user?.email && <ProfileMenu />}
-            {!user?.email && (
-              <ModalAuth
-                renderButtonModal={(handleOpenModalAuth) => (
-                  <Button className="lg:hidden  w-[2rem] flex justify-center mt-0 py-0">
-                    <Image
-                      width={25}
-                      height={25}
-                      src={"/assets/icon/icon-user.svg"}
-                      alt="icono de usuario"
-                      className="lg:hidden"
-                      onClick={handleOpenModalAuth}
-                    />
-                  </Button>
-                )}
-              />
-            )}
+
+            <ModalAuth
+              renderButtonModal={(handleOpenModalAuth) => (
+                <Button className="!py-0 !rounded-none !mt-0  lg:hidden h-auto flex justify-center !w-[1.5rem] max-w-[2.1rem] sm:!w-[2rem]">
+                  <Image
+                    width={30}
+                    height={30}
+                    src={"/assets/icon/icon-user.svg"}
+                    alt="icono de usuario"
+                    className="lg:hidden"
+                    onClick={handleOpenModalAuth}
+                  />
+                </Button>
+              )}
+            />
           </div>
         </div>
       </Navbar>

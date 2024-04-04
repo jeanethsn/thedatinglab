@@ -8,7 +8,7 @@ export default function TabProfile({ handleButtonClick }) {
   return (
     <div className="flex flex-col items-center lg:flex-row lg:justify-between gap-2 lg:border-b-red-orange  lg:pb-8 lg:border-b-2 ">
       <TabButton 
-        label="Perfil" 
+        label="Tu Perfil" 
         onClick={() => {
           handleButtonClick('Perfil');
           setActiveButton('Perfil');

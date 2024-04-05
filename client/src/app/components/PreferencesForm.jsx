@@ -5,8 +5,24 @@ import { createPreferences } from "../services/preferencesService";
 import Button from "@/app/components/Button.jsx";
 import { useState } from "react";
 import { Input } from "@material-tailwind/react";
+import * as Yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+
+const schema = Yup.object().shape({
+  birthdate: Yup.date()
+    .required("La fecha de nacimiento es obligatoria")
+    .test("is-adult", "Tienes que ser mayor de 18 años para ingresar.", function (value) {
+      const birthdate = new Date(value);
+      const today = new Date();
+      const age = today.getFullYear() - birthdate.getFullYear();
+      return age >= 18;
+    }),
+  birthdate: Yup.date().required("La fecha de nacimiento es obligatoria"),
+  gender: Yup.string().required("El género es obligatorio"),
+});
 
 const PreferencesForm = () => {
+  const [formErrors, setFormErrors] = useState({});
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const totalQuestions = 15;
 
@@ -42,9 +58,10 @@ const PreferencesForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      await schema.validate(formData, { abortEarly: false });
+
       const response = await createPreferences(formData);
       const formattedDate = formatDate(formData.birthdate);
-      //setFormData({ ...response });
       setFormData({
         birthdate: "",
         gender: "",
@@ -65,7 +82,21 @@ const PreferencesForm = () => {
       setCurrentQuestion(0);
       console.log("Preferencia creada correctamente:", response.message);
     } catch (error) {
-      console.error("Error:", error.response.data.validation_errors);
+      // Si ocurre un error al enviar el formulario al backend
+      if (error.response && error.response.data && error.response.data.validation_errors) {
+        // Captura los mensajes de error del backend
+        setFormErrors(error.response.data.validation_errors);
+      } else if (error instanceof Yup.ValidationError) {
+        // Si Yup encuentra errores de validación
+        const yupErrors = {};
+        error.inner.forEach((err) => {
+          yupErrors[err.path] = err.message;
+        });
+        // Combina los errores de Yup con los errores del backend y actualiza el estado
+        setFormErrors({ ...yupErrors, ...formErrors });
+      } else {
+        console.error("Error:", error.response.data.validation_errors);
+      }
     }
   };
 
@@ -86,7 +117,7 @@ const PreferencesForm = () => {
     if (question.number === "birthdate") {
       // Renderizar input de fecha
       return (
-        <div className="mb-[1rem] md-w-[20rem]">
+        <div className="mb-[1rem] md:w-[20rem]">
           <label className="mb-6 text-[#545454] font-nunito font-bold text-[1rem] leading-[0rem]">
             {question.text}
           </label>
@@ -102,7 +133,7 @@ const PreferencesForm = () => {
     } else if (question.number === "rrss") {
       // Renderizar input de texto
       return (
-        <div className="mb-[1rem] md-w-[20rem]">
+        <div className="mb-[1rem] md:w-[20rem]">
           <label className="mb-6 text-[#545454] font-nunito font-bold text-[1rem] leading-[0rem]">
             {question.text}
           </label>
@@ -326,7 +357,7 @@ const PreferencesForm = () => {
   ];
 
   return (
-    <div className="mx-4 md-mx-auto max-w-[40rem] rounded-xl bg-white py-12 px-4 md-px-8">
+    <div className="mx-4 md:mx-auto max-w-[40rem] rounded-xl bg-white py-12 px-4 md:px-8">
       <h2 className="pb-4 text-center text-primary-color text-center leading-[1.8rem] font-nunito font-bold text-[1.6rem] mt-[0.8rem] lg:text-[1.8rem] lg:mt-[1rem]">
         ¿Quieres conocer a tu pareja ideal?
       </h2>
@@ -336,12 +367,12 @@ const PreferencesForm = () => {
       <form onSubmit={handleSubmit}>
         {renderCurrentQuestion()}
         {/* Buttons para moverse entre las preguntas */}
-        <div className="flex flex-row justify-between md:gap-8 gap-4 mt-8">
+        <div className="flex flex-row justify-between md:justify-start md:gap-8 gap-4 mt-8">
           <Button
             color=""
             onClick={handlePrevious}
             disabled={currentQuestion === 0}
-            className={`disabled:border-0 disabled:opacity-80 disabled:bg-gray-300 disabled:text-gray-700 disabled:cursor-not-allowed w-full py-[0.2rem] mt-[1rem]  rounded-bl-2xl rounded-tr-2xl hover:rounded-full inline-block font-semibold text-[1rem]  font-nunito text-primary-color border-[0.15rem] border-primary-color py-[0.5rem] px-[1.6rem] max-w-[130px] md-w-auto `}
+            className={`disabled:border-0 disabled:opacity-80 disabled:bg-gray-300 disabled:text-gray-700 disabled:cursor-not-allowed w-full py-[0.2rem] mt-[1rem]  rounded-bl-2xl rounded-tr-2xl hover:rounded-full inline-block font-semibold text-[1rem]  font-nunito text-primary-color border-[0.15rem] border-primary-color py-[0.5rem] px-[1.6rem] max-w-[130px]`}
           >
             Anterior
           </Button>
@@ -350,7 +381,7 @@ const PreferencesForm = () => {
             color="primary"
             onClick={handleNext}
             disabled={currentQuestion === totalQuestions - 1}
-            className={`disabled:opacity-80 disabled:bg-gray-300 disabled:text-gray-700 disabled:cursor-not-allowed rounded-bl-2xl rounded-tr-2xl hover:rounded-full bg-pink-strong  false  text-white text-[0.9rem] font-semibold mt-[1rem] py-[0.5rem] rounded-bl-3xl rounded-tr-3xl text-[1rem] max-w-[130px] md-w-auto `}
+            className={`disabled:opacity-80 disabled:bg-gray-300 disabled:text-gray-700 disabled:cursor-not-allowed rounded-bl-2xl rounded-tr-2xl hover:rounded-full bg-pink-strong  false  text-white text-[0.9rem] font-semibold mt-[1rem] py-[0.5rem] rounded-bl-3xl rounded-tr-3xl text-[1rem] max-w-[130px] `}
           >
             Siguiente
           </Button>

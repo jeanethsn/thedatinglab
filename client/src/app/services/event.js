@@ -14,3 +14,10 @@ export const getEventById = async (eventId) => {
 export const getAllEvents = async () => {
   return await axios.get(`${API_URL}/event`);
 };
+
+export const deleteEvent = async (eventId) => {
+  return await axios.delete(`${API_URL}/admin/event/${eventId}`, {
+    headers: authHeader(),
+  });
+};
+

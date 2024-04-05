@@ -1,8 +1,8 @@
-"use client"
-import React, { useState } from 'react';
-// import styles from "./styles.module.css";
+"use client";
+import React, { useState } from "react";
 
-const Accordion = () => {
+
+ export default function Accordion(){
   const [activeSections, setActiveSections] = useState({});
 
   const handleQuestionClick = (sectionIndex, questionIndex) => {
@@ -91,28 +91,28 @@ const Accordion = () => {
   ];
 
   return (
-    <div className="container">
-      <h1 className="text-3xl font-bold mb-4">Preguntas Frecuentes</h1>
-      <h2>
+    <div className="container mx-auto px-4 mt-24 mb-16">
+      <h1 className="text-3xl font-bold text-center mb-4  text-red-400 mt-40">Preguntas Frecuentes </h1>
+      <h2 className="text-xl text-center mb-8  text-red-300 ">
         Aqui algunas preguntas frecuentes que nos hacen a menudo nuestros
         usuarios
       </h2>
       {sections.map((section, sectionIndex) => (
         <div
           key={section.title}
-          className="section border-b border-gray-200 pb-4"
+          className="section border-t-0 border-gray-200 pb-4 "
         >
-          <h3 className="text-xl font-semibold mb-2">{section.title}</h3>
+          <h3 className="flex justify-center text-2xl cursor-pointer mb-2 ease-in-out text-red-900 my-8 font-bold">{section.title}</h3>
           <ul>
             {section.content.map((item, questionIndex) => (
               <li
                 key={item.question}
-                className="cursor-pointer hover:bg-gray-100 transition-all duration-300"
+                className="cursor-pointer hover:bg-gray-100 transition-all duration-300 rounded  border-2 border-red-200 bg-red-50 my-2"
                 onClick={() => handleQuestionClick(sectionIndex, questionIndex)}
               >
-                <h4>{item.question}</h4>
+                <h4 className="p-4 text-xl text-red-400 font-bold">{item.question}</h4>
                 {activeSections[sectionIndex] === questionIndex && (
-                  <p className="pt-2">{item.answer}</p>
+                  <p className="text-lg p-5">{item.answer}</p>
                 )}
               </li>
             ))}
@@ -123,4 +123,5 @@ const Accordion = () => {
   );
 };
 
-export default Accordion;
+
+

@@ -76,7 +76,7 @@ export default function NavigationBar() {
         >
           <Button
             as="Link"
-            href="/preguntas-frecuentes"
+            href="/preguntas"
             className={`${
               isFaqsPage ? "text-primary-color" : ""
             } flex items-center  font-nunito`}

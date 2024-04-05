@@ -91,8 +91,8 @@ import React, { useState } from "react";
   ];
 
   return (
-    <div className="container mx-auto px-4 mt-24 mb-16">
-      <h1 className="text-3xl font-bold text-center mb-4  text-red-400 mt-40">Preguntas Frecuentes </h1>
+    <div className="container mx-auto px-4 mb-16">
+      <h1 className="text-3xl font-bold text-center mb-4  text-red-400 mt-20">Preguntas Frecuentes </h1>
       <h2 className="text-xl text-center mb-8  text-red-300 ">
         Aqui algunas preguntas frecuentes que nos hacen a menudo nuestros
         usuarios

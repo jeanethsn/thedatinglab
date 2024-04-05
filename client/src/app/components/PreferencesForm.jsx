@@ -84,7 +84,7 @@ const PreferencesForm = () => {
     if (question.number === "birthdate") {
       // Renderizar input de fecha
       return (
-        <div className="mb-[1rem] w-[20rem] ">
+        <div className="mb-[1rem] md-w-[20rem] mt-4">
           <label className="mb-6 text-[#545454] font-nunito font-bold text-[1rem] leading-[0rem]">
             {question.text}
           </label>
@@ -100,7 +100,7 @@ const PreferencesForm = () => {
     } else if (question.number === "rrss") {
       // Renderizar input de texto
       return (
-        <div className="mb-[1rem] w-[20rem]">
+        <div className="mb-[1rem] md-w-[20rem] mt-4">
           <label className="mb-6 text-[#545454] font-nunito font-bold text-[1rem] leading-[0rem]">
             {question.text}
           </label>
@@ -121,7 +121,7 @@ const PreferencesForm = () => {
             {question.text}
           </label>
           {question.options.map((option, index) => (
-            <div className="pt-4 px-2 mb-2" key={index}>
+            <div className="pt-4 mb-2" key={index}>
               <div
                 role="button"
                 class="flex items-center w-full p-0 leading-tight transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900"
@@ -324,7 +324,7 @@ const PreferencesForm = () => {
   ];
 
   return (
-    <div className="mx-auto max-w-[40rem] lg:rounded-xl bg-white py-12 px-8">
+    <div className="mx-4 md-mx-auto max-w-[40rem] rounded-xl bg-white py-12 px-4 md-px-8">
       <h2 className="pb-4 text-center text-primary-color text-center leading-[1.8rem] font-nunito font-bold text-[1.6rem] mt-[0.8rem] lg:text-[1.8rem] lg:mt-[1rem]">
         ¿Quieres conocer a tu pareja ideal?
       </h2>
@@ -334,12 +334,12 @@ const PreferencesForm = () => {
       <form onSubmit={handleSubmit}>
         {renderCurrentQuestion()}
         {/* Buttons para moverse entre las preguntas */}
-        <div className="flex justify-end gap-8 mt-8">
+        <div className="flex flex-col md:flex-row justify-end md:gap-8 gap-4 mt-8">
           <Button
             color=""
             onClick={handlePrevious}
             disabled={currentQuestion === 0}
-            className={`disabled:border-0 disabled:opacity-80 disabled:bg-gray-300 disabled:text-gray-700 disabled:cursor-not-allowed w-full py-[0.2rem] mt-[1rem]  rounded-bl-2xl rounded-tr-2xl hover:rounded-full undefined  false hidden lg:inline-block lg:font-semibold text-[1rem]  font-nunito lg:text-primary-color lg:border-[0.15rem] lg:border-primary-color lg:py-[0.5rem] lg:px-[1.6rem]`}
+            className={`disabled:border-0 disabled:opacity-80 disabled:bg-gray-300 disabled:text-gray-700 disabled:cursor-not-allowed w-full py-[0.2rem] mt-[1rem]  rounded-bl-2xl rounded-tr-2xl hover:rounded-full inline-block font-semibold text-[1rem]  font-nunito text-primary-color border-[0.15rem] border-primary-color py-[0.5rem] px-[1.6rem]`}
           >
             Pregunta Anterior
           </Button>
@@ -348,7 +348,7 @@ const PreferencesForm = () => {
             color="primary"
             onClick={handleNext}
             disabled={currentQuestion === totalQuestions - 1}
-            className={`disabled:opacity-80 disabled:bg-gray-300 disabled:text-gray-700 disabled:cursor-not-allowed rounded-bl-2xl rounded-tr-2xl hover:rounded-full bg-pink-strong  false  text-white text-[0.9rem] py-[0.3rem] font-semibold lg:mt-[1rem] lg:py-[0.5rem] lg:rounded-bl-3xl lg:rounded-tr-3xl xl:text-[1rem]`}
+            className={`disabled:opacity-80 disabled:bg-gray-300 disabled:text-gray-700 disabled:cursor-not-allowed rounded-bl-2xl rounded-tr-2xl hover:rounded-full bg-pink-strong  false  text-white text-[0.9rem] font-semibold mt-[1rem] py-[0.5rem] rounded-bl-3xl rounded-tr-3xl text-[1rem]`}
           >
             Siguiente Pregunta
           </Button>
@@ -359,7 +359,7 @@ const PreferencesForm = () => {
             color="secondary"
             type="submit"
             children="Enviar"
-            className="text-white text-[0.9rem] py-[0.3rem] font-semibold lg:mt-[1.4rem] lg:py-[1.4rem] lg:rounded-bl-3xl lg:rounded-tr-3xl xl:text-[1rem] mb-[1rem]"
+            className="text-white text-[0.9rem] py-[0.3rem] font-semibold lg:mt-[1.4rem] py-[0.5rem] rounded-bl-3xl lrounded-tr-3xl text-[1rem] mb-[1rem]"
             style={{
               transition: "background 0.3s, border 0.3s, border-radius .3s, box-shadow .3s, transform .3s, .4s",
             }}

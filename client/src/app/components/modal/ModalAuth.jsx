@@ -31,7 +31,6 @@ export default function ModalAuth({ renderButtonModal }) {
   const handleCloseRegister = () => setShouldRenderRegister(false);
 
   const handler = () => setOpenModalAuth(!openModalAuth);
-  console.log({ formRegisterSuccess });
   return (
     <>
       {!user.email && renderButtonModal(handleOpenModalAuth)}

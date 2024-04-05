@@ -18,7 +18,7 @@ export default function ProfileMenu() {
           variant="circular"
           alt="tania andrew"
           className="cursor-pointer border-[0.15rem] border-red-orange w-[3.5rem] h-[3.5rem]"
-          src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80"
+          src={"/assets/image/face-carton-user.svg"}
         />
       </MenuHandler>
       <MenuList className="text-black font-nunito px-[2rem] rounded-xl shadow-zinc-300 ">

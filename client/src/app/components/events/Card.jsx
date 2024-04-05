@@ -6,7 +6,7 @@ import Image from "next/image";
 
 export default function Card({ eventDate }) {
   return (
-    <div className="max-w-[25rem] min-w-[18rem] sm:min-w-[12rem] flex flex-col items-center flex-wrap mx-auto">
+    <div className="max-w-[22rem] min-w-[18rem] sm:min-w-[12rem] flex flex-col items-center flex-wrap mx-auto">
       <div
         className="w-full min-h-[12rem] small:h-[14rem] sm:!h-[12rem] md:!h-[14rem] lg:!h-[12rem] ol:!h-[15rem] rounded-md shadow-md"
         style={{
@@ -21,7 +21,7 @@ export default function Card({ eventDate }) {
         </p>
       </div>
       <div
-        className="bg-white rounded-md relative bottom-[2rem] w-[90%] h-[15rem]  py-[1rem] px-[0.8rem] shadow-lg ol:px-[1.5rem] ol:py-[2rem]"
+        className="bg-white rounded-md relative bottom-[2rem] w-[90%] h-[14rem] md:h-[15.5rem] ol:h-[18rem] py-[1rem] px-[0.8rem] shadow-lg ol:px-[1.5rem] ol:py-[2rem]"
         style={{
           boxShadow:
             "rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;",

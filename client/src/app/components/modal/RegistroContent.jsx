@@ -172,10 +172,10 @@ export default function RegistroContent({
               <Checkbox
                 id="privacyPolicies"
                 name="privacyPolicies"
-                className="w-[1rem] h-[1rem] p-0"
+                className="w-[1rem] h-[1rem] p-0 ol:w-[1.2rem] ol:h-[1.2rem] ol:!border-[1px] ol:!border-blue-gray-600 ol:!rounded-[2rem]"
                 label=" Acepto la política de privacidad"
                 containerProps={{
-                  className: "p-0 ",
+                  className: "p-0",
                 }}
                 {...register("privacyPolicies")}
                 labelProps={{
@@ -193,7 +193,7 @@ export default function RegistroContent({
             <div className="">
               <Checkbox
                 name="over18"
-                className="w-[1rem] h-[1rem] p-0 "
+                className="w-[1rem] h-[1rem] p-0 ol:w-[1.2rem] ol:h-[1.2rem] ol:!border-[1px] ol:!border-blue-gray-600 ol:!rounded-[2rem]"
                 label="Confirmo que soy mayor de 18 años"
                 labelProps={{
                   className: "text-[0.9rem] leading-[1.2rem] ml-[0.5rem]",

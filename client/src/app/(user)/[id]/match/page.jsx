@@ -1,5 +1,6 @@
-import InfoUser from "../components/InfoUser";
-import MatchTitleProfile from "../components/MatchTitleProfile";
+import InfoUser from "@/app/components/InfoUser";
+import MatchTitleProfile from "@/app/components/MatchTitleProfile";
+
 
 export default function MatchProfile(){
     return (

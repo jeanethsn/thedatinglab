@@ -1,9 +1,10 @@
 "use client"
 import { useState } from 'react';
-import TabProfile from '../components/profile/TabProfile';
-import UserTitleProfile from "../components/profile/UserTitleProfile";
-import ProfileContent from '../components/profile/ProfileContent';
-import MatchProfileContent from '../components/profile/MatchProfileContent';
+import MatchProfileContent from '../../components/profile/MatchProfileContent';
+import UserTitleProfile from '../../components/profile/UserTitleProfile';
+import TabProfile from '../../components/profile/TabProfile';
+import ProfileContent from '../../components/profile/ProfileContent';
+
 
 export default function ProfilePage(){
   const [currentElement, setCurrentElement] = useState('Perfil');

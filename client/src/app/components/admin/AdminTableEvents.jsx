@@ -3,7 +3,7 @@
 import React from 'react'
 import { useEffect, useState } from 'react';
 import { getAllEvents, deleteEvent } from "@/app/services/event";
-import { Card, Typography } from "@material-tailwind/react";
+import { Card, Typography, CardFooter,Button } from "@material-tailwind/react";
 import { useParams, useRouter } from "next/navigation";
 import { useUser } from "@/app/providers/UserProvider";
 
@@ -15,7 +15,15 @@ export default function AdminTableEvents() {
     const [error, setError] = useState(false);
     const { user, isAdmin } = useUser();
     const router = useRouter();
-  
+    const [currentPage, setCurrentPage] = useState(0); 
+    const eventsPerPage = 3;
+
+    // useEffect(() => {
+    //     if (isAdmin === false) {
+    //         router.push('/dashboard/login'); // Redirigir al usuario a la página de inicio de sesión si no es administrador
+    //     }
+    // }, [isAdmin]);
+
 
     useEffect(() => {
         const getEvents = async () => {
@@ -35,7 +43,6 @@ export default function AdminTableEvents() {
     const handleDeleteEvent = async (eventId) => {
         try {
             await deleteEvent(eventId);
-            // Actualizar la lista de eventos después de eliminar el evento
             const updatedEvents = events.filter(event => event.id !== eventId);
             setEvents(updatedEvents);
             console.log('eliminado')
@@ -45,18 +52,15 @@ export default function AdminTableEvents() {
         }
     };
 
-    useEffect(() => {
-        if (!isAdmin) {
-            router.push('/dashboard/login'); // Redirigir al usuario a la página de inicio de sesión si no es administrador
-        }
-    }, [isAdmin]);
+    const indexOfLastEvent = (currentPage + 1) * eventsPerPage;
+    const indexOfFirstEvent = indexOfLastEvent - eventsPerPage;
+    const currentEvents = events.slice(indexOfFirstEvent, indexOfLastEvent);
 
-    if (!isAdmin) {
-        return null; // No renderizar nada si el usuario no es administrador
-    }
+    const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
-  
-  return (
+
+  return ( 
+        <Card>
             <table className="w-full table-auto text-left">
                 <thead>
                     <tr>
@@ -87,7 +91,7 @@ export default function AdminTableEvents() {
                     </tr>
                 </thead>
                 <tbody>
-                    {events.map((event, index) => (
+                    {currentEvents.map((event, index) => (
                         <tr key={index}>
                             <td className="p-4">
                                 <Typography variant="small" color="blue-gray" className="font-normal">{event.title}</Typography>
@@ -121,5 +125,27 @@ export default function AdminTableEvents() {
                     ))}
                 </tbody>
             </table>
+             <CardFooter className="flex items-center justify-between border-t border-blue-gray-50 p-4">
+             <Typography variant="small" color="blue-gray" className="font-normal">
+                Page {currentPage + 1} of {Math.ceil(events.length / eventsPerPage)}
+             </Typography>
+             <div className="flex gap-2">
+             <Button 
+                        variant="outlined" 
+                        size="sm" 
+                        onClick={() => setCurrentPage(currentPage === 0 ? currentPage : currentPage - 1)}
+                    >
+                        Anterior
+                    </Button>
+                    <Button 
+                        variant="outlined" 
+                        size="sm" 
+                        onClick={() => setCurrentPage(currentPage === Math.ceil(events.length / eventsPerPage) - 1 ? currentPage : currentPage + 1)}
+                    >
+                        Siguiente
+                    </Button>
+             </div>
+           </CardFooter>
+        </Card>
   )
 }

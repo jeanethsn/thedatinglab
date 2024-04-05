@@ -34,7 +34,7 @@ export function formatearFecha(fechaOriginal) {
   const mes = meses[fechaParseada.getMonth()];
 
   // Construir la cadena formateada
-  const fechaFormateada = `${diaSemana} ${diaMes} ${mes}`;
+  const fechaFormateada = `${diaSemana}, ${diaMes} ${mes.toUpperCase()}`;
 
   return fechaFormateada;
 }
@@ -47,4 +47,10 @@ export function isPastEvent(fechaOriginal) {
   if (fechaParseada < fechaActual) return true;
 
   return false;
+}
+
+export function horaFormato(timeOriginal) {
+  const timeSplit = timeOriginal.split(":");
+  const timeJoin = timeSplit.slice(0, 2).join(":");
+  return timeJoin;
 }

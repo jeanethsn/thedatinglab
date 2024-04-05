@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Button from "@/app/components/Button.jsx";
+import ModalContact from "@/app/components/modal/ModalContact.jsx";
 import {
   Drawer,
   IconButton,
@@ -86,19 +87,29 @@ export default function DrawerWithNavigation({ closeDrawer, open }) {
               FAQs
             </ListItem>
           </Button>
-          <Button as="" className="!py-0 !mt-[0.5rem]">
-            <ListItem className="text-black font-nunito text-[1.1rem] font-semibold">
-              <ListItemPrefix>
-                <Image
-                  width={25}
-                  height={25}
-                  src={"/assets/icon/icon-contacto.svg"}
-                  alt="icono de contacto"
-                />
-              </ListItemPrefix>
-              Contacto
-            </ListItem>
-          </Button>
+          <ModalContact
+            renderContactModal={(handleOpenModalMobile) => (
+              <Button
+                onClick={() => {
+                  closeDrawer();
+                  handleOpenModalMobile();
+                }}
+                className="!py-0 !mt-[0.5rem]"
+              >
+                <ListItem className="text-black font-nunito text-[1.1rem] font-semibold">
+                  <ListItemPrefix>
+                    <Image
+                      width={25}
+                      height={25}
+                      src={"/assets/icon/icon-contacto.svg"}
+                      alt="icono de contacto"
+                    />
+                  </ListItemPrefix>
+                  Contacto
+                </ListItem>
+              </Button>
+            )}
+          />
         </List>
       </Drawer>
     </>

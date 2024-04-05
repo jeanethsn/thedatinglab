@@ -1,14 +1,14 @@
 "use client";
 import Card from "@/app/components/events/Card.jsx";
 import { useState, useEffect } from "react";
-import { EventsService } from "@/app/services/user";
+import { getAllEvents } from "@/app/services/event";
 
-const Loading = () => (
+export const Loading = () => (
   <div className="h-screen flex justify-center items-center">
     <div role="status">
       <svg
         aria-hidden="true"
-        class="inline w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-red-600"
+        className="inline w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-red-600"
         viewBox="0 0 100 101"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
@@ -22,7 +22,7 @@ const Loading = () => (
           fill="currentFill"
         />
       </svg>
-      <span class="sr-only">Loading...</span>
+      <span className="sr-only">Loading...</span>
     </div>
   </div>
 );
@@ -33,7 +33,7 @@ export default function CardList() {
 
   useEffect(() => {
     const getEvents = async () => {
-      const response = await EventsService.getAllEvents();
+      const response = await getAllEvents();
       setEvents(response.data);
       setIsLoading(false);
     };
@@ -51,7 +51,7 @@ export default function CardList() {
       {isLoading && <Loading />}
 
       {!isLoading && (
-        <section className="max-w-[1200px] grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4  gap-4">
+        <section className="w-full max-w-[1200px] xxl:max-w-[1500px] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xxl:grid-cols-4  gap-[1.5rem] mb-[4rem]">
           {events.length &&
             events.map((eventDate) => (
               <Card key={eventDate.id} eventDate={eventDate} />

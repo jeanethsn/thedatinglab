@@ -4,9 +4,10 @@ import { useState, useEffect } from "react";
 import DrawerWithNavigation from "@/app/components/common/Drawer.jsx";
 import Button from "@/app/components/Button.jsx";
 import { usePathname } from "next/navigation";
-import { Navbar, Typography, IconButton } from "@material-tailwind/react";
+import { Navbar, Typography } from "@material-tailwind/react";
 import ModalAuth from "@/app/components/modal/ModalAuth.jsx";
 import ProfileMenu from "@/app/components/ProfileMenu.jsx";
+import ModalContact from "@/app/components/modal/ModalContact.jsx";
 import { useUser } from "@/app/providers/UserProvider";
 
 export default function NavigationBar() {
@@ -16,7 +17,7 @@ export default function NavigationBar() {
   const closeDrawer = () => setOpen(false);
 
   const isHomePage = pathname === "/";
-  const isFaqsPage = pathname === "/faqs"; // cambiar ruta
+  const isFaqsPage = pathname === "/preguntas-frecuentes"; // cambiar ruta
   const isEventsPage = pathname === "/eventos"; // cambiar ruta
 
   useEffect(() => {
@@ -75,7 +76,7 @@ export default function NavigationBar() {
         >
           <Button
             as="Link"
-            href="/faqs"
+            href="/preguntas-frecuentes"
             className={`${
               isFaqsPage ? "text-primary-color" : ""
             } flex items-center  font-nunito`}
@@ -83,14 +84,23 @@ export default function NavigationBar() {
             FAQs
           </Button>
         </Typography>
-        <Typography
-          as="li"
-          variant="small"
-          color="blue-gray"
-          className={`font-semibold text-[1rem]`}
-        >
-          <Button className={`flex items-center font-nunito`}>Contacto</Button>
-        </Typography>
+        <ModalContact
+          renderContactModal={(handleOpenModalContact) => (
+            <Typography
+              as="li"
+              variant="small"
+              color="blue-gray"
+              className={`font-semibold text-[1rem]`}
+            >
+              <Button
+                className={`flex items-center font-nunito`}
+                onClick={handleOpenModalContact}
+              >
+                Contacto
+              </Button>
+            </Typography>
+          )}
+        />
       </ul>
       <div className="lg:flex items-center hidden ">
         {user?.email && (

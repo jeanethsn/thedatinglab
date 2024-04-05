@@ -1,6 +1,6 @@
 // En EventDetails.jsx
-import React, { useState, useEffect } from 'react';
-import { getEventsById } from '@/services/events';
+import React, { useState, useEffect } from "react";
+import { getEventsById } from "@/services/events";
 
 function EventDetails({ eventId }) {
   const [event, setEvent] = useState({});
@@ -15,7 +15,6 @@ function EventDetails({ eventId }) {
         }
         setIsLoading(false);
       } catch (error) {
-        console.error("No se pudo obtener el evento:", error);
         setIsLoading(false);
       }
     };

@@ -27,10 +27,3 @@ export const UserService = {
     });
   },
 };
-
-export const EventsService = {
-  getAllEvents: async () => {
-    console.log(`${API_URL}/event`);
-    return await axios.get(`${API_URL}/event`);
-  },
-};

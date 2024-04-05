@@ -1,47 +1,69 @@
 "use client";
 
-import { formatearFecha, isPastEvent } from "@/app/utils/date.js";
+import { formatearFecha, horaFormato, isPastEvent } from "@/app/utils/date.js";
 import Button from "@/app/components/Button.jsx";
+import Image from "next/image";
 
-import {
-  Card,
-  CardHeader,
-  CardBody,
-  CardFooter,
-} from "@material-tailwind/react";
-
-export default function CardEvent({ eventDate }) {
+export default function Card({ eventDate }) {
   return (
-    <Card>
-      <CardHeader shadow={false} floated={false} className="h-52">
-        {/* Como integrar la imagen ? */}
-        <img
-          src="https://images.unsplash.com/photo-1629367494173-c78a56567877?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=927&q=80"
-          alt="card-image"
-          className="h-full w-full object-cover"
-        />
-      </CardHeader>
-      <CardBody>
+    <div className="max-w-[25rem] min-w-[18rem] sm:min-w-[12rem] flex flex-col items-center flex-wrap mx-auto">
+      <div
+        className="w-full min-h-[12rem] small:h-[14rem] sm:!h-[12rem] md:!h-[14rem] lg:!h-[12rem] ol:!h-[15rem] rounded-md shadow-md"
+        style={{
+          backgroundImage: `url(http://localhost:8000/storage/${eventDate.image})`,
+          backgroundPosition: "center center",
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
+        }}
+      >
+        <p className="text-[1rem] text-white  bg-red-orange inline py-[0.1rem] pl-[0.5rem] pr-[3rem] rounded-tr-xl absolute">
+          Evento próximo
+        </p>
+      </div>
+      <div
+        className="bg-white rounded-md relative bottom-[2rem] w-[90%]  py-[1rem] px-[0.8rem] shadow-lg ol:px-[1.5rem] ol:py-[2rem]"
+        style={{
+          boxShadow:
+            "rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;",
+        }}
+      >
         <div className="mb-2 flex items-center justify-between">
-          <p className="text-primary-color text-sm">
-            {formatearFecha(eventDate.date)} <time>{eventDate.time}</time>
+          <p className="text-primary-color text-sm break-words font-semibold md:text-[1rem]">
+            {formatearFecha(eventDate.date)} {horaFormato(eventDate.time)}
           </p>
         </div>
-        <h2> {eventDate.title}</h2>
-        <p> {eventDate.description}</p>
-        {/* Ubicación falta añadir en la data */}
-        <p></p>
-      </CardBody>
-      <CardFooter className="pt-0">
-        <Button
-          color="primary"
-          as="Link"
-          className="text-white"
-          href={`/event/${eventDate.id}`}
-        >
-          Ver más
-        </Button>
-      </CardFooter>
-    </Card>
+        <h2 className="break-words text-[0.8rem] font-bold leading-[1rem] mb-[0.5rem] md:text-[1rem] md:leading-[1.1rem] md:mb-[1rem]">
+          rem {eventDate.title}
+        </h2>
+        <p className="break-words text-[0.8rem] ol:text-[1rem]">
+          {" "}
+          {eventDate.shortDescription}
+        </p>
+        <div className="flex gap-[0.4rem] items-center mt-[0.3rem] mb-[1.2rem] md:mt-[1rem]">
+          <Image
+            src={"/assets/icon/icon-location.svg"}
+            width={15}
+            height={15}
+            alt="icono de localizacion"
+          />
+          <p className="break-words text-[1rem] font-bold">
+            {eventDate.location}
+          </p>
+        </div>
+        <div className="w-full">
+          <Button
+            color="primary"
+            children="Ver más"
+            as="Link"
+            className="block text-center sm:text-[1rem] text-white text-[1rem] font-semibold lg:mt-[1.4rem] lg:py-[0.3rem] lg:rounded-bl-3xl lg:rounded-tr-3xl xl:text-[1rem]"
+            style={{
+              transition:
+                "background 0.3s, border 0.3s, border-radius .3s, box-shadow .3s, transform .3s, .4s",
+            }}
+            href={`/evento/${eventDate.id}`}
+          />
+        </div>
+      </div>
+    </div>
   );
 }

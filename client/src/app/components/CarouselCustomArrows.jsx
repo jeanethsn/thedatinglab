@@ -40,7 +40,7 @@ export default function CarouselCustomArrows() {
           color="white"
           size="lg"
           onClick={handlePrev}
-          className="!absolute top-2/4 left-4 -translate-y-20  !rounded-full bg-[#585c5f] w-[1.5rem] h-[1.5rem] lg:w-[2.5rem] lg:h-[2.5rem]"
+          className="!absolute top-2/4 left-4 -translate-y-20  !rounded-full bg-[#585c5f] w-[1.5rem] h-[1.5rem] sm:w-[2rem] sm:h-[2rem] md:w-[2.2rem] md:h-[2.2rem] lg:w-[2.5rem] lg:h-[2.5rem]"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -64,7 +64,7 @@ export default function CarouselCustomArrows() {
           color="white"
           size="lg"
           onClick={handleNext}
-          className="!absolute top-2/4 !right-4 -translate-y-20 !rounded-full bg-[#585c5f] w-[1.5rem] h-[1.5rem] lg:w-[2.5rem] lg:h-[2.5rem]"
+          className="!absolute top-2/4 !right-4 -translate-y-20 !rounded-full bg-[#585c5f] w-[1.5rem] h-[1.5rem] sm:w-[2rem] sm:h-[2rem] md:w-[2.2rem] md:h-[2.2rem] lg:w-[2.5rem] lg:h-[2.5rem]"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"

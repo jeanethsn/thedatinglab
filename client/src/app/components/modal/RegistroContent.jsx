@@ -65,6 +65,7 @@ export default function RegistroContent({
     try {
       const response = await UserService.registerUser(data);
       handleUserLogin(response?.data?.user);
+      localStorage.setItem("user", JSON.stringify(response.data));
       setFormRegisterSuccess(true);
       setIsSubmiting(false);
     } catch (error) {

@@ -3,7 +3,7 @@ import Card from "@/app/components/events/Card.jsx";
 import { useState, useEffect } from "react";
 import { getAllEvents } from "@/app/services/event";
 
-const Loading = () => (
+export const Loading = () => (
   <div className="h-screen flex justify-center items-center">
     <div role="status">
       <svg

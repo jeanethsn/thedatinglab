@@ -4,7 +4,7 @@ import { formatearFecha, horaFormato, isPastEvent } from "@/app/utils/date.js";
 import Button from "@/app/components/Button.jsx";
 import Image from "next/image";
 
-export default function CardEvent({ eventDate }) {
+export default function Card({ eventDate }) {
   return (
     <div className="max-w-[25rem] min-w-[18rem] sm:min-w-[12rem] flex flex-col items-center flex-wrap mx-auto">
       <div
@@ -23,7 +23,7 @@ export default function CardEvent({ eventDate }) {
       <div
         className="bg-white rounded-md relative bottom-[2rem] w-[90%]  py-[1rem] px-[0.8rem] shadow-lg ol:px-[1.5rem] ol:py-[2rem]"
         style={{
-          boxshadow:
+          boxShadow:
             "rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;",
         }}
       >

@@ -7,12 +7,14 @@ import { Card, Typography } from "@material-tailwind/react";
 import { useParams, useRouter } from "next/navigation";
 import { useUser } from "@/app/providers/UserProvider";
 
+
 export default function AdminTableEvents() {
     const [events, setEvents] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const params = useParams();
     const [error, setError] = useState(false);
     const { user, isAdmin } = useUser();
+    const router = useRouter();
   
 
     useEffect(() => {
@@ -43,11 +45,18 @@ export default function AdminTableEvents() {
         }
     };
 
+    useEffect(() => {
+        if (!isAdmin) {
+            router.push('/dashboard/login'); // Redirigir al usuario a la página de inicio de sesión si no es administrador
+        }
+    }, [isAdmin]);
+
+    if (!isAdmin) {
+        return null; // No renderizar nada si el usuario no es administrador
+    }
 
   
-  
   return (
-          
             <table className="w-full table-auto text-left">
                 <thead>
                     <tr>
@@ -103,19 +112,14 @@ export default function AdminTableEvents() {
                             </td>
                             <td className="p-4">
                                 <Typography variant="small" color="blue-gray" className="font-normal">
-                                {isAdmin && (
                                     <button onClick={() => handleDeleteEvent(event.id)}>
                                         <img src="/assets/icon/icon-delete.svg" alt="Eliminar" />
                                     </button>
-                                )}
                                 </Typography>
                             </td>
                         </tr>
                     ))}
                 </tbody>
             </table>
-
-
-
   )
 }

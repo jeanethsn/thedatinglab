@@ -71,10 +71,12 @@ const PreferencesForm = () => {
 
   const handleNext = () => {
     setCurrentQuestion((prevQuestion) => prevQuestion + 1);
+    window.scrollTo({ top: 0, behavior: "auto" });
   };
 
   const handlePrevious = () => {
     setCurrentQuestion((prevQuestion) => prevQuestion - 1);
+    window.scrollTo({ top: 0, behavior: "auto" });
   };
 
   // Renderizar la pregunta actual
@@ -84,7 +86,7 @@ const PreferencesForm = () => {
     if (question.number === "birthdate") {
       // Renderizar input de fecha
       return (
-        <div className="mb-[1rem] md-w-[20rem] mt-4">
+        <div className="mb-[1rem] md-w-[20rem]">
           <label className="mb-6 text-[#545454] font-nunito font-bold text-[1rem] leading-[0rem]">
             {question.text}
           </label>
@@ -100,7 +102,7 @@ const PreferencesForm = () => {
     } else if (question.number === "rrss") {
       // Renderizar input de texto
       return (
-        <div className="mb-[1rem] md-w-[20rem] mt-4">
+        <div className="mb-[1rem] md-w-[20rem]">
           <label className="mb-6 text-[#545454] font-nunito font-bold text-[1rem] leading-[0rem]">
             {question.text}
           </label>
@@ -117,7 +119,7 @@ const PreferencesForm = () => {
       // Renderizar otras preguntas con opciones
       return (
         <div className="mb-[1rem]">
-          <label className="pb-6 text-[#545454] font-nunito font-bold text-[1rem] leading-[0rem]">
+          <label className="pb-6 text-[#545454] font-nunito font-bold text-[1rem] leading-[0rem] ">
             {question.text}
           </label>
           {question.options.map((option, index) => (
@@ -334,23 +336,23 @@ const PreferencesForm = () => {
       <form onSubmit={handleSubmit}>
         {renderCurrentQuestion()}
         {/* Buttons para moverse entre las preguntas */}
-        <div className="flex flex-col md:flex-row justify-end md:gap-8 gap-4 mt-8">
+        <div className="flex flex-row justify-between md:gap-8 gap-4 mt-8">
           <Button
             color=""
             onClick={handlePrevious}
             disabled={currentQuestion === 0}
-            className={`disabled:border-0 disabled:opacity-80 disabled:bg-gray-300 disabled:text-gray-700 disabled:cursor-not-allowed w-full py-[0.2rem] mt-[1rem]  rounded-bl-2xl rounded-tr-2xl hover:rounded-full inline-block font-semibold text-[1rem]  font-nunito text-primary-color border-[0.15rem] border-primary-color py-[0.5rem] px-[1.6rem]`}
+            className={`disabled:border-0 disabled:opacity-80 disabled:bg-gray-300 disabled:text-gray-700 disabled:cursor-not-allowed w-full py-[0.2rem] mt-[1rem]  rounded-bl-2xl rounded-tr-2xl hover:rounded-full inline-block font-semibold text-[1rem]  font-nunito text-primary-color border-[0.15rem] border-primary-color py-[0.5rem] px-[1.6rem] max-w-[130px] md-w-auto `}
           >
-            Pregunta Anterior
+            Anterior
           </Button>
 
           <Button
             color="primary"
             onClick={handleNext}
             disabled={currentQuestion === totalQuestions - 1}
-            className={`disabled:opacity-80 disabled:bg-gray-300 disabled:text-gray-700 disabled:cursor-not-allowed rounded-bl-2xl rounded-tr-2xl hover:rounded-full bg-pink-strong  false  text-white text-[0.9rem] font-semibold mt-[1rem] py-[0.5rem] rounded-bl-3xl rounded-tr-3xl text-[1rem]`}
+            className={`disabled:opacity-80 disabled:bg-gray-300 disabled:text-gray-700 disabled:cursor-not-allowed rounded-bl-2xl rounded-tr-2xl hover:rounded-full bg-pink-strong  false  text-white text-[0.9rem] font-semibold mt-[1rem] py-[0.5rem] rounded-bl-3xl rounded-tr-3xl text-[1rem] max-w-[130px] md-w-auto `}
           >
-            Siguiente Pregunta
+            Siguiente
           </Button>
         </div>
 

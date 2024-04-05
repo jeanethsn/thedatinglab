@@ -14,6 +14,5 @@ export const getEventById = async (eventId) => {
 };
 
 export const getAllEvents = async () => {
-  console.log(`${API_URL}/event`);
   return await axios.get(`${API_URL}/event`);
 };

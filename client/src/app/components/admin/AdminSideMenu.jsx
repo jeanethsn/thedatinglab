@@ -1,10 +1,10 @@
 import Image from "next/image";
-import AdminMenuButtons from "../AdminMenuButtons";
+import AdminMenuButtons from "./AdminMenuButtons";
 
 export default function AdminSideMenu() {
 
   return (
-    <aside className="bg-primary-color h-[100vh] w-1/4 py-[5%] flex-col flex items-end justify-between fixed left-0 top-0">
+    <aside className="bg-primary-color h-[100vh] w-1/4 py-[5%] flex-col flex items-end justify-between">
       <div>
         <Image
           src="/assets/image/LogoB.svg"

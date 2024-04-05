@@ -1,9 +1,9 @@
 import { Checkbox, Input, Typography } from "@material-tailwind/react";
-import Button from "./Button";
+import Button from "../Button";
 
 export default function AdminLogin() {
     return (
-        <form className="p-4 w-[500px] h-[500px] ml-[45%] text-center flex flex-col gap-4 my-[5%]">
+        <form className="p-4 w-[500px] h-[500px] m-auto text-center flex flex-col gap-4 my-[5%]">
             <Typography
                 variant="h4"
                 className="text-primary-color text-center font-nunito font-bold text-[1.6rem] mt-[0.4rem] lg:text-[1.8rem] lg:mt-[1rem]"

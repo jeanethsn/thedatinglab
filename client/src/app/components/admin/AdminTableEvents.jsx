@@ -80,23 +80,24 @@ export default function AdminTableEvents() {
       };
       
   return ( 
+        <>
+        <div className='flex gap-4 mb-4'>
+        <Button 
+            variant="outlined" 
+            size="sm" 
+            >
+            Añadir Evento
+        </Button>
+        <Button 
+            variant="outlined"
+            className='flex justify-center items-center gap-1' 
+            size="sm"
+            onClick={() => handleExportAttendance()} 
+            >
+            <img src="/assets/icon/icon-excel.svg" alt="Excel" /> Descargar Asistencia 
+        </Button>
+        </div>
         <Card>
-            <div className='flex gap-4 mb-4'>
-            <Button 
-                variant="outlined" 
-                size="sm" 
-                >
-                Añadir Evento
-            </Button>
-            <Button 
-                variant="outlined"
-                className='flex justify-center items-center gap-1' 
-                size="sm"
-                onClick={() => handleExportAttendance()} 
-                >
-                <img src="/assets/icon/icon-excel.svg" alt="Excel" /> Descargar Asistencia 
-            </Button>
-            </div>
             <table className="w-full table-auto text-left">
                 <thead>
                     <tr>
@@ -183,5 +184,6 @@ export default function AdminTableEvents() {
              </div>
            </CardFooter>
         </Card>
+        </>
   )
 }

@@ -19,5 +19,15 @@ export const deleteEvent = async (eventId) => {
   return await axios.delete(`${API_URL}/admin/event/${eventId}`, {
     headers: authHeader(),
   });
+
+};
+
+export const addEvent = async (formData, headers) => {
+  return await axios.post(`${API_URL}/admin/event`, formData, {
+    headers: {
+      ...headers,
+      'Content-Type': 'multipart/form-data', 
+    },
+  });
 };
 

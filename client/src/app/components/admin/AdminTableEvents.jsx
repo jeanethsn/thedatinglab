@@ -3,6 +3,7 @@
 import React from 'react'
 import { useEffect, useState } from 'react';
 import { getAllEvents, deleteEvent } from "@/app/services/event";
+import { exportAttendance } from "@/app/services/exports";
 import { Card, Typography, CardFooter,Button } from "@material-tailwind/react";
 import { useParams, useRouter } from "next/navigation";
 import { useUser } from "@/app/providers/UserProvider";
@@ -23,6 +24,8 @@ export default function AdminTableEvents() {
     //         router.push('/dashboard/login'); // Redirigir al usuario a la página de inicio de sesión si no es administrador
     //     }
     // }, [isAdmin]);
+
+
 
 
     useEffect(() => {
@@ -58,14 +61,47 @@ export default function AdminTableEvents() {
 
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
+    const handleExportAttendance = async (eventId) => {
+        try {
+            const response = await exportAttendance(eventId);
+            const blob = new Blob([response.data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+            const url = window.URL.createObjectURL(blob);
+            const link = document.createElement('a');
 
+            link.href = url;
+            link.setAttribute('download', 'event_attendance.xlsx');
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+
+        } catch (error) {
+            console.error('Error al exportar la asistencia del evento:', error);
+        }
+      };
+      
   return ( 
         <Card>
+            <div className='flex gap-4 mb-4'>
+            <Button 
+                variant="outlined" 
+                size="sm" 
+                >
+                Añadir Evento
+            </Button>
+            <Button 
+                variant="outlined"
+                className='flex justify-center items-center gap-1' 
+                size="sm"
+                onClick={() => handleExportAttendance()} 
+                >
+                <img src="/assets/icon/icon-excel.svg" alt="Excel" /> Descargar Asistencia 
+            </Button>
+            </div>
             <table className="w-full table-auto text-left">
                 <thead>
                     <tr>
                         <th className="border-b border-blue-gray-100 bg-blue-gray-50 p-4">
-                            <Typography variant="small" color="blue-gray" className="font-normal leading-none opacity-70">Titulo</Typography>
+                            <Typography variant="small" color="blue-gray" className="font-normal leading-none opacity-70">Evento</Typography>
                         </th>
                         <th className="border-b border-blue-gray-100 bg-blue-gray-50 p-4">
                             <Typography variant="small" color="blue-gray" className="font-normal leading-none opacity-70">Titular</Typography>
@@ -93,13 +129,13 @@ export default function AdminTableEvents() {
                 <tbody>
                     {currentEvents.map((event, index) => (
                         <tr key={index}>
-                            <td className="p-4">
+                            <td className="p-4 w-[300px]">
                                 <Typography variant="small" color="blue-gray" className="font-normal">{event.title}</Typography>
                             </td>
-                            <td className="p-4 w-[200px]">
+                            <td className="p-4 w-[300px]">
                                 <Typography variant="small" color="blue-gray" className="font-normal">{event.shortDescription}</Typography>
                             </td>
-                            <td className="p-4 w-[300px]">
+                            <td className="p-4 w-[400px]">
                                 <Typography variant="small" color="blue-gray" className="font-normal">{event.description}</Typography>
                             </td>
                             <td className="p-4">

@@ -10,6 +10,7 @@ export const authHeader = () => {
   if (!user && !user.token) return { Authorization: "" };
   return {
     Authorization: "Bearer " + user.token,
+    isAdmin: user.isAdmin ? "true" : "false",
   };
 };
 

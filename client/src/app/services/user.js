@@ -23,8 +23,15 @@ export const UserService = {
   },
 
   registerUser: async (formData) => {
-    return await axios.post(`${API_URL}/register`, {
+    return await axios.post(`${API_URL}/users`, {
       ...formData,
     });
   },
 };
+
+  export const getAllUsers = async () => {
+    const response = await axios.get(`${API_URL}/admin/users`, {
+      headers: authHeader(),
+    });
+    return response.data;
+  };

@@ -4,8 +4,8 @@ import AdminMenuButtons from "./AdminMenuButtons";
 export default function AdminSideMenu() {
 
   return (
-    <aside className="bg-primary-color h-[100vh] w-1/4 py-[5%] flex-col flex items-end justify-between">
-      <div>
+    <aside className="bg-primary-color min-h-screen w-[400px] py-[5%] flex-col flex items-end gap-40">
+      <div className="max-h-screen">
         <Image
           src="/assets/image/LogoB.svg"
           alt="Icono home"
@@ -17,7 +17,7 @@ export default function AdminSideMenu() {
           La app de citas donde no existe el swipe
         </p>
       </div>
-        {/* <AdminMenuButtons /> falta hacer la logica boton activo, cambiar según la page color y iconos*/}
+    <AdminMenuButtons/>
     </aside>
   );
 }

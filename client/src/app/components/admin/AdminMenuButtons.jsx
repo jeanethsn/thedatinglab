@@ -1,41 +1,52 @@
-import Image from "next/image";
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 
 export default function AdminMenuButtons() {
+    const router = useRouter();
+
+    // Función para verificar si estamos en la página de eventos
+    const isActive = (pathname) => router.pathname === pathname;
+
     return (
         <nav className="flex-col flex justify-between h-1/2">
             <div className="flex-col flex justify-between h-1/4">
-            <button className="flex font-nunito text-lg font-bold text-white-text gap-2 pr-8">
-            <Image
-                src="/assets/icon/icon-events-white.svg"
-                alt="Icono home"
-                width={20}
-                height={20}
-                className="m-auto"
-            />
-            Eventos
-            </button>
-            <button className="flex font-nunito text-lg font-bold text-white-text gap-2 pr-8">
-            <Image
-                src="/assets/icon/user-menu-icon-white.svg"
-                alt="Icono home"
-                width={20}
-                height={20}
-                className="m-auto"
-            />
-            Usuarios
-            </button>
+                {/* Botón de Eventos */}
+                <Link href="/dashboard/eventos" className="flex font-nunito text-lg font-bold text-white-text gap-2 pr-8">
+                        <Image
+                            src="/assets/icon/icon-events-white.svg"
+                            alt="Icono eventos"
+                            width={20}
+                            height={20}
+                            className="m-auto"
+                        />
+                        Eventos
+                </Link>
+                
+                {/* Botón de Usuarios */}
+                <Link href="/dashboard/usuarios" className="flex font-nunito text-lg font-bold text-white-text gap-2 pr-8">
+                        <Image
+                            src="/assets/icon/user-menu-icon-white.svg"
+                            alt="Icono usuarios"
+                            width={20}
+                            height={20}
+                            className="m-auto"
+                        />
+                        Usuarios
+                </Link>
             </div>
             
+            {/* Botón de Logout */}
             <button className="flex font-nunito text-lg font-bold text-white-text gap-2 pr-8">
-            <Image
-                src="/assets/icon/logout-icon.svg"
-                alt="Icono home"
-                width={20}
-                height={20}
-                className="m-auto"
-            />
-            Logout
+                <Image
+                    src="/assets/icon/logout-icon.svg"
+                    alt="Icono logout"
+                    width={20}
+                    height={20}
+                    className="m-auto"
+                />
+                Logout
             </button>
         </nav>
-
-    );}
+    );
+}

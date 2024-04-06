@@ -21,6 +21,7 @@ export const UserService = {
     });
   },
 
+
   registerUser: async (formData) => {
     return await axios.post(`${API_URL}/register`, {
       ...formData,
@@ -28,20 +29,16 @@ export const UserService = {
   },
 };
 
-export const ProfileService = {
-  getUserById: async (id) => {
-    console.log(`${API_URL}/profile/${id}`);
-    return await axios.get(`${API_URL}/profile/${id}`, {
-      headers: authHeader(),
-    });
+export const EventsService = {
+  getAllEvents: async () => {
+    console.log(`${API_URL}/event`);
+    return await axios.get(`${API_URL}/event`);
   },
 };
 
-export const ProfileService = {
-  getUserById: async (id) => {
-    console.log(`${API_URL}/profile/${id}`);
-    return await axios.get(`${API_URL}/profile/${id}`, {
-      headers: authHeader(),
-    });
-  },
+export const getUserById = async (userId) => {
+  const response = await axios.get(`${API_URL}/profile/${userId}`, {
+    headers: authHeader(),
+  });
+  return response.data;
 };

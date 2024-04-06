@@ -157,10 +157,10 @@ const PreferencesForm = () => {
             <div className="pt-4 mb-2" key={index}>
               <div
                 role="button"
-                class="flex items-center w-full p-0 leading-tight transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900"
+                className="flex items-center w-full p-0 leading-tight transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900"
                 onClick={() => document.getElementById(`vertical-list-react-${index}`).click()}
               >
-                <label htmlFor="vertical-list-react" class="flex items-center w-full px-3 py-2 cursor-pointer">
+                <label htmlFor="vertical-list-react" className="flex items-center w-full px-3 py-2 cursor-pointer">
                   <div className="grid mr-3 place-items-center">
                     <div className="inline-flex items-center">
                       <label
@@ -180,7 +180,7 @@ const PreferencesForm = () => {
                         <span className="absolute text-gray-900 transition-opacity opacity-0 pointer-events-none top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 peer-checked:opacity-100">
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
-                            class="h-3.5 w-3.5"
+                            className="h-3.5 w-3.5"
                             viewBox="0 0 16 16"
                             fill="currentColor"
                           >

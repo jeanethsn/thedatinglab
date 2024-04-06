@@ -37,13 +37,12 @@ export default function AdminLogin() {
           const response = await UserService.getLogin(data);
           localStorage.setItem("user", JSON.stringify(response.data));
           handleUserLogin(response?.data?.user);
-          
-          // Verificar si el usuario es administrador antes de redirigirlo
+
           if (response?.data?.user?.isAdmin) {
             router.push("/dashboard/eventos");
           } else {
-            // No es un administrador, puedes mostrar un mensaje de error o redirigirlo a otra página
-            console.log("No tienes permiso para acceder a esta página");
+            alert("No tienes permiso para acceder a esta página");
+            localStorage.removeItem("user");
           }
         } catch (error) {
           setErrorLogin(error);

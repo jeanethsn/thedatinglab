@@ -2,6 +2,7 @@ import Image from "next/image";
 import AdminMenuButtons from "./AdminMenuButtons";
 
 export default function AdminSideMenu() {
+  
 
   return (
     <aside className="bg-primary-color min-h-screen w-[400px] py-[5%] flex-col flex items-end gap-40">

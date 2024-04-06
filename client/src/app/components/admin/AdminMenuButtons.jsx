@@ -1,12 +1,16 @@
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
+import { useUser } from "@/app/providers/UserProvider.jsx";
 
 export default function AdminMenuButtons() {
     const router = useRouter();
+    const { handleUserLogout } = useUser();
 
-    // Función para verificar si estamos en la página de eventos
-    const isActive = (pathname) => router.pathname === pathname;
+    const handleLogout = () => {
+        handleUserLogout();
+        router.push('/dashboard/login'); // Redirige al usuario a la página de inicio de sesión después de hacer logout
+    };
 
     return (
         <nav className="flex-col flex justify-between h-1/2">
@@ -37,7 +41,10 @@ export default function AdminMenuButtons() {
             </div>
             
             {/* Botón de Logout */}
-            <button className="flex font-nunito text-lg font-bold text-white-text gap-2 pr-8">
+            <button 
+                className="flex font-nunito text-lg font-bold text-white-text gap-2 pr-8"
+                onClick={handleLogout}
+                >
                 <Image
                     src="/assets/icon/logout-icon.svg"
                     alt="Icono logout"

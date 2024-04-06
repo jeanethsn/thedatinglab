@@ -11,6 +11,7 @@ import {
     Button,
     Typography,
   } from "@material-tailwind/react";
+  
 
 export default function AdminAddEvents() {
     const [formData, setFormData] = useState({
@@ -36,6 +37,7 @@ export default function AdminAddEvents() {
         try {
             const headers = authHeader(); 
             const response = await addEvent(formData, headers); 
+            window.location.reload();
 
         } catch (error) {
             console.error("Error al añadir el evento:", error);

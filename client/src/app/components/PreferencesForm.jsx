@@ -8,6 +8,14 @@ import { Input } from "@material-tailwind/react";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 
+const getErrors = (errorsObject) => {
+  const arrayOfErrors = Object.keys(errorsObject);
+
+  return arrayOfErrors.map((key) => {
+    return errorsObject[key];
+  });
+};
+
 const schema = Yup.object().shape({
   birthdate: Yup.date()
     .required("La fecha de nacimiento es obligatoria")
@@ -17,14 +25,28 @@ const schema = Yup.object().shape({
       const age = today.getFullYear() - birthdate.getFullYear();
       return age >= 18;
     }),
-  birthdate: Yup.date().required("La fecha de nacimiento es obligatoria"),
-  gender: Yup.string().required("El género es obligatorio"),
+  gender: Yup.string().required("Este campo es obligatorio"),
+  looksFor: Yup.string().required("Este campo es obligatorio"),
+  ageRange: Yup.string().required("Este campo es obligatorio"),
+  sexoAffective: Yup.string().required("Este campo es obligatorio"),
+  heartState: Yup.string().required("Este campo es obligatorio"),
+  hasChildren: Yup.string().required("Este campo es obligatorio"),
+  datesParents: Yup.string().required("Este campo es obligatorio"),
+  values1: Yup.string().required("Este campo es obligatorio"),
+  values2: Yup.string().required("Este campo es obligatorio"),
+  values3: Yup.string().required("Este campo es obligatorio"),
+  prefers1: Yup.string().required("Este campo es obligatorio"),
+  prefers2: Yup.string().required("Este campo es obligatorio"),
+  rrss: Yup.string().required('Pon "no" si prefieres no dejar tu Instagram'),
 });
 
 const PreferencesForm = () => {
-  const [formErrors, setFormErrors] = useState({});
+  const [formErrors, setFormErrors] = useState({
+    birthdate: "",
+  });
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const totalQuestions = 15;
+  const [birthdateError, setBirthdateError] = useState("");
 
   const [formData, setFormData] = useState({
     birthdate: "",
@@ -80,6 +102,7 @@ const PreferencesForm = () => {
         rrss: "",
       });
       setCurrentQuestion(0);
+      setFormErrors({ ...formErrors, birthdate: "" });
       console.log("Preferencia creada correctamente:", response.message);
     } catch (error) {
       // Si ocurre un error al enviar el formulario al backend
@@ -95,8 +118,18 @@ const PreferencesForm = () => {
         // Combina los errores de Yup con los errores del backend y actualiza el estado
         setFormErrors({ ...yupErrors, ...formErrors });
       } else {
-        console.error("Error:", error.response.data.validation_errors);
+        console.error("Error:", error?.response?.data?.validation_errors);
       }
+      /*
+      if (error instanceof Yup.ValidationError) {
+        const yupErrors = {};
+        error.inner.forEach((err) => {
+          yupErrors[err.path] = err.message;
+        });
+        setFormErrors({ ...yupErrors });
+      } else {
+        console.error("Error:", error?.response?.data?.validation_errors);
+      }*/
     }
   };
 
@@ -128,6 +161,7 @@ const PreferencesForm = () => {
             onChange={handleChange}
             required
           />
+          {birthdateError && <div className="text-red-500">{birthdateError}</div>}
         </div>
       );
     } else if (question.number === "rrss") {
@@ -351,7 +385,7 @@ const PreferencesForm = () => {
     },
     {
       number: "rrss",
-      text: "¿Podrías indicar tu perfil de instagram? Si no quieres, pon simplemente no.",
+      text: "¿Podrías indicar tu perfil de Instagram? Si no quieres, pon simplemente no.",
       options: [],
     },
   ];
@@ -366,6 +400,16 @@ const PreferencesForm = () => {
       </h3>
       <form onSubmit={handleSubmit}>
         {renderCurrentQuestion()}
+
+        {/* Error del backend */}
+        {formErrors &&
+          getErrors(formErrors).map((error) => (
+            <p key={error} className="text-red-500">
+              {" "}
+              {error}
+            </p>
+          ))}
+
         {/* Buttons para moverse entre las preguntas */}
         <div className="flex flex-row justify-between md:justify-start md:gap-8 gap-4 mt-8">
           <Button

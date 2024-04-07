@@ -6,6 +6,7 @@ import ProfileContent from '../../../components/profile/ProfileContent';
 import { getUserById } from "@/app/services/user";
 import { useEffect, useState } from "react";
 import { useParams } from 'next/navigation';
+import { Loading } from "@/app/components/events/CardList";
 
 
 export default function ProfilePage() {
@@ -17,20 +18,23 @@ export default function ProfilePage() {
   const [userInfo, setUserInfo] = useState(null);
   const [error, setError] = useState(false);
   const params = useParams();
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchUser = async () => {
       try {
         const userData = await getUserById(params.id);
         setUserInfo(userData);
+        setIsLoading(false);
       } catch (error) {
+        setIsLoading(false);
         setError(true);
       }
     };
 
     fetchUser();
   }, []);
-
+  if (isLoading) return <Loading />;
 
   return (
     <main className="bg-pink-grey-bg px-[10%] py-[4%]">

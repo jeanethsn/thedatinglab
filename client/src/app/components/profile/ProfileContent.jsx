@@ -1,9 +1,6 @@
 import Button from "../Button";
 
 export default function ProfileContent({userData}) {
-  if (!userData) {
-    return null; 
-  }
 
   const { profile } = userData;
   return (

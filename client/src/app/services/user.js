@@ -35,3 +35,10 @@ export const getAllUsers = async () => {
   });
   return response.data;
 };
+
+export const getUserById = async (userId) => {
+  const response = await axios.get(`${API_URL}/profile/${userId}`, {
+    headers: authHeader(),
+  });
+  return response.data;
+};

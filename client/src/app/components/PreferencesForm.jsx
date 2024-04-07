@@ -6,7 +6,6 @@ import Button from "@/app/components/Button.jsx";
 import { useState } from "react";
 import { Input } from "@material-tailwind/react";
 import * as Yup from "yup";
-import { yupResolver } from "@hookform/resolvers/yup";
 
 const getErrors = (errorsObject) => {
   const arrayOfErrors = Object.keys(errorsObject);
@@ -25,28 +24,27 @@ const schema = Yup.object().shape({
       const age = today.getFullYear() - birthdate.getFullYear();
       return age >= 18;
     }),
-  gender: Yup.string().required("Este campo es obligatorio"),
+  gender: Yup.string().required("El género es obligatorio"),
   looksFor: Yup.string().required("Este campo es obligatorio"),
-  ageRange: Yup.string().required("Este campo es obligatorio"),
+  ageRange: Yup.string().required("El rango de edad es obligatorio"),
   sexoAffective: Yup.string().required("Este campo es obligatorio"),
   heartState: Yup.string().required("Este campo es obligatorio"),
   hasChildren: Yup.string().required("Este campo es obligatorio"),
   datesParents: Yup.string().required("Este campo es obligatorio"),
-  values1: Yup.string().required("Este campo es obligatorio"),
-  values2: Yup.string().required("Este campo es obligatorio"),
-  values3: Yup.string().required("Este campo es obligatorio"),
-  prefers1: Yup.string().required("Este campo es obligatorio"),
-  prefers2: Yup.string().required("Este campo es obligatorio"),
+  values1: Yup.string().required("Tienes que marcar una opción"),
+  values2: Yup.string().required("Tienes que marcar una opción"),
+  values3: Yup.string().required("Tienes que marcar una opción"),
+  prefers1: Yup.string().required("Tienes que marcar una preferencia"),
+  prefers2: Yup.string().required("Tienes que marcar una preferencia"),
   rrss: Yup.string().required('Pon "no" si prefieres no dejar tu Instagram'),
 });
 
 const PreferencesForm = () => {
-  const [formErrors, setFormErrors] = useState({
-    birthdate: "",
-  });
+  const [formErrors, setFormErrors] = useState({});
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const totalQuestions = 15;
-  const [birthdateError, setBirthdateError] = useState("");
+  //const [birthdateError, setBirthdateError] = useState("");
+  const [fieldErrors, setFieldErrors] = useState({});
 
   const [formData, setFormData] = useState({
     birthdate: "",
@@ -103,12 +101,17 @@ const PreferencesForm = () => {
       });
       setCurrentQuestion(0);
       setFormErrors({ ...formErrors, birthdate: "" });
-      console.log("Preferencia creada correctamente:", response.message);
+      console.log("OK message:", response.message);
     } catch (error) {
       // Si ocurre un error al enviar el formulario al backend
       if (error.response && error.response.data && error.response.data.validation_errors) {
         // Captura los mensajes de error del backend
-        setFormErrors(error.response.data.validation_errors);
+        //Agregamos los nuevos errores al estado actual:
+        setFieldErrors((prevFieldErrors) => ({
+          ...prevFieldErrors,
+          ...error.response.data.validation_errors,
+        }));
+        console.error("Errores de backend:", error.response.data.validation_errors);
       } else if (error instanceof Yup.ValidationError) {
         // Si Yup encuentra errores de validación
         const yupErrors = {};
@@ -120,20 +123,14 @@ const PreferencesForm = () => {
       } else {
         console.error("Error:", error?.response?.data?.validation_errors);
       }
-      /*
-      if (error instanceof Yup.ValidationError) {
-        const yupErrors = {};
-        error.inner.forEach((err) => {
-          yupErrors[err.path] = err.message;
-        });
-        setFormErrors({ ...yupErrors });
-      } else {
-        console.error("Error:", error?.response?.data?.validation_errors);
-      }*/
     }
   };
 
   const handleNext = () => {
+    if (Object.keys(fieldErrors).length > 0) {
+      console.error("Errores de campo:", fieldErrors);
+      return;
+    }
     setCurrentQuestion((prevQuestion) => prevQuestion + 1);
     window.scrollTo({ top: 0, behavior: "auto" });
   };
@@ -154,14 +151,8 @@ const PreferencesForm = () => {
           <label className="mb-6 text-[#545454] font-nunito font-bold text-[1rem] leading-[0rem]">
             {question.text}
           </label>
-          <Input
-            type="date"
-            name={question.number}
-            value={formData[question.number]}
-            onChange={handleChange}
-            required
-          />
-          {birthdateError && <div className="text-red-500">{birthdateError}</div>}
+          <Input type="date" name={question.number} value={formData[question.number]} onChange={handleChange} />
+          {/*{birthdateError && <div className="text-red-500">{birthdateError}</div>}*/}
         </div>
       );
     } else if (question.number === "rrss") {
@@ -208,7 +199,6 @@ const PreferencesForm = () => {
                           type="radio"
                           onChange={handleChange}
                           checked={formData[question.number] === option.value}
-                          required
                           className="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-full border border-blue-gray-200 text-gray-900 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-gray-900 checked:before:bg-gray-900 hover:before:opacity-0"
                         />
                         <span className="absolute text-gray-900 transition-opacity opacity-0 pointer-events-none top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 peer-checked:opacity-100">
@@ -380,6 +370,7 @@ const PreferencesForm = () => {
       options: [
         { value: "gato", label: "Gato" },
         { value: "perro", label: "Perro" },
+        { value: "todos", label: "Todos los animales" },
         { value: "de amigos", label: "Me gustan los de mis amig@s - chequear: falta todos en el controller" },
       ],
     },
@@ -402,13 +393,12 @@ const PreferencesForm = () => {
         {renderCurrentQuestion()}
 
         {/* Error del backend */}
-        {formErrors &&
-          getErrors(formErrors).map((error) => (
-            <p key={error} className="text-red-500">
-              {" "}
-              {error}
-            </p>
-          ))}
+        {Object.keys(fieldErrors).map((fieldName) => (
+          <p key={fieldName} className="text-red-500">
+            {" "}
+            {fieldErrors[fieldName]}
+          </p>
+        ))}
 
         {/* Buttons para moverse entre las preguntas */}
         <div className="flex flex-row justify-between md:justify-start md:gap-8 gap-4 mt-8">

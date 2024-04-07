@@ -3,10 +3,11 @@
 
 import { createPreferences } from "../services/preferencesService";
 import Button from "@/app/components/Button.jsx";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Input } from "@material-tailwind/react";
 import * as Yup from "yup";
 
+/*
 const getErrors = (errorsObject) => {
   const arrayOfErrors = Object.keys(errorsObject);
 
@@ -14,6 +15,7 @@ const getErrors = (errorsObject) => {
     return errorsObject[key];
   });
 };
+*/
 
 const schema = Yup.object().shape({
   birthdate: Yup.date()
@@ -45,6 +47,10 @@ const PreferencesForm = () => {
   const totalQuestions = 15;
   //const [birthdateError, setBirthdateError] = useState("");
   const [fieldErrors, setFieldErrors] = useState({});
+
+  useEffect(() => {
+    console.log(formErrors);
+  }, [formErrors]);
 
   const [formData, setFormData] = useState({
     birthdate: "",

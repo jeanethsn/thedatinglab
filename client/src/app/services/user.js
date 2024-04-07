@@ -10,6 +10,7 @@ export const authHeader = () => {
   if (!user && !user.token) return { Authorization: "" };
   return {
     Authorization: "Bearer " + user.token,
+    isAdmin: user.isAdmin ? "true" : "false",
   };
 };
 
@@ -29,12 +30,13 @@ export const UserService = {
   },
 };
 
-export const EventsService = {
-  getAllEvents: async () => {
-    console.log(`${API_URL}/event`);
-    return await axios.get(`${API_URL}/event`);
-  },
+export const getAllUsers = async () => {
+  const response = await axios.get(`${API_URL}/admin/users`, {
+    headers: authHeader(),
+  });
+  return response.data;
 };
+
 
 export const getUserById = async (userId) => {
   const response = await axios.get(`${API_URL}/profile/${userId}`, {

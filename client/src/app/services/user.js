@@ -28,3 +28,10 @@ export const UserService = {
     });
   },
 };
+
+export const getAllUsers = async () => {
+  const response = await axios.get(`${API_URL}/admin/users`, {
+    headers: authHeader(),
+  });
+  return response.data;
+};

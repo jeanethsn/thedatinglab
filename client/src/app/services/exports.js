@@ -7,6 +7,7 @@ const API_URL = process.env.API_URL;
 export const exportPreferences = async () => {
   const response = await axios.get(`${API_URL}/admin/export`, {
     headers: authHeader(),
+    responseType: 'blob',
   });
   return response;
 };
@@ -20,4 +21,6 @@ export const exportAttendance = async () => {
       
       return response;
 };
+
+
 

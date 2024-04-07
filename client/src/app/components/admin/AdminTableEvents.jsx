@@ -7,6 +7,7 @@ import { exportAttendance } from "@/app/services/exports";
 import { Card, Typography, CardFooter,Button } from "@material-tailwind/react";
 import { useParams, useRouter } from "next/navigation";
 import { useUser } from "@/app/providers/UserProvider";
+import AdminAddEvents from './AdminAddEvents';
 
 
 export default function AdminTableEvents() {
@@ -18,15 +19,13 @@ export default function AdminTableEvents() {
     const router = useRouter();
     const [currentPage, setCurrentPage] = useState(0); 
     const eventsPerPage = 3;
+    
 
     // useEffect(() => {
     //     if (isAdmin === false) {
     //         router.push('/dashboard/login'); // Redirigir al usuario a la página de inicio de sesión si no es administrador
     //     }
     // }, [isAdmin]);
-
-
-
 
     useEffect(() => {
         const getEvents = async () => {
@@ -78,18 +77,25 @@ export default function AdminTableEvents() {
             console.error('Error al exportar la asistencia del evento:', error);
         }
       };
-      
+
+      const [isAddEventOpen, setIsAddEventOpen] = useState(false);
+      const handleToggleAddEvent = () => {
+        setIsAddEventOpen(!isAddEventOpen); 
+    };
+    
+    
   return ( 
         <>
         <div className='flex gap-4 mb-4'>
         <Button 
-            variant="outlined" 
-            size="sm" 
-            >
-            Añadir Evento
-        </Button>
+                    variant="filled" 
+                    size="sm"
+                    onClick={handleToggleAddEvent} // Cuando se hace clic, abre o cierra el componente
+                >
+                    Añadir Evento
+                </Button>
         <Button 
-            variant="outlined"
+            variant="filled"
             className='flex justify-center items-center gap-1' 
             size="sm"
             onClick={() => handleExportAttendance()} 
@@ -97,6 +103,7 @@ export default function AdminTableEvents() {
             <img src="/assets/icon/icon-excel.svg" alt="Excel" /> Descargar Asistencia 
         </Button>
         </div>
+        {isAddEventOpen && <AdminAddEvents isOpen={isAddEventOpen} onClose={handleToggleAddEvent} />}
         <Card>
             <table className="w-full table-auto text-left">
                 <thead>
@@ -149,7 +156,10 @@ export default function AdminTableEvents() {
                                 <Typography variant="small" color="blue-gray" className="font-normal">{event.time}</Typography>
                             </td>
                             <td className="p-4">
-                                <Typography variant="small" color="blue-gray" className="font-normal">icon-edit</Typography>
+                                <Typography variant="small" color="blue-gray" className="font-normal">
+                                    <button>
+                                        <img src="/assets/icon/icon-edit.svg" alt="Eliminar" />
+                                    </button></Typography>
                             </td>
                             <td className="p-4">
                                 <Typography variant="small" color="blue-gray" className="font-normal">

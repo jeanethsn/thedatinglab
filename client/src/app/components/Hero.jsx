@@ -7,10 +7,10 @@ export default function Hero() {
   const { user } = useUser();
 
   return (
-    <div className="flex flex-wrap justify-center z-[1] relative lg:w-full lg:justify-none">
-      <div className="h-[20rem] sm:h-[30rem] lg:basis-[50%] lg:h-[30rem] xl:h-[40rem] xl:pt-[2rem] xxl:h-[45rem]">
+    <div className="flex flex-wrap justify-center z-[1] relative lg:w-full lg:h-full lg:justify-none">
+      <div className="h-[20rem] sm:h-[30rem] lg:basis-[50%] lg:h-full xl:h-[40rem] xl:pt-[2rem] xxl:h-45rem ol:pt-0 ol:h-auto">
         <div
-          className="bg-top w-[20rem] mt-[2rem] h-full sm:bg-top sm:w-[28rem] lg:mt-0  lg:w-full xl:w-[35rem] "
+          className="bg-top w-[20rem] mt-[2rem] h-full sm:bg-top sm:w-[28rem]  lg:w-full lg:h-full lg:mt-[1rem] xl:w-[35rem] xxl:mt-[3rem] xxl:w-[40rem]"
           style={{
             backgroundImage: `url('/assets/image/imagen-hero.png')`,
             backgroundSize: "cover",

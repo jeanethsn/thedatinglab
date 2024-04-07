@@ -5,28 +5,15 @@ import { useEffect, useState } from 'react';
 import { getAllEvents, deleteEvent } from "@/app/services/event";
 import { exportAttendance } from "@/app/services/exports";
 import { Card, Typography, CardFooter,Button } from "@material-tailwind/react";
-import { useParams, useRouter } from "next/navigation";
-import { useUser } from "@/app/providers/UserProvider";
 import AdminAddEvents from './AdminAddEvents';
 
 
 export default function AdminTableEvents() {
     const [events, setEvents] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
-    const params = useParams();
-    const [error, setError] = useState(false);
-    const { user, isAdmin } = useUser();
-    const router = useRouter();
     const [currentPage, setCurrentPage] = useState(0); 
     const eventsPerPage = 3;
     
-
-    // useEffect(() => {
-    //     if (isAdmin === false) {
-    //         router.push('/dashboard/login'); // Redirigir al usuario a la página de inicio de sesión si no es administrador
-    //     }
-    // }, [isAdmin]);
-
     useEffect(() => {
         const getEvents = async () => {
             try {

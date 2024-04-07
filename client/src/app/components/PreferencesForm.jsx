@@ -70,22 +70,29 @@ const PreferencesForm = () => {
 
     // Valida el campo específico que ha cambiado
     try {
-      await validationSchema.validateAt(name, formData);
-      // Si la validación es exitosa, elimina cualquier error existente para todos los campos
-      setFormErrors({});
+      await validationSchema.validateAt(name, { [name]: value });
+      // Si la validación es exitosa, elimina cualquier error existente para el campo actual
+      setFormErrors((prevErrors) => ({ ...prevErrors, [name]: "" }));
     } catch (error) {
       if (error instanceof Yup.ValidationError) {
         // Si hay un error de validación, actualiza el estado de formErrors solo para el campo actual
-        setFormErrors((prevErrors) => ({
-          ...prevErrors,
-          [name]: error.message,
-        }));
+        setFormErrors((prevErrors) => ({ ...prevErrors, [name]: error.message }));
       }
     }
   };
 
-  const handleBlur = (fieldName) => {
-    setTouchedFields({ ...touchedFields, [fieldName]: true });
+  const handleBlur = async (fieldName) => {
+    // Validar el campo cuando el usuario deja el input
+    try {
+      await validationSchema.validateAt(fieldName, formData);
+      // Si la validación es exitosa, elimina cualquier error existente para el campo actual
+      setFormErrors((prevErrors) => ({ ...prevErrors, [fieldName]: "" }));
+    } catch (error) {
+      if (error instanceof Yup.ValidationError) {
+        // Si hay un error de validación, muestra el mensaje de error correspondiente
+        setFormErrors((prevErrors) => ({ ...prevErrors, [fieldName]: error.message }));
+      }
+    }
   };
 
   const formatDate = (dateString) => {
@@ -139,26 +146,12 @@ const PreferencesForm = () => {
   };
 
   const handleNext = async () => {
-    try {
-      await validationSchema.validate(formData, { abortEarly: false });
+    // Eliminar cualquier error existente de todos los campos
+    setFormErrors({});
+    setFieldErrors({});
 
-      // Eliminar cualquier error existente de todos los campos
-      setFormErrors({});
-      setFieldErrors({});
-
-      setCurrentQuestion((prevQuestion) => prevQuestion + 1);
-      window.scrollTo({ top: 0, behavior: "auto" });
-    } catch (error) {
-      if (error instanceof Yup.ValidationError) {
-        const yupErrors = {};
-        error.inner.forEach((err) => {
-          yupErrors[err.path] = err.message;
-        });
-        setFormErrors({ ...yupErrors });
-      } else {
-        console.error("Error:", error?.response?.data?.validation_errors);
-      }
-    }
+    setCurrentQuestion((prevQuestion) => prevQuestion + 1);
+    window.scrollTo({ top: 0, behavior: "auto" });
   };
 
   const handlePrevious = () => {

@@ -38,6 +38,7 @@ const PreferencesForm = () => {
   const totalQuestions = 15;
   const [fieldErrors, setFieldErrors] = useState({});
   const [touchedFields, setTouchedFields] = useState({});
+  const [advancedToNext, setAdvancedToNext] = useState(false);
 
   useEffect(() => {
     console.log(formErrors);
@@ -65,9 +66,6 @@ const PreferencesForm = () => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
 
-    // Actualiza el estado de touchedFields para indicar que el campo ha sido tocado
-    setTouchedFields({ ...touchedFields, [name]: true });
-
     // Valida el campo específico que ha cambiado
     try {
       await validationSchema.validateAt(name, { [name]: value });
@@ -77,6 +75,9 @@ const PreferencesForm = () => {
       if (error instanceof Yup.ValidationError) {
         // Si hay un error de validación, actualiza el estado de formErrors solo para el campo actual
         setFormErrors((prevErrors) => ({ ...prevErrors, [name]: error.message }));
+        if (e.target.type === "radio") {
+          setAdvancedToNext(true);
+        }
       }
     }
   };
@@ -84,7 +85,8 @@ const PreferencesForm = () => {
   const handleBlur = async (fieldName) => {
     // Validar el campo cuando el usuario deja el input
     try {
-      await validationSchema.validateAt(fieldName, formData);
+      const value = formData[fieldName];
+      await validationSchema.validateAt(fieldName, { [fieldName]: value });
       // Si la validación es exitosa, elimina cualquier error existente para el campo actual
       setFormErrors((prevErrors) => ({ ...prevErrors, [fieldName]: "" }));
     } catch (error) {
@@ -146,6 +148,25 @@ const PreferencesForm = () => {
   };
 
   const handleNext = async () => {
+    // Validar el campo actual si aún no se ha validado
+    const question = questions[currentQuestion];
+    if (question.number !== "birthdate" && question.number !== "rrss") {
+      const fieldName = question.number;
+      try {
+        const value = formData[fieldName];
+        await validationSchema.validateAt(fieldName, { [fieldName]: value });
+        // Si la validación es exitosa, elimina cualquier error existente para el campo actual
+        setFormErrors((prevErrors) => ({ ...prevErrors, [fieldName]: "" }));
+      } catch (error) {
+        if (error instanceof Yup.ValidationError) {
+          // Si hay un error de validación, muestra el mensaje de error correspondiente
+          setFormErrors((prevErrors) => ({ ...prevErrors, [fieldName]: error.message }));
+          // Detiene la ejecución de handleNext si hay un error en el campo actual
+          return;
+        }
+      }
+    }
+
     // Eliminar cualquier error existente de todos los campos
     setFormErrors({});
     setFieldErrors({});
@@ -253,8 +274,8 @@ const PreferencesForm = () => {
               </div>
             </div>
           ))}
-          {formErrors[question.number] && (
-            <p className=" mt-1 text-red-600 text-[0.8rem] md:text-[0.9rem]">{formErrors[question.number]}</p>
+          {advancedToNext && formErrors[question.number] && (
+            <p className="mt-1 text-red-600 text-[0.8rem] md:text-[0.9rem]">{formErrors[question.number]}</p>
           )}
         </div>
       );

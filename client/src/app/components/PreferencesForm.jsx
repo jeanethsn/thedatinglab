@@ -37,6 +37,7 @@ const PreferencesForm = () => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const totalQuestions = 15;
   const [fieldErrors, setFieldErrors] = useState({});
+  const [touchedFields, setTouchedFields] = useState({});
 
   useEffect(() => {
     console.log(formErrors);
@@ -60,9 +61,31 @@ const PreferencesForm = () => {
     rrss: "",
   });
 
-  const handleChange = (e) => {
+  const handleChange = async (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
+
+    // Actualiza el estado de touchedFields para indicar que el campo ha sido tocado
+    setTouchedFields({ ...touchedFields, [name]: true });
+
+    // Valida el campo específico que ha cambiado
+    try {
+      await validationSchema.validateAt(name, formData);
+      // Si la validación es exitosa, elimina cualquier error existente para todos los campos
+      setFormErrors({});
+    } catch (error) {
+      if (error instanceof Yup.ValidationError) {
+        // Si hay un error de validación, actualiza el estado de formErrors solo para el campo actual
+        setFormErrors((prevErrors) => ({
+          ...prevErrors,
+          [name]: error.message,
+        }));
+      }
+    }
+  };
+
+  const handleBlur = (fieldName) => {
+    setTouchedFields({ ...touchedFields, [fieldName]: true });
   };
 
   const formatDate = (dateString) => {
@@ -99,22 +122,15 @@ const PreferencesForm = () => {
       setFormErrors({ ...formErrors, birthdate: "" });
       console.log("OK message:", response.message);
     } catch (error) {
-      // Si ocurre un error al enviar el formulario al backend
-      if (error.response && error.response.data && error.response.data.validation_errors) {
-        // Captura los mensajes de error del backend
-        //Agregamos los nuevos errores al estado actual:
-        setFieldErrors((prevFieldErrors) => ({
-          ...prevFieldErrors,
-          ...error.response.data.validation_errors,
-        }));
-        console.error("Errores de backend:", error.response.data.validation_errors);
-      } else if (error instanceof Yup.ValidationError) {
-        // Si Yup encuentra errores de validación
+      if (error instanceof Yup.ValidationError) {
         const yupErrors = {};
         error.inner.forEach((err) => {
           yupErrors[err.path] = err.message;
+          setTouchedFields((prevTouchedFields) => ({
+            ...prevTouchedFields,
+            [err.path]: true,
+          }));
         });
-        // Combina los errores de Yup con los errores del backend y actualiza el estado
         setFormErrors({ ...yupErrors, ...formErrors });
       } else {
         console.error("Error:", error?.response?.data?.validation_errors);
@@ -122,13 +138,27 @@ const PreferencesForm = () => {
     }
   };
 
-  const handleNext = () => {
-    if (Object.keys(fieldErrors).length > 0) {
-      console.error("Errores de campo:", fieldErrors);
-      return;
+  const handleNext = async () => {
+    try {
+      await validationSchema.validate(formData, { abortEarly: false });
+
+      // Eliminar cualquier error existente de todos los campos
+      setFormErrors({});
+      setFieldErrors({});
+
+      setCurrentQuestion((prevQuestion) => prevQuestion + 1);
+      window.scrollTo({ top: 0, behavior: "auto" });
+    } catch (error) {
+      if (error instanceof Yup.ValidationError) {
+        const yupErrors = {};
+        error.inner.forEach((err) => {
+          yupErrors[err.path] = err.message;
+        });
+        setFormErrors({ ...yupErrors });
+      } else {
+        console.error("Error:", error?.response?.data?.validation_errors);
+      }
     }
-    setCurrentQuestion((prevQuestion) => prevQuestion + 1);
-    window.scrollTo({ top: 0, behavior: "auto" });
   };
 
   const handlePrevious = () => {
@@ -147,7 +177,16 @@ const PreferencesForm = () => {
           <label className="mb-6 text-[#545454] font-nunito font-bold text-[1rem] leading-[0rem]">
             {question.text}
           </label>
-          <Input type="date" name={question.number} value={formData[question.number]} onChange={handleChange} />
+          <Input
+            type="date"
+            name={question.number}
+            value={formData[question.number]}
+            onChange={handleChange}
+            onBlur={() => handleBlur(question.number)}
+          />
+          {formErrors[question.number] && (
+            <p className=" mt-1 text-red-600 text-[0.8rem] md:text-[0.9rem]">{formErrors[question.number]}</p>
+          )}
         </div>
       );
     } else if (question.number === "rrss") {
@@ -163,7 +202,11 @@ const PreferencesForm = () => {
             value={formData[question.number]}
             onChange={handleChange}
             placeholder="Escribe tu perfil de Instagram"
+            onBlur={() => handleBlur(question.number)}
           />
+          {formErrors[question.number] && (
+            <p className=" mt-1 text-red-600 text-[0.8rem] md:text-[0.9rem]">{formErrors[question.number]}</p>
+          )}
         </div>
       );
     } else {
@@ -195,6 +238,7 @@ const PreferencesForm = () => {
                           onChange={handleChange}
                           checked={formData[question.number] === option.value}
                           className="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-full border border-blue-gray-200 text-gray-900 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-gray-900 checked:before:bg-gray-900 hover:before:opacity-0"
+                          onBlur={() => handleBlur(question.number)}
                         />
                         <span className="absolute text-gray-900 transition-opacity opacity-0 pointer-events-none top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 peer-checked:opacity-100">
                           <svg
@@ -216,6 +260,9 @@ const PreferencesForm = () => {
               </div>
             </div>
           ))}
+          {formErrors[question.number] && (
+            <p className=" mt-1 text-red-600 text-[0.8rem] md:text-[0.9rem]">{formErrors[question.number]}</p>
+          )}
         </div>
       );
     }
@@ -233,12 +280,15 @@ const PreferencesForm = () => {
         {renderCurrentQuestion()}
 
         {/* Error del backend */}
-        {Object.keys(fieldErrors).map((fieldName) => (
-          <p key={fieldName} className="text-red-500">
-            {" "}
-            {fieldErrors[fieldName]}
-          </p>
-        ))}
+        {Object.keys(fieldErrors).map(
+          (fieldName) =>
+            touchedFields[fieldName] &&
+            formErrors[fieldName] && (
+              <p key={fieldName} className="text-red-500">
+                {formErrors[fieldName]}
+              </p>
+            )
+        )}
 
         {/* Buttons para moverse entre las preguntas */}
         <div className="flex flex-row justify-between md:justify-start md:gap-8 gap-4 mt-8">

@@ -20,7 +20,7 @@ export default function Home() {
     <>
       <NavigationBar />
       <main className="relative">
-        <section className="relative pb-[3rem] lg:pb-0 lg:h-[85vh] lg:overflow-hidden lg:justify-end lg:flex lg:flex-col xl:h-[100vh] xxl:h-[85vh]">
+        <section className="relative pb-[3rem] lg:pb-0 lg:h-[40rem] lg:overflow-hidden lg:justify-end lg:flex lg:flex-col xl:h-[40rem] ol:h-[44rem] ol:bg-contain xxxl:h-[54rem] xl:px-[2rem] ">
           <div
             className="absolute w-full h-[80%] top-0 left-0 z-0 lg:w-[50%] lg:h-full"
             style={{
@@ -43,13 +43,13 @@ export default function Home() {
         </section>
         <section
           id="sectionStepsInfo"
-          className="h-screen bg-[#E94444] px-[2rem] py-[4rem] flex flex-col justify-center items-center lg:pb-0 lg:pt-[2rem] lg:justify-end lg:h-[85vh] lg:overflow-hidden ol:px-[4rem] xl:h-[100vh] xl:pt-[4rem] xl:px-[4rem] ol:pr-[8rem] xxl:h-[85vh] xxl:pt-[6rem]"
+          className="h-screen bg-[#E94444] px-[2rem] py-[4rem] flex flex-col justify-center items-center lg:pb-0 lg:pt-[2rem] lg:h-[38rem] lg:flex-none lg:overflow-hidden ol:px-[4rem] xl:h-[40rem] xl:pt-[4rem] xl:px-[4rem] ol:h-[46rem] xxxl:h-[54rem] xxl:pt-[6rem] xxxl:pt-0 xxxl:px-0"
         >
           <StepsInfo />
         </section>
         <section
           id="sectionEvents"
-          className="bg-[#F6F4F6] pt-[5rem] lg:pt-[2rem] lg:h-[95vh] xl:h-[100vh] lg:flex lg:flex-col lg:justify-end lg:overflow-hidden ol:pt-[2rem] xxl:h-[85vh]"
+          className="bg-[#F6F4F6] pt-[5rem] lg:pt-[2rem] lg:h-[40rem] xl:h-[44rem] lg:flex lg:flex-col lg:justify-end lg:px-[3rem] lg:overflow-hidden ol:pt-[2rem] ol:h-[44rem] xxl:h-[48rem] xxxl:h-[56rem]"
         >
           <HeroEvents />
         </section>

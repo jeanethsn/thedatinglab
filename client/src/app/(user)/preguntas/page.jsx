@@ -1,16 +1,12 @@
 "use client";
-
-import { useState } from "react";
 import Accordion from "@/app/components/accordion/Accordion";
-import { Header } from "@/app/components/header/Header";
+import { HeroFaq } from "@/app/components/HeroFaq/HeroFaq.jsx";
 
 export default function page() {
-    const [activeSections, setActiveSections] = useState({});
-
-    return (
-        <div>
-            <Header />
-            <Accordion />
-        </div>
-    );
-};
+  return (
+    <div>
+      <HeroFaq />
+      <Accordion />
+    </div>
+  );
+}

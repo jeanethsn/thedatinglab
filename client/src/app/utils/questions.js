@@ -148,7 +148,7 @@ const questions = [
   },
   {
     number: "rrss",
-    text: '¿Podrías indicar tu perfil de Instagram? Si no quieres, pon simplemente "no".',
+    text: "¿Podrías indicar tu perfil de Instagram?",
     options: [],
   },
 ];

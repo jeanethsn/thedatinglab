@@ -165,7 +165,6 @@ const PreferencesForm = () => {
               backgroundColor: "#FBF6F3",
               border: "1px solid #E27A8C",
             },
-            duration: 4000,
           });
           return;
         }

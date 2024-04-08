@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { updateProfile } from "../../services/user";
 import { useUser } from "@/app/providers/UserProvider";
 
-export default function ProfileUpdateForm(){
+export default function ProfileUpdateForm({ setIsEditing, updateUserData }){
     const [formData, setFormData] = useState({
       image: "",
       description: "",
@@ -13,7 +13,8 @@ export default function ProfileUpdateForm(){
     const [successMessage, setSuccessMessage] = useState(null);
     const { user } = useUser();
     const userId = user.id;
-  
+ 
+
     const handleChange = (e) => {
       if (e.target.type === "file") {
         setFormData({
@@ -32,15 +33,15 @@ export default function ProfileUpdateForm(){
       e.preventDefault();
       try {
         const response = await updateProfile(userId, formData);
-        // Extraer el mensaje de éxito del objeto de respuesta
         const { message } = response.data;
         setSuccessMessage(message);
-        // Limpiar el campo de mensaje de error
         setError(null);
+        // Aquí actualizamos los datos del usuario después de una actualización exitosa
+        updateUserData(response.data.userData);
+        setIsEditing(false);
       } catch (error) {
         console.log(error);
         setError(error.message);
-        // Limpiar el campo de mensaje de éxito en caso de error
         setSuccessMessage(null);
       }
     };

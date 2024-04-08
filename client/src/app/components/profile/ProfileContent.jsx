@@ -1,26 +1,33 @@
 import React, { useState } from "react";
 import Button from "../Button";
-import ProfileUpdateForm from "../../components/profile/ProfileUpdateForm"; // Importa el componente ProfileUpdateForm
+import ProfileUpdateForm from "../../components/profile/ProfileUpdateForm"; 
 import ProfileUserInfo from "./ProfileUserInfo";
 
 export default function ProfileContent({userData}) {
-  const [isEditing, setIsEditing] = useState(false); // Estado para controlar si se está editando el perfil
+  const [isEditing, setIsEditing] = useState(false); 
 
   const handleEditClick = () => {
-    setIsEditing(true); // Cambia el estado a true cuando se hace clic en "Editar perfil"
+    setIsEditing(!isEditing);
+  };
+
+  const updateUserData = (updatedUserData) => {
+    // Aquí deberías tener lógica para actualizar los datos del usuario
+    // Por ejemplo, si userData es un estado, puedes actualizarlo así:
+    setUserData(updatedUserData);
   };
 
   return (
     <section className="flex flex-col lg:w-full m-auto py-12 gap-12">
-      <ProfileUserInfo userData={userData}/>
-      {/* Renderizar el componente ProfileUpdateForm si isEditing es true */}
       {isEditing ? (
-        <ProfileUpdateForm />
+        <ProfileUpdateForm setIsEditing={setIsEditing} updateUserData={updateUserData} />
       ) : (
+        <ProfileUserInfo userData={userData}/>
+      )}
+      {!isEditing && (
         <Button
           color="primary"
           children="Editar perfil"
-          onClick={handleEditClick} // Llama a la función handleEditClick cuando se hace clic en el botón
+          onClick={handleEditClick} 
           className="sm:text-[1.1rem] w-[18.75rem] m-auto lg:w-[28rem] text-white text-[1rem] font-semibold lg:mt-[1.4rem] lg:py-[0.5rem] lg:rounded-bl-3xl lg:rounded-tr-3xl xl:text-[1.2rem]"
           style={{
             transition:

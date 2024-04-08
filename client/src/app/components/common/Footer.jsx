@@ -122,7 +122,7 @@ function Footer() {
           <li className="mb-4 lg:mb-0">
             <Link
               className="text-white-text text-[1.2rem] lg:text-[1rem] ol:text-[1.1rem]"
-              href="/faqs"
+              href="/preguntas"
             >
               F.A.Q.s
             </Link>

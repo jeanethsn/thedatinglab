@@ -42,7 +42,7 @@ const validationSchema = Yup.object().shape({
   values3: Yup.string().required("Tienes que marcar una opción"),
   prefers1: Yup.string().required("Tienes que marcar una preferencia"),
   prefers2: Yup.string().required("Tienes que marcar una preferencia"),
-  rrss: Yup.string().required('Pon "no" si prefieres no dejar tu Instagram'),
+  rrss: Yup.string().required('Si prefieres no dejar tu Instagram pon simplemente "no" 😉'),
 });
 
 const PreferencesForm = () => {
@@ -82,11 +82,9 @@ const PreferencesForm = () => {
     // Valida el campo específico que ha cambiado
     try {
       await validationSchema.validateAt(name, { [name]: value });
-      // Si la validación es exitosa, elimina cualquier error existente para el campo actual
       setFormErrors((prevErrors) => ({ ...prevErrors, [name]: "" }));
     } catch (error) {
       if (error instanceof Yup.ValidationError) {
-        // Si hay un error de validación, actualiza el estado de formErrors solo para el campo actual
         setFormErrors((prevErrors) => ({ ...prevErrors, [name]: error.message }));
         if (e.target.type === "radio") {
           setAdvancedToNext(true);
@@ -100,11 +98,9 @@ const PreferencesForm = () => {
     try {
       const value = formData[fieldName];
       await validationSchema.validateAt(fieldName, { [fieldName]: value });
-      // Si la validación es exitosa, elimina cualquier error existente para el campo actual
       setFormErrors((prevErrors) => ({ ...prevErrors, [fieldName]: "" }));
     } catch (error) {
       if (error instanceof Yup.ValidationError) {
-        // Si hay un error de validación, muestra el mensaje de error correspondiente
         setFormErrors((prevErrors) => ({ ...prevErrors, [fieldName]: error.message }));
       }
     }
@@ -168,13 +164,11 @@ const PreferencesForm = () => {
       try {
         const value = formData[fieldName];
         await validationSchema.validateAt(fieldName, { [fieldName]: value });
-        // Si la validación es exitosa, elimina cualquier error existente para el campo actual
         setFormErrors((prevErrors) => ({ ...prevErrors, [fieldName]: "" }));
       } catch (error) {
         if (error instanceof Yup.ValidationError) {
-          // Si hay un error de validación, muestra el mensaje de error correspondiente
           setFormErrors((prevErrors) => ({ ...prevErrors, [fieldName]: error.message }));
-          // Detiene la ejecución de handleNext si hay un error en el campo actual
+          alert(error.message);
           return;
         }
       }
@@ -201,7 +195,7 @@ const PreferencesForm = () => {
       // Renderizar input de fecha
       return (
         <div className="mb-[1rem] md:w-[20rem]">
-          <label className="mb-6 text-[#545454] font-nunito font-bold text-[1rem] leading-[0rem]">
+          <label className="mb-6 text-[#545454] font-nunito font-bold text-[1rem] leading-[0rem] leading-snug">
             {question.text}
           </label>
           <Input
@@ -331,7 +325,7 @@ const PreferencesForm = () => {
           <Button
             color="primary"
             onClick={handleNext}
-            disabled={currentQuestion === totalQuestions - 1}
+            disabled={currentQuestion === totalQuestions - 1 || !formData.birthdate}
             className={`disabled:opacity-80 disabled:bg-gray-300 disabled:text-gray-700 disabled:cursor-not-allowed rounded-bl-2xl rounded-tr-2xl hover:rounded-full bg-pink-strong  false  text-white text-[0.9rem] font-semibold mt-[1rem] py-[0.5rem] rounded-bl-3xl rounded-tr-3xl text-[1rem] max-w-[130px] `}
           >
             Siguiente

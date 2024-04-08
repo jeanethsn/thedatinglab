@@ -68,7 +68,7 @@ const questions = [
     text: "¿Saldrías con alguien que tiene hijos?",
     options: [
       { value: "si", label: "Sí" },
-      { value: "no", label: "no" },
+      { value: "no", label: "No" },
       { value: "no sabe", label: "No me lo he planteado" },
     ],
   },
@@ -143,12 +143,12 @@ const questions = [
       { value: "gato", label: "Gato" },
       { value: "perro", label: "Perro" },
       { value: "todos", label: "Todos los animales" },
-      { value: "de amigos", label: "Me gustan los de mis amig@s - chequear: falta todos en el controller" },
+      { value: "de amigos", label: "Me gustan los de mis amig@s" },
     ],
   },
   {
     number: "rrss",
-    text: "¿Podrías indicar tu perfil de Instagram? Si no quieres, pon simplemente no.",
+    text: '¿Podrías indicar tu perfil de Instagram? Si no quieres, pon simplemente "no".',
     options: [],
   },
 ];

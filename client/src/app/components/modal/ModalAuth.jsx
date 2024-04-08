@@ -31,7 +31,6 @@ export default function ModalAuth({ renderButtonModal }) {
   const handleCloseRegister = () => setShouldRenderRegister(false);
 
   const handler = () => setOpenModalAuth(!openModalAuth);
-  console.log({ formRegisterSuccess });
   return (
     <>
       {!user.email && renderButtonModal(handleOpenModalAuth)}
@@ -42,9 +41,9 @@ export default function ModalAuth({ renderButtonModal }) {
         handler={handler}
         className={`modalAuth ${
           formRegisterSuccess
-            ? "lg:!block !max-w-[70%] !w-[70%] !min-w-[70%] sm:!max-w-[50%] sm:!w-[50%] sm:!min-w-[50%] md:!max-w-[40%] md:!w-[40%] md:!min-w-[30%] lg:!max-w-[35%] lg:!w-[30%] lg:!min-w-[30%]   ol:!max-w-[25%] ol:!w-[25%] ol:!min-w-[25%] xxl:!max-w-[20%] xxl:!w-[20%] xxl:!min-w-[20%]"
+            ? "lg:!block !max-w-[70%] !w-[70%] !min-w-[70%] sm:!max-w-[60%] sm:!w-[60%] sm:!min-w-[60%] md:!max-w-[50%] md:!w-[50%] md:!min-w-[50%] lg:!max-w-[40%] lg:!w-[40%] lg:!min-w-[40%]  xl:!max-w-[30%] xl:!w-[30%] xl:!min-w-[30%]  xxl:!max-w-[25%] xxl:!w-[25%] xxl:!min-w-[25%] xxxl:!max-w-[20%] xxxl:!w-[20%] xxxl:!min-w-[20%]"
             : "lg:flex lg:!max-w-[70%] lg:!w-[70%] lg:!min-w-[70%]  ol:!max-w-[50%] ol:!w-[50%] ol:!min-w-[50%] xxl:!max-w-[45%] xxl:!w-[45%] xxl:!min-w-[45%]"
-        } bg-transparent shadow-none sm:!max-w-[50%] sm:!w-[50%] sm:!min-w-[50%] `}
+        } bg-transparent shadow-none sm:!max-w-[60%] sm:!w-[60%] sm:!min-w-[60%] `}
       >
         <Card
           className={` ${
@@ -57,7 +56,9 @@ export default function ModalAuth({ renderButtonModal }) {
             } flex flex-col gap-4 overflow-y-auto scrollbar-thumb:!rounded relative md:px-[2rem] lg:px-[2.5rem]`}
           >
             <Button
-              className="!py-0 !w-auto absolute right-[1.5rem] top-[1.2rem] lg:hidden filter invert"
+              className={`${
+                formRegisterSuccess ? "block" : "lg:hidden"
+              } !py-0 !w-auto absolute right-[1.5rem] top-[1.2rem]  filter invert`}
               onClick={handleCloseModalAuth}
             >
               <Image

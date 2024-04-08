@@ -131,7 +131,7 @@ const questions = [
     text: "Eres más de...",
     options: [
       { value: "vino", label: "Vino" },
-      { value: "cafe", label: "Cafe" },
+      { value: "cafe", label: "Café" },
       { value: "agua", label: "Agua" },
       { value: "segun", label: "Según el momento o casi todas las anteriores" },
     ],

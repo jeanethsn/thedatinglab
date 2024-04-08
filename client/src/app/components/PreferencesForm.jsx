@@ -193,7 +193,7 @@ const PreferencesForm = () => {
   // Renderizar la pregunta actual:
   const renderCurrentQuestion = () => {
     const question = questions[currentQuestion];
-    const hasMoreThanFiveOptions = question.options.length >= 7;
+    const hasMoreThanFiveOptions = question.options.length > 6;
     if (!question) return null;
     if (question.number === "birthdate") {
       // Renderizar input de fecha
@@ -246,8 +246,8 @@ const PreferencesForm = () => {
         <div className="mb-[1rem]">
           <label className="pb-6 text-[#545454] font-nunito font-bold text-[1rem] leading-snug">{question.text}</label>
           {hasMoreThanFiveOptions ? (
-            <div className="flex flex-wrap gap-2">
-              {/* Estilo para más de 7 opciones */}
+            <div className="mt-4 flex flex-wrap gap-2">
+              {/* Estilo para más de 6 opciones */}
               {question.options.map((option, index) => (
                 <button
                   key={index}

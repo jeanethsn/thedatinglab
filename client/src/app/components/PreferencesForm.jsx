@@ -8,6 +8,7 @@ import { Input } from "@material-tailwind/react";
 import questions from "../utils/questions";
 import * as Yup from "yup";
 import Link from "next/link";
+import { toast } from "react-hot-toast";
 
 const validationSchema = Yup.object().shape({
   birthdate: Yup.date()
@@ -170,7 +171,14 @@ const PreferencesForm = () => {
       } catch (error) {
         if (error instanceof Yup.ValidationError) {
           setFormErrors((prevErrors) => ({ ...prevErrors, [fieldName]: error.message }));
-          alert(error.message);
+          toast.error(error.message, {
+            style: {
+              fontSize: "1rem",
+              backgroundColor: "#FBF6F3",
+              border: "1px solid #E27A8C",
+            },
+            duration: 4000,
+          });
           return;
         }
       }

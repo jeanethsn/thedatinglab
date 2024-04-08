@@ -60,7 +60,7 @@ const questions = [
     text: "¿Tienes hijos?",
     options: [
       { value: "si", label: "Sí" },
-      { value: "no", label: "no" },
+      { value: "no", label: "No" },
     ],
   },
   {
@@ -80,7 +80,7 @@ const questions = [
       { value: "amistad", label: "Amistad" },
       { value: "autenticidad", label: "Autenticidad" },
       { value: "aventura", label: "Aventura" },
-      { value: "comunicacion", label: "Comunicacion" },
+      { value: "comunicacion", label: "Comunicación" },
       { value: "conciencia", label: "Conciencia" },
       { value: "creatividad", label: "Creatividad" },
       { value: "cuidado", label: "Cuidado" },
@@ -91,8 +91,8 @@ const questions = [
     number: "values2",
     text: "Indica un valor importante para ti:",
     options: [
-      { value: "diversion", label: "Diversion" },
-      { value: "empatia", label: "Empatia" },
+      { value: "diversion", label: "Diversión" },
+      { value: "empatia", label: "Empatía" },
       { value: "familia", label: "Familia" },
       { value: "fidelidad", label: "Fidelidad" },
       { value: "generosidad", label: "Generosidad" },
@@ -113,7 +113,7 @@ const questions = [
       { value: "sencillez", label: "Sencillez" },
       { value: "solidaridad", label: "Solidaridad" },
       { value: "humor", label: "Humor" },
-      { value: "valentia", label: "Valentia" },
+      { value: "valentia", label: "Valentía" },
     ],
   },
   {
@@ -123,7 +123,7 @@ const questions = [
       { value: "netflix", label: "Netflix" },
       { value: "eventos", label: "Eventos" },
       { value: "gym", label: "Gym" },
-      { value: "todas", label: "todas" },
+      { value: "todas", label: "Todas las anteriores" },
     ],
   },
   {
@@ -143,7 +143,7 @@ const questions = [
       { value: "gato", label: "Gato" },
       { value: "perro", label: "Perro" },
       { value: "todos", label: "Todos los animales" },
-      { value: "de amigos", label: "Me gustan los de mis amig@s" },
+      { value: "de amigos", label: "Me gustan l@s de mis amig@s" },
     ],
   },
   {

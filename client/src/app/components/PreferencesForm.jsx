@@ -324,7 +324,7 @@ const PreferencesForm = () => {
           <h3 className="pb-12 text-center leading-snug mb-[0.8rem] text-[#333333] font-nunito font-semibold text-[1.2rem]">
             ¡Completa este formulario para conocer a tus matches!
           </h3>
-          <form onSubmit={handleSubmit}>
+          <form className="md:px-12" onSubmit={handleSubmit}>
             {renderCurrentQuestion()}
 
             {/* Error del backend */}

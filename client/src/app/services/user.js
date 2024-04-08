@@ -42,3 +42,10 @@ export const getUserById = async (userId) => {
   });
   return response.data;
 };
+
+export const makeMatch = (userId3, userId4) => {
+  return axios.get(`${API_URL}/matching-users`, {
+    params: { userId3, userId4 }, 
+    headers: authHeader(),
+  });
+};

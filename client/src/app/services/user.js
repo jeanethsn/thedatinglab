@@ -43,9 +43,9 @@ export const getUserById = async (userId) => {
   return response.data;
 };
 
-export const makeMatch = (userId3, userId4) => {
-  return axios.get(`${API_URL}/matching-users`, {
-    params: { userId3, userId4 }, 
+export const getMatch = async () => {
+  const response = await axios.get(`${API_URL}/matching-users`, {
     headers: authHeader(),
   });
+  return response.data;
 };

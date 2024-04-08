@@ -13,7 +13,7 @@ export default function ModalSucess({ handleCloseSuccess, title, text, src }) {
       <h3 className="font-nunito font-bold mt-[1rem] text-[1.1rem] text-[#181818]  md:text-[1.2rem] lg:text-[1.2rem]">
         {title}
       </h3>
-      <p className="font-nunito font-medium text-[0.9rem]  md:text-[1rem] xl:text-[1.1rem]">
+      <p className="font-nunito font-medium text-[0.9rem]  md:text-[1.1rem] xl:text-[1.1rem]">
         {text}
       </p>
       <Button

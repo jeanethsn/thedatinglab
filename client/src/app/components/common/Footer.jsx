@@ -102,7 +102,7 @@ function Footer() {
           </li>
         </ul>
       </div>
-      <div className="text-center justify-center items-center lg:order-2">
+      <div className="text-center flex justify-center items-center lg:order-2 lg:py-[0.4rem]">
         <ul className="lg:flex lg:gap-8">
           <li className="mb-4 lg:mb-0">
             <ModalContact
@@ -122,7 +122,7 @@ function Footer() {
           <li className="mb-4 lg:mb-0">
             <Link
               className="text-white-text text-[1.2rem] lg:text-[1rem] ol:text-[1.1rem]"
-              href="/faqs"
+              href="/preguntas"
             >
               F.A.Q.s
             </Link>

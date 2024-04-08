@@ -4,7 +4,20 @@ const nextConfig = {
     API_URL: "http://localhost:8000/api",
   },
   images: {
-    domains: ["localhost"],
+    remotePatterns: [
+      {
+        protocol: "http",
+        hostname: "localhost",
+        port: "8000",
+        pathname: "/**/**",
+      },
+      {
+        protocol: "https",
+        hostname: "i.ibb.co",
+        port: "",
+        pathname: "/**/**",
+      },
+    ],
   },
 };
 

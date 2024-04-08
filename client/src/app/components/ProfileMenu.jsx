@@ -9,8 +9,18 @@ import {
 } from "@material-tailwind/react";
 import { useUser } from "@/app/providers/UserProvider.jsx";
 
-export default function ProfileMenu() {
+export default function ProfileMenu({ userImage }) {
+  const profileImage = userImage
+    ? userImage
+    : "/assets/image/face-carton-user.svg";
   const { handleUserLogout } = useUser();
+  const { user } = useUser();
+  const handleUserProfile = (userId) => {
+    window.location.href = `/mi-cuenta/${userId}`;
+  };
+  
+  // Assuming `user` is defined somewhere in your component's scope
+  <button onClick={() => handleClick(user.id)}>Click me</button>
   return (
     <Menu placement="bottom-end" className="hidden">
       <MenuHandler>
@@ -18,11 +28,14 @@ export default function ProfileMenu() {
           variant="circular"
           alt="tania andrew"
           className="cursor-pointer border-[0.15rem] border-red-orange w-[3.5rem] h-[3.5rem]"
-          src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80"
+          src={profileImage}
         />
       </MenuHandler>
       <MenuList className="text-black font-nunito px-[2rem] rounded-xl shadow-zinc-300 ">
-        <MenuItem className="flex gap-[0.8rem] items-baseline hover:bg-inherit">
+        <MenuItem 
+        className="flex gap-[0.8rem] items-baseline hover:bg-inherit"
+        onClick= {() => handleUserProfile(user.id)}
+        >
           <Image
             width={18}
             height={18}

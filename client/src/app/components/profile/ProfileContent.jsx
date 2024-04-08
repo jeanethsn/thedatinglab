@@ -2,6 +2,11 @@ import Button from "../Button";
 
 export default function ProfileContent({userData}) {
 
+  if (!userData) {
+    return null; // Otra acción que desees tomar si userData es null
+  }
+
+
   const { profile } = userData;
   return (
     <section className="flex flex-col lg:w-full m-auto py-12 gap-12">

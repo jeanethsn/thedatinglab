@@ -1,4 +1,5 @@
 import Button from "../Button";
+import { useUser } from "@/app/providers/UserProvider";
 
 export default function ProfileContent({userData}) {
 
@@ -6,8 +7,8 @@ export default function ProfileContent({userData}) {
     return null; // Otra acción que desees tomar si userData es null
   }
 
-
   const { profile } = userData;
+
   return (
     <section className="flex flex-col lg:w-full m-auto py-12 gap-12">
       <div className="mb-12">

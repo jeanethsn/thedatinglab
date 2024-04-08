@@ -18,9 +18,8 @@ export default function ProfileMenu({ userImage }) {
   const handleUserProfile = (userId) => {
     window.location.href = `/mi-cuenta/${userId}`;
   };
-  
-  // Assuming `user` is defined somewhere in your component's scope
-  <button onClick={() => handleClick(user.id)}>Click me</button>
+
+  <button onClick={() => handleClick(user.id)}>Click me</button>;
   return (
     <Menu placement="bottom-end" className="hidden">
       <MenuHandler>
@@ -32,9 +31,9 @@ export default function ProfileMenu({ userImage }) {
         />
       </MenuHandler>
       <MenuList className="text-black font-nunito px-[2rem] rounded-xl shadow-zinc-300 ">
-        <MenuItem 
-        className="flex gap-[0.8rem] items-baseline hover:bg-inherit"
-        onClick= {() => handleUserProfile(user.id)}
+        <MenuItem
+          className="flex gap-[0.8rem] items-baseline hover:bg-inherit"
+          onClick={() => handleUserProfile(user.id)}
         >
           <Image
             width={18}

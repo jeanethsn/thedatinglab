@@ -188,9 +188,12 @@ const PreferencesForm = () => {
     window.scrollTo({ top: 0, behavior: "auto" });
   };
 
+  const [selectedOption, setSelectedOption] = useState(null);
+
   // Renderizar la pregunta actual:
   const renderCurrentQuestion = () => {
     const question = questions[currentQuestion];
+    const hasMoreThanFiveOptions = question.options.length >= 7;
     if (!question) return null;
     if (question.number === "birthdate") {
       // Renderizar input de fecha
@@ -242,50 +245,86 @@ const PreferencesForm = () => {
       return (
         <div className="mb-[1rem]">
           <label className="pb-6 text-[#545454] font-nunito font-bold text-[1rem] leading-snug">{question.text}</label>
-          {question.options.map((option, index) => (
-            <div className="pt-4 mb-2" key={index}>
-              <div
-                role="button"
-                className="flex items-center w-full p-0 leading-tight transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900"
-                onClick={() => document.getElementById(`vertical-list-react-${index}`).click()}
-              >
-                <label htmlFor="vertical-list-react" className="flex items-center w-full px-3 py-2 cursor-pointer">
-                  <div className="grid mr-3 place-items-center">
-                    <div className="inline-flex items-center">
-                      <label
-                        className="relative flex items-center p-0 rounded-full cursor-pointer"
-                        htmlFor="vertical-list-react"
+          {hasMoreThanFiveOptions ? (
+            <div className="flex flex-wrap gap-2">
+              {/* Estilo para más de 7 opciones */}
+              {question.options.map((option, index) => (
+                <button
+                  key={index}
+                  className={`flex align-center relative select-none items-center whitespace-nowrap rounded-full border border-grey-ligth py-1.5 px-3 text-base transition-colors ${
+                    selectedOption === option.value ? "text-white bg-grey-dark border-grey-dark" : ""
+                  }`}
+                  onClick={() => {
+                    handleChange({ target: { name: question.number, value: option.value } });
+                    setSelectedOption(option.value);
+                  }}
+                  onMouseEnter={(e) => e.target.classList.add("hover:border-grey-dark")}
+                  onMouseLeave={(e) => e.target.classList.remove("hover:border-grey-dark")}
+                >
+                  {selectedOption === option.value && (
+                    <span>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-4 w-4 m-1 text-white"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
                       >
-                        <input
-                          name={question.number}
-                          value={option.value}
-                          id={`vertical-list-react-${index}`}
-                          type="radio"
-                          onChange={handleChange}
-                          checked={formData[question.number] === option.value}
-                          className="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-full border border-blue-gray-200 text-gray-900 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-gray-900 checked:before:bg-gray-900 hover:before:opacity-0"
-                          onBlur={() => handleBlur(question.number)}
-                        />
-                        <span className="absolute text-gray-900 transition-opacity opacity-0 pointer-events-none top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 peer-checked:opacity-100">
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            className="h-3.5 w-3.5"
-                            viewBox="0 0 16 16"
-                            fill="currentColor"
-                          >
-                            <circle data-name="ellipse" cx="8" cy="8" r="8"></circle>
-                          </svg>
-                        </span>
-                      </label>
-                      <span className="ml-2 font-sans text-base antialiased font-medium leading-relaxed">
-                        {option.label}
-                      </span>
-                    </div>
-                  </div>
-                </label>
-              </div>
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                    </span>
+                  )}
+                  {option.label}
+                </button>
+              ))}
             </div>
-          ))}
+          ) : (
+            // Renderizar opciones como radio buttons
+            question.options.map((option, index) => (
+              <div key={index} className="pt-4 mb-2">
+                <div
+                  role="button"
+                  className="flex items-center w-full p-0 leading-tight transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900"
+                  onClick={() => document.getElementById(`vertical-list-react-${index}`).click()}
+                >
+                  <label htmlFor="vertical-list-react" className="flex items-center w-full px-3 py-2 cursor-pointer">
+                    <div className="grid mr-3 place-items-center">
+                      <div className="inline-flex items-center">
+                        <label
+                          className="relative flex items-center p-0 rounded-full cursor-pointer"
+                          htmlFor="vertical-list-react"
+                        >
+                          <input
+                            name={question.number}
+                            value={option.value}
+                            id={`vertical-list-react-${index}`}
+                            type="radio"
+                            onChange={handleChange}
+                            checked={formData[question.number] === option.value}
+                            className="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-full border border-blue-gray-200 text-gray-900 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-gray-900 checked:before:bg-gray-900 hover:before:opacity-0"
+                            onBlur={() => handleBlur(question.number)}
+                          />
+                          <span className="absolute text-gray-900 transition-opacity opacity-0 pointer-events-none top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 peer-checked:opacity-100">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              className="h-3.5 w-3.5"
+                              viewBox="0 0 16 16"
+                              fill="currentColor"
+                            >
+                              <circle data-name="ellipse" cx="8" cy="8" r="8"></circle>
+                            </svg>
+                          </span>
+                        </label>
+                        <span className="ml-2 font-sans text-base antialiased font-medium leading-relaxed">
+                          {option.label}
+                        </span>
+                      </div>
+                    </div>
+                  </label>
+                </div>
+              </div>
+            ))
+          )}
           {advancedToNext && formErrors[question.number] && (
             <p className="mt-1 text-red-600 text-[0.8rem] md:text-[0.9rem]">{formErrors[question.number]}</p>
           )}
@@ -300,7 +339,7 @@ const PreferencesForm = () => {
         <div className="mx-4 md:mx-auto max-w-[40rem] rounded-xl bg-white py-12 px-4 md:px-8">
           <h2 className="pb-4 text-center text-primary-color text-center leading-[1.8rem] font-nunito font-bold text-[1.6rem] mt-[0.8rem] lg:text-[1.8rem] lg:mt-[1rem]">
             ¡El test de compatibilidad se ha enviado correctamente!
-          </h2>{" "}
+          </h2>
           <h3 className="pb-12 text-center leading-snug mb-[0.8rem] text-[#333333] font-nunito font-semibold text-[1.2rem]">
             Gracias por completar el formulario.
           </h3>

@@ -7,6 +7,7 @@ import { useState, useEffect } from "react";
 import { Input } from "@material-tailwind/react";
 import questions from "../utils/questions";
 import * as Yup from "yup";
+import Link from "next/link";
 
 const validationSchema = Yup.object().shape({
   birthdate: Yup.date()
@@ -52,6 +53,7 @@ const PreferencesForm = () => {
   const [fieldErrors, setFieldErrors] = useState({});
   const [touchedFields, setTouchedFields] = useState({});
   const [advancedToNext, setAdvancedToNext] = useState(false);
+  const [formSubmitted, setFormSubmitted] = useState(false);
 
   useEffect(() => {
     console.log(formErrors);
@@ -78,7 +80,6 @@ const PreferencesForm = () => {
   const handleChange = async (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
-
     // Valida el campo específico que ha cambiado
     try {
       await validationSchema.validateAt(name, { [name]: value });
@@ -139,6 +140,7 @@ const PreferencesForm = () => {
       setCurrentQuestion(0);
       setFormErrors({ ...formErrors, birthdate: "" });
       console.log("OK message:", response.message);
+      setFormSubmitted(true);
     } catch (error) {
       if (error instanceof Yup.ValidationError) {
         const yupErrors = {};
@@ -173,7 +175,6 @@ const PreferencesForm = () => {
         }
       }
     }
-
     // Eliminar cualquier error existente de todos los campos
     setFormErrors({});
     setFieldErrors({});
@@ -187,7 +188,7 @@ const PreferencesForm = () => {
     window.scrollTo({ top: 0, behavior: "auto" });
   };
 
-  // Renderizar la pregunta actual
+  // Renderizar la pregunta actual:
   const renderCurrentQuestion = () => {
     const question = questions[currentQuestion];
     if (!question) return null;
@@ -195,15 +196,18 @@ const PreferencesForm = () => {
       // Renderizar input de fecha
       return (
         <div className="mb-[1rem] md:w-[20rem]">
-          <label className="mb-6 text-[#545454] font-nunito font-bold text-[1rem] leading-[0rem] leading-snug">
-            {question.text}
-          </label>
+          <label className="mb-6 text-[#545454] font-nunito font-bold text-[1rem] leading-snug">{question.text}</label>
           <Input
             type="date"
             name={question.number}
             value={formData[question.number]}
             onChange={handleChange}
             onBlur={() => handleBlur(question.number)}
+            className={
+              formErrors[question.number]
+                ? "peer w-full h-full bg-transparent text-blue-gray-700 font-sans font-normal outline outline-0 focus:outline-0 disabled:bg-blue-gray-50 disabled:border-0 disabled:cursor-not-allowed transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 border focus:border-2 border-t-transparent focus:border-t-transparent placeholder:opacity-0 focus:placeholder:opacity-100 text-sm px-3 py-2.5 rounded-[7px] border-red-500 placeholder-shown:border-t-red-500 placeholder-shown:border-red-500 focus:border-red-500 focus:!border-t-deep-orange-800 focus:border-[3px]"
+                : ""
+            }
           />
           {formErrors[question.number] && (
             <p className=" mt-1 text-red-600 text-[0.8rem] md:text-[0.9rem]">{formErrors[question.number]}</p>
@@ -214,9 +218,7 @@ const PreferencesForm = () => {
       // Renderizar input de texto
       return (
         <div className="mb-[1rem] md:w-[20rem]">
-          <label className="mb-6 text-[#545454] font-nunito font-bold text-[1rem] leading-[0rem]">
-            {question.text}
-          </label>
+          <label className="mb-6 text-[#545454] font-nunito font-bold text-[1rem] leading-snug">{question.text}</label>
           <Input
             type="text"
             name={question.number}
@@ -224,6 +226,11 @@ const PreferencesForm = () => {
             onChange={handleChange}
             placeholder="Escribe tu perfil de Instagram"
             onBlur={() => handleBlur(question.number)}
+            className={
+              formErrors[question.number]
+                ? "peer w-full h-full bg-transparent text-blue-gray-700 font-sans font-normal outline outline-0 focus:outline-0 disabled:bg-blue-gray-50 disabled:border-0 disabled:cursor-not-allowed transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 border focus:border-2 border-t-transparent focus:border-t-transparent placeholder:opacity-0 focus:placeholder:opacity-100 text-sm px-3 py-2.5 rounded-[7px] border-red-500 placeholder-shown:border-t-red-500 placeholder-shown:border-red-500 focus:border-red-500 focus:!border-t-deep-orange-800 focus:border-[3px]"
+                : ""
+            }
           />
           {formErrors[question.number] && (
             <p className=" mt-1 text-red-600 text-[0.8rem] md:text-[0.9rem]">{formErrors[question.number]}</p>
@@ -234,9 +241,7 @@ const PreferencesForm = () => {
       // Renderizar otras preguntas con opciones
       return (
         <div className="mb-[1rem]">
-          <label className="pb-6 text-[#545454] font-nunito font-bold text-[1rem] leading-[0rem] ">
-            {question.text}
-          </label>
+          <label className="pb-6 text-[#545454] font-nunito font-bold text-[1rem] leading-snug">{question.text}</label>
           {question.options.map((option, index) => (
             <div className="pt-4 mb-2" key={index}>
               <div
@@ -290,62 +295,86 @@ const PreferencesForm = () => {
   };
 
   return (
-    <div className="mx-4 md:mx-auto max-w-[40rem] rounded-xl bg-white py-12 px-4 md:px-8">
-      <h2 className="pb-4 text-center text-primary-color text-center leading-[1.8rem] font-nunito font-bold text-[1.6rem] mt-[0.8rem] lg:text-[1.8rem] lg:mt-[1rem]">
-        ¿Quieres conocer a tu pareja ideal?
-      </h2>
-      <h3 className="pb-12 text-center leading-snug mb-[0.8rem] text-[#333333] font-nunito font-semibold text-[1.2rem]">
-        ¡Completa este formulario para conocer a tus matches!
-      </h3>
-      <form onSubmit={handleSubmit}>
-        {renderCurrentQuestion()}
-
-        {/* Error del backend */}
-        {Object.keys(fieldErrors).map(
-          (fieldName) =>
-            touchedFields[fieldName] &&
-            formErrors[fieldName] && (
-              <p key={fieldName} className="text-red-500">
-                {formErrors[fieldName]}
-              </p>
-            )
-        )}
-
-        {/* Buttons para moverse entre las preguntas */}
-        <div className="flex flex-row justify-between md:justify-start md:gap-8 gap-4 mt-8">
-          <Button
-            color=""
-            onClick={handlePrevious}
-            disabled={currentQuestion === 0}
-            className={`disabled:border-0 disabled:opacity-80 disabled:bg-gray-300 disabled:text-gray-700 disabled:cursor-not-allowed w-full py-[0.2rem] mt-[1rem]  rounded-bl-2xl rounded-tr-2xl hover:rounded-full inline-block font-semibold text-[1rem]  font-nunito text-primary-color border-[0.15rem] border-primary-color py-[0.5rem] px-[1.6rem] max-w-[130px]`}
-          >
-            Anterior
-          </Button>
-
-          <Button
-            color="primary"
-            onClick={handleNext}
-            disabled={currentQuestion === totalQuestions - 1 || !formData.birthdate}
-            className={`disabled:opacity-80 disabled:bg-gray-300 disabled:text-gray-700 disabled:cursor-not-allowed rounded-bl-2xl rounded-tr-2xl hover:rounded-full bg-pink-strong  false  text-white text-[0.9rem] font-semibold mt-[1rem] py-[0.5rem] rounded-bl-3xl rounded-tr-3xl text-[1rem] max-w-[130px] `}
-          >
-            Siguiente
+    <div>
+      {formSubmitted ? (
+        <div className="mx-4 md:mx-auto max-w-[40rem] rounded-xl bg-white py-12 px-4 md:px-8">
+          <h2 className="pb-4 text-center text-primary-color text-center leading-[1.8rem] font-nunito font-bold text-[1.6rem] mt-[0.8rem] lg:text-[1.8rem] lg:mt-[1rem]">
+            ¡El test de compatibilidad se ha enviado correctamente!
+          </h2>{" "}
+          <h3 className="pb-12 text-center leading-snug mb-[0.8rem] text-[#333333] font-nunito font-semibold text-[1.2rem]">
+            Gracias por completar el formulario.
+          </h3>
+          <Button color="secondary" className="md:max-w-[12rem] mx-auto block">
+            <Link
+              href="/mi-cuenta"
+              className="flex justify-center text-white text-[0.9rem] font-semibold  lg:rounded-bl-3xl lg:rounded-tr-3xl xl:text-[1rem] text-center"
+              style={{
+                transition: "background 0.3s, border 0.3s, border-radius .3s, box-shadow .3s, transform .3s, .4s",
+              }}
+            >
+              Ir a Mi Cuenta
+            </Link>
           </Button>
         </div>
+      ) : (
+        <div className="mx-4 md:mx-auto max-w-[40rem] rounded-xl bg-white py-12 px-4 md:px-8">
+          <h2 className="pb-4 text-center text-primary-color text-center leading-[1.8rem] font-nunito font-bold text-[1.6rem] mt-[0.8rem] lg:text-[1.8rem] lg:mt-[1rem]">
+            ¿Quieres conocer a tu pareja ideal?
+          </h2>
+          <h3 className="pb-12 text-center leading-snug mb-[0.8rem] text-[#333333] font-nunito font-semibold text-[1.2rem]">
+            ¡Completa este formulario para conocer a tus matches!
+          </h3>
+          <form onSubmit={handleSubmit}>
+            {renderCurrentQuestion()}
 
-        {currentQuestion === totalQuestions - 1 && (
-          <Button
-            color="secondary"
-            type="submit"
-            children="Enviar"
-            className="text-white text-[0.9rem] py-[0.3rem] font-semibold lg:mt-[1.4rem] py-[0.5rem] rounded-bl-3xl lrounded-tr-3xl text-[1rem] mb-[1rem]"
-            style={{
-              transition: "background 0.3s, border 0.3s, border-radius .3s, box-shadow .3s, transform .3s, .4s",
-            }}
-          >
-            Enviar
-          </Button>
-        )}
-      </form>
+            {/* Error del backend */}
+            {Object.keys(fieldErrors).map(
+              (fieldName) =>
+                touchedFields[fieldName] &&
+                formErrors[fieldName] && (
+                  <p key={fieldName} className="text-red-500">
+                    {formErrors[fieldName]}
+                  </p>
+                )
+            )}
+
+            {/* Buttons para moverse entre las preguntas */}
+            <div className="flex flex-row justify-between md:justify-start md:gap-8 gap-4 mt-8">
+              <Button
+                color=""
+                onClick={handlePrevious}
+                disabled={currentQuestion === 0}
+                className={`disabled:border-0 disabled:opacity-80 disabled:bg-gray-300 disabled:text-gray-700 disabled:cursor-not-allowed w-full py-[0.2rem] mt-[1rem] rounded-bl-2xl rounded-tr-2xl hover:rounded-full inline-block font-semibold text-[1rem] font-nunito text-primary-color border-[0.15rem] border-primary-color py-[0.5rem] px-[1.6rem] max-w-[130px]`}
+              >
+                Anterior
+              </Button>
+
+              <Button
+                color="primary"
+                onClick={handleNext}
+                disabled={currentQuestion === totalQuestions - 1 || !formData.birthdate}
+                className={`disabled:opacity-80 disabled:bg-gray-300 disabled:text-gray-700 disabled:cursor-not-allowed rounded-bl-2xl rounded-tr-2xl hover:rounded-full bg-pink-strong false text-white text-[0.9rem] font-semibold mt-[1rem] py-[0.5rem] rounded-bl-3xl rounded-tr-3xl text-[1rem] max-w-[130px] `}
+              >
+                Siguiente
+              </Button>
+            </div>
+
+            {currentQuestion === totalQuestions - 1 && (
+              <Button
+                color="secondary"
+                type="submit"
+                children="Enviar"
+                className="text-white text-[0.9rem] py-[0.3rem] font-semibold lg:mt-[1.4rem] py-[0.5rem] rounded-bl-3xl lrounded-tr-3xl text-[1rem] mb-[1rem]"
+                style={{
+                  transition: "background 0.3s, border 0.3s, border-radius .3s, box-shadow .3s, transform .3s, .4s",
+                }}
+              >
+                Enviar
+              </Button>
+            )}
+          </form>
+        </div>
+      )}
     </div>
   );
 };

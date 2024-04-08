@@ -12,11 +12,24 @@ const validationSchema = Yup.object().shape({
   birthdate: Yup.date()
     .required("La fecha de nacimiento es obligatoria")
     .test("is-adult", "Tienes que ser mayor de 18 años para ingresar.", function (value) {
+      if (!value) return false;
       const birthdate = new Date(value);
       const today = new Date();
       const age = today.getFullYear() - birthdate.getFullYear();
       return age >= 18;
-    }),
+    })
+    //Evaluar si quitar esta comprobación, ya que salta cada vez que el usuario está insertando el año de nacimiento manualmente:
+    .test(
+      "is-too-old",
+      "¡Wow, eres tan longevo que superas los 100 años! 🎉 Pero nuestra aplicación está pensada para personas de hasta 100 años de edad. ¡Gracias por tu interés!",
+      function (value) {
+        if (!value) return false;
+        const birthdate = new Date(value);
+        const today = new Date();
+        const age = today.getFullYear() - birthdate.getFullYear();
+        return age < 100;
+      }
+    ),
   gender: Yup.string().required("El género es obligatorio"),
   looksFor: Yup.string().required("Este campo es obligatorio"),
   ageRange: Yup.string().required("El rango de edad es obligatorio"),

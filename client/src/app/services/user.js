@@ -42,3 +42,15 @@ export const getUserById = async (userId) => {
   });
   return response.data;
 };
+
+
+export const updateProfile = async (userId, formData) => {
+  return await axios.post(`${API_URL}/profile/${userId}`, {
+    image: formData.image,
+    description: formData.description,
+    vitalMoment: formData.vitalMoment,
+  }, {
+    headers: authHeader(),
+  });
+};
+

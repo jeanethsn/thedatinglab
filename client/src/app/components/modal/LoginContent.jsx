@@ -12,7 +12,7 @@ import InputText from "@/app/components/InputText.jsx";
 const REGEX_EMAIL = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
 
 const validationSchema = Yup.object().shape({
-  email: Yup.string().required("El campo email es requerido").matches(REGEX_EMAIL, "El email es invalido"),
+  email: Yup.string().required("El campo email es requerido").matches(REGEX_EMAIL, "El email es inválido"),
   password: Yup.string().required("La contraseña es requerida"),
 });
 
@@ -98,6 +98,7 @@ export default function LoginContent({ handleCloseModalAuth, handleOpenRegister 
           style={{
             transition: "background 0.3s, border 0.3s, border-radius .3s, box-shadow .3s, transform .3s, .4s",
           }}
+          id="login-submit-button"
         />
 
         <CardFooter className="p-0 pt-[0.5rem] pb-[1rem]">

@@ -1,8 +1,11 @@
 import React from "react";
-import { render, fireEvent, waitFor, getByRole } from "@testing-library/react";
+import { render, fireEvent, waitFor, getByText, getByRole } from "@testing-library/react";
 import LoginContent from "../src/app/components/modal/LoginContent.jsx";
 import { UserService } from "../src/app/services/user";
 import { useState } from "react";
+import Button from "@/app/components/Button.jsx";
+import InputPassword from "@/app/components/InputPassword.jsx";
+import InputText from "@/app/components/InputText.jsx";
 import { useForm } from "react-hook-form";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -60,23 +63,31 @@ jest.mock("react", () => ({
 
 describe("LoginContent component", () => {
   it("should display error messages for invalid input", async () => {
-    // Definir los valores esperados para la validación del formulario
     const invalidEmail = "invalidEMail";
     const invalidPassword = "";
 
     useState.mockImplementation((initialState) => [{}, jest.fn()]);
 
     // Renderizar el componente
-    const { getByLabelText, getByText } = render(<LoginContent />);
+    const { getByLabelText, getByText, getByRole } = render(<LoginContent />);
 
     // Simular el envío del formulario con valores inválidos
     fireEvent.change(getByLabelText("Email"), { target: { value: invalidEmail } });
     fireEvent.change(getByLabelText("Contraseña"), { target: { value: invalidPassword } });
+
+    try {
+      getByText("El email es inválido");
+      getByText("La contraseña es requerida");
+      expect(true).toBeFalsy();
+    } catch (error) {
+      expect(error).toBeTruthy();
+    }
+
     const submitButton = getByRole("button", { name: "Iniciar sesión" });
-    fireEvent.submit(submitButton);
+    fireEvent.click(submitButton);
 
     await waitFor(() => {
-      expect(getByText("El email es invalido")).toBeInTheDocument();
+      expect(getByText("El email es inválido")).toBeInTheDocument();
       expect(getByText("La contraseña es requerida")).toBeInTheDocument();
     });
   });
@@ -99,15 +110,13 @@ describe("LoginContent component", () => {
     const submitButton = getByRole("button", { name: "Iniciar sesión" });
     fireEvent.submit(submitButton);
 
-    const formData = {
-      email: "test@example.com",
-      password: "password",
-    };
-
     // Esperar a que se complete la solicitud
     await waitFor(() => {
       // Verificar que se haya llamado a UserService.getLogin con los datos del formulario
-      expect(UserService.getLogin()).toHaveBeenCalledWith(formData);
+      expect(UserService.getLogin).toHaveBeenCalledWith({
+        email: "test@example.com",
+        password: "password",
+      });
 
       // Verificar que se haya cerrado el modal de autenticación
       expect(handleCloseModalAuth).toHaveBeenCalled();

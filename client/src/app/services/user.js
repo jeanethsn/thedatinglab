@@ -70,12 +70,11 @@ export const updateProfile = async (profileId, formData) => {
   });
 };
 
-export const createProfile = async (formData) => {
-  return await axios.post(`${API_URL}/profile`, {
-    image: formData.image,
-    description: formData.description,
-    vitalMoment: formData.vitalMoment,
-  }, {
-    headers: authHeader(),
+export const createProfile = async (formData, headers) => {
+  return await axios.post(`${API_URL}/profile`,  formData, {
+    headers: {
+      ...headers,
+      'Content-Type': 'multipart/form-data', 
+    },
   });
 };

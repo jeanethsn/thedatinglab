@@ -10,7 +10,7 @@ import Button from "../Button";
 export default function UpdateForm(){
   const router = useRouter()
     const [formData, setFormData] = useState({
-      image: "",
+      image: null,
       description: "",
       vitalMoment: ""
     });
@@ -18,8 +18,8 @@ export default function UpdateForm(){
     const [successMessage, setSuccessMessage] = useState(null);
     const { user } = useUser();
     const profileId = user.profile_id;
- 
 
+    
     const handleChange = (e) => {
       if (e.target.type === "file") {
         setFormData({
@@ -77,7 +77,7 @@ export default function UpdateForm(){
           </Typography>
             <Textarea name="description" value={formData.description} onChange={handleChange} />
           </div>
-          <div className="mb-4">
+          <div>
           <Typography variant="h6" color="blue-gray">
           Momento vital:
           </Typography>

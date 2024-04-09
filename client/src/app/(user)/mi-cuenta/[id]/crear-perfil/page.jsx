@@ -1,6 +1,6 @@
 "use client"
 
-import UpdateForm from "@/app/components/profile/UpdateForm.jsx";
+import CreateForm from "@/app/components/profile/CreateForm";
 import { Typography, Card } from "@material-tailwind/react";
 
 export default function CreateProfilePage(){
@@ -14,7 +14,7 @@ export default function CreateProfilePage(){
         >
           Crear perfil
         </Typography>
-        <UpdateForm/>
+        <CreateForm/>
       </Card>
       </main>
     );

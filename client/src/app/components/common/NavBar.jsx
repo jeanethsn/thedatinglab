@@ -105,7 +105,7 @@ export default function NavigationBar() {
       <div className="lg:flex items-center hidden ">
         {user?.email && (
           <div className="lg:flex items-center lg:w-[3.5rem] lg:h-[3.5rem]">
-            <ProfileMenu userImage={`http://127.0.0.1:8000/storage/${user.profile_image}`} /> 
+            <ProfileMenu userImage={user.profile_image} /> 
           </div>
         )}
         {

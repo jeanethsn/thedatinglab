@@ -13,7 +13,7 @@ import { useRouter } from "next/navigation";
 export default function ProfileMenu({ userImage }) {
   const router = useRouter();
   const profileImage = userImage
-    ? userImage
+    ? `http://127.0.0.1:8000/storage/${userImage}`
     : "/assets/image/face-carton-user.svg";
   const { handleUserLogout } = useUser();
   const { user } = useUser();

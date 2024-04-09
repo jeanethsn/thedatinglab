@@ -43,13 +43,17 @@ export const getUserById = async (userId) => {
   return response.data;
 };
 
-<<<<<<< HEAD
 export const getProfileById = async (profileId) => {
   const response = await axios.get(`${API_URL}/profile/${profileId}`, {
-=======
+    headers: authHeader(),
+  });
+  return response.data;
+}
+
+
+
 export const getMatch = async () => {
   const response = await axios.get(`${API_URL}/matching-users`, {
->>>>>>> feature-match
     headers: authHeader(),
   });
   return response.data;

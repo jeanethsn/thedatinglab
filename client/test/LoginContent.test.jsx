@@ -4,11 +4,20 @@ import LoginContent from "../src/app/components/modal/LoginContent.jsx";
 import { UserService } from "../src/app/services/user";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useUser } from "@/app/providers/UserProvider";
+import * as Yup from "yup";
 
 // Mock de las funciones y objetos externos
 jest.mock("@hookform/resolvers/yup", () => ({
-  yupResolver: jest.fn(() => () => ({ errors: {} })),
+  yupResolver: jest.fn(() => (schema) => async (data) => {
+    try {
+      await schema.validate(data, { abortEarly: false });
+      return { errors: {} };
+    } catch (errors) {
+      return { errors };
+    }
+  }),
 }));
+
 jest.mock("../src/app/services/user", () => ({
   UserService: {
     getLogin: jest.fn(() => Promise.resolve({ data: { user: { id: 1 } } })),
@@ -19,7 +28,13 @@ jest.mock("../src/app/providers/UserProvider.jsx", () => ({
 }));
 jest.mock("react", () => ({
   ...jest.requireActual("react"),
-  useState: jest.fn(() => [{ isDirty: false }, jest.fn()]),
+  useState: jest.fn(() => ({
+    email: "",
+    password: "",
+    setEmail: jest.fn(),
+    setPassword: jest.fn(),
+    isDirty: false,
+  })),
 }));
 
 describe("LoginContent component", () => {

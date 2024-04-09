@@ -63,23 +63,23 @@ export default function AdminTableUsers() {
         }
       };
 
-      const handleExportMatchings= async (userId) => {
+      const handleExportMatchings = async (userId) => {
         try {
             const response = await exportMatching(userId);
             const blob = new Blob([response.data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
             const url = window.URL.createObjectURL(blob);
             const link = document.createElement('a');
-
+    
             link.href = url;
-            link.setAttribute('download', 'event_Preferences.xlsx');
+            link.setAttribute('download', 'event_Matchings.xlsx');
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
-
+    
         } catch (error) {
-            console.error('Error al exportar la asistencia del evento:', error);
+            console.error('Error al exportar los matches:', error);
         }
-      };
+    };
 
   return ( 
     <>
@@ -114,13 +114,13 @@ export default function AdminTableUsers() {
                             <Typography variant="small" color="blue-gray" className="font-normal leading-none opacity-70">ID Test</Typography>
                         </th>
                         <th className="border-b border-blue-gray-100 bg-blue-gray-50 p-4">
-                            <Typography variant="small" color="blue-gray" className="font-normal leading-none opacity-70">Excel Matches</Typography>
+                            <Typography variant="small" color="blue-gray" className="font-normal leading-none opacity-70">Matches</Typography>
                         </th>
                         
                     </tr>
                 </thead>
                 <tbody>
-                    {currentUsers.map((user, index) => (
+                {currentUsers.slice(1).map((user, index) => (
                         <tr key={index}>
                             <td className="p-4 w-[100px]">
                                 <Typography variant="small" color="blue-gray" className="font-normal">{user.id}</Typography>
@@ -139,14 +139,14 @@ export default function AdminTableUsers() {
                             </td>
                             <td className="p-4">
                                 <Typography variant="small" color="blue-gray" className="font-normal">
-                                    <Button 
-    variant="outlined"
-    className='flex justify-center items-center gap-1' 
-    size="sm"
-    onClick={() => handleExportMatchings(user.id)} > {/* Usando una función anónima */}
-    <img src="/assets/icon/icon-excel.svg" alt="Excel" />
-    Descargar
-</Button>
+                                <Button 
+                                    variant="outlined"
+                                    className='flex justify-center items-center gap-1' 
+                                    size="sm"
+                                    onClick={() => handleExportMatchings(user.id)} > {/* Usando una función anónima */}
+                                    <img src="/assets/icon/icon-excel.svg" alt="Excel" />
+                                    Descargar
+                                </Button>
                                 </Typography>
                             </td>
                         </tr>

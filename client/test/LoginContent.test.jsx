@@ -2,27 +2,48 @@ import React from "react";
 import { render, fireEvent, waitFor, getByRole } from "@testing-library/react";
 import LoginContent from "../src/app/components/modal/LoginContent.jsx";
 import { UserService } from "../src/app/services/user";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useUser } from "@/app/providers/UserProvider";
-import * as Yup from "yup";
 
 // Mock de las funciones y objetos externos
+jest.mock("../src/app/services/user", () => ({
+  UserService: {
+    getLogin: jest.fn((formData) => Promise.resolve({ data: { user: { id: 1 } } })),
+  },
+}));
+
+jest.mock("react-hook-form", () => ({
+  useForm: jest.fn(() => ({
+    register: jest.fn(),
+    handleSubmit: jest.fn(),
+    formState: { errors: {} },
+  })),
+}));
+
+jest.mock("react", () => ({
+  ...jest.requireActual("react"),
+  useState: jest.fn(),
+}));
+
 jest.mock("@hookform/resolvers/yup", () => ({
-  yupResolver: jest.fn(() => (schema) => async (data) => {
+  yupResolver: jest.fn(() => async (values) => {
     try {
-      await schema.validate(data, { abortEarly: false });
+      await validationSchema.validate(values, { abortEarly: false });
       return { errors: {} };
-    } catch (errors) {
-      return { errors };
+    } catch (validationErrors) {
+      return {
+        errors: validationErrors.inner.reduce((acc, error) => {
+          acc[error.path] = error.message;
+          return acc;
+        }, {}),
+      };
     }
   }),
 }));
 
-jest.mock("../src/app/services/user", () => ({
-  UserService: {
-    getLogin: jest.fn(() => Promise.resolve({ data: { user: { id: 1 } } })),
-  },
-}));
 jest.mock("../src/app/providers/UserProvider.jsx", () => ({
   useUser: jest.fn(() => ({ handleUserLogin: jest.fn() })),
 }));
@@ -38,9 +59,33 @@ jest.mock("react", () => ({
 }));
 
 describe("LoginContent component", () => {
+  it("should display error messages for invalid input", async () => {
+    // Definir los valores esperados para la validación del formulario
+    const invalidEmail = "invalidEMail";
+    const invalidPassword = "";
+
+    useState.mockImplementation((initialState) => [{}, jest.fn()]);
+
+    // Renderizar el componente
+    const { getByLabelText, getByText } = render(<LoginContent />);
+
+    // Simular el envío del formulario con valores inválidos
+    fireEvent.change(getByLabelText("Email"), { target: { value: invalidEmail } });
+    fireEvent.change(getByLabelText("Contraseña"), { target: { value: invalidPassword } });
+    const submitButton = getByRole("button", { name: "Iniciar sesión" });
+    fireEvent.submit(submitButton);
+
+    await waitFor(() => {
+      expect(getByText("El email es invalido")).toBeInTheDocument();
+      expect(getByText("La contraseña es requerida")).toBeInTheDocument();
+    });
+  });
+
   it("should handle successful login and close modal", async () => {
     const handleCloseModalAuth = jest.fn();
     const handleOpenRegister = jest.fn();
+
+    useState.mockImplementation((initialState) => [{}, jest.fn()]);
 
     const { getByLabelText, getByRole } = render(
       <LoginContent handleCloseModalAuth={handleCloseModalAuth} handleOpenRegister={handleOpenRegister} />
@@ -54,13 +99,15 @@ describe("LoginContent component", () => {
     const submitButton = getByRole("button", { name: "Iniciar sesión" });
     fireEvent.submit(submitButton);
 
+    const formData = {
+      email: "test@example.com",
+      password: "password",
+    };
+
     // Esperar a que se complete la solicitud
     await waitFor(() => {
       // Verificar que se haya llamado a UserService.getLogin con los datos del formulario
-      expect(UserService.getLogin).toHaveBeenCalledWith({
-        email: "test@example.com",
-        password: "password",
-      });
+      expect(UserService.getLogin()).toHaveBeenCalledWith(formData);
 
       // Verificar que se haya cerrado el modal de autenticación
       expect(handleCloseModalAuth).toHaveBeenCalled();

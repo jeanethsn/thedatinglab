@@ -17,7 +17,7 @@ export default function Card({ eventDate }) {
   const handler = () => setOpen(!open);
 
   return (
-    <div className="max-w-[22rem] min-w-[18rem] sm:min-w-[12rem] flex flex-col items-center flex-wrap mx-auto">
+    <div className="max-w-[22rem] min-w-[18rem] w-[25rem] sm:min-w-[12rem] flex flex-col items-center flex-wrap mx-auto">
       <div
         className="w-full min-h-[12rem] small:h-[14rem] sm:!h-[12rem] md:!h-[14rem] lg:!h-[12rem] ol:!h-[15rem] rounded-md shadow-md"
         style={{
@@ -32,7 +32,7 @@ export default function Card({ eventDate }) {
         </p>
       </div>
       <div
-        className="bg-white rounded-md relative bottom-[2rem] w-[90%] h-[14rem] md:h-[15.5rem] ol:h-[18rem] py-[1rem] px-[0.8rem] shadow-lg ol:px-[1.5rem] ol:py-[2rem]"
+        className="bg-white rounded-md relative bottom-[2rem] w-[90%] h-[13rem] md:h-[14rem] ol:h-[18rem] py-[1rem] px-[0.8rem] shadow-lg ol:px-[1.5rem] ol:py-[2rem]"
         style={{
           boxShadow:
             "rgba(50, 50, 93, 0.25) 0px 13px 27px -5px; rgba(0, 0, 0, 0.3) 0px 8px 16px -8px",
@@ -77,12 +77,12 @@ export default function Card({ eventDate }) {
             {eventDate.location}
           </p>
         </div>
-        <div className="w-full">
+        <div className="w-[92%] absolute bottom-[2rem] left-1/2  transform -translate-x-1/2 ">
           <Button
             color="primary"
             children="Ver más"
             as="Link"
-            className="block text-center sm:text-[1rem] text-white text-[1rem] font-semibold lg:mt-[1.4rem] lg:py-[0.3rem] lg:rounded-bl-3xl lg:rounded-tr-3xl xl:text-[1rem]"
+            className="block text-center  sm:text-[1rem] text-white text-[1rem] font-semibold lg:mt-[1.4rem] lg:py-[0.3rem] lg:rounded-bl-3xl lg:rounded-tr-3xl xl:text-[1rem]"
             style={{
               transition:
                 "background 0.3s, border 0.3s, border-radius .3s, box-shadow .3s, transform .3s, .4s",

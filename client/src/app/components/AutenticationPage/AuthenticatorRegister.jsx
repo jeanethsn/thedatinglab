@@ -63,7 +63,11 @@ export default function AuthenticatorRegister() {
       handleUserLogin(response?.data?.user);
       localStorage.setItem("user", JSON.stringify(response.data));
       setFormRegisterSuccess(true);
-      succesMesage();
+      succesMesage({
+        title: "¡Registro exitoso!",
+        text: "Bienvenido(a) a DatingLab 🧡",
+        icon: "/assets/image/icon-sucessfull.svg",
+      });
       setIsSubmiting(false);
     } catch (error) {
       setErrorRegister(error?.response?.data?.validation_errors);

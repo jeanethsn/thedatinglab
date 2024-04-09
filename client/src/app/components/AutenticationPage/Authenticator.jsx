@@ -31,8 +31,15 @@ export default function Authenticator() {
       desc: <AuthenticatorRegister />,
     },
   ];
+  console.log({ activeTab });
   return (
-    <section className="flex justify-center items-center pt-[2rem] pb-[5rem]">
+    <section
+      className={`flex justify-center pt-[2rem] ${
+        activeTab === "Login"
+          ? "pb-[10rem] xxxl:pb-[22rem]"
+          : "pb-[4rem] xxxl:pb-[6rem]"
+      }`}
+    >
       <div className="rounded-xl border-2 border-gray-500 w-[20rem] mx-auto py-[1rem] sm:w-[25rem] lg:w-[30rem]">
         <Tabs value={activeTab}>
           <TabsHeader

@@ -10,34 +10,34 @@ import { useEffect, useState } from "react";
 
 export default function MatchProfile(){
 
-  const params = useParams();
-  const matchId = params.matchId;
-  console.log(matchId)
-  const user = useUser();
+  // const params = useParams();
+  // const matchId = params.matchId;
+  // console.log(matchId)
+  // const user = useUser();
 
 
-  const [userInfo, setUserInfo] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
+  // const [userInfo, setUserInfo] = useState(null);
+  // const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    const fetchUser = async () => {
-      const userData = await getProfileById(matchId);
-      setUserInfo(userData);
-      console.log(userData);
-      setIsLoading(false);
-    };
+  // useEffect(() => {
+  //   const fetchUser = async () => {
+  //     const userData = await getProfileById(matchId);
+  //     setUserInfo(userData);
+  //     console.log(userData);
+  //     setIsLoading(false);
+  //   };
 
-    fetchUser();
-  }, [matchId]);
+  //   fetchUser();
+  // }, [matchId]);
   
-  if (isLoading) return <Loading />;
+  // if (isLoading) return <Loading />;
 
   return (
     <main className="bg-pink-grey-bg ">
       <div className="bg-red-orange h-40 -mb-24"></div>
       <section className="px-[10%] py-[4%]">
-        <MatchTitleProfile userInfo={userInfo} />
-        <InfoUser userInfo={userInfo} />
+        <MatchTitleProfile  />
+        <InfoUser  />
       </section>
     </main>
   );

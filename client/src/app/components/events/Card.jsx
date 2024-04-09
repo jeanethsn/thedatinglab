@@ -1,10 +1,22 @@
 "use client";
 
 import { formatearFecha, horaFormato, isPastEvent } from "@/app/utils/date.js";
+import { useUser } from "@/app/providers/UserProvider";
 import Button from "@/app/components/Button.jsx";
+import { useState } from "react";
 import Image from "next/image";
+import { ModalUserLogged } from "../modal/ModalUserLogged";
 
 export default function Card({ eventDate }) {
+  const { user } = useUser();
+  const [open, setOpen] = useState(false);
+
+  const handleOpenModalUserLogged = () => {
+    setOpen(true);
+  };
+
+  const handler = () => setOpen(!open);
+
   return (
     <div className="max-w-[22rem] min-w-[18rem] sm:min-w-[12rem] flex flex-col items-center flex-wrap mx-auto">
       <div
@@ -24,7 +36,7 @@ export default function Card({ eventDate }) {
         className="bg-white rounded-md relative bottom-[2rem] w-[90%] h-[14rem] md:h-[15.5rem] ol:h-[18rem] py-[1rem] px-[0.8rem] shadow-lg ol:px-[1.5rem] ol:py-[2rem]"
         style={{
           boxShadow:
-            "rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;",
+            "rgba(50, 50, 93, 0.25) 0px 13px 27px -5px; rgba(0, 0, 0, 0.3) 0px 8px 16px -8px",
         }}
       >
         <div className="mb-2 flex items-center justify-between">
@@ -67,17 +79,33 @@ export default function Card({ eventDate }) {
           </p>
         </div>
         <div className="w-full">
-          <Button
-            color="primary"
-            children="Ver más"
-            as="Link"
-            className="block text-center sm:text-[1rem] text-white text-[1rem] font-semibold lg:mt-[1.4rem] lg:py-[0.3rem] lg:rounded-bl-3xl lg:rounded-tr-3xl xl:text-[1rem]"
-            style={{
-              transition:
-                "background 0.3s, border 0.3s, border-radius .3s, box-shadow .3s, transform .3s, .4s",
-            }}
-            href={`/evento/${eventDate.id}`}
-          />
+          {user.email ? (
+            <Button
+              color="primary"
+              children="Ver más"
+              as="Link"
+              className="block text-center sm:text-[1rem] text-white text-[1rem] font-semibold lg:mt-[1.4rem] lg:py-[0.3rem] lg:rounded-bl-3xl lg:rounded-tr-3xl xl:text-[1rem]"
+              style={{
+                transition:
+                  "background 0.3s, border 0.3s, border-radius .3s, box-shadow .3s, transform .3s, .4s",
+              }}
+              href={`/evento/${eventDate.id}`}
+            />
+          ) : (
+            <>
+              <Button
+                color="primary"
+                children="Ver másf"
+                className="block text-center sm:text-[1rem] text-white text-[1rem] font-semibold lg:mt-[1.4rem] lg:py-[0.3rem] lg:rounded-bl-3xl lg:rounded-tr-3xl xl:text-[1rem]"
+                style={{
+                  transition:
+                    "background 0.3s, border 0.3s, border-radius .3s, box-shadow .3s, transform .3s, .4s",
+                }}
+                onClick={handleOpenModalUserLogged}
+              />
+              <ModalUserLogged open={open} handler={handler} />
+            </>
+          )}
         </div>
       </div>
     </div>

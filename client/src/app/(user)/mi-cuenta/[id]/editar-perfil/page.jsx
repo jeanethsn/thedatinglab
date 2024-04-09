@@ -1,13 +1,13 @@
 "use client"
+import Button from "@/app/components/Button";
 import { useUser } from "@/app/providers/UserProvider";
 import { updateProfile } from "@/app/services/user";
-import { Typography } from "@material-tailwind/react";
+import { Typography, Input, Textarea} from "@material-tailwind/react";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
-import Button from "../Button";
 
 
-export default function ProfileUpdateForm({ setIsEditing }){
+export default function ProfileUpdateForm(){
   const router = useRouter()
     const [formData, setFormData] = useState({
       image: "",
@@ -40,10 +40,8 @@ export default function ProfileUpdateForm({ setIsEditing }){
         const response = await updateProfile(profileId, formData);
         const { message } = response.data;
         setSuccessMessage(message);
-
         router.push(`/mi-cuenta/${user.id}/`)
         setError(null);
-        setIsEditing(false);
       } catch (error) {
         console.log(error);
         setError(error.message);
@@ -52,7 +50,8 @@ export default function ProfileUpdateForm({ setIsEditing }){
     };
   
     return (
-      <main className="bg-pink-grey-bg ">
+      <main className="bg-pink-grey-bg md:min-h-screen pt-16">
+        <div className="bg-white w-2/4 p-[2%] m-auto rounded-xl ">
         <Typography
           variant="h4"
           className="text-primary-color font-nunito font-bold text-[1.6rem] mt-[0.4rem] lg:text-[1.8rem] lg:mt-[1rem]"
@@ -61,18 +60,18 @@ export default function ProfileUpdateForm({ setIsEditing }){
         </Typography>
         {error && <div className="error">{error}</div>}
         {successMessage && <div className="success">{successMessage}</div>}
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="flex flex-col gap-4 justify-between">
           <div>
             <label>Imagen:</label>
-            <input type="file" name="image" onChange={handleChange} />
+            <input  type="file" name="image" onChange={handleChange} />
           </div>
           <div>
             <label>Descripción:</label>
-            <textarea name="description" value={formData.description} onChange={handleChange} />
+            <Textarea name="description" value={formData.description} onChange={handleChange} />
           </div>
           <div>
             <label>Momento vital:</label>
-            <input type="text" name="vitalMoment" value={formData.vitalMoment} onChange={handleChange} />
+            <Textarea type="text" name="vitalMoment" value={formData.vitalMoment} onChange={handleChange} />
           </div>
           <Button
           color="secondary"
@@ -85,6 +84,7 @@ export default function ProfileUpdateForm({ setIsEditing }){
           }}
         />
         </form>
+        </div>
       </main>
     );
   };

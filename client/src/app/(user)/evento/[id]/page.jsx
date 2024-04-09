@@ -1,5 +1,5 @@
 "use client";
-import { useParams, useRouter } from "next/navigation";
+import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { getEventById } from "@/app/services/event.js";
@@ -13,8 +13,6 @@ function Page() {
   const params = useParams();
   const [event, setEvent] = useState({});
   const [error, setError] = useState(false);
-
-  const router = useRouter();
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -33,7 +31,6 @@ function Page() {
   }, []);
 
   if (isLoading) return <Loading />;
-  // if (error) return <p>tienes que estar registrado</p>;
   return (
     <>
       <main className=" bg-pink-grey-bg  border-t-2 border-primary-color ">
@@ -72,10 +69,6 @@ function Page() {
                     {" "}
                     {event.title}
                   </h1>
-                  {/* <h1 className="font-madi leading-tight text-center font-bold text-[2.8rem] mb-[1rem] mt-[2rem] md:text-[1rem]">
-              {" "}
-              {event.title}
-            </h1> */}
                   <p className="text-[0.9rem] font-semibold text-justify mb-[1rem] ol:text-[1.1rem] ol:mb-[1rem]">
                     {event.shortDescription}
                   </p>
@@ -112,7 +105,6 @@ function Page() {
           </div>
         </>
       </main>
-      {/* <Authenticator /> */}
     </>
   );
 }

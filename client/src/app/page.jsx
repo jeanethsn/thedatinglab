@@ -20,7 +20,7 @@ export default function Home() {
     <>
       <NavigationBar />
       <main className="relative">
-        <section className="relative pb-[3rem] lg:pb-0 lg:h-[40rem] lg:overflow-hidden lg:justify-end lg:flex lg:flex-col xl:h-[40rem] ol:h-[44rem] ol:bg-contain xxxl:h-[54rem] xl:px-[2rem] ">
+        <section className="relative pb-[5rem] lg:pb-0 lg:h-[40rem] lg:overflow-hidden lg:justify-end lg:flex lg:flex-col xl:h-[40rem] ol:h-[44rem] ol:bg-contain xxxl:h-[54rem] xl:px-[2rem] ">
           <div
             className="absolute w-full h-[80%] top-0 left-0 z-0 lg:w-[50%] lg:h-full"
             style={{
@@ -43,7 +43,7 @@ export default function Home() {
         </section>
         <section
           id="sectionStepsInfo"
-          className="h-screen bg-[#E94444] px-[2rem] py-[4rem] flex flex-col justify-center items-center lg:pb-0 lg:pt-[2rem] lg:h-[38rem] lg:flex-none lg:overflow-hidden ol:px-[4rem] xl:h-[40rem] xl:pt-[4rem] xl:px-[4rem] ol:h-[46rem] xxxl:h-[54rem] xxl:pt-[6rem] xxxl:pt-0 xxxl:px-0"
+          className="bg-[#E94444] px-[2rem] py-[4rem] flex flex-col justify-center items-center lg:pb-0 lg:pt-[2rem] lg:h-[38rem] lg:flex-none lg:overflow-hidden ol:px-[4rem] xl:h-[40rem] xl:pt-[4rem] xl:px-[4rem] ol:h-[46rem] xxxl:h-[54rem] xxl:pt-[6rem] xxxl:pt-0 xxxl:px-0"
         >
           <StepsInfo />
         </section>

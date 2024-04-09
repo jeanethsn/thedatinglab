@@ -10,15 +10,13 @@ import {
 import { useUser } from "@/app/providers/UserProvider.jsx";
 import { useRouter } from "next/navigation";
 
-
 export default function ProfileMenu({ userImage }) {
-  const router = useRouter()
+  const router = useRouter();
   const profileImage = userImage
     ? userImage
     : "/assets/image/face-carton-user.svg";
   const { handleUserLogout } = useUser();
   const { user } = useUser();
-  
 
   <button onClick={() => handleClick(user.id)}>Click me</button>;
   return (
@@ -27,7 +25,7 @@ export default function ProfileMenu({ userImage }) {
         <Avatar
           variant="circular"
           alt="tania andrew"
-          className="cursor-pointer border-[0.15rem] border-red-orange w-[3.5rem] h-[3.5rem]"
+          className="cursor-pointer border-[0.15rem] border-red-orange w-[3rem] h-[3rem]"
           src={profileImage}
         />
       </MenuHandler>

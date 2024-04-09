@@ -71,10 +71,6 @@ export default function AuthenticatorRegister() {
     }
   };
 
-  const handleCloseSuccess = () => {
-    setIsSubmiting(false);
-  };
-
   return (
     <>
       {!formRegisterSuccess && (

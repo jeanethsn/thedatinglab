@@ -48,25 +48,13 @@ export const getProfileById = async (profileId) => {
     headers: authHeader(),
   });
   return response.data;
-};
+}
 
 
-export const updateProfile = async (profileId, formData) => {
-  return await axios.put(`${API_URL}/profile/${profileId}`, {
-    image: formData.image,
-    description: formData.description,
-    vitalMoment: formData.vitalMoment,
-  }, {
+
+export const getMatch = async () => {
+  const response = await axios.get(`${API_URL}/matching-users`, {
     headers: authHeader(),
   });
-};
-
-export const createProfile = async (formData) => {
-  return await axios.post(`${API_URL}/profile`, {
-    image: formData.image,
-    description: formData.description,
-    vitalMoment: formData.vitalMoment,
-  }, {
-    headers: authHeader(),
-  });
+  return response.data;
 };

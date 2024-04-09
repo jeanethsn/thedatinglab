@@ -3,7 +3,7 @@
 import UpdateForm from "@/app/components/profile/UpdateForm.jsx";
 import { Typography, Card } from "@material-tailwind/react";
 
-export default function EditProfilePage(){
+export default function CreateProfilePage(){
 
     return (
     <main className="md:min-h-screen mx-auto bg-pink-grey-bg md:py-20 py-10">
@@ -12,7 +12,7 @@ export default function EditProfilePage(){
           variant="h4"
           className="text-primary-color text-center font-nunito font-bold text-[1.6rem] mt-[0.4rem] lg:text-[1.8rem] mb-[1.5rem]"
         >
-          Actualizar perfil
+          Crear perfil
         </Typography>
         <UpdateForm/>
       </Card>

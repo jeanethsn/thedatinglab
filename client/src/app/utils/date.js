@@ -1,10 +1,3 @@
-/* 
-EJEMPLO:
-    const fechaOriginal = "2024-06-02";
-    const fechaFormateada = formatearFecha(fechaOriginal); 
-    console.log(fechaFormateada); // Output: DOM 2 Junio
- */
-
 export function formatearFecha(fechaOriginal) {
   // Parsear la fecha
   const fechaParseada = new Date(fechaOriginal);

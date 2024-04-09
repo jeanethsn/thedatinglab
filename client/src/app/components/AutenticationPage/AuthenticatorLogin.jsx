@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useUser } from "@/app/providers/UserProvider";
-import { CardFooter, Typography } from "@material-tailwind/react";
+import { Typography } from "@material-tailwind/react";
 import { UserService } from "@/app/services/user";
 import { useState } from "react";
 import InputPassword from "@/app/components/InputPassword.jsx";
@@ -18,10 +18,7 @@ const validationSchema = Yup.object().shape({
   password: Yup.string().required("La contraseña es requerida"),
 });
 
-export default function AuthenticatorLogin({
-  handleCloseModalAuth,
-  handleOpenRegister,
-}) {
+export default function AuthenticatorLogin({ handleCloseModalAuth }) {
   const {
     register,
     handleSubmit,
@@ -48,7 +45,7 @@ export default function AuthenticatorLogin({
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <Typography
-        className="mt-[0.5rem] mb-[0.8rem] text-[#333333] font-nunito font-semibold text-[1.3rem]"
+        className="mt-[0.5rem] mb-[0.8rem] text-[#333333] font-nunito font-semibold text-[1.3rem] ol:text-[1.5rem] ol:mb-[2rem]"
         variant="paragraph"
       >
         Bienvenido

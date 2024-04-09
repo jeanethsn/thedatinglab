@@ -1,6 +1,7 @@
 "use client";
 import { Nunito_Sans, Ms_Madi } from "next/font/google";
 import { ThemeProvider } from "@/app/providers/MaterialProvider.jsx";
+import Toast from "@/app/components/Toast.jsx";
 import UserProvider from "@/app/providers/UserProvider.jsx";
 import "./globals.css";
 const nunito = Nunito_Sans({
@@ -29,6 +30,7 @@ export default function RootLayout({ children }) {
         <UserProvider>
           <ThemeProvider>{children}</ThemeProvider>
         </UserProvider>
+        <Toast />
       </body>
     </html>
   );

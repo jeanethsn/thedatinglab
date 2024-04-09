@@ -1,5 +1,6 @@
 "use client";
 import { useForm } from "react-hook-form";
+import { succesMesage } from "@/app/components/Toast.jsx";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useUser } from "@/app/providers/UserProvider";
@@ -9,7 +10,6 @@ import { useState } from "react";
 import InputPassword from "@/app/components/InputPassword.jsx";
 import InputText from "@/app/components/InputText.jsx";
 import { Checkbox } from "@material-tailwind/react";
-import ModalSucess from "@/app/components/modal/ModalSuccess";
 
 const getErrors = (errorsObject) => {
   const arrayOfErrors = Object.keys(errorsObject);
@@ -43,10 +43,7 @@ const validationSchema = Yup.object().shape({
     .oneOf([true], "Debe confirmar si es mayor de edad"),
 });
 
-export default function AuthenticatorRegister({
-  setFormRegisterSuccess,
-  formRegisterSuccess,
-}) {
+export default function AuthenticatorRegister() {
   const {
     register,
     handleSubmit,
@@ -55,6 +52,7 @@ export default function AuthenticatorRegister({
 
   const [errorRegister, setErrorRegister] = useState({});
   const [isSubmiting, setIsSubmiting] = useState(false);
+  const [formRegisterSuccess, setFormRegisterSuccess] = useState(false);
 
   const { handleUserLogin } = useUser();
 
@@ -65,6 +63,7 @@ export default function AuthenticatorRegister({
       handleUserLogin(response?.data?.user);
       localStorage.setItem("user", JSON.stringify(response.data));
       setFormRegisterSuccess(true);
+      succesMesage();
       setIsSubmiting(false);
     } catch (error) {
       setErrorRegister(error?.response?.data?.validation_errors);
@@ -78,18 +77,9 @@ export default function AuthenticatorRegister({
 
   return (
     <>
-      {formRegisterSuccess && (
-        <ModalSucess
-          src="/assets/icon/modal-icon-successfull.svg"
-          title="¡Cuenta creada correctamente!"
-          text=" Empieza a disfrutar en Dating lab"
-          handleCloseSuccess={handleCloseSuccess}
-        />
-      )}
-
       {!formRegisterSuccess && (
         <>
-          <h3 className="pt-[1.2rem] leading-[1rem] mb-[0.8rem] text-[#333333] font-nunito font-semibold text-[1.2rem]">
+          <h3 className="pt-[1.2rem] leading-[1rem] mb-[0.8rem] text-[#333333] font-nunito font-semibold text-[1.2rem] ol:text-[1.5rem] ol:mb-[2rem]">
             Únete a Dating Lab
           </h3>
           <form onSubmit={handleSubmit(onSubmit)}>

@@ -11,7 +11,7 @@ import {
 } from "@material-tailwind/react";
 
 export default function Authenticator() {
-  const [activeTab, setActiveTab] = useState("login");
+  const [activeTab, setActiveTab] = useState("Login");
   const data = [
     {
       label: "Iniciar sesion",

@@ -5,7 +5,6 @@ import { useUser } from "@/app/providers/UserProvider";
 import Button from "@/app/components/Button.jsx";
 import { useState } from "react";
 import Image from "next/image";
-import { ModalUserLogged } from "../modal/ModalUserLogged";
 
 export default function Card({ eventDate }) {
   const { user } = useUser();
@@ -79,33 +78,17 @@ export default function Card({ eventDate }) {
           </p>
         </div>
         <div className="w-full">
-          {user.email ? (
-            <Button
-              color="primary"
-              children="Ver más"
-              as="Link"
-              className="block text-center sm:text-[1rem] text-white text-[1rem] font-semibold lg:mt-[1.4rem] lg:py-[0.3rem] lg:rounded-bl-3xl lg:rounded-tr-3xl xl:text-[1rem]"
-              style={{
-                transition:
-                  "background 0.3s, border 0.3s, border-radius .3s, box-shadow .3s, transform .3s, .4s",
-              }}
-              href={`/evento/${eventDate.id}`}
-            />
-          ) : (
-            <>
-              <Button
-                color="primary"
-                children="Ver másf"
-                className="block text-center sm:text-[1rem] text-white text-[1rem] font-semibold lg:mt-[1.4rem] lg:py-[0.3rem] lg:rounded-bl-3xl lg:rounded-tr-3xl xl:text-[1rem]"
-                style={{
-                  transition:
-                    "background 0.3s, border 0.3s, border-radius .3s, box-shadow .3s, transform .3s, .4s",
-                }}
-                onClick={handleOpenModalUserLogged}
-              />
-              <ModalUserLogged open={open} handler={handler} />
-            </>
-          )}
+          <Button
+            color="primary"
+            children="Ver más"
+            as="Link"
+            className="block text-center sm:text-[1rem] text-white text-[1rem] font-semibold lg:mt-[1.4rem] lg:py-[0.3rem] lg:rounded-bl-3xl lg:rounded-tr-3xl xl:text-[1rem]"
+            style={{
+              transition:
+                "background 0.3s, border 0.3s, border-radius .3s, box-shadow .3s, transform .3s, .4s",
+            }}
+            href={`/evento/${eventDate.id}`}
+          />
         </div>
       </div>
     </div>

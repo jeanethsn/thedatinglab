@@ -24,11 +24,7 @@ function Footer() {
       <div className="flex justify-center items-center mb-8 lg:mb-0 lg:flex lg:order-3">
         <ul className="flex space-x-6 lg:flex">
           <li>
-            <a
-              href="https://www.tiktok.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <a href="https://www.tiktok.com/" target="_blank" rel="noopener noreferrer">
               <Image
                 src="/assets/icon/icon-tik.svg"
                 alt="Icono TIKTOK"
@@ -54,11 +50,7 @@ function Footer() {
             </a>
           </li>
           <li>
-            <a
-              href="https://www.instagram.com/the.dating.lab/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <a href="https://www.instagram.com/the.dating.lab/" target="_blank" rel="noopener noreferrer">
               <Image
                 src="/assets/icon/icon-ig.svg"
                 alt="Icono insta"
@@ -70,9 +62,9 @@ function Footer() {
           </li>
           <li>
             <a
-              href={`${WHATSAPP.URL}/${encodeURIComponent(
-                WHATSAPP.MOBILE_NUMBER
-              )}?text=${encodeURIComponent(WHATSAPP.MESSAGE)}`}
+              href={`${WHATSAPP.URL}/${encodeURIComponent(WHATSAPP.MOBILE_NUMBER)}?text=${encodeURIComponent(
+                WHATSAPP.MESSAGE
+              )}`}
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -86,14 +78,10 @@ function Footer() {
             </a>
           </li>
           <li>
-            <a
-              href="https://www.linkedin.com/company/datinglab/about/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <a href="https://www.linkedin.com/company/datinglab/about/" target="_blank" rel="noopener noreferrer">
               <Image
                 src="/assets/icon/icon-linkedin.svg"
-                alt="Icono TIKTOK"
+                alt="Icono Linkedin"
                 width={30}
                 height={30}
                 className="lg:w-[1.4rem] lg:h-[1.4rem] ol:w-[1.8rem] ol:h-[1.8rem]"
@@ -120,19 +108,13 @@ function Footer() {
           </li>
 
           <li className="mb-4 lg:mb-0">
-            <Link
-              className="text-white-text text-[1.2rem] lg:text-[1rem] ol:text-[1.1rem]"
-              href="/preguntas"
-            >
+            <Link className="text-white-text text-[1.2rem] lg:text-[1rem] ol:text-[1.1rem]" href="/preguntas">
               F.A.Q.s
             </Link>
           </li>
 
           <li className="mb-8 lg:mb-0">
-            <Link
-              className="text-white-text text-[1.2rem] lg:text-[1rem] ol:text-[1.1rem]"
-              href="/terminos-servicio"
-            >
+            <Link className="text-white-text text-[1.2rem] lg:text-[1rem] ol:text-[1.1rem]" href="/terminos-servicio">
               Términos del servicio
             </Link>
           </li>

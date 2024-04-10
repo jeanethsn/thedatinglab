@@ -9,7 +9,6 @@ export default function Card({ eventDate }) {
   const { user } = useUser();
 
   const expiredEvent = isPastEvent(eventDate.date);
-  console.log({ expiredEvent });
   return (
     <div className="max-w-[22rem] min-w-[18rem] w-[25rem]  sm:w-full sm:min-w-[12rem] flex flex-col items-center flex-wrap mx-auto">
       <div

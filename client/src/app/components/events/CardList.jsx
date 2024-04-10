@@ -5,6 +5,7 @@ import { getAllEvents, getEventsByPage } from "@/app/services/event";
 import Pagination from "@/app/components/events/Pagination";
 import useBreakpoint from "use-breakpoint";
 import { useSearchParams, useRouter } from "next/navigation";
+import { sortEventDataByDate } from "@/app/utils/date.js";
 
 const BREAKPOINTS = { mobile: 0, desktop: 930 };
 
@@ -45,7 +46,8 @@ export default function CardList() {
     const fetchEvents = async () => {
       try {
         const response = await getEventsByPage(currentPage);
-        setEvents(response.data);
+        const responseDataOrdered = sortEventDataByDate(response.data);
+        setEvents(responseDataOrdered);
         setTotalPages(Math.ceil(response.total / 6));
         setIsLoading(false);
       } catch (error) {
@@ -63,7 +65,8 @@ export default function CardList() {
     const fetchEventsAll = async () => {
       try {
         const eventData = await getAllEvents();
-        setEvents(eventData.data);
+        const responseDataOrdered = sortEventDataByDate(eventData.data);
+        setEvents(responseDataOrdered);
       } catch (error) {
         console.error("Error fetching data:", error);
       }

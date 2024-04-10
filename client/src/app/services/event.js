@@ -14,6 +14,7 @@ export const getEventById = async (eventId) => {
 export const getAllEvents = async () => {
   return await axios.get(`${API_URL}/event`);
 };
+
 export const getEventsByPage = async (currentPage) => {
   const response = await axios.get(`${API_URL}/page?page=${currentPage}`);
   return response.data;

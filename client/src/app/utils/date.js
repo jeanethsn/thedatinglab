@@ -42,6 +42,12 @@ export function isPastEvent(fechaOriginal) {
   return false;
 }
 
+export const sortEventDataByDate = (data) => {
+  return data.sort((a, b) => {
+    return new Date(b.date) - new Date(a.date);
+  });
+};
+
 export function horaFormato(timeOriginal) {
   const timeSplit = timeOriginal.split(":");
   const timeJoin = timeSplit.slice(0, 2).join(":");

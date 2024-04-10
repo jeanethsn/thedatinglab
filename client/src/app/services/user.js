@@ -10,7 +10,7 @@ export const authHeader = () => {
   if (!user && !user.token) return { Authorization: "" };
   return {
     Authorization: "Bearer " + user.token,
-    isAdmin: user.isAdmin ? "true" : "false",
+    // isAdmin: user.isAdmin ? "true" : "false",
   };
 };
 
@@ -72,24 +72,21 @@ export const updateProfile = async (profileId, formData) => {
 };
 
 export const createProfile = async (formData, headers) => {
-  return await axios.post(`${API_URL}/profile`, formData, {
+  await axios.post(`${API_URL}/profile`, formData, {
     headers: {
       ...headers,
       "Content-Type": "multipart/form-data",
     },
   });
 };
-export const registerForEvent = async (eventId) => {
-  try {
-    await axios.post(
-      `${process.env.API_URL}/event/attendance/${eventId}`,
-      null,
-      { headers: authHeader() }
-    );
 
-    return true; // Indicar éxito en el registro
-  } catch (error) {
-    console.error("Error registering for event:", error);
-    return false; // Indicar fallo en el registro
-  }
+export const registerForEvent = async (eventId) => {
+  const response = await axios.post(
+    `${API_URL}/event/attendance/${eventId}`,
+    null,
+    {
+      headers: authHeader(),
+    }
+  );
+  return response.data;
 };

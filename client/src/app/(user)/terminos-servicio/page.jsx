@@ -29,7 +29,7 @@ export default function TermsPage() {
             </>
           }
         />
-
+        <br /><br />
         <TermsService
           title="Uso de la Plataforma Online"
           text={
@@ -46,7 +46,7 @@ export default function TermsPage() {
             </>
           }
         />
-
+        <br /><br />
         <TermsService
           title="Eventos Presenciales"
           text="3.1 Nos encanta organizar eventos presenciales donde los miembros pueden 

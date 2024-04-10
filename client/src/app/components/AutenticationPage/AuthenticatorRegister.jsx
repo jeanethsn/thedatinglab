@@ -1,6 +1,6 @@
 "use client";
 import { useForm } from "react-hook-form";
-import { succesMesage } from "@/app/components/Toast.jsx";
+import { toastMessage } from "@/app/components/Toast.jsx";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useUser } from "@/app/providers/UserProvider";
@@ -63,7 +63,7 @@ export default function AuthenticatorRegister() {
       handleUserLogin(response?.data?.user);
       localStorage.setItem("user", JSON.stringify(response.data));
       setFormRegisterSuccess(true);
-      succesMesage({
+      toastMessage({
         title: "¡Registro exitoso!",
         text: "Bienvenido(a) a DatingLab 🧡",
         icon: "/assets/image/icon-sucessfull.svg",

@@ -2,7 +2,7 @@
 
 import toast, { Toaster } from "react-hot-toast";
 
-export const succesMesage = ({ title, text, icon }) =>
+export const toastMessage = ({ title, text, icon }) =>
   toast.custom((t) => (
     <div
       className={`${

@@ -9,6 +9,8 @@ import Button from "@/app/components/Button";
 import { formatearFecha, horaFormato } from "@/app/utils/date.js";
 import { Loading } from "@/app/components/events/CardList";
 import { registerForEvent } from "@/app/services/user";
+import ModalConfirmEvent from "@/app/components/modal/ModalConfirmEvent";
+import { toastMessage } from "@/app/components/Toast";
 
 function Page() {
   const params = useParams();
@@ -16,7 +18,7 @@ function Page() {
   const [event, setEvent] = useState({});
   const [error, setError] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  const [isRegisteredEvent, setIsRegisteredEvent] = useState(false);
+
   console.log({ params });
   useEffect(() => {
     const fetchEvent = async () => {
@@ -32,13 +34,21 @@ function Page() {
     fetchEvent();
   }, []);
 
-  const handleRegisterForEvent = async () => {
+  const handleRegisterForEvent = async (handleOpenModal) => {
     try {
       const response = await registerForEvent(params.id);
-      console.log({ response });
-      setIsRegisteredEvent(true);
+      // console.log({ response });
+      handleOpenModal();
     } catch (error) {
-      console.log(error);
+      const status = error.response.status;
+      if (status === 422) {
+        toastMessage({
+          title: "¡Confirmado!",
+          text: "❤️Te has apuntado anteriormente a este evento. ¡Nos vemos allí!",
+          icon: "",
+        });
+      }
+      console.log(error.response.data.msg);
     }
   };
 
@@ -100,18 +110,25 @@ function Page() {
                       {event.location}
                     </p>
                   </div>
-                  <div className="w-full">
-                    <Button
-                      color="primary"
-                      children="Apuntarme"
-                      onClick={handleRegisterForEvent}
-                      className="block text-center py-[0.5rem] sm:text-[1rem] text-white text-[1rem] font-semibold lg:mt-[1.4rem] mt-0 lg:py-[0.3rem] ol:py-[0.5rem] lg:rounded-bl-3xl lg:rounded-tr-3xl xl:text-[1rem]"
-                      style={{
-                        transition:
-                          "background 0.3s, border 0.3s, border-radius .3s, box-shadow .3s, transform .3s, .4s",
-                      }}
-                    />
-                  </div>
+
+                  <ModalConfirmEvent
+                    renderModalConfirmEvent={(handleOpenModalConfirmEvent) => (
+                      <div className="w-full">
+                        <Button
+                          color="primary"
+                          children="Apuntarme"
+                          onClick={() =>
+                            handleRegisterForEvent(handleOpenModalConfirmEvent)
+                          }
+                          className="block text-center py-[0.5rem] sm:text-[1rem] text-white text-[1rem] font-semibold lg:mt-[1.4rem] mt-0 lg:py-[0.3rem] ol:py-[0.5rem] lg:rounded-bl-3xl lg:rounded-tr-3xl xl:text-[1rem]"
+                          style={{
+                            transition:
+                              "background 0.3s, border 0.3s, border-radius .3s, box-shadow .3s, transform .3s, .4s",
+                          }}
+                        />
+                      </div>
+                    )}
+                  />
                 </div>
               </div>
             </div>

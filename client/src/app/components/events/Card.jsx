@@ -35,8 +35,7 @@ export default function Card({ eventDate }) {
       <div
         className="bg-white rounded-md relative bottom-[2rem] w-[90%] h-[14rem] md:h-[15.5rem] ol:h-[18rem] py-[1rem] px-[0.8rem] shadow-lg ol:px-[1.5rem] ol:py-[2rem]"
         style={{
-          boxShadow:
-            "rgba(50, 50, 93, 0.25) 0px 13px 27px -5px; rgba(0, 0, 0, 0.3) 0px 8px 16px -8px",
+          boxShadow: "rgba(50, 50, 93, 0.25) 0px 13px 27px -5px; rgba(0, 0, 0, 0.3) 0px 8px 16px -8px",
         }}
       >
         <div className="mb-2 flex items-center justify-between">
@@ -53,7 +52,7 @@ export default function Card({ eventDate }) {
             overflow: "hidden",
           }}
         >
-          rem {eventDate.title}
+          {eventDate.title}
         </h2>
         <p
           className="text-[0.8rem] ol:text-[1rem]"
@@ -68,15 +67,8 @@ export default function Card({ eventDate }) {
           {eventDate.shortDescription}
         </p>
         <div className="flex gap-[0.4rem] items-center mt-[0.3rem] mb-[1.2rem] md:mt-[1rem]">
-          <Image
-            src={"/assets/icon/icon-location.svg"}
-            width={15}
-            height={15}
-            alt="icono de localizacion"
-          />
-          <p className="break-words text-[1rem] font-bold">
-            {eventDate.location}
-          </p>
+          <Image src={"/assets/icon/icon-location.svg"} width={15} height={15} alt="icono de localizacion" />
+          <p className="break-words text-[1rem] font-bold">{eventDate.location}</p>
         </div>
         <div className="w-full">
           {user.email ? (
@@ -86,8 +78,7 @@ export default function Card({ eventDate }) {
               as="Link"
               className="block text-center sm:text-[1rem] text-white text-[1rem] font-semibold lg:mt-[1.4rem] lg:py-[0.3rem] lg:rounded-bl-3xl lg:rounded-tr-3xl xl:text-[1rem]"
               style={{
-                transition:
-                  "background 0.3s, border 0.3s, border-radius .3s, box-shadow .3s, transform .3s, .4s",
+                transition: "background 0.3s, border 0.3s, border-radius .3s, box-shadow .3s, transform .3s, .4s",
               }}
               href={`/evento/${eventDate.id}`}
             />
@@ -98,8 +89,7 @@ export default function Card({ eventDate }) {
                 children="Ver másf"
                 className="block text-center sm:text-[1rem] text-white text-[1rem] font-semibold lg:mt-[1.4rem] lg:py-[0.3rem] lg:rounded-bl-3xl lg:rounded-tr-3xl xl:text-[1rem]"
                 style={{
-                  transition:
-                    "background 0.3s, border 0.3s, border-radius .3s, box-shadow .3s, transform .3s, .4s",
+                  transition: "background 0.3s, border 0.3s, border-radius .3s, box-shadow .3s, transform .3s, .4s",
                 }}
                 onClick={handleOpenModalUserLogged}
               />

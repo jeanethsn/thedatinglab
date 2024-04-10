@@ -39,7 +39,7 @@ npm run dev
 
 ## 🛠️ Tools
 
-HTML: 5,
+* HTML: 5,
 * CSS: 3,
 * Javascript: "^3.0.5",
 * React.js: "^18",

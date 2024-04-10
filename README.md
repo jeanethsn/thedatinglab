@@ -60,9 +60,10 @@ npm run dev
 
 ```
 
-# 🧪 Running Tests
+## 🧪 Running Tests
 
-To run tests, run the following command:
+- To run tests, run the following command:
+
 1- Go to the client folder with this command in the terminal:
 
 ```

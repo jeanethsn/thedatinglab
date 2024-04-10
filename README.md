@@ -40,13 +40,13 @@ npm run dev
 ## 🛠️ Tools
 
 HTML: 5,
-CSS: 3,
-Javascript: "^3.0.5",
-React.js: "^18",
-Jest: "^29.7.0",
-Next: "14.1.0",
-Tailwind: "^3.0.6",
-Axios: "^1.6.7",
+* CSS: 3,
+* Javascript: "^3.0.5",
+* React.js: "^18",
+* Jest: "^29.7.0",
+* Next: "14.1.0",
+* Tailwind: "^3.0.6",
+* Axios: "^1.6.7",
 
 # 🧪 Running Tests
 To run tests, run the following command

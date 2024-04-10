@@ -12,16 +12,11 @@ import InputText from "@/app/components/InputText.jsx";
 const REGEX_EMAIL = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
 
 const validationSchema = Yup.object().shape({
-  email: Yup.string()
-    .required("El campo email es requerido")
-    .matches(REGEX_EMAIL, "El email es invalido"),
+  email: Yup.string().required("El campo email es requerido").matches(REGEX_EMAIL, "El email es inválido"),
   password: Yup.string().required("La contraseña es requerida"),
 });
 
-export default function LoginContent({
-  handleCloseModalAuth,
-  handleOpenRegister,
-}) {
+export default function LoginContent({ handleCloseModalAuth, handleOpenRegister }) {
   const {
     register,
     handleSubmit,
@@ -58,7 +53,7 @@ export default function LoginContent({
           className="mt-[0.5rem] mb-[0.8rem] text-[#333333] font-nunito font-semibold text-[1.3rem]"
           variant="paragraph"
         >
-          Iniciar sesion
+          Iniciar sesión
         </Typography>
         <div className="mb-[1rem] lg:mb-[1.5rem]">
           <InputText
@@ -68,9 +63,7 @@ export default function LoginContent({
             labelText="Email"
             errorText={errors?.email?.message}
             className={`${
-              !errors?.email
-                ? "focus:!border-t-[#212121]"
-                : "focus:!border-t-deep-orange-800"
+              !errors?.email ? "focus:!border-t-[#212121]" : "focus:!border-t-deep-orange-800"
             } focus:border-[3px]`}
           />
         </div>
@@ -82,19 +75,13 @@ export default function LoginContent({
             labelText="Contraseña"
             errorText={errors?.password?.message}
             className={`${
-              !errors?.password
-                ? "focus:!border-t-[#212121]"
-                : "focus:!border-t-deep-orange-800"
+              !errors?.password ? "focus:!border-t-[#212121]" : "focus:!border-t-deep-orange-800"
             } focus:border-[3px]`}
           />
         </div>
 
         {/* Error cuando las credenciales no existen o coinciden con la bd */}
-        {errorLogin?.response?.data?.msg && (
-          <span className="text-red-600">
-            {errorLogin?.response?.data?.msg}
-          </span>
-        )}
+        {errorLogin?.response?.data?.msg && <span className="text-red-600">{errorLogin?.response?.data?.msg}</span>}
         <Typography
           as="a"
           href="#signup"
@@ -106,12 +93,12 @@ export default function LoginContent({
         <Button
           color="secondary"
           type="submit"
-          children=" Iniciar sesion"
+          children="Iniciar sesión"
           className=" text-white text-[0.9rem] py-[0.3rem] font-semibold lg:mt-[1.4rem] lg:py-[0.5rem] lg:rounded-bl-3xl lg:rounded-tr-3xl xl:text-[1rem]"
           style={{
-            transition:
-              "background 0.3s, border 0.3s, border-radius .3s, box-shadow .3s, transform .3s, .4s",
+            transition: "background 0.3s, border 0.3s, border-radius .3s, box-shadow .3s, transform .3s, .4s",
           }}
+          id="login-submit-button"
         />
 
         <CardFooter className="p-0 pt-[0.5rem] pb-[1rem]">

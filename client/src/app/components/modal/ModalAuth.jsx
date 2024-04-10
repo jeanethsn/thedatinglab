@@ -36,6 +36,7 @@ export default function ModalAuth({ renderButtonModal }) {
       {!user.email && renderButtonModal(handleOpenModalAuth)}
 
       <Dialog
+        aria-label="ModalAuth"
         size="xs"
         open={openModalAuth}
         handler={handler}
@@ -102,19 +103,9 @@ export default function ModalAuth({ renderButtonModal }) {
               className="!py-0 !w-auto hidden absolute right-[1.5rem] top-[1.2rem] lg:block"
               onClick={handleCloseModalAuth}
             >
-              <Image
-                src={"/assets/icon/icon-closeB.svg"}
-                width={20}
-                height={20}
-                alt="icono cerrar"
-              />
+              <Image src={"/assets/icon/icon-closeB.svg"} width={20} height={20} alt="icono cerrar" />
             </Button>
-            <Image
-              src={"/assets/image/Logo_Blanco.svg"}
-              width={250}
-              height={200}
-              alt="icono cerrar"
-            />
+            <Image src={"/assets/image/Logo_Blanco.svg"} width={250} height={200} alt="icono cerrar" />
             <p className="text-white font-nunito text-[1.2rem] leading-[1.4rem]">
               La app de citas donde<br></br> no existe el swipe
             </p>

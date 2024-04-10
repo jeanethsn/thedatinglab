@@ -1,17 +1,16 @@
-/* Compatibility test */
 "use client";
-
+import { toastMessage } from "@/app/components/Toast.jsx";
 import { createPreferences } from "../../services/preferencesService";
 import Button from "@/app/components/Button.jsx";
 import PreferenceStep from "./PreferenceStep";
 import { useState, useEffect, useCallback } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Input } from "@material-tailwind/react";
 import questions from "../../utils/questions";
 import * as Yup from "yup";
 import differenceInYears from "date-fns/differenceInYears";
-import moment from "moment";
+import ModalSuccess from "./ModalSuccess";
+import { useRouter } from "next/navigation";
 
 const validationSchema = Yup.object().shape({
   birthdate: Yup.date()
@@ -43,56 +42,94 @@ const validationSchema = Yup.object().shape({
   values3: Yup.string().required("Tienes que marcar una opción"),
   prefers1: Yup.string().required("Tienes que marcar una preferencia"),
   prefers2: Yup.string().required("Tienes que marcar una preferencia"),
-  rrss: Yup.string().required(
-    'Si prefieres no dejar tu Instagram pon simplemente "no" 😉'
+  rrss: Yup.string().test(
+    "instagramUrl",
+    'Por favor, introduce una URL de Instagram válida o "NO"',
+    (value) => {
+      const regex =
+        /^(https?:\/\/)?(www\.)?instagram\.com\/[a-zA-Z0-9(@.)_]{1,150}\/?$/i;
+      return regex.test(value) || value?.toLowerCase() === "no";
+    }
   ),
 });
 
 const PreferencesForm = () => {
-  const [formErrors, setFormErrors] = useState({});
-  const [currentQuestion, setCurrentQuestion] = useState(0);
+  const [currentQuestion, setCurrentQuestion] = useState(14);
+  const [openModal, setOpenModal] = useState(false);
+  const router = useRouter();
+
+  const handlerModal = () => {
+    setOpenModal(!openModal);
+    router.push("/");
+  };
+
   const totalQuestions = 15;
-  const [formSubmitted, setFormSubmitted] = useState(false);
+
   const {
     register,
     handleSubmit,
     setValue,
     control,
-    trigger,
-    getFieldState,
-    getValues,
-    formState: { errors, isValid },
+    watch,
+    formState: { errors },
   } = useForm({
     resolver: yupResolver(validationSchema),
     mode: "onChange",
+    defaultValues: {
+      rrss: "NO",
+      prefers2: "agua",
+      prefers1: "eventos",
+      values3: "humor",
+      values2: "generosidad",
+      values1: "desarrollo",
+      datesParents: "no sabe",
+      hasChildren: "no",
+      heartState: "recuperarse",
+      sexoAffective: "fluir",
+      ageRange: "35-45",
+      looksFor: "todo",
+      gender: "hombre",
+      birthdate: "1990-04-19T22:00:00.000Z",
+      catsDogs: "todos",
+    },
   });
 
-  useEffect(() => {
-    console.log(formErrors);
-  }, [formErrors]);
-
   const onSubmit = async (data) => {
-    console.log({ data });
+    try {
+      const transformedDate = new Date(data.birthdate)
+        .toISOString()
+        .split("T")[0];
+      const response = await createPreferences({
+        ...data,
+        birthdate: transformedDate,
+      });
+
+      setOpenModal(true);
+    } catch (error) {
+      toastMessage({
+        title: "error",
+        text: "Error",
+        icon: ".l.",
+        type: "error",
+      });
+      console.log(error);
+    }
   };
 
-  const handleNext = useCallback(() => {
-    // trigger({});
+  const handleNext = () => {
     setCurrentQuestion((prev) => prev + 1);
-  }, [currentQuestion]);
+  };
 
-  const handlePrevious = useCallback(() => {
+  const handlePrevious = () => {
     setCurrentQuestion((prev) => prev - 1);
-  }, [currentQuestion]);
+  };
 
-  const disabledButton = () => {
-    const fieldValue = getValues(questions[currentQuestion].type);
-    const errorField = getFieldState(questions[currentQuestion].type).error
-      ?.message;
-
-    console.log({ fieldValue, errorField });
+  const disabledButton = (error) => {
+    const fieldValue = watch(questions[currentQuestion].type);
+    const errorField = error;
 
     if (fieldValue === undefined && errorField === undefined) return true;
-    if (!!fieldValue && errorField === undefined) return false;
+
     if (fieldValue !== "" && errorField === undefined) return false;
 
     return true;
@@ -125,45 +162,36 @@ const PreferencesForm = () => {
                   Anterior
                 </Button>
 
-                <Button
-                  type="button"
-                  color="primary"
-                  disabled={disabledButton()}
-                  onClick={handleNext}
-                  className={`disabled:opacity-80 disabled:bg-gray-300 disabled:text-gray-700 disabled:cursor-not-allowed rounded-bl-2xl rounded-tr-2xl hover:rounded-full bg-pink-strong false text-white text-[0.9rem] font-semibold mt-[1rem] py-[0.5rem] rounded-bl-3xl rounded-tr-3xl text-[1rem] max-w-[130px] `}
-                >
-                  Siguiente
-                </Button>
+                {currentQuestion === totalQuestions - 1 ? (
+                  <Button
+                    color="secondary"
+                    type="submit"
+                    children="Enviar"
+                    className="text-white text-[0.9rem] py-[0.3rem] font-semibold lg:mt-[1.4rem] py-[0.5rem] rounded-bl-3xl lrounded-tr-3xl text-[1rem] mb-[1rem]"
+                    style={{
+                      transition:
+                        "background 0.3s, border 0.3s, border-radius .3s, box-shadow .3s, transform .3s, .4s",
+                    }}
+                  >
+                    Enviar
+                  </Button>
+                ) : (
+                  <Button
+                    type="button"
+                    color="primary"
+                    disabled={disabledButton(error)}
+                    onClick={handleNext}
+                    className={`disabled:opacity-80 disabled:bg-gray-300 disabled:text-gray-700 disabled:cursor-not-allowed rounded-bl-2xl rounded-tr-2xl hover:rounded-full bg-pink-strong false text-white text-[0.9rem] font-semibold mt-[1rem] py-[0.5rem] rounded-bl-3xl rounded-tr-3xl text-[1rem] max-w-[130px] `}
+                  >
+                    Siguiente
+                  </Button>
+                )}
               </div>
             )}
           />
-
-          {/* Buttons para moverse entre las preguntas */}
-          {/* <div className="flex flex-row justify-between md:justify-start md:gap-8 gap-4 mt-[1rem]">
-            <Button
-              color=""
-              onClick={handlePrevious}
-              disabled={currentQuestion === 0}
-              className={`disabled:border-0 disabled:opacity-80 disabled:bg-gray-300 disabled:text-gray-700 disabled:cursor-not-allowed w-full py-[0.2rem] mt-[1rem] rounded-bl-2xl rounded-tr-2xl hover:rounded-full inline-block font-semibold text-[1rem] font-nunito text-primary-color border-[0.15rem] border-primary-color py-[0.5rem] px-[1.6rem] max-w-[130px]`}
-            >
-              Anterior
-            </Button>
-
-            <Button
-              type="button"
-              color="primary"
-              disabled={!isValid}
-              onClick={handleNext}
-              // disabled={currentQuestion === totalQuestions - 1}
-              className={`disabled:opacity-80 disabled:bg-gray-300 disabled:text-gray-700 disabled:cursor-not-allowed rounded-bl-2xl rounded-tr-2xl hover:rounded-full bg-pink-strong false text-white text-[0.9rem] font-semibold mt-[1rem] py-[0.5rem] rounded-bl-3xl rounded-tr-3xl text-[1rem] max-w-[130px] `}
-            >
-              Siguiente
-            </Button>
-          </div> */}
-
-          <button>SUBMIT</button>
         </form>
       </div>
+      <ModalSuccess open={openModal} handlerModal={handlerModal} />
     </div>
   );
 };

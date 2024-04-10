@@ -2,11 +2,10 @@
 import { Radio } from "@material-tailwind/react";
 
 export default function RadioInputList({ data, register, error }) {
-  // console.log({ data });
   return (
     <>
       {data?.options.map((option, index) => (
-        <div key={index} className="pt-4 mb-2">
+        <div key={option.value} className="pt-4 mb-2">
           <Radio
             labelProps={{
               className:

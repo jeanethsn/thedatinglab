@@ -1,7 +1,8 @@
 "use client";
-import RadioInputList from "./RadioInputList";
-import InputDate from "./InputDate";
-import InputChipList from "./InputChipList";
+import RadioInputList from "./RadioInputList.jsx";
+import InputDate from "./InputDate.jsx";
+import InputChipList from "./InputChipList.jsx";
+import InputText from "@/app/components/InputText.jsx";
 
 export default function PreferenceStep(props) {
   return (
@@ -16,6 +17,10 @@ export default function PreferenceStep(props) {
         <InputChipList {...props} />
       ) : (
         <RadioInputList {...props} />
+      )}
+
+      {props.data.type === "rrss" && (
+        <InputText name={props.data.type} register={props.register} />
       )}
 
       <span className="text-red-500">{props.error?.message}</span>

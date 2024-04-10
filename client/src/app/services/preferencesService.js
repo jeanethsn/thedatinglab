@@ -17,14 +17,10 @@ export const authHeader = () => {
 };
 
 export const createPreferences = async (testData) => {
-  try {
-    const response = await axios.post(`${API_URL}${urlPreferences}`, testData, {
-      headers: authHeader(),
-    });
-    return response.data;
-  } catch (error) {
-    throw error;
-  }
+  const response = await axios.post(`${API_URL}${urlPreferences}`, testData, {
+    headers: authHeader(),
+  });
+  return response.data;
 };
 
 export const getPreferences = async () => {
@@ -40,9 +36,13 @@ export const getPreferences = async () => {
 
 export const updatePreferences = async (preferencesData) => {
   try {
-    const response = await axios.put(`${API_URL}${urlPreferences}`, preferencesData, {
-      headers: authHeader(),
-    });
+    const response = await axios.put(
+      `${API_URL}${urlPreferences}`,
+      preferencesData,
+      {
+        headers: authHeader(),
+      }
+    );
     return response.data;
   } catch (error) {
     throw error;

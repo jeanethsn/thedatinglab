@@ -105,7 +105,7 @@ export default function NavigationBar() {
       <div className="lg:flex items-center hidden ">
         {user?.email && (
           <div className="lg:flex items-center lg:w-[3.5rem] lg:h-[3.5rem]">
-            <ProfileMenu userImage={user.profile_image} /> 
+            <ProfileMenu userImage={user.profileImage} />
           </div>
         )}
         {
@@ -158,7 +158,7 @@ export default function NavigationBar() {
             <div className=" hidden lg:flex lg:gap-[3rem] ">{navList}</div>
           </div>
           <div className="flex items-center lg:hidden">
-            {user?.email && <ProfileMenu userImage={user.profile_image} />}
+            {user?.email && <ProfileMenu userImage={user.profileImage} />}
 
             <ModalAuth
               renderButtonModal={(handleOpenModalAuth) => (

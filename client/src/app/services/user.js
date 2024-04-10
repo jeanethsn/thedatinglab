@@ -71,10 +71,10 @@ export const updateProfile = async (profileId, formData) => {
   });
 };
 
-export const createProfile = async (formData, headers) => {
-  await axios.post(`${API_URL}/profile`, formData, {
+export const createProfile = async (formData) => {
+  return await axios.post(`${API_URL}/profile`, formData, {
     headers: {
-      ...headers,
+      ...authHeader(),
       "Content-Type": "multipart/form-data",
     },
   });

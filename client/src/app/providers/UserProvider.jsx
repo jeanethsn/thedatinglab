@@ -24,6 +24,23 @@ export default function UserProvider({ children }) {
     setIsAdmin(data.isAdmin); // Set isAdmin state based on user data
   };
 
+  const combineUserDataAndProfile = (data) => {
+    const { user, token } = JSON.parse(localStorage.getItem("user"));
+
+    // Objeto con la data fusionada entre el user y el profile
+
+    const userDataAndProfile = {
+      token,
+      user: {
+        ...user,
+        ...data.profile.user,
+        profileImage: data.profile.image,
+      },
+    };
+
+    localStorage.setItem("user", JSON.stringify(userDataAndProfile));
+  };
+
   useEffect(() => {
     const loggedUser = JSON.parse(localStorage.getItem("user"));
     if (loggedUser?.user?.email) {
@@ -35,7 +52,14 @@ export default function UserProvider({ children }) {
 
   return (
     <UserContext.Provider
-      value={{ user, isAdmin, isLoading, handleUserLogout, handleUserLogin }}
+      value={{
+        user,
+        isAdmin,
+        isLoading,
+        handleUserLogout,
+        handleUserLogin,
+        combineUserDataAndProfile,
+      }}
     >
       {children}
     </UserContext.Provider>

@@ -15,8 +15,7 @@ export default function ProfileMenu({ userImage }) {
   const profileImage = userImage
     ? `http://127.0.0.1:8000/storage/${userImage}`
     : "/assets/image/face-carton-user.svg";
-  const { handleUserLogout } = useUser();
-  const { user } = useUser();
+  const { handleUserLogout, user } = useUser();
 
   <button onClick={() => handleClick(user.id)}>Click me</button>;
   return (

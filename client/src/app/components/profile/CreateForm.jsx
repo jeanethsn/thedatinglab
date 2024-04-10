@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { useState } from "react";
 import { Typography, Input, Textarea } from "@material-tailwind/react";
 import Button from "../Button";
@@ -19,16 +19,18 @@ export default function CreateForm() {
   const handleChange = (e) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.type === "file" ? e.target.files[0] : e.target.value,
+      [e.target.name]:
+        e.target.type === "file" ? e.target.files[0] : e.target.value,
     });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const headers = authHeader();
-      const response = await createProfile(formData, headers);
-      router.push(`/mi-cuenta/${user.id}/`);
+      console.log({ formData });
+      const response = await createProfile(formData);
+      const profileId = response?.data?.profile_id;
+      router.push(`/mi-cuenta/?id=${profileId}`);
     } catch (error) {
       if (error.response && error.response.status === 422) {
         setErrors(error.response.data.validation_errors);
@@ -56,7 +58,9 @@ export default function CreateForm() {
             onChange={handleChange}
           />
           {errors && errors.image && (
-            <p className="text-red-600 text-[0.8rem] md:text-[0.9rem]">{errors.image[0]}</p>
+            <p className="text-red-600 text-[0.8rem] md:text-[0.9rem]">
+              {errors.image[0]}
+            </p>
           )}
         </div>
         <div className="mb-4">
@@ -69,7 +73,9 @@ export default function CreateForm() {
             onChange={handleChange}
           />
           {errors && errors.description && (
-            <p className="text-red-600 text-[0.8rem] md:text-[0.9rem]">{errors.description[0]}</p>
+            <p className="text-red-600 text-[0.8rem] md:text-[0.9rem]">
+              {errors.description[0]}
+            </p>
           )}
         </div>
         <div className="mb-4">
@@ -82,7 +88,9 @@ export default function CreateForm() {
             onChange={handleChange}
           />
           {errors && errors.vitalMoment && (
-            <p className="text-red-600 text-[0.8rem] md:text-[0.9rem]">{errors.vitalMoment[0]}</p>
+            <p className="text-red-600 text-[0.8rem] md:text-[0.9rem]">
+              {errors.vitalMoment[0]}
+            </p>
           )}
         </div>
         <Button

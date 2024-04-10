@@ -7,7 +7,7 @@ export default function TermsText({ title, text }) {
         </h3>
         <span className="hidden lg:flex ml-12 w-full border-t border-red-600"></span>
       </div>
-      <p className="text-left font-nunito text-base ol:text-[1.1rem]">{text}</p>
+      <p className="text-left font-nunito text-base ol:text-[1.1rem] mt-4">{text}</p>
       <span className="lg:hidden border-t border-red-600"></span>
     </section>
   );

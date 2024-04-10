@@ -22,12 +22,13 @@ import React, { useState } from "react";
         {
           question: '¿Qué es Dating Lab?',
           answer:
-            'The Dating Lab es una plataforma de citas que prioriza la compatibilidad emocional sobre la física, ofreciendo una experiencia única para que los usuarios conozcan a sus posibles parejas de una manera diferente.',
+            'The Dating Lab es una plataforma diferente que prioriza la conexión entre las personas. Ofreciendo una experiencia única para que los usuarios conozcan a otras personas de una manera diferente y divertida en la vida real. Nuestro objetivo es generar espacios y ambientes seguros que propicien la generación de conexiones entre personas reales.  A través de nuestra plataforma, los usuarios pueden reservar un espacio en nuestras experiencias, conocer 3 personas compatibles - o como diríamos en lenguaje dating posibles matches ;) - y disfrutar de una experiencia diferente.',
         },
         {
           question: '¿Cómo funciona Dating Lab?',
           answer:
-            'Funciona mediante un formulario de compatibilidad que los usuarios deben completar. Nuestra plataforma luego les mostrará perfiles de personas con un 70% o más de compatibilidad emocional.',
+            'Funciona mediante un formulario de compatibilidad que los usuarios deben completar, previo registro en nuestra plataforma. Después deberás seleccionar la o las actividades  en las que quieras participar, inscribirte,  esperar el envío de link de compra, y, posteriormente realizar el pago.   Queremos que tu experiencia en DatingLab sea la mejor, por eso intentamos que en nuestros eventos haya el mayor número de personas compatibles posibles. Además nuestra plataforma te mostrará perfiles de personas reales con un 70% o más de compatibilidad, con las que podrás coincidir y disfrutar en los eventos en los que te inscribas.',
+            
         },
         {
           question: '¿Cómo puedo resgistrarme en Dating Lab?',

@@ -10,7 +10,7 @@ export default function Pagination({
   return (
     <div className="lg:flex lg:justify-center lg:items-center gap-[1rem]">
       <button
-        className={` bg-quaternary-blue px-[0.6rem] py-[0.2rem] rounded-2xl flex gap-[0.5rem] justify-center items-center text-[1rem] ${
+        className={`px-[0.6rem] py-[0.2rem] rounded-2xl flex gap-[0.5rem] justify-center items-center text-[1rem] ${
           isDisabledIfLowerThan ? "opacity-40" : "opacity-100"
         }`}
         onClick={() => handlePagination(currentPage - 1)}
@@ -25,11 +25,11 @@ export default function Pagination({
         />{" "}
         Anterior
       </button>
-      <p className="text-[1rem] font-bold text-quaternary-blue">
+      <p className="text-[1rem] font-bold text-white px-[0.8rem] py-[0.4rem] bg-primary-color rounded-lg">
         {currentPage}
       </p>
       <button
-        className={`bg-quaternary-blue px-[0.6rem] py-[0.2rem] rounded-2xl flex gap-[0.5rem] justify-center items-center text-[1rem] flex-row-reverse ${
+        className={`px-[0.6rem] py-[0.2rem] rounded-2xl flex gap-[0.5rem] justify-center items-center text-[1rem] flex-row-reverse ${
           isDisabledIfUpperThan ? "opacity-40" : "opacity-100"
         }`}
         onClick={() => handlePagination(currentPage + 1)}

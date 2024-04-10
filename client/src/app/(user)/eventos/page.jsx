@@ -6,7 +6,6 @@ export default function Events() {
   return (
     <main className="bg-pink-grey-bg ">
       <Statement />
-
       <div className="flex flex-col justify-center items-center pt-[4rem] px-[2rem] lg:pt-[6rem]">
         <div className="flex flex-row-reverse items-center mb-[2rem] sm:mb-[3rem] ol:gap-[0.4rem]">
           <Image

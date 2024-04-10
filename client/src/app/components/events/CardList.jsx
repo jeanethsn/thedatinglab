@@ -84,7 +84,7 @@ export default function CardList() {
 
       {!isLoading && (
         <>
-          <section className="w-full max-w-[1200px] xxl:max-w-[1500px] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xxl:grid-cols-4  gap-[1.5rem] mb-[4rem] lg:mb-0">
+          <section className="w-full max-w-[1200px] xxl:max-w-[1200px] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[1.5rem] mb-[4rem] lg:mb-0">
             {events.length &&
               events.map((eventDate) => (
                 <Card

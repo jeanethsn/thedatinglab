@@ -1,6 +1,6 @@
 "use client";
 import { Toaster } from "react-hot-toast";
-import PreferencesForm from "../../components/PreferencesForm.jsx";
+import PreferencesForm from "../../components/Preferences/PreferencesForm.jsx";
 
 export default function PreferencesTest() {
   return (

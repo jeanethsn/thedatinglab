@@ -1,16 +1,28 @@
 
-# Dating Lab 
+# Dating Lab ![LOGO](./client/public/banner.png)
 
-## OBJECTIVE OF THE PROJECT
-A responsive website where you can manage users, both registered and not, so that they can see what the page is about, and decide if they are interested in immersing themselves in a space where, apart from meeting your ideal partner, you can experience unique events where you can have a good time. and meet people with whom you share your same tastes.
+# Team Cod<3rs 👋
+The Cod<3rs Team is pleased to present an exciting project that we had the opportunity to work on.
+
+
+## OBJECTIVE OF THE PROJECT 
+A responsive website where you can manage users, both registered and not, so that they can see what the page is about, and decide if they are interested in immersing themselves in a space where, apart from meeting your ideal partner, you can experience unique events where you can have a good time, and meet people with whom you share your same tastes.
 
 
 ## About this project
 Upon accessing the page, users are greeted with an intriguing introduction focused on finding their ideal partner through sensory connection. The first step is to fill out a form that assesses compatibility with other users, providing valuable match recommendations. They are then given the exciting opportunity to attend exclusive sensory events, where they can meet their potential matches in person and have a unique experience. To access these events, users have the option to pay for individual events or subscribe to a monthly membership to this unique sensory experience.
+
+## Screenshots 
+![Mobil](./client/public/movil-screenshot.png)
+![Desktop](./client/public/desktop-screenshot.png)
+
+
 ## 📌 Requirements
 
 * Visual Studio Code
 * Node.js installed on the computer
+
+
 ## ⚙️ Installation
 
 This repository is the Frontend where the visual part of the website is, to install it on the computer you must follow these steps:
@@ -25,17 +37,25 @@ npm install
 
 npm run dev
 
-
-
 ## 🛠️ Tools
-- HTML
-- CSS
-- Javascript
-- React.js
-- Next.js
+
+HTML: 5,
+CSS: 3,
+Javascript: "^3.0.5",
+React.js: "^18",
+Jest: "^29.7.0",
+Next: "14.1.0",
+Tailwind: "^3.0.6",
+Axios: "^1.6.7",
+
+# 🧪 Running Tests
+To run tests, run the following command
+
+  npm run test
 
 
 ## 🔗 Information about the programmers
+
 
 **Hemi:**
 

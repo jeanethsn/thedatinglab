@@ -25,7 +25,7 @@ function Footer() {
         <ul className="flex space-x-6 lg:flex">
           <li>
             <a
-              href="https://www.tiktok.com/"
+              href="https://www.tiktok.com/@datinglabexperiences"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -93,7 +93,7 @@ function Footer() {
             >
               <Image
                 src="/assets/icon/icon-linkedin.svg"
-                alt="Icono TIKTOK"
+                alt="Icono LinkedIn"
                 width={30}
                 height={30}
                 className="lg:w-[1.4rem] lg:h-[1.4rem] ol:w-[1.8rem] ol:h-[1.8rem]"

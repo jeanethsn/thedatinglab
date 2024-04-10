@@ -27,6 +27,7 @@
     "react-hook-form": "^7.51.2",
     "react-hot-toast": "^2.4.1",
     "react-paginate": "^8.2.0",
+    "use-breakpoint": "^4.0.1",
     "yup": "^1.4.0"
   },
   "devDependencies": {

@@ -1,7 +1,6 @@
 import CardList from "@/app/components/events/CardList.jsx";
 import Image from "next/image";
 import Statement from "@/app/components/Statement";
-import Pagination from "@/app/components/events/Pagination";
 
 export default function Events() {
   return (
@@ -23,7 +22,6 @@ export default function Events() {
         </div>
 
         <CardList />
-        <Pagination />
       </div>
     </main>
   );

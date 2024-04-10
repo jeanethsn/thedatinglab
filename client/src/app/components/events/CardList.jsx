@@ -1,7 +1,12 @@
 "use client";
 import Card from "@/app/components/events/Card.jsx";
 import { useState, useEffect } from "react";
-import { getAllEvents } from "@/app/services/event";
+import { getAllEvents, getEventsByPage } from "@/app/services/event";
+import Pagination from "@/app/components/events/Pagination";
+import useBreakpoint from "use-breakpoint";
+import { useSearchParams, useRouter } from "next/navigation";
+
+const BREAKPOINTS = { mobile: 0, desktop: 930 };
 
 export const Loading = () => (
   <div className="h-screen flex justify-center items-center">
@@ -28,35 +33,77 @@ export const Loading = () => (
 );
 
 export default function CardList() {
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const currentPage = parseInt(searchParams.get("page")) || 1;
+  const [totalPages, setTotalPages] = useState(0);
+  const { breakpoint } = useBreakpoint(BREAKPOINTS);
   const [events, setEvents] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const getEvents = async () => {
-      const response = await getAllEvents();
-      setEvents(response.data);
-      setIsLoading(false);
+    const fetchEvents = async () => {
+      try {
+        const response = await getEventsByPage(currentPage);
+        setEvents(response.data);
+        setTotalPages(Math.ceil(response.total / 6));
+        setIsLoading(false);
+      } catch (error) {
+        console.log("error");
+        setIsLoading(false);
+      }
+    };
+    if (breakpoint === "desktop") fetchEvents();
+    if (breakpoint !== "mobile") fetchEvents();
+    fetchEvents();
+  }, [currentPage, breakpoint]);
+
+  //TODOS LOS EVENTOS
+  useEffect(() => {
+    const fetchEventsAll = async () => {
+      try {
+        const eventData = await getAllEvents();
+        setEvents(eventData.data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
     };
 
-    try {
-      getEvents();
-    } catch (error) {
-      console.log("error");
-      setIsLoading(false);
+    if (breakpoint === "mobile") {
+      fetchEventsAll();
     }
-  }, []);
+  }, [breakpoint]);
+
+  const handlePagination = (newPage) => {
+    router.push(`/eventos/?page=${newPage}`);
+  };
 
   return (
     <>
       {isLoading && <Loading />}
 
       {!isLoading && (
-        <section className="w-full max-w-[1200px] xxl:max-w-[1500px] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xxl:grid-cols-4  gap-[1.5rem] mb-[4rem]">
-          {events.length &&
-            events.map((eventDate) => (
-              <Card key={eventDate.id} eventDate={eventDate} />
-            ))}
-        </section>
+        <>
+          <section className="w-full max-w-[1200px] xxl:max-w-[1500px] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xxl:grid-cols-4  gap-[1.5rem] mb-[4rem] lg:mb-0">
+            {events.length &&
+              events.map((eventDate) => (
+                <Card
+                  key={eventDate.id}
+                  eventDate={eventDate}
+                  setTotalPages={setTotalPages}
+                />
+              ))}
+          </section>
+          <section className="lg:flex lg:max-w-[80%] lg:mx-auto items-center justify-center lg:mt-[1rem] lg:mb-[4rem]">
+            {breakpoint === "desktop" && (
+              <Pagination
+                handlePagination={handlePagination}
+                currentPage={currentPage}
+                totalPages={totalPages}
+              />
+            )}
+          </section>
+        </>
       )}
     </>
   );

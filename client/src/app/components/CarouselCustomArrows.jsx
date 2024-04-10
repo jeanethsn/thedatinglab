@@ -91,7 +91,7 @@ export default function CarouselCustomArrows() {
               alt="image 3"
               width={500}
               height={300}
-              className=" w-full object-cover rounded-xl h-[14rem] sm:h-[20rem] lg:h-[12rem] xl:h-[14rem] ol:h-[15rem]  2xl:!h-[15rem] xxxl:!h-[20rem]"
+              className=" w-full object-cover rounded-xl h-[14rem] sm:h-[20rem] lg:h-[12rem] xl:h-[14rem] ol:!h-[14rem]  2xl:!h-[15rem] xxxl:!h-[20rem]"
             />
             <div className=" bg-[#eeebee] absolute bottom-0 px-[1rem] py-[0.2rem] rounded-tr-lg sm:px-[3rem]">
               <p className="text-primary-color text-[0.8rem] font-semibold sm:text-[1rem] xxl:text-[1.2rem]">

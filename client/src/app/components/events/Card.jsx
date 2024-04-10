@@ -17,7 +17,7 @@ export default function Card({ eventDate }) {
   const handler = () => setOpen(!open);
 
   return (
-    <div className="max-w-[22rem] min-w-[18rem] w-[25rem] sm:min-w-[12rem] flex flex-col items-center flex-wrap mx-auto">
+    <div className="max-w-[22rem] min-w-[18rem] w-[25rem]  sm:w-full sm:min-w-[12rem] flex flex-col items-center flex-wrap mx-auto">
       <div
         className="w-full min-h-[12rem] small:h-[14rem] sm:!h-[12rem] md:!h-[14rem] lg:!h-[12rem] ol:!h-[15rem] rounded-md shadow-md"
         style={{
@@ -32,7 +32,7 @@ export default function Card({ eventDate }) {
         </p>
       </div>
       <div
-        className="bg-white rounded-md relative bottom-[2rem] w-[90%] h-[13rem] md:h-[14rem] ol:h-[18rem] py-[1rem] px-[0.8rem] shadow-lg ol:px-[1.5rem] ol:py-[2rem]"
+        className="bg-white rounded-md relative bottom-[2rem] w-[90%] h-[12rem] md:h-[14rem] ol:h-[18rem] py-[1rem] px-[0.8rem] shadow-lg ol:px-[1.5rem] ol:py-[2rem]"
         style={{
           boxShadow:
             "rgba(50, 50, 93, 0.25) 0px 13px 27px -5px; rgba(0, 0, 0, 0.3) 0px 8px 16px -8px",
@@ -52,13 +52,13 @@ export default function Card({ eventDate }) {
             overflow: "hidden",
           }}
         >
-          rem {eventDate.title}
+          {eventDate.title}
         </h2>
         <p
           className="text-[0.8rem] ol:text-[1rem]"
           style={{
             display: "-webkit-box",
-            WebkitLineClamp: 3,
+            WebkitLineClamp: 2,
             WebkitBoxOrient: "vertical",
             overflow: "hidden",
           }}
@@ -73,11 +73,19 @@ export default function Card({ eventDate }) {
             height={15}
             alt="icono de localizacion"
           />
-          <p className="break-words text-[1rem] font-bold">
+          <p
+            className="break-words text-[1rem] font-bold"
+            style={{
+              display: "-webkit-box",
+              WebkitLineClamp: 1,
+              WebkitBoxOrient: "vertical",
+              overflow: "hidden",
+            }}
+          >
             {eventDate.location}
           </p>
         </div>
-        <div className="w-[92%] absolute bottom-[2rem] left-1/2  transform -translate-x-1/2 ">
+        <div className="w-[92%] absolute bottom-[1rem] left-1/2  transform -translate-x-1/2 ">
           <Button
             color="primary"
             children="Ver más"

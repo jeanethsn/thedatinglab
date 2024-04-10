@@ -10,6 +10,7 @@ import InputPassword from "@/app/components/InputPassword.jsx";
 import InputText from "@/app/components/InputText.jsx";
 import { Checkbox } from "@material-tailwind/react";
 import ModalSucess from "@/app/components/modal/ModalSuccess";
+import { useRouter } from "next/navigation";
 
 const getErrors = (errorsObject) => {
   const arrayOfErrors = Object.keys(errorsObject);
@@ -57,6 +58,7 @@ export default function RegistroContent({
 
   const [errorRegister, setErrorRegister] = useState({});
   const [isSubmiting, setIsSubmiting] = useState(false);
+  const router = useRouter();
 
   const { handleUserLogin } = useUser();
 
@@ -68,6 +70,7 @@ export default function RegistroContent({
       localStorage.setItem("user", JSON.stringify(response.data));
       setFormRegisterSuccess(true);
       setIsSubmiting(false);
+      router.push("/test-de-compatibilidad");
     } catch (error) {
       setErrorRegister(error?.response?.data?.validation_errors);
       setIsSubmiting(false);

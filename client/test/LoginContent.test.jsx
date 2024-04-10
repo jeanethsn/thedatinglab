@@ -3,9 +3,6 @@ import { render, fireEvent, waitFor, getByText, getByRole } from "@testing-libra
 import LoginContent from "../src/app/components/modal/LoginContent.jsx";
 import { UserService } from "../src/app/services/user";
 import { useState } from "react";
-import Button from "@/app/components/Button.jsx";
-import InputPassword from "@/app/components/InputPassword.jsx";
-import InputText from "@/app/components/InputText.jsx";
 import { useForm } from "react-hook-form";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";

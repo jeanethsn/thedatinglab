@@ -6,6 +6,9 @@ import { useRouter } from "next/navigation";
 import { useUser } from "@/app/providers/UserProvider";
 import { authHeader, createProfile } from "@/app/services/user";
 
+const ROUTES = {
+  MY_ACCOUNT: "/mi-cuenta",
+};
 export default function CreateForm() {
   const router = useRouter();
   const { user } = useUser();
@@ -30,7 +33,7 @@ export default function CreateForm() {
       console.log({ formData });
       const response = await createProfile(formData);
       const profileId = response?.data?.profile_id;
-      router.push(`/mi-cuenta/?id=${profileId}`);
+      window.location.href = `${ROUTES.MY_ACCOUNT}/?id=${profileId}`;
     } catch (error) {
       if (error.response && error.response.status === 422) {
         setErrors(error.response.data.validation_errors);

@@ -7,16 +7,23 @@ import { useUser } from "@/app/providers/UserProvider";
 import { CardFooter, Typography } from "@material-tailwind/react";
 import { UserService } from "@/app/services/user";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import InputPassword from "@/app/components/InputPassword.jsx";
 import InputText from "@/app/components/InputText.jsx";
+import { toastMessage } from "@/app/components/Toast.jsx";
 const REGEX_EMAIL = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
 
 const validationSchema = Yup.object().shape({
-  email: Yup.string().required("El campo email es requerido").matches(REGEX_EMAIL, "El email es inválido"),
+  email: Yup.string()
+    .required("El campo email es requerido")
+    .matches(REGEX_EMAIL, "El email es inválido"),
   password: Yup.string().required("La contraseña es requerida"),
 });
 
-export default function LoginContent({ handleCloseModalAuth, handleOpenRegister }) {
+export default function LoginContent({
+  handleCloseModalAuth,
+  handleOpenRegister,
+}) {
   const {
     register,
     handleSubmit,
@@ -24,7 +31,7 @@ export default function LoginContent({ handleCloseModalAuth, handleOpenRegister 
   } = useForm({ resolver: yupResolver(validationSchema) });
 
   const [errorLogin, setErrorLogin] = useState({});
-
+  const router = useRouter();
   const { handleUserLogin } = useUser();
 
   const onSubmit = async (data) => {
@@ -33,6 +40,24 @@ export default function LoginContent({ handleCloseModalAuth, handleOpenRegister 
       const response = await UserService.getLogin(data);
       localStorage.setItem("user", JSON.stringify(response.data));
       handleUserLogin(response?.data?.user);
+
+      if (!response.data.user.preference_id) {
+        toastMessage({
+          title: "Importante",
+          text: "Necesitas completar al 100% el test de compatabilidad.",
+          icon: "",
+        });
+        return router.push("/test-de-compatibilidad");
+      }
+
+      if (!response.data.user.profile_id) {
+        toastMessage({
+          title: "Importante",
+          text: "Necesitas crear tu perfil para tener acceso a más beneficios.",
+          icon: "",
+        });
+        return router.push("/mi-cuenta/crear-perfil");
+      }
 
       handleCloseModalAuth();
     } catch (error) {
@@ -63,7 +88,9 @@ export default function LoginContent({ handleCloseModalAuth, handleOpenRegister 
             labelText="Email"
             errorText={errors?.email?.message}
             className={`${
-              !errors?.email ? "focus:!border-t-[#212121]" : "focus:!border-t-deep-orange-800"
+              !errors?.email
+                ? "focus:!border-t-[#212121]"
+                : "focus:!border-t-deep-orange-800"
             } focus:border-[3px]`}
           />
         </div>
@@ -75,13 +102,19 @@ export default function LoginContent({ handleCloseModalAuth, handleOpenRegister 
             labelText="Contraseña"
             errorText={errors?.password?.message}
             className={`${
-              !errors?.password ? "focus:!border-t-[#212121]" : "focus:!border-t-deep-orange-800"
+              !errors?.password
+                ? "focus:!border-t-[#212121]"
+                : "focus:!border-t-deep-orange-800"
             } focus:border-[3px]`}
           />
         </div>
 
         {/* Error cuando las credenciales no existen o coinciden con la bd */}
-        {errorLogin?.response?.data?.msg && <span className="text-red-600">{errorLogin?.response?.data?.msg}</span>}
+        {errorLogin?.response?.data?.msg && (
+          <span className="text-red-600">
+            {errorLogin?.response?.data?.msg}
+          </span>
+        )}
         <Typography
           as="a"
           href="#signup"
@@ -96,7 +129,8 @@ export default function LoginContent({ handleCloseModalAuth, handleOpenRegister 
           children="Iniciar sesión"
           className=" text-white text-[0.9rem] py-[0.3rem] font-semibold lg:mt-[1.4rem] lg:py-[0.5rem] lg:rounded-bl-3xl lg:rounded-tr-3xl xl:text-[1rem]"
           style={{
-            transition: "background 0.3s, border 0.3s, border-radius .3s, box-shadow .3s, transform .3s, .4s",
+            transition:
+              "background 0.3s, border 0.3s, border-radius .3s, box-shadow .3s, transform .3s, .4s",
           }}
           id="login-submit-button"
         />

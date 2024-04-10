@@ -53,6 +53,10 @@ const validationSchema = Yup.object().shape({
   ),
 });
 
+const ROUTES = {
+  CREATE_PROFILE: "/mi-cuenta/crear-perfil",
+};
+
 const PreferencesForm = () => {
   const [currentQuestion, setCurrentQuestion] = useState(14);
   const [openModal, setOpenModal] = useState(false);
@@ -60,7 +64,7 @@ const PreferencesForm = () => {
 
   const handlerModal = () => {
     setOpenModal(!openModal);
-    router.push("/");
+    router.push(ROUTES.CREATE_PROFILE);
   };
 
   const totalQuestions = 15;

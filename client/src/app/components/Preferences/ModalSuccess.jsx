@@ -9,7 +9,6 @@ import {
 } from "@material-tailwind/react";
 
 export default function ModalSuccess({ open, handlerModal }) {
-  console.log({ openModal: open, handlerModal });
   return (
     <>
       <Dialog open={open} handler={handlerModal}>

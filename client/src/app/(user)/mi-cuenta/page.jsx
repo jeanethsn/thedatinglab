@@ -7,8 +7,7 @@ import { getProfileById } from "@/app/services/user";
 import { useEffect, useState } from "react";
 import { Loading } from "@/app/components/events/CardList";
 import { useUser } from "@/app/providers/UserProvider";
-
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, useRouter } from "next/navigation";
 
 import withAuthentication from "@/app/components/hoc/withAuthentication";
 
@@ -17,7 +16,9 @@ function ProfilePage() {
   const handleButtonClick = (element) => {
     setCurrentElement(element);
   };
+
   const searchParams = useSearchParams();
+  // const router = useRouter();
   const profileId = searchParams.get("id");
 
   const { combineUserDataAndProfile } = useUser();
@@ -34,6 +35,7 @@ function ProfilePage() {
           const userData = await getProfileById(profileId);
           setUserInfo(userData);
           combineUserDataAndProfile(userData);
+          // router.refresh();
           setIsLoading(false);
         } else {
           setError(true); // Manejar el caso en que profileId sea undefined
@@ -43,7 +45,6 @@ function ProfilePage() {
         setError(true);
       }
     };
-
     fetchUser();
   }, [profileId]);
 

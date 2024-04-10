@@ -1,5 +1,4 @@
 import { useState, useContext, createContext, useEffect } from "react";
-
 const UserContext = createContext({
   user: {},
   isAdmin: false,
@@ -7,11 +6,18 @@ const UserContext = createContext({
 });
 
 export const useUser = () => useContext(UserContext);
-
+const HOME_ROUTE = "/";
 export default function UserProvider({ children }) {
-  const [user, setUser] = useState({});
-  const [isAdmin, setIsAdmin] = useState(false);
+  const loggedUser = JSON.parse(localStorage.getItem("user"));
+  const [user, setUser] = useState(loggedUser?.user || {});
+  const [isAdmin, setIsAdmin] = useState(loggedUser?.user?.isAdmin || false);
   const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    if (loggedUser) {
+      setIsLoading(false);
+    }
+  }, [loggedUser]);
 
   const handleUserLogout = () => {
     localStorage.removeItem("user");
@@ -26,29 +32,18 @@ export default function UserProvider({ children }) {
 
   const combineUserDataAndProfile = (data) => {
     const { user, token } = JSON.parse(localStorage.getItem("user"));
-
-    // Objeto con la data fusionada entre el user y el profile
-
     const userDataAndProfile = {
       token,
       user: {
         ...user,
         ...data.profile.user,
-        profileImage: data.profile.image,
+        profile_image: data.profile.image,
       },
     };
 
+    setUser({ ...userDataAndProfile.user });
     localStorage.setItem("user", JSON.stringify(userDataAndProfile));
   };
-
-  useEffect(() => {
-    const loggedUser = JSON.parse(localStorage.getItem("user"));
-    if (loggedUser?.user?.email) {
-      setUser(loggedUser.user);
-      setIsAdmin(loggedUser.user.isAdmin); // Set isAdmin state based on user data
-    }
-    setIsLoading(false);
-  }, []);
 
   return (
     <UserContext.Provider

@@ -6,14 +6,13 @@ import { getEventById } from "@/app/services/event.js";
 import Statement from "@/app/components/Statement.jsx";
 import Button from "@/app/components/Button";
 import { formatearFecha, horaFormato } from "@/app/utils/date.js";
-import { useUser } from "@/app/providers/UserProvider";
 import { Loading } from "@/app/components/events/CardList";
 
 function page() {
   const params = useParams();
   const [event, setEvent] = useState([]);
   const [error, setError] = useState(false);
-  const { user } = useUser();
+
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(true);
 
@@ -40,7 +39,7 @@ function page() {
         {error ? (
           <div className="flex flex-col items-center justify-center py-[6rem] px-[2rem] xxl:py-[11rem]">
             <Image
-              src={"/assets/image/error.svg"}
+              src="/assets/image/error.svg"
               alt="imagen de error"
               width={300}
               height={350}
@@ -76,7 +75,7 @@ function page() {
                   <div
                     className=" rounded-md flex justify-center items-center w-full h-[18rem] shadow-lg  md:basis-[50%] md:h-[25rem] ol:basis-[60%] ol:h-[30rem]"
                     style={{
-                      backgroundImage: `url(http://localhost:8000/storage/${event.image})`,
+                      backgroundImage: `url(http://127.0.0.1:8000/storage/${event.image})`,
                       backgroundSize: "cover",
                       backgroundPosition: "center",
                     }}

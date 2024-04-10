@@ -1,15 +1,18 @@
 /** @type {import('next').NextConfig} */
+
 const nextConfig = {
   env: {
     API_URL: "http://localhost:8000/api",
   },
+
   images: {
+  
     remotePatterns: [
       {
         protocol: "http",
-        hostname: "localhost",
+        hostname: "127.0.0.1",
         port: "8000",
-        pathname: "/**/**",
+        pathname: "/storage/**",
       },
       {
         protocol: "https",

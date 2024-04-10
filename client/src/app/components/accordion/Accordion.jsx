@@ -1,8 +1,7 @@
 "use client";
 import React, { useState } from "react";
 
-
- export default function Accordion(){
+export default function Accordion() {
   const [activeSections, setActiveSections] = useState({});
 
   const handleQuestionClick = (sectionIndex, questionIndex) => {
@@ -17,15 +16,15 @@ import React, { useState } from "react";
 
   const sections = [
     {
-      title: 'Servicios',
+      title: "Servicios",
       content: [
         {
-          question: '¿Qué es Dating Lab?',
+          question: "¿Qué es Dating Lab?",
           answer:
             'The Dating Lab es una plataforma diferente que prioriza la conexión entre las personas. Ofreciendo una experiencia única para que los usuarios conozcan a otras personas de una manera diferente y divertida en la vida real. Nuestro objetivo es generar espacios y ambientes seguros que propicien la generación de conexiones entre personas reales.  A través de nuestra plataforma, los usuarios pueden reservar un espacio en nuestras experiencias, conocer 3 personas compatibles - o como diríamos en lenguaje dating posibles matches ;) - y disfrutar de una experiencia diferente.',
         },
         {
-          question: '¿Cómo funciona Dating Lab?',
+          question: "¿Cómo funciona Dating Lab?",
           answer:
             'Funciona mediante un formulario de compatibilidad que los usuarios deben completar, previo registro en nuestra plataforma. Después deberás seleccionar la o las actividades  en las que quieras participar, inscribirte,  esperar el envío de link de compra, y, posteriormente realizar el pago.   Queremos que tu experiencia en DatingLab sea la mejor, por eso intentamos que en nuestros eventos haya el mayor número de personas compatibles posibles. Además nuestra plataforma te mostrará perfiles de personas reales con un 70% o más de compatibilidad, con las que podrás coincidir y disfrutar en los eventos en los que te inscribas.',
             
@@ -54,7 +53,7 @@ import React, { useState } from "react";
       ],
     },
     {
-      title: 'Experiencias',
+      title: "Experiencias",
       content: [
         {
           question: '¿Qué son y cómo funcionan las experiencias de DatingLab?',
@@ -81,22 +80,22 @@ import React, { useState } from "react";
           ),
         },
         {
-          question: '¿Cómo puedo asistir a una experiencia?',
+          question: "¿Cómo puedo asistir a una experiencia?",
           answer:
             'Para asistir a una experiencia, debes inscribirte en la experiencia que más te guste, esperar el link de comprar y  elabonar el costo correspondiente. Luego, recibirás información detallada sobre el evento.',
         },
         {
-          question: '¿Dónde se realizan las experiencias?',
+          question: "¿Dónde se realizan las experiencias?",
           answer:
-            'La ubicación de las experiencias puede variar dentro de Barcelona, así que asegúrate de revisar la información proporcionada en la página principal o la invitación al evento.',
+            "La ubicación de las experiencias puede variar dentro de Barcelona, así que asegúrate de revisar la información proporcionada en la página principal o la invitación al evento.",
         },
       ],
     },
     {
-      title: 'Pagos y contacto',
+      title: "Pagos y contacto",
       content: [
         {
-          question: '¿Qué métodos de pago aceptan para las experiencias?',
+          question: "¿Qué métodos de pago aceptan para las experiencias?",
           answer:
             'Una vez que te hayas inscrito a la experiencia, post análisis del perfil, recibirás un enlace para realizar el pago de la experiencia. Una vez abonado recibirás la información del evento. Para cancelaciones se  deberá comunicar con al menos 72 horas de antelación a través del correo electrónico  datinglab.experiences@gmail.com.',
         },
@@ -114,16 +113,16 @@ import React, { useState } from "react";
       ],
     },
     {
-      title: 'Requisitos de seguridad',
+      title: "Requisitos de seguridad",
       content: [
         {
           question:
-            '¿Por qué se solicita información sobre alergias para asistir a las experiencias?',
+            "¿Por qué se solicita información sobre alergias para asistir a las experiencias?",
           answer:
-            'Solicitamos información sobre alergias para garantizar la seguridad de todos los asistentes a nuestros eventos. Algunas experiencias pueden incluir alimentos y bebidas, por lo que es importante conocer las alergias de los participantes.',
+            "Solicitamos información sobre alergias para garantizar la seguridad de todos los asistentes a nuestros eventos. Algunas experiencias pueden incluir alimentos y bebidas, por lo que es importante conocer las alergias de los participantes.",
         },
         {
-          question: '¿Cómo se manejarán mis datos personales en Dating Lab?',
+          question: "¿Cómo se manejarán mis datos personales en Dating Lab?",
           answer:
             'La privacidad y seguridad de tus datos son una prioridad para nosotros. No compartimos información personal a los participantes. Durante la experiencia, queda a tu criterio descubrir a los demás y compartir lo que desees. Puedes consultar nuestra política de privacidad para obtener más información sobre cómo manejamos tus datos.Es posible cambiar las respuestas de tu test de compatibilidad solicitando un cambio al mail datinglab.experiences@gmail.com.',
             
@@ -164,28 +163,34 @@ import React, { useState } from "react";
   ];
 
   return (
-    <div className="container mx-auto px-4 mb-16">
-      <h1 className="text-3xl font-bold text-center mb-4  text-red-400 mt-20">Preguntas Frecuentes </h1>
-      <h2 className="text-xl text-center mb-8  text-red-300 ">
+    <div className="container mx-auto px-4  mb-24 lg:px-16 ol:px-28 ol:mt-[10rem]">
+      <h1 className="text-3xl font-bold text-center mb-4  text-red-400 mt-20 ol:text-[3rem]">
+        Preguntas Frecuentes{" "}
+      </h1>
+      <h2 className="text-xl text-center text-red-300 mb-28 ol:text-[1.5rem]">
         Aqui algunas preguntas frecuentes que nos hacen a menudo nuestros
         usuarios
       </h2>
       {sections.map((section, sectionIndex) => (
         <div
           key={section.title}
-          className="section border-t-0 border-gray-200 pb-4 "
+          className="section border-t-0 border-gray-200 pb-8 "
         >
-          <h3 className="flex justify-center text-2xl cursor-pointer mb-2 ease-in-out text-red-900 my-8 font-bold">{section.title}</h3>
+          <h3 className="flex justify-center text-2xl cursor-pointer mb-4 ease-in-out text-red-900 my-8 font-bold ol:mb-10 ol:text-[2rem]">
+            {section.title}
+          </h3>
           <ul>
             {section.content.map((item, questionIndex) => (
               <li
                 key={item.question}
-                className="cursor-pointer hover:bg-gray-100 transition-all duration-300 rounded  border-2 border-red-200 bg-red-50 my-2"
+                className="cursor-pointer hover:bg-gray-100 transition-all duration-300 rounded  border-2 border-red-200 bg-red-50 my-2 lg:py-[0.5rem]"
                 onClick={() => handleQuestionClick(sectionIndex, questionIndex)}
               >
-                <h4 className="p-4 text-xl text-red-400 font-bold">{item.question}</h4>
+                <h4 className="p-4 text-xl text-red-400 font-bold ol:!text-[1.4rem] ol:px-8">
+                  {item.question}
+                </h4>
                 {activeSections[sectionIndex] === questionIndex && (
-                  <p className="text-lg p-5">{item.answer}</p>
+                  <p className="text-lg p-8">{item.answer}</p>
                 )}
               </li>
             ))}
@@ -194,7 +199,4 @@ import React, { useState } from "react";
       ))}
     </div>
   );
-};
-
-
-
+}

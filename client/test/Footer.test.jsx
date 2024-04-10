@@ -11,9 +11,9 @@ describe("Footer", () => {
     const spotifyLink = screen.getByAltText("Icono spotify").parentElement;
     const instagramLink = screen.getByAltText("Icono insta").parentElement;
     const whatsappLink = screen.getByAltText("Icono whastsapp").parentElement;
-    const linkedinLink = screen.getByAltText("Icono Linkedin").parentElement;
+    const linkedinLink = screen.getByAltText("Icono LinkedIn").parentElement;
 
-    expect(tiktokLink.getAttribute("href")).toBe("https://www.tiktok.com/");
+    expect(tiktokLink.getAttribute("href")).toBe("https://www.tiktok.com/@datinglabexperiences");
     expect(spotifyLink.getAttribute("href")).toBe(
       "https://open.spotify.com/playlist/4xkbM6RFRfVFfEAA8eyH9S?si=375431bb005a4de4"
     );

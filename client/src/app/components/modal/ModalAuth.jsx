@@ -7,12 +7,14 @@ import styles from "./styles.module.css";
 import Image from "next/image";
 import Button from "@/app/components/Button.jsx";
 import { useUser } from "@/app/providers/UserProvider";
+import { useRouter } from "next/navigation";
 
 export default function ModalAuth({ renderButtonModal }) {
   const { user } = useUser();
   const [openModalAuth, setOpenModalAuth] = useState(false);
   const [shouldRenderRegister, setShouldRenderRegister] = useState(false);
   const [formRegisterSuccess, setFormRegisterSuccess] = useState(false);
+  const router = useRouter();
 
   const handleOpenModalAuth = () => {
     setFormRegisterSuccess(false);
@@ -30,7 +32,10 @@ export default function ModalAuth({ renderButtonModal }) {
 
   const handleCloseRegister = () => setShouldRenderRegister(false);
 
-  const handler = () => setOpenModalAuth(!openModalAuth);
+  const handler = () => {
+    setOpenModalAuth(!openModalAuth);
+    router.push("/test-de-compatibilidad");
+  };
   return (
     <>
       {!user.email && renderButtonModal(handleOpenModalAuth)}
@@ -85,6 +90,7 @@ export default function ModalAuth({ renderButtonModal }) {
                 handleCloseRegister={handleCloseRegister}
                 formRegisterSuccess={formRegisterSuccess}
                 setFormRegisterSuccess={setFormRegisterSuccess}
+                handler={handler}
               />
             )}
           </CardBody>
@@ -103,9 +109,19 @@ export default function ModalAuth({ renderButtonModal }) {
               className="!py-0 !w-auto hidden absolute right-[1.5rem] top-[1.2rem] lg:block"
               onClick={handleCloseModalAuth}
             >
-              <Image src={"/assets/icon/icon-closeB.svg"} width={20} height={20} alt="icono cerrar" />
+              <Image
+                src={"/assets/icon/icon-closeB.svg"}
+                width={20}
+                height={20}
+                alt="icono cerrar"
+              />
             </Button>
-            <Image src={"/assets/image/Logo_Blanco.svg"} width={250} height={200} alt="icono cerrar" />
+            <Image
+              src={"/assets/image/Logo_Blanco.svg"}
+              width={250}
+              height={200}
+              alt="icono cerrar"
+            />
             <p className="text-white font-nunito text-[1.2rem] leading-[1.4rem]">
               La app de citas donde<br></br> no existe el swipe
             </p>

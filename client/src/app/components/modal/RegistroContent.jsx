@@ -70,7 +70,6 @@ export default function RegistroContent({
       localStorage.setItem("user", JSON.stringify(response.data));
       setFormRegisterSuccess(true);
       setIsSubmiting(false);
-      router.push("/test-de-compatibilidad");
     } catch (error) {
       setErrorRegister(error?.response?.data?.validation_errors);
       setIsSubmiting(false);
@@ -80,6 +79,7 @@ export default function RegistroContent({
   const handleCloseSuccess = () => {
     setIsSubmiting(false);
     handleCloseModalAuth();
+    router.push("/test-de-compatibilidad");
   };
 
   return (

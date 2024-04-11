@@ -10,6 +10,7 @@ import { useState } from "react";
 import InputPassword from "@/app/components/InputPassword.jsx";
 import InputText from "@/app/components/InputText.jsx";
 import { Checkbox } from "@material-tailwind/react";
+import { useRouter } from "next/navigation";
 
 const getErrors = (errorsObject) => {
   const arrayOfErrors = Object.keys(errorsObject);
@@ -50,6 +51,7 @@ export default function AuthenticatorRegister() {
     formState: { errors },
   } = useForm({ mode: "onBlur", resolver: yupResolver(validationSchema) });
 
+  const router = useRouter();
   const [errorRegister, setErrorRegister] = useState({});
   const [isSubmiting, setIsSubmiting] = useState(false);
   const [formRegisterSuccess, setFormRegisterSuccess] = useState(false);
@@ -68,6 +70,7 @@ export default function AuthenticatorRegister() {
         text: "Bienvenido(a) a DatingLab 🧡",
         icon: "/assets/image/icon-sucessfull.svg",
       });
+      router.push("/test-de-compatibilidad");
       setIsSubmiting(false);
     } catch (error) {
       setErrorRegister(error?.response?.data?.validation_errors);

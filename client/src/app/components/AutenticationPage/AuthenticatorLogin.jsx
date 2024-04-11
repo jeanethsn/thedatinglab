@@ -7,6 +7,7 @@ import { useUser } from "@/app/providers/UserProvider";
 import { Typography } from "@material-tailwind/react";
 import { UserService } from "@/app/services/user";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import InputPassword from "@/app/components/InputPassword.jsx";
 import InputText from "@/app/components/InputText.jsx";
 const REGEX_EMAIL = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
@@ -18,13 +19,14 @@ const validationSchema = Yup.object().shape({
   password: Yup.string().required("La contraseña es requerida"),
 });
 
-export default function AuthenticatorLogin({ handleCloseModalAuth }) {
+export default function AuthenticatorLogin() {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm({ resolver: yupResolver(validationSchema) });
 
+  const router = useRouter();
   const [errorLogin, setErrorLogin] = useState({});
 
   const { handleUserLogin } = useUser();
@@ -34,9 +36,29 @@ export default function AuthenticatorLogin({ handleCloseModalAuth }) {
     try {
       const response = await UserService.getLogin(data);
       localStorage.setItem("user", JSON.stringify(response.data));
-      handleUserLogin(response?.data?.user);
+      await handleUserLogin(response?.data?.user);
 
-      handleCloseModalAuth();
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+
+      if (!response?.data?.user?.preference_id) {
+        toastMessage({
+          title: "Importante",
+          text: "Necesitas completar al 100% el test de compatabilidad.",
+          icon: "",
+        });
+        await router.push("/test-de-compatibilidad");
+        return;
+      }
+
+      if (!response?.data?.user?.profile_id) {
+        toastMessage({
+          title: "Importante",
+          text: "Necesitas crear tu perfil para tener acceso a más beneficios.",
+          icon: "",
+        });
+        await router.push("/mi-cuenta/crear-perfil");
+        return;
+      }
     } catch (error) {
       setErrorLogin(error);
     }

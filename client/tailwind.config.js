@@ -12,8 +12,7 @@ module.exports = withMT({
     extend: {
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+        "gradient-conic": "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
     },
     colors: {
@@ -31,15 +30,19 @@ module.exports = withMT({
       pink: "#EED6D9",
       "pink-peach": "#E27A8C",
       "white-text": "#FFFFFF",
+      "pink-grey-bg": "#EDE8EC",
     },
     fontFamily: {
       nunito: ["var(--font-nunito)"],
       madi: ["var(--font-madi)"],
     },
     screens: {
+      small: "400px",
       lg: "930px",
       ol: "1400px",
+      xl: "1200px",
       xxl: "1600px",
+      xxxl: "1900px",
     },
   },
   plugins: [],

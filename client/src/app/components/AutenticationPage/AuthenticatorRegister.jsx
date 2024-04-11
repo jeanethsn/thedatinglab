@@ -1,5 +1,6 @@
 "use client";
 import { useForm } from "react-hook-form";
+import { toastMessage } from "@/app/components/Toast.jsx";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useUser } from "@/app/providers/UserProvider";
@@ -9,7 +10,6 @@ import { useState } from "react";
 import InputPassword from "@/app/components/InputPassword.jsx";
 import InputText from "@/app/components/InputText.jsx";
 import { Checkbox } from "@material-tailwind/react";
-import ModalSucess from "@/app/components/modal/ModalSuccess";
 import { useRouter } from "next/navigation";
 
 const getErrors = (errorsObject) => {
@@ -44,21 +44,17 @@ const validationSchema = Yup.object().shape({
     .oneOf([true], "Debe confirmar si es mayor de edad"),
 });
 
-export default function RegistroContent({
-  handleCloseRegister,
-  handleCloseModalAuth,
-  setFormRegisterSuccess,
-  formRegisterSuccess,
-}) {
+export default function AuthenticatorRegister() {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm({ mode: "onBlur", resolver: yupResolver(validationSchema) });
 
+  const router = useRouter();
   const [errorRegister, setErrorRegister] = useState({});
   const [isSubmiting, setIsSubmiting] = useState(false);
-  const router = useRouter();
+  const [formRegisterSuccess, setFormRegisterSuccess] = useState(false);
 
   const { handleUserLogin } = useUser();
 
@@ -69,6 +65,12 @@ export default function RegistroContent({
       handleUserLogin(response?.data?.user);
       localStorage.setItem("user", JSON.stringify(response.data));
       setFormRegisterSuccess(true);
+      toastMessage({
+        title: "¡Registro exitoso!",
+        text: "Bienvenido(a) a DatingLab 🧡",
+        icon: "/assets/image/icon-sucessfull.svg",
+      });
+      router.push("/test-de-compatibilidad");
       setIsSubmiting(false);
     } catch (error) {
       setErrorRegister(error?.response?.data?.validation_errors);
@@ -76,29 +78,11 @@ export default function RegistroContent({
     }
   };
 
-  const handleCloseSuccess = () => {
-    setIsSubmiting(false);
-    handleCloseModalAuth();
-    router.push("/test-de-compatibilidad");
-  };
-
   return (
     <>
-      {formRegisterSuccess && (
-        <ModalSucess
-          src="/assets/icon/modal-icon-successfull.svg"
-          title="¡Cuenta creada correctamente!"
-          text=" Empieza a disfrutar en Dating lab"
-          handleCloseSuccess={handleCloseSuccess}
-        />
-      )}
-
       {!formRegisterSuccess && (
         <>
-          <h2 className="text-primary-color text-center leading-[1.8rem] font-nunito font-bold text-[1.6rem] mt-[0.8rem] lg:text-[1.8rem] lg:mt-[1rem]">
-            Bienvenido
-          </h2>
-          <h3 className="leading-[1rem] mb-[0.8rem] text-[#333333] font-nunito font-semibold text-[1.2rem]">
+          <h3 className="pt-[1.2rem] leading-[1rem] mb-[0.8rem] text-[#333333] font-nunito font-semibold text-[1.2rem] ol:text-[1.5rem] ol:mb-[2rem]">
             Únete a Dating Lab
           </h3>
           <form onSubmit={handleSubmit(onSubmit)}>
@@ -238,16 +222,6 @@ export default function RegistroContent({
             >
               Confirmar
             </Button>
-
-            <span className="mt-4 flex text-[0.85rem] gap-[0.5rem] lg:justify-start lg:text-[1rem]">
-              ¿Ya tienes cuenta?{" "}
-              <Button
-                onClick={handleCloseRegister}
-                className="!py-0 !w-auto !rounded-none !mt-0 font-bold cursor-pointer text-[0.85rem] text-primary-color lg:text-[1rem]"
-              >
-                Iniciar sesión
-              </Button>
-            </span>
           </form>
         </>
       )}

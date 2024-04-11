@@ -2,9 +2,9 @@ import Image from "next/image";
 
 export default function StepsInfo() {
   return (
-    <div className="xl:flex xl:relative xl:w-full ol:max-w-[1440px] xxxl:max-w-[1600px] xxxl:h-full">
-      <div className="flex flex-col justify-center items-center max-w-[20rem] sm:max-w-[30rem] lg:max-w-[50rem] lg:basis-[60%] xl:py-[4rem] ol:py-[2rem] xxxl:max-w-[50rem] xxxl:justify-center">
-        <h1 className="font-bold text-white text-[2.2rem] mb-[2rem] sm:mb-[2rem] lg:mt-[2rem] xl:text-[2.2rem] ol:mb-[3rem] ol:mt-[4rem] 2xl:!mt-0 xxxl:text-[2.8rem] xxxl:!mt-[4rem]">
+    <div className="lg:flex lg:items-center xl:relative xl:w-full lg:h-full ol:max-w-[1440px] xxxl:max-w-[1600px] xxxl:mx-auto xxxl:h-full">
+      <div className="flex flex-col justify-center items-center max-w-[20rem] sm:max-w-[30rem] lg:max-w-[80rem] xl:max-w-[35rem] 2xl:!basis-[60%] xl:py-[4rem] ol:py-[2rem] ol:max-w-[50rem] xxxl:max-w-[50rem] xxxl:justify-center">
+        <h1 className="font-bold text-white text-[2.2rem] mb-[2rem] sm:mb-[2rem] lg:mt-[3rem] xl:text-[2.2rem] ol:mb-[3rem] ol:mt-[4rem] xxxl:text-[2.8rem] xxxl:!mt-[4rem]">
           ¿Como Funciona?
         </h1>
         <div className="relative">
@@ -32,7 +32,7 @@ export default function StepsInfo() {
             height={60}
             src={"/assets/image/enlace-arrow1.svg"}
             alt="icono flecha"
-            className="h-auto absolute top-2 right-[-0.5rem] sm:w-[4.2rem] sm:top-[2rem] sm:right-[-1rem] lg:right-[4rem] lg:w-[5rem] xl:top-[-0.2rem] xl:right-[5rem] ol:w-[5rem] ol:right-[1rem] ol:top-[1rem] xxl:w-[6rem]  2xl:right-[2rem] 2xl:!top-[-1rem] 2xl:!rotate-[6deg]"
+            className="h-auto absolute top-[1rem] right-[-0.5rem] sm:w-[4.2rem] sm:top-[2rem] sm:right-[-1rem] lg:right-[4rem] lg:top-[-1rem] lg:w-[5rem] transform lg:rotate-[6deg] xl:top-[-0.2rem] xl:right-[2rem] ol:w-[5rem] ol:right-[1rem] ol:top-[1rem] xxl:w-[6rem]  2xl:right-[2rem] 2xl:!top-[-1rem] 2xl:!rotate-[6deg]"
           />
         </div>
         <div className="relative sm:w-full">
@@ -59,7 +59,7 @@ export default function StepsInfo() {
             height={60}
             src={"/assets/image/enlace-arrow2.svg"}
             alt="icono de flecha"
-            className="transform rotate-[339deg] h-auto absolute top-[5rem] left-[-1rem] sm:w-[7rem] sm:top-[3rem] sm:rotate-[351deg] lg:top-[1rem] lg:left-[0.5rem] lg:w-[7.5rem] lg:rotate-[9deg]  xl:top-[1rem] xl:left-[-1rem] xl:rotate-[359deg] ol:left-[0.5rem] ol:w-[8rem] 2xl:!w-[8.5rem] 2xl:top-[-0.5rem] 2xl:rotate-[20deg] 2xl:!left-[4rem]"
+            className="transform rotate-[339deg] h-auto absolute top-[5rem] left-[-1rem] sm:w-[7rem] sm:top-[2rem] sm:rotate-[351deg] lg:top-[0.2rem] lg:left-[0.5rem] lg:w-[7.5rem] lg:rotate-[22deg]  xl:top-[1rem] xl:left-[-1rem] xl:rotate-[352deg] ol:!left-[5rem] ol:w-[8rem] ol:!top-[-0.5rem] ol:!rotate-[20deg] 2xl:!w-[7.5rem] 2xl:top-[1rem] 2xl:rotate-[360deg] 2xl:!left-[1rem]"
           />
         </div>
         <div className="flex gap-[1rem] mb-[1rem] items-center justify-start sm:items-center lg:pb-[1rem] ol:mb-[2rem] ol:pb-0">
@@ -95,10 +95,9 @@ export default function StepsInfo() {
               </h3>
               <p className="text-[0.9rem] text-[#f1cfcf] font-light sm:text-[1rem] sm:mt-[0.5rem] lg:text-[1rem] ol:text-[1.1rem] xxxl:text-[1.2rem]">
                 Al final de la experiencia recibirás un cuestionario de conexión
-                experimentada para que 48 horas después de la realización del
-                evento recibas el contacto de las personas con las que haya
-                habido un nivel de conexión similar, para que podáis seguir
-                explorando conjuntamente.
+                y 48 horas después del evento recibas el contacto de las
+                personas con las que haya habido un nivel de conexión, para que
+                podáis seguir explorando.
               </p>
             </div>
           </div>
@@ -107,7 +106,7 @@ export default function StepsInfo() {
             height={50}
             src={"/assets/image/enlace-arrow3.svg"}
             alt="icono de flecha"
-            className="transform scale-x-[-1] rotate-[358deg] h-auto absolute top-[-2rem] left-[-1rem] sm:w-[4rem] sm:top-[-1rem] lg:top-[-3rem] lg:rotate-[330deg] lg:left-0 lg:w-[5rem] xl:w-[5rem] xl:top-[-4rem] xl:left-[-1rem] ol:left-[-0.5rem] ol:w-[6rem]"
+            className="transform scale-x-[-1] rotate-[358deg] h-auto absolute top-[-2.5rem] left-[-1rem] sm:w-[4rem] sm:top-[-1rem] lg:top-[-3rem] lg:rotate-[330deg] lg:left-0 lg:w-[5rem] xl:w-[5rem] xl:top-[-4rem] xl:left-[-2.5rem] ol:left-[-2rem] ol:w-[5rem] ol:rotate-[330deg]"
           />
         </div>
       </div>
@@ -117,7 +116,7 @@ export default function StepsInfo() {
           height={500}
           src={"/assets/image/imagen-steps.png"}
           alt="pareja sonriente"
-          className="w-[45rem] xl:absolute xl:w-[50rem] xl:bottom-0 h-auto xxxl:w-[58rem]"
+          className="w-[45rem] xl:absolute xl:w-[45rem] xl:bottom-0 h-auto xxxl:w-[58rem]"
         />
       </div>
     </div>

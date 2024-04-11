@@ -14,21 +14,21 @@ export default function Hero() {
           alt="enamorados felices"
           width={500}
           height={500}
-          className="lg:w-[32rem] lg:bottom-0 lg:absolute lg:left-[-4rem] xl:w-[38rem] xl:left-[-2rem] 2xl:w-[45rem] 2xl:bottom-[-7rem] 2xl:left-[-1rem] xxxl:w-[52rem] xxxl:left-[4rem]"
+          className="lg:w-[35rem] lg:bottom-[-2rem] lg:absolute lg:left-[-4rem] xl:w-[38rem] xl:left-[-2rem] 2xl:w-[42rem] 2xl:bottom-[-7rem] 2xl:left-[-1rem] xxxl:w-[50rem] xxxl:left-[4rem]"
         />
       </div>
       <div className="w-[20rem] max-w-[33rem] mx-auto bg-white rounded-lg flex flex-col justify-center items-center  px-[2.5rem] py-[3rem] text-center shadow-lg shadow-gray-600/40  sm:w-[30rem] sm:px-[3rem]  sm:py-[3.2rem]  lg:basis-[50%] lg:mx-0 lg:rounded-none lg:shadow-none lg:bg-inherit xl:px-[2rem] xxxl:max-w-[45rem]">
         {!user?.email ? (
           <>
-            <h1 className="font-bold text-[1.5rem] leading-[1.6rem] sm:text-[2rem] sm:leading-[2.2rem] xl:text-[3rem] xl:leading-[3.2rem] xxxl:text-[4rem] xxxl:leading-[4.2rem]">
+            <h1 className="font-bold text-[1.5rem] leading-[1.6rem] sm:text-[2rem] sm:leading-[2.2rem] xl:text-[3rem] xl:leading-[3.2rem] xxxl:text-[3.8rem] xxxl:leading-[4.2rem]">
               Donde los sentidos encuentran el{" "}
               <span className="font-madi text-primary-color  text-[2.2rem] sm:text-[2.8rem] xl:text-[3.8rem] xxxl:text-[4.4rem]">
                 Amor
               </span>
             </h1>
             <p className="text-start pt-[0.5rem] text-[0.8rem] font-semibold leading-[1.1rem] sm:text-[1.1rem] sm:leading-[1.4rem] sm:pt-[1rem] xl:text-[1.2rem] xl:leading-[1.6rem] xxxl:w-[80%]">
-              Creemos en la compatibilidad emocional como la base de relaciones
-              solidas
+              Experimenta la esencia de las conexiones auténticas y reales a
+              través de los sentidos y en un entorno de citas seguro.
             </p>
             <ModalAuth
               renderButtonModal={(handleOpenModalAuth) => (
@@ -36,7 +36,7 @@ export default function Hero() {
                   color="primary"
                   onClick={handleOpenModalAuth}
                   children="¿Te apuntas?"
-                  className="!mb-0 sm:text-[1.1rem] text-white text-[1rem] py-[0.5rem] font-semibold lg:mt-[1.4rem] lg:py-[0.5rem] lg:rounded-bl-3xl lg:rounded-tr-3xl xl:text-[1.2rem] xxxl:w-[90%]"
+                  className="!mb-0 sm:text-[1.1rem] text-white text-[1rem] py-[0.5rem] font-semibold lg:mt-[1.4rem] lg:py-[0.5rem] lg:rounded-bl-3xl lg:rounded-tr-3xl xl:text-[1.2rem] xxxl:w-[85%] xxxl:mx-auto"
                   style={{
                     transition:
                       "background 0.3s, border 0.3s, border-radius .3s, box-shadow .3s, transform .3s, .4s",

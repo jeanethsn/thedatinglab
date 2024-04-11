@@ -1,14 +1,18 @@
-"use client"
-import { useState } from "react";
+"use client";
+import { useEffect, useState } from "react";
 import { Typography, Input, Textarea } from "@material-tailwind/react";
 import Button from "../Button";
 import { useRouter } from "next/navigation";
 import { useUser } from "@/app/providers/UserProvider";
 import { authHeader, createProfile } from "@/app/services/user";
+import { toastMessage } from "@/app/components/Toast";
 
+const ROUTES = {
+  MY_ACCOUNT: "/mi-cuenta",
+};
 export default function CreateForm() {
   const router = useRouter();
-  const { user } = useUser();
+  const { user, updateUserData } = useUser();
   const [formData, setFormData] = useState({
     image: null,
     description: "",
@@ -16,19 +20,30 @@ export default function CreateForm() {
   });
   const [errors, setErrors] = useState({});
 
+  useEffect(() => {
+    if (user.profile_id) router.push("/mi-cuenta");
+  }, []);
+
   const handleChange = (e) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.type === "file" ? e.target.files[0] : e.target.value,
+      [e.target.name]:
+        e.target.type === "file" ? e.target.files[0] : e.target.value,
     });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const headers = authHeader();
-      const response = await createProfile(formData, headers);
-      router.push(`/mi-cuenta/${user.id}/`);
+      const response = await createProfile(formData);
+      const profileId = response?.data?.profile_id;
+      await updateUserData(profileId);
+      toastMessage({
+        title: "¡Correcto!",
+        text: "❤️Tu perfil se ha creado correctamente",
+        icon: "/assets/icon/icon-userlogged.svg",
+      });
+      window.location.href = `${ROUTES.MY_ACCOUNT}`;
     } catch (error) {
       if (error.response && error.response.status === 422) {
         setErrors(error.response.data.validation_errors);
@@ -56,7 +71,9 @@ export default function CreateForm() {
             onChange={handleChange}
           />
           {errors && errors.image && (
-            <p className="text-red-600 text-[0.8rem] md:text-[0.9rem]">{errors.image[0]}</p>
+            <p className="text-red-600 text-[0.8rem] md:text-[0.9rem]">
+              {errors.image[0]}
+            </p>
           )}
         </div>
         <div className="mb-4">
@@ -69,7 +86,9 @@ export default function CreateForm() {
             onChange={handleChange}
           />
           {errors && errors.description && (
-            <p className="text-red-600 text-[0.8rem] md:text-[0.9rem]">{errors.description[0]}</p>
+            <p className="text-red-600 text-[0.8rem] md:text-[0.9rem]">
+              {errors.description[0]}
+            </p>
           )}
         </div>
         <div className="mb-4">
@@ -82,7 +101,9 @@ export default function CreateForm() {
             onChange={handleChange}
           />
           {errors && errors.vitalMoment && (
-            <p className="text-red-600 text-[0.8rem] md:text-[0.9rem]">{errors.vitalMoment[0]}</p>
+            <p className="text-red-600 text-[0.8rem] md:text-[0.9rem]">
+              {errors.vitalMoment[0]}
+            </p>
           )}
         </div>
         <Button

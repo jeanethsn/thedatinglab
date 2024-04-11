@@ -1,11 +1,11 @@
 /* Compatibility test */
 "use client";
 
-import { createPreferences } from "../services/preferencesService";
+import { createPreferences } from "../../services/preferencesService";
 import Button from "@/app/components/Button.jsx";
 import { useState, useEffect } from "react";
 import { Input } from "@material-tailwind/react";
-import questions from "../utils/questions";
+import questions from "../../utils/questions-old.js";
 import * as Yup from "yup";
 import Link from "next/link";
 import { toast } from "react-hot-toast";
@@ -13,13 +13,17 @@ import { toast } from "react-hot-toast";
 const validationSchema = Yup.object().shape({
   birthdate: Yup.date()
     .required("La fecha de nacimiento es obligatoria")
-    .test("is-adult", "Tienes que ser mayor de 18 años para ingresar.", function (value) {
-      if (!value) return false;
-      const birthdate = new Date(value);
-      const today = new Date();
-      const age = today.getFullYear() - birthdate.getFullYear();
-      return age >= 18;
-    }),
+    .test(
+      "is-adult",
+      "Tienes que ser mayor de 18 años para ingresar.",
+      function (value) {
+        if (!value) return false;
+        const birthdate = new Date(value);
+        const today = new Date();
+        const age = today.getFullYear() - birthdate.getFullYear();
+        return age >= 18;
+      }
+    ),
   gender: Yup.string().required("El género es obligatorio"),
   looksFor: Yup.string().required("Este campo es obligatorio"),
   ageRange: Yup.string().required("El rango de edad es obligatorio"),
@@ -32,7 +36,9 @@ const validationSchema = Yup.object().shape({
   values3: Yup.string().required("Tienes que marcar una opción"),
   prefers1: Yup.string().required("Tienes que marcar una preferencia"),
   prefers2: Yup.string().required("Tienes que marcar una preferencia"),
-  rrss: Yup.string().required('Si prefieres no dejar tu Instagram pon simplemente "no" 😉'),
+  rrss: Yup.string().required(
+    'Si prefieres no dejar tu Instagram pon simplemente "no" 😉'
+  ),
 });
 
 const PreferencesForm = () => {
@@ -75,7 +81,10 @@ const PreferencesForm = () => {
       setFormErrors((prevErrors) => ({ ...prevErrors, [name]: "" }));
     } catch (error) {
       if (error instanceof Yup.ValidationError) {
-        setFormErrors((prevErrors) => ({ ...prevErrors, [name]: error.message }));
+        setFormErrors((prevErrors) => ({
+          ...prevErrors,
+          [name]: error.message,
+        }));
         if (e.target.type === "radio") {
           setAdvancedToNext(true);
         }
@@ -91,7 +100,10 @@ const PreferencesForm = () => {
       setFormErrors((prevErrors) => ({ ...prevErrors, [fieldName]: "" }));
     } catch (error) {
       if (error instanceof Yup.ValidationError) {
-        setFormErrors((prevErrors) => ({ ...prevErrors, [fieldName]: error.message }));
+        setFormErrors((prevErrors) => ({
+          ...prevErrors,
+          [fieldName]: error.message,
+        }));
       }
     }
   };
@@ -158,7 +170,10 @@ const PreferencesForm = () => {
         setFormErrors((prevErrors) => ({ ...prevErrors, [fieldName]: "" }));
       } catch (error) {
         if (error instanceof Yup.ValidationError) {
-          setFormErrors((prevErrors) => ({ ...prevErrors, [fieldName]: error.message }));
+          setFormErrors((prevErrors) => ({
+            ...prevErrors,
+            [fieldName]: error.message,
+          }));
           toast.error(error.message, {
             style: {
               fontSize: "1rem",
@@ -194,7 +209,9 @@ const PreferencesForm = () => {
       // Renderizar input de fecha
       return (
         <div className="mb-[1rem] md:w-[20rem]">
-          <label className="mb-6 text-[#545454] font-nunito font-bold text-[1rem] leading-snug">{question.text}</label>
+          <label className="mb-6 text-[#545454] font-nunito font-bold text-[1rem] leading-snug">
+            {question.text}
+          </label>
           <Input
             type="date"
             name={question.number}
@@ -208,7 +225,9 @@ const PreferencesForm = () => {
             }
           />
           {formErrors[question.number] && (
-            <p className=" mt-1 text-red-600 text-[0.8rem] md:text-[0.9rem]">{formErrors[question.number]}</p>
+            <p className=" mt-1 text-red-600 text-[0.8rem] md:text-[0.9rem]">
+              {formErrors[question.number]}
+            </p>
           )}
         </div>
       );
@@ -216,7 +235,9 @@ const PreferencesForm = () => {
       // Renderizar input de texto
       return (
         <div className="mb-[1rem] md:w-[20rem]">
-          <label className="mb-6 text-[#545454] font-nunito font-bold text-[1rem] leading-snug">{question.text}</label>
+          <label className="mb-6 text-[#545454] font-nunito font-bold text-[1rem] leading-snug">
+            {question.text}
+          </label>
           <Input
             type="text"
             name={question.number}
@@ -231,7 +252,9 @@ const PreferencesForm = () => {
             }
           />
           {formErrors[question.number] && (
-            <p className=" mt-1 text-red-600 text-[0.8rem] md:text-[0.9rem]">{formErrors[question.number]}</p>
+            <p className=" mt-1 text-red-600 text-[0.8rem] md:text-[0.9rem]">
+              {formErrors[question.number]}
+            </p>
           )}
         </div>
       );
@@ -239,7 +262,9 @@ const PreferencesForm = () => {
       // Renderizar otras preguntas con opciones
       return (
         <div className="mb-[1rem]">
-          <label className="pb-6 text-[#545454] font-nunito font-bold text-[1rem] leading-snug">{question.text}</label>
+          <label className="pb-6 text-[#545454] font-nunito font-bold text-[1rem] leading-snug">
+            {question.text}
+          </label>
           {hasMoreThanFiveOptions ? (
             <div className="mt-4 flex flex-wrap gap-2">
               {/* Estilo para más de 6 opciones */}
@@ -247,14 +272,22 @@ const PreferencesForm = () => {
                 <button
                   key={index}
                   className={`flex align-center relative select-none items-center whitespace-nowrap rounded-full border border-grey-ligth py-1.5 px-3 text-base transition-colors ${
-                    selectedOption === option.value ? "text-white bg-grey-dark border-grey-dark" : ""
+                    selectedOption === option.value
+                      ? "text-white bg-grey-dark border-grey-dark"
+                      : ""
                   }`}
                   onClick={() => {
-                    handleChange({ target: { name: question.number, value: option.value } });
+                    handleChange({
+                      target: { name: question.number, value: option.value },
+                    });
                     setSelectedOption(option.value);
                   }}
-                  onMouseEnter={(e) => e.target.classList.add("hover:border-grey-dark")}
-                  onMouseLeave={(e) => e.target.classList.remove("hover:border-grey-dark")}
+                  onMouseEnter={(e) =>
+                    e.target.classList.add("hover:border-grey-dark")
+                  }
+                  onMouseLeave={(e) =>
+                    e.target.classList.remove("hover:border-grey-dark")
+                  }
                 >
                   {selectedOption === option.value && (
                     <span>
@@ -265,7 +298,12 @@ const PreferencesForm = () => {
                         viewBox="0 0 24 24"
                         stroke="currentColor"
                       >
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M5 13l4 4L19 7"
+                        />
                       </svg>
                     </span>
                   )}
@@ -280,9 +318,16 @@ const PreferencesForm = () => {
                 <div
                   role="button"
                   className="flex items-center w-full p-0 leading-tight transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900"
-                  onClick={() => document.getElementById(`vertical-list-react-${index}`).click()}
+                  onClick={() =>
+                    document
+                      .getElementById(`vertical-list-react-${index}`)
+                      .click()
+                  }
                 >
-                  <label htmlFor="vertical-list-react" className="flex items-center w-full px-3 py-2 cursor-pointer">
+                  <label
+                    htmlFor="vertical-list-react"
+                    className="flex items-center w-full px-3 py-2 cursor-pointer"
+                  >
                     <div className="grid mr-3 place-items-center">
                       <div className="inline-flex items-center">
                         <label
@@ -306,7 +351,12 @@ const PreferencesForm = () => {
                               viewBox="0 0 16 16"
                               fill="currentColor"
                             >
-                              <circle data-name="ellipse" cx="8" cy="8" r="8"></circle>
+                              <circle
+                                data-name="ellipse"
+                                cx="8"
+                                cy="8"
+                                r="8"
+                              ></circle>
                             </svg>
                           </span>
                         </label>
@@ -321,7 +371,9 @@ const PreferencesForm = () => {
             ))
           )}
           {advancedToNext && formErrors[question.number] && (
-            <p className="mt-1 text-red-600 text-[0.8rem] md:text-[0.9rem]">{formErrors[question.number]}</p>
+            <p className="mt-1 text-red-600 text-[0.8rem] md:text-[0.9rem]">
+              {formErrors[question.number]}
+            </p>
           )}
         </div>
       );
@@ -343,7 +395,8 @@ const PreferencesForm = () => {
               href="/mi-cuenta"
               className="flex justify-center text-white text-[0.9rem] font-semibold  lg:rounded-bl-3xl lg:rounded-tr-3xl xl:text-[1rem] text-center"
               style={{
-                transition: "background 0.3s, border 0.3s, border-radius .3s, box-shadow .3s, transform .3s, .4s",
+                transition:
+                  "background 0.3s, border 0.3s, border-radius .3s, box-shadow .3s, transform .3s, .4s",
               }}
             >
               Ir a Mi Cuenta
@@ -386,7 +439,9 @@ const PreferencesForm = () => {
               <Button
                 color="primary"
                 onClick={handleNext}
-                disabled={currentQuestion === totalQuestions - 1 || !formData.birthdate}
+                disabled={
+                  currentQuestion === totalQuestions - 1 || !formData.birthdate
+                }
                 className={`disabled:opacity-80 disabled:bg-gray-300 disabled:text-gray-700 disabled:cursor-not-allowed rounded-bl-2xl rounded-tr-2xl hover:rounded-full bg-pink-strong false text-white text-[0.9rem] font-semibold mt-[1rem] py-[0.5rem] rounded-bl-3xl rounded-tr-3xl text-[1rem] max-w-[130px] `}
               >
                 Siguiente
@@ -400,7 +455,8 @@ const PreferencesForm = () => {
                 children="Enviar"
                 className="text-white text-[0.9rem] py-[0.3rem] font-semibold lg:mt-[1.4rem] py-[0.5rem] rounded-bl-3xl lrounded-tr-3xl text-[1rem] mb-[1rem]"
                 style={{
-                  transition: "background 0.3s, border 0.3s, border-radius .3s, box-shadow .3s, transform .3s, .4s",
+                  transition:
+                    "background 0.3s, border 0.3s, border-radius .3s, box-shadow .3s, transform .3s, .4s",
                 }}
               >
                 Enviar

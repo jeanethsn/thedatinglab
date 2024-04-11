@@ -1,8 +1,12 @@
 const questions = [
-  { type: "birthdate", title: "Introduce tu fecha de nacimiento", options: [] },
   {
-    type: "gender",
-    title: "¿Con qué género te identificas?",
+    number: "birthdate",
+    text: "Introduce tu fecha de nacimiento",
+    options: [],
+  },
+  {
+    number: "gender",
+    text: "¿Con qué género te identificas?",
     options: [
       { value: "mujer", label: "Mujer" },
       { value: "hombre", label: "Hombre" },
@@ -10,8 +14,8 @@ const questions = [
     ],
   },
   {
-    type: "looksFor",
-    title: "Estoy interesada/o en conocer a...",
+    number: "looksFor",
+    text: "Estoy interesada/o en conocer a...",
     options: [
       { value: "mujer", label: "Mujer" },
       { value: "hombre", label: "Hombre" },
@@ -20,8 +24,8 @@ const questions = [
     ],
   },
   {
-    type: "ageRange",
-    title: "Rango de edad deseado:",
+    number: "ageRange",
+    text: "Rango de edad deseado:",
     options: [
       { value: "20-30", label: "De 20 a 30 años" },
       { value: "25-35", label: "De 25 a 35 años" },
@@ -30,8 +34,8 @@ const questions = [
     ],
   },
   {
-    type: "sexoAffective",
-    title: "¿Qué tipo de relación sexo afectiva te gustaría tener?",
+    number: "sexoAffective",
+    text: "¿Qué tipo de relación sexo afectiva te gustaría tener?",
     options: [
       { value: "monogama", label: "Una relación monógama" },
       { value: "explorar", label: "Una relación monógama en la que explorar" },
@@ -45,8 +49,8 @@ const questions = [
     ],
   },
   {
-    type: "heartState",
-    title: "¿En qué estado se encuentra tu corazón?",
+    number: "heartState",
+    text: "¿En qué estado se encuentra tu corazón?",
     options: [
       {
         value: "maduro",
@@ -67,16 +71,16 @@ const questions = [
     ],
   },
   {
-    type: "hasChildren",
-    title: "¿Tienes hijos?",
+    number: "hasChildren",
+    text: "¿Tienes hijos?",
     options: [
       { value: "si", label: "Sí" },
       { value: "no", label: "No" },
     ],
   },
   {
-    type: "datesParents",
-    title: "¿Saldrías con alguien que tiene hijos?",
+    number: "datesParents",
+    text: "¿Saldrías con alguien que tiene hijos?",
     options: [
       { value: "si", label: "Sí" },
       { value: "no", label: "No" },
@@ -84,8 +88,8 @@ const questions = [
     ],
   },
   {
-    type: "values1",
-    title: "Indica un valor importante para ti:",
+    number: "values1",
+    text: "Indica un valor importante para ti:",
     options: [
       { value: "amabilidad", label: "Amabilidad" },
       { value: "amistad", label: "Amistad" },
@@ -99,8 +103,8 @@ const questions = [
     ],
   },
   {
-    type: "values2",
-    title: "Indica un valor importante para ti:",
+    number: "values2",
+    text: "Indica un valor importante para ti:",
     options: [
       { value: "diversion", label: "Diversión" },
       { value: "empatia", label: "Empatía" },
@@ -112,8 +116,8 @@ const questions = [
     ],
   },
   {
-    type: "values3",
-    title: "Indica un valor importante para ti:",
+    number: "values3",
+    text: "Indica un valor importante para ti:",
     options: [
       { value: "lealtad", label: "Lealtad" },
       { value: "libertad", label: "Libertad" },
@@ -128,8 +132,8 @@ const questions = [
     ],
   },
   {
-    type: "prefers1",
-    title: "Eres más de...",
+    number: "prefers1",
+    text: "Eres más de...",
     options: [
       { value: "netflix", label: "Netflix y mi sofá" },
       { value: "eventos", label: "Eventos, restaurantes, copeo" },
@@ -139,8 +143,8 @@ const questions = [
     ],
   },
   {
-    type: "prefers2",
-    title: "Eres más de...",
+    number: "prefers2",
+    text: "Eres más de...",
     options: [
       {
         value: "vino",
@@ -153,8 +157,8 @@ const questions = [
     ],
   },
   {
-    type: "catsDogs",
-    title: "Eres más de...",
+    number: "catsDogs",
+    text: "Eres más de...",
     options: [
       { value: "gato", label: "Gato" },
       { value: "perro", label: "Perro" },
@@ -163,8 +167,8 @@ const questions = [
     ],
   },
   {
-    type: "rrss",
-    title: "¿Podrías indicar tu perfil de Instagram?",
+    number: "rrss",
+    text: "¿Podrías indicar tu perfil de Instagram?",
     options: [],
   },
 ];

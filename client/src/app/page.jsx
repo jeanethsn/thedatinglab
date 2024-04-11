@@ -43,7 +43,7 @@ export default function Home() {
         </section>
         <section
           id="sectionStepsInfo"
-          className="bg-[#E94444] px-[2rem] py-[4rem] flex flex-col justify-center items-center lg:pb-0 lg:pt-[1rem] lg:px-[8rem] lg:h-[50rem] lg:flex-none lg:overflow-hidden xl:h-[50rem] xl:px-[4rem]  ol:pt-0 ol:px-[4rem] ol:h-[46rem] 2xl:!h-[50rem] xxl:pt-[6rem] xxxl:!h-[60rem] xxxl:pt-0 xxxl:px-0"
+          className="bg-[#E94444] px-[2rem] py-[4rem] flex flex-col justify-center items-center lg:pb-0 lg:pt-[1rem] lg:px-[8rem] lg:h-[50rem] lg:block lg:overflow-hidden xl:h-[50rem] xl:px-[4rem]  ol:pt-0 ol:px-[4rem] ol:h-[46rem] 2xl:!h-[50rem] xxl:pt-[6rem] xxxl:!h-[60rem] xxxl:pt-0 xxxl:px-0"
         >
           <StepsInfo />
         </section>

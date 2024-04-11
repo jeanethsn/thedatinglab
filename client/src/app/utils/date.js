@@ -1,10 +1,3 @@
-/* 
-EJEMPLO:
-    const fechaOriginal = "2024-06-02";
-    const fechaFormateada = formatearFecha(fechaOriginal); 
-    console.log(fechaFormateada); // Output: DOM 2 Junio
- */
-
 export function formatearFecha(fechaOriginal) {
   // Parsear la fecha
   const fechaParseada = new Date(fechaOriginal);
@@ -48,6 +41,12 @@ export function isPastEvent(fechaOriginal) {
 
   return false;
 }
+
+export const sortEventDataByDate = (data) => {
+  return data.sort((a, b) => {
+    return new Date(b.date) - new Date(a.date);
+  });
+};
 
 export function horaFormato(timeOriginal) {
   const timeSplit = timeOriginal.split(":");

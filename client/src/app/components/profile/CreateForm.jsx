@@ -1,10 +1,11 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Typography, Input, Textarea } from "@material-tailwind/react";
 import Button from "../Button";
 import { useRouter } from "next/navigation";
 import { useUser } from "@/app/providers/UserProvider";
 import { authHeader, createProfile } from "@/app/services/user";
+import { toastMessage } from "@/app/components/Toast";
 
 const ROUTES = {
   MY_ACCOUNT: "/mi-cuenta",
@@ -19,6 +20,10 @@ export default function CreateForm() {
   });
   const [errors, setErrors] = useState({});
 
+  useEffect(() => {
+    if (user.profile_id) router.push("/mi-cuenta");
+  }, []);
+
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -32,8 +37,12 @@ export default function CreateForm() {
     try {
       const response = await createProfile(formData);
       const profileId = response?.data?.profile_id;
-      updateUserData(profileId);
-      console.log({ response });
+      await updateUserData(profileId);
+      toastMessage({
+        title: "¡Correcto!",
+        text: "❤️Tu perfil se ha creado correctamente",
+        icon: "/assets/icon/icon-userlogged.svg",
+      });
       window.location.href = `${ROUTES.MY_ACCOUNT}`;
     } catch (error) {
       if (error.response && error.response.status === 422) {

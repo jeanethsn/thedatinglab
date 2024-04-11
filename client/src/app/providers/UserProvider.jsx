@@ -21,20 +21,20 @@ export default function UserProvider({ children }) {
     }
   }, [loggedUser]);
 
-  // useEffect(() => {
-  //   const callProfile = async () => {
-  //     return await getProfileById(profileId);
-  //   };
+  useEffect(() => {
+    const callProfile = async () => {
+      const response = await getProfileById(profileId);
+      combineUserDataAndProfile(response);
+    };
 
-  //   try {
-  //     if (loggedUser.profile_id) {
-  //       const response = callProfile();
-  //       combineUserDataAndProfile(response);
-  //     }
-  //   } catch (error) {
-  //     console.log("algo ha ido mal", error);
-  //   }
-  // }, [loggedUser]);
+    try {
+      if (loggedUser.profile_id) {
+        callProfile();
+      }
+    } catch (error) {
+      console.log("algo ha ido mal", error);
+    }
+  }, [loggedUser]);
 
   const handleUserLogout = () => {
     localStorage.removeItem("user");
@@ -43,6 +43,7 @@ export default function UserProvider({ children }) {
   };
 
   const handleUserLogin = (data) => {
+    console.log({ data });
     setUser(data);
     setIsAdmin(data.isAdmin); // Set isAdmin state based on user data
   };
@@ -63,7 +64,17 @@ export default function UserProvider({ children }) {
   };
 
   const updateUserData = (profileID) => {
-    setUser({ ...user, profile_id: profileID });
+    const { user, token } = JSON.parse(localStorage.getItem("user"));
+    const userDataAndProfile = {
+      token,
+      user: {
+        ...user,
+        profile_id: profileID,
+      },
+    };
+    setUser({ ...userDataAndProfile.user });
+
+    localStorage.setItem("user", JSON.stringify(userDataAndProfile));
   };
 
   return (

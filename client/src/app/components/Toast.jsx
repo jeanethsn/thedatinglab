@@ -35,7 +35,7 @@ export const toastMessage = ({ title, text, icon, type = "success" }) => {
       <div className="flex-1 w-0 p-4">
         <div className="flex items-start">
           <div className="flex-shrink-0 pt-0.5">
-            <img className="h-10 w-10 rounded-full" src={icon} alt="" />
+            <img className="h-8 w-8 " src={icon} alt="" />
           </div>
           <div className="ml-3 flex-1">
             <p className={TEXT_STYLE[type]["title"]}>{title}</p>

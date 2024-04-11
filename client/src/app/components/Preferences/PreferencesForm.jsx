@@ -11,6 +11,7 @@ import * as Yup from "yup";
 import differenceInYears from "date-fns/differenceInYears";
 import ModalSuccess from "./ModalSuccess";
 import { useRouter } from "next/navigation";
+import { useUser } from "@/app/providers/UserProvider";
 
 const validationSchema = Yup.object().shape({
   birthdate: Yup.date()
@@ -61,6 +62,11 @@ const PreferencesForm = () => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [openModal, setOpenModal] = useState(false);
   const router = useRouter();
+  const { user } = useUser();
+
+  useEffect(() => {
+    if (user.preference_id) router.push("/mi-cuenta");
+  }, []);
 
   const handlerModal = () => {
     setOpenModal(!openModal);

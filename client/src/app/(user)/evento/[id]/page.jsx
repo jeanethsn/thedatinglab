@@ -45,7 +45,7 @@ function Page() {
         toastMessage({
           title: "¡Confirmado!",
           text: "❤️Te has apuntado anteriormente a este evento. ¡Nos vemos allí!",
-          icon: "",
+          icon: "/assets/icon/events-user.svg",
         });
       }
       console.log(error.response.data.msg);

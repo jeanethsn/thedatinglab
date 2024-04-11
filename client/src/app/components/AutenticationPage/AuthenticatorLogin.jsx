@@ -37,7 +37,7 @@ export default function AuthenticatorLogin() {
     try {
       const response = await UserService.getLogin(data);
       localStorage.setItem("user", JSON.stringify(response.data));
-      await handleUserLogin(response?.data?.user);
+      handleUserLogin(response?.data?.user);
 
       const profileId =
         response?.data?.user?.profile_id && response?.data?.user?.profile_id;

@@ -8,7 +8,7 @@ export default function UserTitleProfile() {
   return (
     <div className="flex flex-col-reverse lg:flex-row gap-4 items-center justify-between pb-10">
       <section className="flex flex-col gap-2 text-red-orange">
-        <h6 className="text-base">Datos de la cuenta</h6>
+        <h6 className="text-[0.9rem] lg:text-[1.5rem]">Datos de la cuenta</h6>
         <h2 className="text-3xl font-black lg:text-6xl">
           <span className="text-grey-dark">Hola, </span>
           {user.name}

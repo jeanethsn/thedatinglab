@@ -23,7 +23,9 @@ export default function PreferenceStep(props) {
         <InputText name={props.data.type} register={props.register} />
       )}
 
-      <span className="text-red-500">{props.error?.message}</span>
+      <span className="text-red-500 text-[1rem] font-bold">
+        {props.error?.message}
+      </span>
 
       {props.preferenceButtons(props.error)}
     </>

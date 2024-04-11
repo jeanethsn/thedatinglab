@@ -12,7 +12,7 @@ export default function InputChipList({
     <div className="mt-4 flex flex-wrap gap-2">
       {data.options.map((option, index) => (
         <Controller
-          key={option.value}
+          key={`${data.type}-${option.value}`}
           name={data.type}
           control={control}
           render={(data) => {

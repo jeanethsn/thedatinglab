@@ -5,7 +5,7 @@ export default function RadioInputList({ data, register, error }) {
   return (
     <>
       {data?.options.map((option, index) => (
-        <div key={option.value} className="pt-4 mb-2">
+        <div key={`${data.type}-${option.value}`} className="pt-4 mb-2">
           <Radio
             labelProps={{
               className:

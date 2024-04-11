@@ -128,8 +128,9 @@ const PreferencesForm = () => {
         <h2 className="pb-4  text-primary-color text-center leading-[1.8rem] font-nunito font-bold text-[1.6rem] mt-[0.8rem] lg:text-[1.8rem] lg:mt-[1rem]">
           ¿Quieres conocer a tu pareja ideal?
         </h2>
-        <h3 className="pb-[1rem] text-start leading-snug mb-[0.8rem] text-[#333333] font-nunito font-semibold text-[1rem]">
-          ¡Completa este formulario para conocer a tus matches!
+        <h3 className="pb-[1rem] text-center leading-snug mb-[0.8rem] text-[#333333] font-nunito font-semibold text-[1rem] lg:w-[80%] lg:mx-auto">
+          ¡Es 100% necesario que completes totalmente este formulario para
+          conocer a tus matches!
         </h3>
         <form className="md:px-12" onSubmit={handleSubmit(onSubmit)}>
           <PreferenceStep
@@ -139,7 +140,7 @@ const PreferencesForm = () => {
             setValue={setValue}
             control={control}
             preferenceButtons={(error) => (
-              <div className="flex flex-row justify-between md:justify-start md:gap-8 gap-4 mt-[1rem]">
+              <div className="flex flex-row justify-between md:justify-start lg:items-center md:gap-8 gap-4 mt-[1rem]">
                 <Button
                   type="button"
                   color=""
@@ -155,7 +156,7 @@ const PreferencesForm = () => {
                     color="secondary"
                     type="submit"
                     children="Enviar"
-                    className="text-white text-[0.9rem] py-[0.3rem] font-semibold lg:mt-[1.4rem] py-[0.5rem] rounded-bl-3xl lrounded-tr-3xl text-[1rem] mb-[1rem]"
+                    className="text-white  py-[0.5rem] font-semibold lg:mt-[1rem] lg:max-w-[130px] rounded-bl-3xl lrounded-tr-3xl text-[1rem] mb-0"
                     style={{
                       transition:
                         "background 0.3s, border 0.3s, border-radius .3s, box-shadow .3s, transform .3s, .4s",

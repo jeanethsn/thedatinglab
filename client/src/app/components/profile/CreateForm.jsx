@@ -33,6 +33,7 @@ export default function CreateForm() {
       const response = await createProfile(formData);
       const profileId = response?.data?.profile_id;
       updateUserData(profileId);
+      console.log({ response });
       window.location.href = `${ROUTES.MY_ACCOUNT}`;
     } catch (error) {
       if (error.response && error.response.status === 422) {

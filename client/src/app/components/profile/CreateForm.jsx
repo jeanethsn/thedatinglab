@@ -11,7 +11,7 @@ const ROUTES = {
 };
 export default function CreateForm() {
   const router = useRouter();
-  const { user } = useUser();
+  const { user, updateUserData } = useUser();
   const [formData, setFormData] = useState({
     image: null,
     description: "",
@@ -30,10 +30,10 @@ export default function CreateForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      console.log({ formData });
       const response = await createProfile(formData);
       const profileId = response?.data?.profile_id;
-      window.location.href = `${ROUTES.MY_ACCOUNT}/?id=${profileId}`;
+      updateUserData(profileId);
+      window.location.href = `${ROUTES.MY_ACCOUNT}`;
     } catch (error) {
       if (error.response && error.response.status === 422) {
         setErrors(error.response.data.validation_errors);

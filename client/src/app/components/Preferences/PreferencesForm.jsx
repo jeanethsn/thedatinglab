@@ -58,7 +58,7 @@ const ROUTES = {
 };
 
 const PreferencesForm = () => {
-  const [currentQuestion, setCurrentQuestion] = useState(14);
+  const [currentQuestion, setCurrentQuestion] = useState(0);
   const [openModal, setOpenModal] = useState(false);
   const router = useRouter();
 
@@ -79,23 +79,6 @@ const PreferencesForm = () => {
   } = useForm({
     resolver: yupResolver(validationSchema),
     mode: "onChange",
-    defaultValues: {
-      rrss: "NO",
-      prefers2: "agua",
-      prefers1: "eventos",
-      values3: "humor",
-      values2: "generosidad",
-      values1: "desarrollo",
-      datesParents: "no sabe",
-      hasChildren: "no",
-      heartState: "recuperarse",
-      sexoAffective: "fluir",
-      ageRange: "35-45",
-      looksFor: "todo",
-      gender: "hombre",
-      birthdate: "1990-04-19T22:00:00.000Z",
-      catsDogs: "todos",
-    },
   });
 
   const onSubmit = async (data) => {
@@ -158,6 +141,7 @@ const PreferencesForm = () => {
             preferenceButtons={(error) => (
               <div className="flex flex-row justify-between md:justify-start md:gap-8 gap-4 mt-[1rem]">
                 <Button
+                  type="button"
                   color=""
                   onClick={handlePrevious}
                   disabled={currentQuestion === 0}

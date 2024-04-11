@@ -14,13 +14,15 @@ export default function ModalSuccess({ open, handlerModal }) {
       <Dialog open={open} handler={handlerModal}>
         <DialogHeader>
           <Typography variant="h5" color="blue-gray">
-            Your Attention is Required!
+            Has completado el test al 100%
           </Typography>
         </DialogHeader>
         <DialogBody divider className="grid place-items-center gap-4">
           <Typography className="text-center font-normal">
-            A small river named Duden flows by their place and supplies it with
-            the necessary regelialia.
+            ¡Enhorabuena! Tu registro se ha completado con éxito. Gracias por
+            unirte a nuestra comunidad. Estamos emocionados de tenerte con
+            nosotros y esperamos que disfrutes de todas las experiencias que
+            tenemos preparadas para ti.
           </Typography>
         </DialogBody>
       </Dialog>

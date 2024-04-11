@@ -7,7 +7,8 @@ import { useUser } from "@/app/providers/UserProvider";
 import { Typography } from "@material-tailwind/react";
 import { UserService } from "@/app/services/user";
 import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, redirect } from "next/navigation";
+import { toastMessage } from "../Toast";
 import InputPassword from "@/app/components/InputPassword.jsx";
 import InputText from "@/app/components/InputText.jsx";
 const REGEX_EMAIL = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
@@ -29,7 +30,7 @@ export default function AuthenticatorLogin() {
   const router = useRouter();
   const [errorLogin, setErrorLogin] = useState({});
 
-  const { handleUserLogin } = useUser();
+  const { handleUserLogin, user } = useUser();
 
   const onSubmit = async (data) => {
     setErrorLogin({});
@@ -38,25 +39,31 @@ export default function AuthenticatorLogin() {
       localStorage.setItem("user", JSON.stringify(response.data));
       await handleUserLogin(response?.data?.user);
 
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      const profileId =
+        response?.data?.user?.profile_id && response?.data?.user?.profile_id;
+      const preferenceId =
+        response?.data?.user?.preference_id &&
+        response?.data?.user?.preference_id;
 
-      if (!response?.data?.user?.preference_id) {
+      console.log({ profileId, preferenceId });
+      if (preferenceId === undefined || preferenceId === null) {
+        console.log("entro preference");
+        router.push("/test-de-compatibilidad");
         toastMessage({
           title: "Importante",
           text: "Necesitas completar al 100% el test de compatabilidad.",
           icon: "",
         });
-        await router.push("/test-de-compatibilidad");
         return;
       }
 
-      if (!response?.data?.user?.profile_id) {
+      if (!profileId) {
         toastMessage({
           title: "Importante",
           text: "Necesitas crear tu perfil para tener acceso a más beneficios.",
           icon: "",
         });
-        await router.push("/mi-cuenta/crear-perfil");
+        router.push("/mi-cuenta/crear-perfil");
         return;
       }
     } catch (error) {

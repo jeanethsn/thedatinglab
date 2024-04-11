@@ -17,11 +17,9 @@ function ProfilePage() {
     setCurrentElement(element);
   };
 
-  const searchParams = useSearchParams();
-  // const router = useRouter();
-  const profileId = searchParams.get("id");
-
-  const { combineUserDataAndProfile } = useUser();
+  const { combineUserDataAndProfile, user } = useUser();
+  const profileId = user?.profile_id && user?.profile_id;
+  const preferenceId = user?.preference_id && user?.preference_id;
 
   const [userInfo, setUserInfo] = useState(null);
   const [error, setError] = useState(false);

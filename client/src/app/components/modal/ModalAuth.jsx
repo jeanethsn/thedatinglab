@@ -38,7 +38,7 @@ export default function ModalAuth({ renderButtonModal }) {
   };
   return (
     <>
-      {!user.email && renderButtonModal(handleOpenModalAuth)}
+      {!user?.email && renderButtonModal(handleOpenModalAuth)}
 
       <Dialog
         aria-label="ModalAuth"

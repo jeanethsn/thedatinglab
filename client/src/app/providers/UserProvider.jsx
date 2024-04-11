@@ -1,4 +1,6 @@
 import { useState, useContext, createContext, useEffect } from "react";
+import { getProfileById } from "@/app/services/user";
+
 const UserContext = createContext({
   user: {},
   isAdmin: false,
@@ -18,6 +20,21 @@ export default function UserProvider({ children }) {
       setIsLoading(false);
     }
   }, [loggedUser]);
+
+  // useEffect(() => {
+  //   const callProfile = async () => {
+  //     return await getProfileById(profileId);
+  //   };
+
+  //   try {
+  //     if (loggedUser.profile_id) {
+  //       const response = callProfile();
+  //       combineUserDataAndProfile(response);
+  //     }
+  //   } catch (error) {
+  //     console.log("algo ha ido mal", error);
+  //   }
+  // }, [loggedUser]);
 
   const handleUserLogout = () => {
     localStorage.removeItem("user");
@@ -45,6 +62,10 @@ export default function UserProvider({ children }) {
     localStorage.setItem("user", JSON.stringify(userDataAndProfile));
   };
 
+  const updateUserData = (profileID) => {
+    setUser({ ...user, profile_id: profileID });
+  };
+
   return (
     <UserContext.Provider
       value={{
@@ -54,6 +75,7 @@ export default function UserProvider({ children }) {
         handleUserLogout,
         handleUserLogin,
         combineUserDataAndProfile,
+        updateUserData,
       }}
     >
       {children}

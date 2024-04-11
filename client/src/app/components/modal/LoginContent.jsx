@@ -7,14 +7,16 @@ import { useUser } from "@/app/providers/UserProvider";
 import { CardFooter, Typography } from "@material-tailwind/react";
 import { UserService } from "@/app/services/user";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import InputPassword from "@/app/components/InputPassword.jsx";
 import InputText from "@/app/components/InputText.jsx";
+import { toastMessage } from "@/app/components/Toast.jsx";
 const REGEX_EMAIL = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
 
 const validationSchema = Yup.object().shape({
   email: Yup.string()
     .required("El campo email es requerido")
-    .matches(REGEX_EMAIL, "El email es invalido"),
+    .matches(REGEX_EMAIL, "El email es inválido"),
   password: Yup.string().required("La contraseña es requerida"),
 });
 
@@ -29,7 +31,7 @@ export default function LoginContent({
   } = useForm({ resolver: yupResolver(validationSchema) });
 
   const [errorLogin, setErrorLogin] = useState({});
-
+  const router = useRouter();
   const { handleUserLogin } = useUser();
 
   const onSubmit = async (data) => {
@@ -38,6 +40,24 @@ export default function LoginContent({
       const response = await UserService.getLogin(data);
       localStorage.setItem("user", JSON.stringify(response.data));
       handleUserLogin(response?.data?.user);
+
+      if (!response.data.user.preference_id) {
+        toastMessage({
+          title: "Importante",
+          text: "Necesitas completar al 100% el test de compatabilidad.",
+          icon: "",
+        });
+        return router.push("/test-de-compatibilidad");
+      }
+
+      if (!response.data.user.profile_id) {
+        toastMessage({
+          title: "Importante",
+          text: "Necesitas crear tu perfil para tener acceso a más beneficios.",
+          icon: "",
+        });
+        return router.push("/mi-cuenta/crear-perfil");
+      }
 
       handleCloseModalAuth();
     } catch (error) {
@@ -58,7 +78,7 @@ export default function LoginContent({
           className="mt-[0.5rem] mb-[0.8rem] text-[#333333] font-nunito font-semibold text-[1.3rem]"
           variant="paragraph"
         >
-          Iniciar sesion
+          Iniciar sesión
         </Typography>
         <div className="mb-[1rem] lg:mb-[1.5rem]">
           <InputText
@@ -106,12 +126,13 @@ export default function LoginContent({
         <Button
           color="secondary"
           type="submit"
-          children=" Iniciar sesion"
+          children="Iniciar sesión"
           className=" text-white text-[0.9rem] py-[0.3rem] font-semibold lg:mt-[1.4rem] lg:py-[0.5rem] lg:rounded-bl-3xl lg:rounded-tr-3xl xl:text-[1rem]"
           style={{
             transition:
               "background 0.3s, border 0.3s, border-radius .3s, box-shadow .3s, transform .3s, .4s",
           }}
+          id="login-submit-button"
         />
 
         <CardFooter className="p-0 pt-[0.5rem] pb-[1rem]">

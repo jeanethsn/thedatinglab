@@ -76,7 +76,7 @@ export default function NavigationBar() {
         >
           <Button
             as="Link"
-            href="/preguntas"
+            href="/preguntas-frecuentes"
             className={`${
               isFaqsPage ? "text-primary-color" : ""
             } flex items-center  font-nunito`}
@@ -105,7 +105,7 @@ export default function NavigationBar() {
       <div className="lg:flex items-center hidden ">
         {user?.email && (
           <div className="lg:flex items-center lg:w-[3.5rem] lg:h-[3.5rem]">
-            <ProfileMenu userImage={user.profile_image} />
+            <ProfileMenu />
           </div>
         )}
         {
@@ -126,7 +126,7 @@ export default function NavigationBar() {
 
   return (
     <>
-      <Navbar className="sticky top-0 z-10 h-max max-w-full rounded-none px-[1.5rem] pt-[1.5rem] pb-[1rem] md:px-[2.5rem] lg:px-[4rem] lg:py-4">
+      <Navbar className="z-[50] sticky top-0  h-max max-w-full rounded-none px-[1.5rem] pt-[1.5rem] pb-[1rem] md:px-[2.5rem] lg:px-[4rem] lg:py-4">
         <div className="flex items-center justify-between text-blue-gray-900">
           <Button
             className="!py-0 !mt-0 !rounded-none  !w-[1.5rem] !max-w-[2.1rem] h-auto sm:!w-[2rem] text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
@@ -158,7 +158,7 @@ export default function NavigationBar() {
             <div className=" hidden lg:flex lg:gap-[3rem] ">{navList}</div>
           </div>
           <div className="flex items-center lg:hidden">
-            {user?.email && <ProfileMenu userImage={user.profile_image} />}
+            {user?.email && <ProfileMenu />}
 
             <ModalAuth
               renderButtonModal={(handleOpenModalAuth) => (

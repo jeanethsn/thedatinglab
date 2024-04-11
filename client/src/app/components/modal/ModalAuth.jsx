@@ -7,12 +7,14 @@ import styles from "./styles.module.css";
 import Image from "next/image";
 import Button from "@/app/components/Button.jsx";
 import { useUser } from "@/app/providers/UserProvider";
+import { useRouter } from "next/navigation";
 
 export default function ModalAuth({ renderButtonModal }) {
   const { user } = useUser();
   const [openModalAuth, setOpenModalAuth] = useState(false);
   const [shouldRenderRegister, setShouldRenderRegister] = useState(false);
   const [formRegisterSuccess, setFormRegisterSuccess] = useState(false);
+  const router = useRouter();
 
   const handleOpenModalAuth = () => {
     setFormRegisterSuccess(false);
@@ -30,12 +32,16 @@ export default function ModalAuth({ renderButtonModal }) {
 
   const handleCloseRegister = () => setShouldRenderRegister(false);
 
-  const handler = () => setOpenModalAuth(!openModalAuth);
+  const handler = () => {
+    setOpenModalAuth(!openModalAuth);
+    router.push("/test-de-compatibilidad");
+  };
   return (
     <>
-      {!user.email && renderButtonModal(handleOpenModalAuth)}
+      {!user?.email && renderButtonModal(handleOpenModalAuth)}
 
       <Dialog
+        aria-label="ModalAuth"
         size="xs"
         open={openModalAuth}
         handler={handler}
@@ -84,6 +90,7 @@ export default function ModalAuth({ renderButtonModal }) {
                 handleCloseRegister={handleCloseRegister}
                 formRegisterSuccess={formRegisterSuccess}
                 setFormRegisterSuccess={setFormRegisterSuccess}
+                handler={handler}
               />
             )}
           </CardBody>

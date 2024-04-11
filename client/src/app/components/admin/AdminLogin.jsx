@@ -49,7 +49,7 @@ export default function AdminLogin() {
         }
       };
   return (
-    <main className="p-4 w-[600px] m-auto text-center flex flex-col justify-center gap-4 my-[5%]">
+    <main className="p-4 w-[600px] m-auto  flex flex-col justify-center gap-4 my-[5%]">
       <form className="flex flex-col gap-3" onSubmit={handleSubmit(onSubmit)}>
         <Typography
           variant="h4"

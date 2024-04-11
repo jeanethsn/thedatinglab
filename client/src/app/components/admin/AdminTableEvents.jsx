@@ -114,9 +114,6 @@ export default function AdminTableEvents() {
                             <Typography variant="small" color="blue-gray" className="font-normal leading-none opacity-70">Hora</Typography>
                         </th>
                         <th className="border-b border-blue-gray-100 bg-blue-gray-50 p-4">
-                            <Typography variant="small" color="blue-gray" className="font-normal leading-none opacity-70">Editar</Typography>
-                        </th>
-                        <th className="border-b border-blue-gray-100 bg-blue-gray-50 p-4">
                             <Typography variant="small" color="blue-gray" className="font-normal leading-none opacity-70">Eliminar</Typography>
                         </th>
                     </tr>
@@ -141,12 +138,6 @@ export default function AdminTableEvents() {
                             </td>
                             <td className="p-4">
                                 <Typography variant="small" color="blue-gray" className="font-normal">{event.time}</Typography>
-                            </td>
-                            <td className="p-4">
-                                <Typography variant="small" color="blue-gray" className="font-normal">
-                                    <button>
-                                        <img src="/assets/icon/icon-edit.svg" alt="Eliminar" />
-                                    </button></Typography>
                             </td>
                             <td className="p-4">
                                 <Typography variant="small" color="blue-gray" className="font-normal">

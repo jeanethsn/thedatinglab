@@ -10,6 +10,7 @@ import { useUser } from "@/app/providers/UserProvider";
 import { useSearchParams, useRouter } from "next/navigation";
 
 import withAuthentication from "@/app/components/hoc/withAuthentication";
+import MyEvents from "@/app/components/profile/MyEvents";
 
 function ProfilePage() {
   const [currentElement, setCurrentElement] = useState("Perfil");
@@ -56,6 +57,8 @@ function ProfilePage() {
         <ProfileContent userData={userInfo} userId={user.id} />
       )}
       {currentElement === "Matches" && <MatchProfileContent />}
+      {currentElement === "Eventos" && <MyEvents />}
+
     </main>
   );
 }

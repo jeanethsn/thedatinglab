@@ -10,6 +10,7 @@ import { useUser } from "@/app/providers/UserProvider";
 import { useSearchParams, useRouter } from "next/navigation";
 
 import withAuthentication from "@/app/components/hoc/withAuthentication";
+import MyEvents from "@/app/components/profile/MyEvents";
 
 function ProfilePage() {
   const [currentElement, setCurrentElement] = useState("Perfil");
@@ -49,13 +50,15 @@ function ProfilePage() {
   if (isLoading) return <Loading />;
 
   return (
-    <main className="md:min-h-screen bg-pink-grey-bg px-[10%] lg:px-[20%] py-[4%]">
+    <main className="md:min-h-screen bg-pink-grey-bg lg:px-[20%] py-[4%]">
       <UserTitleProfile />
       <TabProfile handleButtonClick={handleButtonClick} />
       {currentElement === "Perfil" && (
         <ProfileContent userData={userInfo} userId={user.id} />
       )}
       {currentElement === "Matches" && <MatchProfileContent />}
+      {currentElement === "Eventos" && <MyEvents />}
+
     </main>
   );
 }

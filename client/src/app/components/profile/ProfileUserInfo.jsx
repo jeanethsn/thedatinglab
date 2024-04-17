@@ -2,7 +2,7 @@ export default function ProfileUserInfo({userData}) {
     const { profile } = userData;
     return (
         <>
-                <div className="mb-12">
+        <div className="lg:mb-12">
         <h3 className="lg:text-nowrap text-left text-xl font-bold text-red-orange mb-4">
           Sobre mí
         </h3>

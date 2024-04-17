@@ -34,3 +34,11 @@ export const addEvent = async (formData, headers) => {
     },
   });
 };
+
+export const getEventsbyUser = async (userId) => {
+  const response = await axios.get(`${API_URL}/event/user/${userId}`,{
+    headers: authHeader(),
+  });
+  return response.data;
+};
+

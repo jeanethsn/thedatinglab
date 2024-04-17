@@ -42,13 +42,12 @@ export default function MyEvents() {
 
             {/* {!isLoading && ( */}
             <>
-                <section className="w-full max-w-[1200px] xxl:max-w-[1200px] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[1.5rem] mb-[4rem] lg:mb-0">
+                <section className="w-full max-w-[1200px] xxl:max-w-[1200px] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[1.5rem] mb-[4rem] lg:mb-0 py-12">
                     {events.length > 0 &&
                         events.map((eventDate) => (
                             <Card key={eventDate.id} eventDate={eventDate} />
                         ))}
                 </section>
-                <section className="lg:flex lg:max-w-[80%] lg:mx-auto items-center justify-center lg:mt-[1rem] lg:mb-[4rem]"></section>
             </>
             {/* )} */}
         </>

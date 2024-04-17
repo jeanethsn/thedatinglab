@@ -50,7 +50,7 @@ function ProfilePage() {
   if (isLoading) return <Loading />;
 
   return (
-    <main className="md:min-h-screen bg-pink-grey-bg px-[10%] lg:px-[20%] py-[4%]">
+    <main className="md:min-h-screen bg-pink-grey-bg lg:px-[20%] py-[4%]">
       <UserTitleProfile />
       <TabProfile handleButtonClick={handleButtonClick} />
       {currentElement === "Perfil" && (

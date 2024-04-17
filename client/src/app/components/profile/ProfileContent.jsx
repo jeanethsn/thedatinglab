@@ -9,7 +9,7 @@ export default function ProfileContent({ userData, userId }) {
   };
 
   return (
-    <section className="flex flex-col lg:w-full m-auto py-12 gap-12">
+    <section className="flex flex-col lg:w-full m-auto py-12 gap-4 px-[10%] lg:px-0 lg:gap-8">
       <ProfileUserInfo userData={userData} />
       <Button
         color="primary"

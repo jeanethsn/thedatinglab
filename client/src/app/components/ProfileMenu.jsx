@@ -23,7 +23,7 @@ export default function ProfileMenu() {
       <MenuHandler>
         <Avatar
           variant="circular"
-          alt="tania andrew"
+          alt={`${user.name} photo`}
           className="cursor-pointer border-[0.15rem] border-red-orange w-[3rem] h-[3rem]"
           src={profileImage}
         />

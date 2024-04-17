@@ -25,7 +25,7 @@ export default function MatchProfileContent() {
   }, []);
 
   return (
-    <section className="py-12 flex flex-wrap w-full justify-center lg:justify-start gap-4">
+    <section className="w-full max-w-[1200px] xxl:max-w-[1200px] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[1.5rem] mb-[4rem] lg:mb-0 py-12">
       {error ? (
         <p className="text-red-600 text-[0.8rem] lg:text-[1rem]" >{errorMsg}</p>
       ) : (

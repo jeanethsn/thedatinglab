@@ -110,13 +110,13 @@ export default function StepsInfo() {
           />
         </div>
       </div>
-      <div className="hidden  xl:block h-[20rem] sm:h-[30rem] xl:basis-[50%] xl:h-full xxl:h-45rem ol:pt-0 ol:h-[45rem]">
+      <div className="hidden xl:block h-[20rem] sm:h-[80rem] sm:w-[90rem] xl:basis-[50%] xl:h-full xxl:h-45rem ol:pt-0 ol:h-[45rem]">
         <Image
-          width={800}
-          height={500}
-          src={"/assets/image/imagen-steps.png"}
-          alt="pareja sonriente"
-          className="w-[45rem] xl:absolute xl:w-[45rem] xl:bottom-0 h-auto xxxl:w-[58rem]"
+          width={1200}
+          height={1200}
+          src={"/assets/image/probeta.png"}
+          alt="probeta corazones"
+          className="  sm:w-[45rem] sm:h-[60rem]  xl:absolute xl:w-[45rem] xl:bottom-0 h-auto xxxl:w-[58rem]"
         />
       </div>
     </div>

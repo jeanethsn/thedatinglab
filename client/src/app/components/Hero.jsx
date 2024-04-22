@@ -14,7 +14,7 @@ export default function Hero() {
           alt="enamorados felices"
           width={1200}
           height={500}
-          className=" md:top-[6rem] md:h-[39rem]  lg:w-[35rem] lg:bottom-[-2rem] lg:absolute lg:left-[-4rem] xl:w-[38rem] xl:left-[-2rem] 2xl:w-[42rem] 2xl:bottom-[-7rem] 2xl:left-[-1rem] xxxl:w-[50rem] xxxl:left-[4rem]"
+          className=" md:h-[38rem]  lg:w-[35rem] lg:bottom-[-2rem] lg:absolute lg:left-[-4rem] xl:w-[38rem] xl:left-[-2rem] 2xl:w-[42rem] 2xl:bottom-[-7rem] 2xl:left-[-1rem] xxxl:w-[50rem] xxxl:left-[4rem]"
           />
 
       </div>

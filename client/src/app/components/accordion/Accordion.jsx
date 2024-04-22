@@ -183,7 +183,7 @@ export default function Accordion() {
             {section.content.map((item, questionIndex) => (
               <li
                 key={item.question}
-                className="cursor-pointer hover:bg- grey-light  transition-all duration-300 rounded  border-2 border-red-200 bg-gray-100 my-2 lg:py-[0.5rem]"
+                className="cursor-pointer hover:bg-grey-light  transition-all duration-300 rounded  border-2 border-red-200 bg-gray-100 my-2 lg:py-[0.5rem]"
                 onClick={() => handleQuestionClick(sectionIndex, questionIndex)}
               >
                 <h4 className="p-4 text-xl text-red-400 font-bold ol:!text-[1.4rem] ol:px-8">

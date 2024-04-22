@@ -2,10 +2,12 @@ import Image from "next/image";
 
 export default function StepsInfo() {
   return (
+   
     <div className="lg:flex lg:items-center xl:relative xl:w-full lg:h-full ol:max-w-[1440px] xxxl:max-w-[1600px] xxxl:mx-auto xxxl:h-full">
       <div className="flex flex-col justify-center items-center max-w-[20rem] sm:max-w-[30rem] lg:max-w-[80rem] xl:max-w-[35rem] 2xl:!basis-[60%] xl:py-[4rem] ol:py-[2rem] ol:max-w-[50rem] xxxl:max-w-[50rem] xxxl:justify-center">
+
         <h1 className="font-bold text-white text-[2.2rem] mb-[2rem] sm:mb-[2rem] lg:mt-[3rem] xl:text-[2.2rem] ol:mb-[3rem] ol:mt-[4rem] xxxl:text-[2.8rem] xxxl:!mt-[4rem]">
-          ¿Como Funciona?
+          ¿Cómo Funciona?
         </h1>
         <div className="relative">
           <div className="flex gap-[1rem] mb-[1rem] justify-start items-center sm:items-center   lg:mb-[1rem] ol:mb-[2rem] xxxl:mb-[3rem]">
@@ -18,7 +20,7 @@ export default function StepsInfo() {
             />
             <div className="w-[70%] sm:w-[80%] lg:w-[70%] ol:w-[80%] mb-[1rem] ol:mt-0 ol:mb-0">
               <h3 className="font-semibold text-[1.1rem] mb-[0.5rem] leading-[1.3rem] text-white sm:text-[1.2rem] sm:leading-[1.5rem] lg:text-[1.2rem] ol:text-[1.3rem] ol:leading-[1.5rem] xxxl:text-[1.5rem]">
-                Registrate y completa el test de compatibilidad emocional
+                Regístrate y completa el test de compatibilidad emocional
               </h3>
               <p className="text-[0.9rem] text-[#f1cfcf] font-light sm:mt-[0.5rem] lg:text-[1rem] ol:text-[1.1rem] xxxl:text-[1.2rem]">
                 Tómate un momento para ti, ponte nuestra playlist de música de

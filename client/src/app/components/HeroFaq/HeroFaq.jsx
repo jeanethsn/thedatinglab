@@ -5,7 +5,7 @@ import styles from "./styles.module.css";
 export const HeroFaq = () => {
   return (
     <>
-      <div className=" bg-red-300 flex flex-col items-center justify-center md:h-44 backdrop:shadow-inner lg:flex-row lg:px-20 lg:mx-auto lg:gap-9 lg:items-center lg:py-10 ol:h-80">
+      <div className=" bg-primary-color flex flex-col items-center justify-center md:h-44 backdrop:shadow-inner lg:flex-row lg:px-20 lg:mx-auto lg:gap-9 lg:items-center lg:py-10 ol:h-80">
         <div className="py-2 h-32 lg:h-40 ol:w-80 ol:h-80">
           <Image
             src={"/assets/image/logo-encabezado-fqa.svg"}
@@ -25,7 +25,7 @@ export const HeroFaq = () => {
           </p>
         </div>
       </div>
-      <div className="bg-red-200 py-4 text-red-200 flex-shrink-0 md:block h-[2rem] w-full ol:h-[4rem]"></div>
+      <div className="bg-grey-light py-4 text-primary-color flex-shrink-0 md:block h-[2rem] w-full ol:h-[4rem]"></div>
     </>
   );
 };

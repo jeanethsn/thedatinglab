@@ -36,9 +36,9 @@ export default function HeroEvents() {
         <div className="hidden  lg:flex  lg:basis-[60%]  xxl:items-end xxl:mt-0">
           <Image
             width={1400}
-            height={900}
+            height={1200}
             src={"/assets/image/bicicleta.svg"}
-            alt="pareja sonriente"
+            alt="pareja bicicleta"
             className=" lg:absolute lg:w-[38rem] lg:left-[-7rem] lg:bottom-0 h-auto xl:w-[41rem] ol:!w-[42rem] 2xl:!w-[40rem] 2xl:left-[2rem] xxxl:!w-[55rem] xxxl:left-[7rem]"
           />
         </div>

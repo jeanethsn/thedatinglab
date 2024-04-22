@@ -2,23 +2,25 @@ import Image from "next/image";
 
 export default function StepsInfo() {
   return (
+   
     <div className="lg:flex lg:items-center xl:relative xl:w-full lg:h-full ol:max-w-[1440px] xxxl:max-w-[1600px] xxxl:mx-auto xxxl:h-full">
       <div className="flex flex-col justify-center items-center max-w-[20rem] sm:max-w-[30rem] lg:max-w-[80rem] xl:max-w-[35rem] 2xl:!basis-[60%] xl:py-[4rem] ol:py-[2rem] ol:max-w-[50rem] xxxl:max-w-[50rem] xxxl:justify-center">
+
         <h1 className="font-bold text-white text-[2.2rem] mb-[2rem] sm:mb-[2rem] lg:mt-[3rem] xl:text-[2.2rem] ol:mb-[3rem] ol:mt-[4rem] xxxl:text-[2.8rem] xxxl:!mt-[4rem]">
-          ¿Como Funciona?
+          ¿Cómo Funciona?
         </h1>
         <div className="relative">
           <div className="flex gap-[1rem] mb-[1rem] justify-start items-center sm:items-center   lg:mb-[1rem] ol:mb-[2rem] xxxl:mb-[3rem]">
             <Image
               width={30}
               height={30}
-              src={"/assets/icon/icon-one.svg"}
+              src={"/assets/image/numeroUno.svg"}
               alt="numero uno"
               className="h-auto sm:w-[2rem]  ol:w-[2.2rem]"
             />
             <div className="w-[70%] sm:w-[80%] lg:w-[70%] ol:w-[80%] mb-[1rem] ol:mt-0 ol:mb-0">
               <h3 className="font-semibold text-[1.1rem] mb-[0.5rem] leading-[1.3rem] text-white sm:text-[1.2rem] sm:leading-[1.5rem] lg:text-[1.2rem] ol:text-[1.3rem] ol:leading-[1.5rem] xxxl:text-[1.5rem]">
-                Registrate y completa el test de compatibilidad emocional
+                Regístrate y completa el test de compatibilidad emocional
               </h3>
               <p className="text-[0.9rem] text-[#f1cfcf] font-light sm:mt-[0.5rem] lg:text-[1rem] ol:text-[1.1rem] xxxl:text-[1.2rem]">
                 Tómate un momento para ti, ponte nuestra playlist de música de
@@ -30,7 +32,7 @@ export default function StepsInfo() {
           <Image
             width={60}
             height={60}
-            src={"/assets/image/enlace-arrow1.svg"}
+            src={"/assets/image/flecha2.svg"}
             alt="icono flecha"
             className="h-auto absolute top-[1rem] right-[-0.5rem] sm:w-[4.2rem] sm:top-[2rem] sm:right-[-1rem] lg:right-[4rem] lg:top-[-1rem] lg:w-[5rem] transform lg:rotate-[6deg] xl:top-[-0.2rem] xl:right-[2rem] ol:w-[5rem] ol:right-[1rem] ol:top-[1rem] xxl:w-[6rem]  2xl:right-[2rem] 2xl:!top-[-1rem] 2xl:!rotate-[6deg]"
           />
@@ -40,7 +42,7 @@ export default function StepsInfo() {
             <Image
               width={42}
               height={42}
-              src={"/assets/icon/icon-two.svg"}
+              src={"/assets/image/numeroDos.svg"}
               alt="numero dos"
               className="h-auto sm:w-[3rem]  ol:w-[3rem] "
             />
@@ -57,7 +59,7 @@ export default function StepsInfo() {
           <Image
             width={90}
             height={60}
-            src={"/assets/image/enlace-arrow2.svg"}
+            src={"/assets/image/flecha.svg"}
             alt="icono de flecha"
             className="transform rotate-[339deg] h-auto absolute top-[5rem] left-[-1rem] sm:w-[7rem] sm:top-[2rem] sm:rotate-[351deg] lg:top-[0.2rem] lg:left-[0.5rem] lg:w-[7.5rem] lg:rotate-[22deg]  xl:top-[1rem] xl:left-[-1rem] xl:rotate-[352deg] ol:!left-[5rem] ol:w-[8rem] ol:!top-[-0.5rem] ol:!rotate-[20deg] 2xl:!w-[7.5rem] 2xl:top-[1rem] 2xl:rotate-[360deg] 2xl:!left-[1rem]"
           />
@@ -66,7 +68,7 @@ export default function StepsInfo() {
           <Image
             width={42}
             height={42}
-            src={"/assets/icon/icon-three.svg"}
+            src={"/assets/image/numeroTres.svg"}
             alt="numero tres"
             className="h-auto sm:w-[3rem]  ol:w-[3rem]"
           />
@@ -85,7 +87,7 @@ export default function StepsInfo() {
             <Image
               width={48}
               height={48}
-              src={"/assets/icon/icon-four.svg"}
+              src={"/assets/image/numeroCuatro.svg"}
               alt="numero cuatro"
               className="h-auto sm:w-[3.5rem]  ol:w-[3rem] "
             />
@@ -104,19 +106,19 @@ export default function StepsInfo() {
           <Image
             width={60}
             height={50}
-            src={"/assets/image/enlace-arrow3.svg"}
+            src={"/assets/image/flecha2.svg"}
             alt="icono de flecha"
             className="transform scale-x-[-1] rotate-[358deg] h-auto absolute top-[-2.5rem] left-[-1rem] sm:w-[4rem] sm:top-[-1rem] lg:top-[-3rem] lg:rotate-[330deg] lg:left-0 lg:w-[5rem] xl:w-[5rem] xl:top-[-4rem] xl:left-[-2.5rem] ol:left-[-2rem] ol:w-[5rem] ol:rotate-[330deg]"
           />
         </div>
       </div>
-      <div className="hidden  xl:block h-[20rem] sm:h-[30rem] xl:basis-[50%] xl:h-full xxl:h-45rem ol:pt-0 ol:h-[45rem]">
+      <div className="hidden xl:block h-[20rem] sm:h-[80rem] sm:w-[90rem] xl:basis-[50%] xl:h-full xxl:h-45rem ol:pt-0 ol:h-[45rem]">
         <Image
-          width={800}
-          height={500}
-          src={"/assets/image/imagen-steps.png"}
-          alt="pareja sonriente"
-          className="w-[45rem] xl:absolute xl:w-[45rem] xl:bottom-0 h-auto xxxl:w-[58rem]"
+          width={1200}
+          height={1200}
+          src={"/assets/image/probeta.png"}
+          alt="probeta corazones"
+          className="  sm:w-[45rem] sm:h-[60rem]  xl:absolute xl:w-[45rem] xl:bottom-0 h-auto xxxl:w-[58rem]"
         />
       </div>
     </div>

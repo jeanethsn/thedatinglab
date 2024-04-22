@@ -30,7 +30,7 @@ export default function Accordion() {
             
         },
         {
-          question: '¿Cómo puedo resgistrarme en Dating Lab?',
+          question: '¿Cómo puedo registrarme en Dating Lab?',
           answer: (
             <div>
               <p>
@@ -176,14 +176,14 @@ export default function Accordion() {
           key={section.title}
           className="section border-t-0 border-gray-200 pb-8 "
         >
-          <h3 className="flex justify-center text-2xl cursor-pointer mb-4 ease-in-out text-red-900 my-8 font-bold ol:mb-10 ol:text-[2rem]">
+          <h3 className="flex justify-center text-2xl cursor-pointer mb-4 ease-in-out text-black  my-8 font-bold ol:mb-10 ol:text-[2rem]">
             {section.title}
           </h3>
           <ul>
             {section.content.map((item, questionIndex) => (
               <li
                 key={item.question}
-                className="cursor-pointer hover:bg-gray-100 transition-all duration-300 rounded  border-2 border-red-200 bg-red-50 my-2 lg:py-[0.5rem]"
+                className="cursor-pointer hover:bg- grey-light  transition-all duration-300 rounded  border-2 border-red-200 bg-gray-100 my-2 lg:py-[0.5rem]"
                 onClick={() => handleQuestionClick(sectionIndex, questionIndex)}
               >
                 <h4 className="p-4 text-xl text-red-400 font-bold ol:!text-[1.4rem] ol:px-8">

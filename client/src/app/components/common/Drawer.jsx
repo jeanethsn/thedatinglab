@@ -74,7 +74,7 @@ export default function DrawerWithNavigation({ closeDrawer, open }) {
               Eventos
             </ListItem>
           </Button>
-          <Button as="Link" href="/faqs" className="!py-0 !mt-[0.5rem]">
+          <Button as="Link" href="/preguntas-frecuentes" className="!py-0 !mt-[0.5rem]">
             <ListItem className="text-black font-nunito text-[1.1rem] font-semibold">
               <ListItemPrefix>
                 <Image

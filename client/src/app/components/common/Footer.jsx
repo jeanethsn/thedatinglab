@@ -108,7 +108,7 @@ function Footer() {
           </li>
 
           <li className="mb-4 lg:mb-0">
-            <Link className="text-white-text text-[1.2rem] lg:text-[1rem] ol:text-[1.1rem]" href="/preguntas">
+            <Link className="text-white-text text-[1.2rem] lg:text-[1rem] ol:text-[1.1rem]" href="/preguntas-frecuentes">
               F.A.Q.s
             </Link>
           </li>

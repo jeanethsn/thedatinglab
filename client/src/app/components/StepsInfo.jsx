@@ -14,7 +14,7 @@ export default function StepsInfo() {
             <Image
               width={30}
               height={30}
-              src={"/assets/icon/icon-one.svg"}
+              src={"/assets/image/numeroUno.svg"}
               alt="numero uno"
               className="h-auto sm:w-[2rem]  ol:w-[2.2rem]"
             />
@@ -32,7 +32,7 @@ export default function StepsInfo() {
           <Image
             width={60}
             height={60}
-            src={"/assets/image/enlace-arrow1.svg"}
+            src={"/assets/image/flecha2.svg"}
             alt="icono flecha"
             className="h-auto absolute top-[1rem] right-[-0.5rem] sm:w-[4.2rem] sm:top-[2rem] sm:right-[-1rem] lg:right-[4rem] lg:top-[-1rem] lg:w-[5rem] transform lg:rotate-[6deg] xl:top-[-0.2rem] xl:right-[2rem] ol:w-[5rem] ol:right-[1rem] ol:top-[1rem] xxl:w-[6rem]  2xl:right-[2rem] 2xl:!top-[-1rem] 2xl:!rotate-[6deg]"
           />
@@ -42,7 +42,7 @@ export default function StepsInfo() {
             <Image
               width={42}
               height={42}
-              src={"/assets/icon/icon-two.svg"}
+              src={"/assets/image/numeroDos.svg"}
               alt="numero dos"
               className="h-auto sm:w-[3rem]  ol:w-[3rem] "
             />
@@ -59,7 +59,7 @@ export default function StepsInfo() {
           <Image
             width={90}
             height={60}
-            src={"/assets/image/enlace-arrow2.svg"}
+            src={"/assets/image/flecha.svg"}
             alt="icono de flecha"
             className="transform rotate-[339deg] h-auto absolute top-[5rem] left-[-1rem] sm:w-[7rem] sm:top-[2rem] sm:rotate-[351deg] lg:top-[0.2rem] lg:left-[0.5rem] lg:w-[7.5rem] lg:rotate-[22deg]  xl:top-[1rem] xl:left-[-1rem] xl:rotate-[352deg] ol:!left-[5rem] ol:w-[8rem] ol:!top-[-0.5rem] ol:!rotate-[20deg] 2xl:!w-[7.5rem] 2xl:top-[1rem] 2xl:rotate-[360deg] 2xl:!left-[1rem]"
           />
@@ -68,7 +68,7 @@ export default function StepsInfo() {
           <Image
             width={42}
             height={42}
-            src={"/assets/icon/icon-three.svg"}
+            src={"/assets/image/numeroTres.svg"}
             alt="numero tres"
             className="h-auto sm:w-[3rem]  ol:w-[3rem]"
           />
@@ -87,7 +87,7 @@ export default function StepsInfo() {
             <Image
               width={48}
               height={48}
-              src={"/assets/icon/icon-four.svg"}
+              src={"/assets/image/numeroCuatro.svg"}
               alt="numero cuatro"
               className="h-auto sm:w-[3.5rem]  ol:w-[3rem] "
             />
@@ -106,7 +106,7 @@ export default function StepsInfo() {
           <Image
             width={60}
             height={50}
-            src={"/assets/image/enlace-arrow3.svg"}
+            src={"/assets/image/flecha2.svg"}
             alt="icono de flecha"
             className="transform scale-x-[-1] rotate-[358deg] h-auto absolute top-[-2.5rem] left-[-1rem] sm:w-[4rem] sm:top-[-1rem] lg:top-[-3rem] lg:rotate-[330deg] lg:left-0 lg:w-[5rem] xl:w-[5rem] xl:top-[-4rem] xl:left-[-2.5rem] ol:left-[-2rem] ol:w-[5rem] ol:rotate-[330deg]"
           />

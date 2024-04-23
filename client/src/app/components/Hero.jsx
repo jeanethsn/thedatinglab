@@ -7,16 +7,15 @@ export default function Hero() {
   const { user } = useUser();
 
   return (
-    <div className="flex justify-center z-[1] flex-col items-center relative lg:w-full lg:h-full lg:!justify-none ol:gap-[5rem] lg:flex-row ">
+    <div className="flex justify-center margin-top:0 z-[1] flex-col items-center relative lg:w-full lg:h-full lg:!justify-none ol:gap-[5rem] lg:flex-row ">
       <div className="h-[24rem] lg:basis-[50%] lg:realtive lg:h-full xl:h-[40rem] xl:pt-[2rem] xxl:h-45rem ol:pt-0 ol:h-[45rem] xxxl:h-full ">
         <Image
           src="/assets/image/pareja.png"
           alt="enamorados felices"
-          width={1200}
-          height={800}
-          className="md:top-[5rem] md:w-[55rem] md:h-[35rem] xl:h-[40rem] lg:top-[9rem] lg:absolute lg:left-[-4rem] xl:w-[38rem] xl:left-[-2rem] 2xl:w-[42rem] 2xl:bottom-[-7rem] 2xl:left-[-1rem] xxxl:w-[50rem] xxxl:left-[4rem]"
-          />
-
+          width={2200}
+          height={900}
+          className="md:top-[3rem] md:w-[65rem] md:h-[39rem] xl:h-[40rem] lg:top-[5rem] lg:absolute lg:left-[-4rem] xl:w-[38rem] xl:left-[-2rem] 2xl:w-[42rem] 2xl:bottom-[-7rem] 2xl:left-[-1rem] xxxl:w-[50rem] xxxl:left-[4rem]"
+    />
       </div>
      
       <div className="w-[20rem] max-w-[33rem] mx-auto bg-white rounded-lg flex flex-col justify-center items-center  px-[2.5rem] py-[3rem] text-center shadow-lg shadow-gray-600/40  sm:w-[30rem] sm:px-[3rem]  sm:py-[3.2rem]  lg:basis-[50%] lg:mx-0 lg:rounded-none lg:shadow-none lg:bg-inherit xl:px-[2rem] xxxl:max-w-[45rem]">

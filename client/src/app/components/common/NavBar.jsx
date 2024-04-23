@@ -45,7 +45,7 @@ export default function NavigationBar() {
               isHomePage ? "text-primary-color" : ""
             } flex items-center  font-nunito `}
           >
-            Home
+            Inicio
           </Button>
         </Typography>
         <Typography

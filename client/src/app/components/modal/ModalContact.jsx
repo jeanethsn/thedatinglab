@@ -8,7 +8,7 @@ const WHATSAPP = {
   MESSAGE:
     "Hola, ¡bienvenido a Dating Lab! Estamos emocionados de que estés interesado en nuestros eventos de citas a ciegas. ¿En qué puedo ayudarte hoy? ¿Necesitas información sobre nuestros próximos eventos o ayuda para comprar tus entradas? Estoy aquí para ayudarte en todo lo que necesites. ¡No dudes en preguntar!",
   URL: "https://wa.me",
-  MOBILE_NUMBER: "+34613324535",
+  MOBILE_NUMBER: "+34669945836",
 };
 
 export default function ModalContact({ renderContactModal }) {

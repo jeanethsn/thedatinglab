@@ -8,13 +8,13 @@ export default function Hero() {
 
   return (
     <div className="flex justify-center z-[1] flex-col items-center relative lg:w-full lg:h-full lg:!justify-none ol:gap-[5rem] lg:flex-row ">
-      <div className="  h-[24rem] sm:h-[30rem] lg:basis-[50%] lg:realtive lg:h-full xl:h-[40rem] xl:pt-[2rem] xxl:h-45rem ol:pt-0 ol:h-[45rem] xxxl:h-full ">
+      <div className="h-[24rem] lg:basis-[50%] lg:realtive lg:h-full xl:h-[40rem] xl:pt-[2rem] xxl:h-45rem ol:pt-0 ol:h-[45rem] xxxl:h-full ">
         <Image
           src="/assets/image/pareja.png"
           alt="enamorados felices"
           width={1200}
-          height={500}
-          className=" md:h-[37rem]  lg:w-[35rem] lg:bottom-[-2rem] lg:absolute lg:left-[-4rem] xl:w-[38rem] xl:left-[-2rem] 2xl:w-[42rem] 2xl:bottom-[-7rem] 2xl:left-[-1rem] xxxl:w-[50rem] xxxl:left-[4rem]"
+          height={800}
+          className="md:top-[5rem] md:w-[55rem] md:h-[35rem] xl:h-[40rem] lg:top-[9rem] lg:absolute lg:left-[-4rem] xl:w-[38rem] xl:left-[-2rem] 2xl:w-[42rem] 2xl:bottom-[-7rem] 2xl:left-[-1rem] xxxl:w-[50rem] xxxl:left-[4rem]"
           />
 
       </div>

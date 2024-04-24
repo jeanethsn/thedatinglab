@@ -5,9 +5,9 @@ import ModalContact from "@/app/components/modal/ModalContact.jsx";
 import Button from "@/app/components/Button.jsx";
 const WHATSAPP = {
   MESSAGE:
-    "Hola, ¡bienvenido a Dating Lab! Estamos emocionados de que estés interesado en nuestros eventos de citas a ciegas. ¿En qué puedo ayudarte hoy? ¿Necesitas información sobre nuestros próximos eventos o ayuda para comprar tus entradas? Estoy aquí para ayudarte en todo lo que necesites. ¡No dudes en preguntar!",
+    "Hola, ¡bienvenido a Dating Lab! Estamos emocionados de que estés interesado en nuestras experiencias. ¿En qué podemos ayudarte hoy? ¿Necesitas información sobre nuestros próximos eventos o ayuda para comprar tus entradas? Estoy aquí para ayudarte en todo lo que necesites. ¡No dudes en preguntar!",
   URL: "https://wa.me",
-  MOBILE_NUMBER: "+34669945836",
+  MOBILE_NUMBER: "+34623960450",
 };
 function Footer() {
   return (

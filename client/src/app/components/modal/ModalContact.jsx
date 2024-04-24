@@ -6,9 +6,9 @@ import Image from "next/image";
 
 const WHATSAPP = {
   MESSAGE:
-    "Hola, ¡bienvenido a Dating Lab! Estamos emocionados de que estés interesado en nuestros eventos de citas a ciegas. ¿En qué puedo ayudarte hoy? ¿Necesitas información sobre nuestros próximos eventos o ayuda para comprar tus entradas? Estoy aquí para ayudarte en todo lo que necesites. ¡No dudes en preguntar!",
+    "Hola, ¡bienvenido a Dating Lab! Estamos emocionados de que estés interesado en nuestras experiencias. ¿En qué podemos ayudarte hoy? ¿Necesitas información sobre nuestros próximos eventos o ayuda para comprar tus entradas? Estoy aquí para ayudarte en todo lo que necesites. ¡No dudes en preguntar!",
   URL: "https://wa.me",
-  MOBILE_NUMBER: "+34669945836",
+  MOBILE_NUMBER: "+34623960450",
 };
 
 export default function ModalContact({ renderContactModal }) {
@@ -71,7 +71,7 @@ export default function ModalContact({ renderContactModal }) {
                   alt="icon de whatsapp"
                 />
                 <p className="text-[0.9rem] font-semibold sm:text-[1rem] lg:text-[0.8rem] xl:text-[1rem]">
-                  +34 669945836
+                +34 623 960 450 
                 </p>
               </Button>
               <Button

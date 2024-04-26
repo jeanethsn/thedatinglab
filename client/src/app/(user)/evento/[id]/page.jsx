@@ -11,6 +11,9 @@ import { Loading } from "@/app/components/events/CardList";
 import { registerForEvent } from "@/app/services/user";
 import ModalConfirmEvent from "@/app/components/modal/ModalConfirmEvent";
 import { toastMessage } from "@/app/components/Toast";
+import { generateStaticParams } from 'next/dist/shared/lib/utils';
+
+
 
 function Page() {
   const params = useParams();
@@ -37,7 +40,6 @@ function Page() {
   const handleRegisterForEvent = async (handleOpenModal) => {
     try {
       const response = await registerForEvent(params.id);
-      // console.log({ response });
       handleOpenModal();
     } catch (error) {
       const status = error.response.status;

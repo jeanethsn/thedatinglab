@@ -20,18 +20,10 @@ export default function Home() {
     <>
       <NavigationBar />
       <main className="relative">
-        <section className="relative pb-[5rem] lg:pb-0 lg:h-[38rem] lg:overflow-hidden lg:justify-end lg:flex lg:flex-col xl:h-[45rem] ol:h-[44rem] ol:bg-contain xxxl:h-[56rem] xl:px-[2rem] ">
+        <section className="relative pb-[5rem] pt-[0rem] lg:pb-0 lg:h-[38rem] lg:overflow-hidden lg:justify-end lg:flex lg:flex-col xl:h-[45rem] ol:h-[44rem] ol:bg-contain xxxl:h-[56rem] xl:px-[2rem] ">
+
           <div
-            className="absolute w-full h-[80%] top-0 left-0 z-0 lg:w-[50%] lg:h-full"
-            style={{
-              backgroundImage: `url('/assets/image/bg-hero.png')`,
-              backgroundPosition: "center center",
-              backgroundRepeat: "repeat-y",
-              backgroundSize: "contain",
-            }}
-          ></div>
-          <div
-            className="absolute w-full h-[80%] lg:h-[100%] top-0 left-0 z-0 xl:h-full"
+            className="absolute w-full h-[80%] md:h-[50%]  lg:h-[100%] top-0 left-0 z-0 xl:h-full"
             style={{
               backgroundImage: `url('/assets/image/bg-corazon.svg')`,
               backgroundPosition: "center center",
